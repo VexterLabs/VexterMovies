@@ -1,0 +1,31 @@
+.read-chapter.bgColor2,
+.read-chapter.bgColor2 .read-content,
+.read-chapter.bgColor2 .read-content p,
+.read-chapter.bgColor2 .read-content span {
+    color: rgba(255, 255, 255, 1) !important;
+}
+
+.read-chapter,
+.read-chapter .read-content,
+.read-chapter .read-content p,
+.read-chapter .read-content span,
+.read-chapter.bgColor1,
+.read-chapter.bgColor1 .read-content,
+.read-chapter.bgColor1 .read-content p,
+.read-chapter.bgColor1 .read-content span {
+    color: rgb(58, 74, 90) !important;
+}
+
+.read-content p {
+    font-family: "Vollkorn", serif !important;
+    text-align: justify;
+}
+
+.add-button {
+    position: fixed;
+    top: 400px;
+    left: 50%;
+    width: 200px;
+    height: 80px;
+    z-index: 99998;
+}
