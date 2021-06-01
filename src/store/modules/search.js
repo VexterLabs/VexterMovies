@@ -20,7 +20,7 @@ export default {
             if (target.keyword) {
                 state.keyword = target.keyword
             }
-            let res = await instance.post('/webfic/book/search', {
+            let res = await instance.post('/webfic/book/search.do', {
                 "keyword": state.keyword,
                 "pageNo": state.pageNo,
                 "type": "DEFAULT",

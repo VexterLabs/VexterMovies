@@ -9,7 +9,7 @@
         <v-star :ratings="bookInfo.ratings" :count="bookInfo.commentCount">
         </v-star>
       </div>
-      <div class="author">By: {{bookInfo.pseudonym}}</div>
+      <div class="author">{{bookInfo.author}} 著</div>
       <div class="progress">{{bookInfo.lastUpdateTimeDisplay}}</div>
       <div class="book-desc">{{bookInfo.introduction}}</div>
     </div>
@@ -108,7 +108,7 @@ export default {
       font-weight: normal;
       color: #545862;
       line-height: 20px;
-      font-style: italic;
+      font-style: normal;
       margin-bottom: 6px;
     }
     .book-desc {

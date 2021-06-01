@@ -67,7 +67,7 @@
 .itslu_main .auth{
   height: 20px;
   font-size: 14px;
-  font-family: italic;
+  font-style: normal;
   font-weight: normal;
   color: #545862;
   line-height: 20px;
@@ -130,10 +130,10 @@
               </div>
               <div class="itslu_main">
                 <h3>{{ fixPopularTitle(item.bookName) }}</h3>
-                <i class="auth slh_1">By: {{ item.author }}</i>
+                <i class="auth slh_1">{{ item.author }}&nbsp;著</i>
                 <p class="update slh_1">{{ item.lastUpdateTimeDisplay }}</p>
                 <p class="views slh_1">
-                  {{ item.viewCountDisplay }} <span>views</span>
+                  {{ item.viewCountDisplay }} <span>阅读量</span>
                 </p>
                 <p class="intr slh_3">{{ item.introduction }}</p>
               </div>

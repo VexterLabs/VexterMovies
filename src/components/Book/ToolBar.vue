@@ -5,7 +5,7 @@
                 <div :class="['content-item','content-chapter', {'active': opeationIndex == 0}]"
                 >
                     <div class="content-title">
-                        TABLE OF CONTENTS
+                        章節目錄
                     </div>
                     <div class="cg_hd">
                         <div class="chapter-list" ref="chapterListRef">
@@ -24,10 +24,10 @@
                 <div :class="['content-item','content-color', {'active': opeationIndex == 1}]"
                 >
                     <div class="content-title">
-                        DISPLAY OPTIONS
+                        章節目錄
                     </div>
                     <div class="bg">
-                        <div class="tip">Background</div>
+                        <div class="tip">背景顏色</div>
                         <div class="bg-list">
                             <div :class="['bg-item','write',{'active': bgIndex == 0}]"
                             @click="handleChangeBg(0)">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="ftsz">
-                        <div class="tip">Font Size</div>
+                        <div class="tip">字號選擇</div>
                         <div class="ftsz-list">
                             <span :class="[{'disabled': addDisabled}]" @click="handleChangeFontSize(1)">A+</span>
                             <span>{{fontSize}}</span>
@@ -142,7 +142,7 @@ export default{
         },
         async getChapterList(){
             this.chapterList = []
-            let res = await this.$axios.post('/webfic/chapter/list', {
+            let res = await this.$axios.post('/webfic/chapter/list.do', {
                 bookId: this.bookId
             })
             if(res.data.status == 0 && res.data.data.length > 0){

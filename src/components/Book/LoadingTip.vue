@@ -1,6 +1,6 @@
 <template>
     <div class="loading-tip">
-        <div class="loading-next loading-tip-item">Loading Next Chapter…</div>
+        <div class="loading-next loading-tip-item">加載下一章…</div>
     </div>
 </template>
 <script>

@@ -32,6 +32,12 @@ export default {
     },
     mutations: {
         INITDATA(state, payload) {
+            if(payload.length > 0){
+                let rankGroup = {style:'RANK_GROUP1',columns:[]}
+                rankGroup.columns = payload.splice(3,2)
+                payload.splice(3,1,rankGroup)
+
+            }
             state.bookList = payload;
         },
         INITRANKDATA(state, payload) {
@@ -59,11 +65,13 @@ export default {
 
     actions: {
         async getIndexData({ commit }, payload) {
-            let res = await instance.post(config.ENV + '/webfic/home/index');
+            // let res = await instance.post(config.ENV + '/webfic/home/index');
+            let res = await instance.post(config.ENV + '/webfic/home/index.do');
             try {
                 res = res.data
                 if (res.status == 0) {
-                    commit('INITDATA', res.data.pageColumns)
+                    // commit('INITDATA', res.data.pageColumns)
+                    commit('INITDATA', res.data)
                 }
             } catch (error) {
                 commit('INITDATA', [])
@@ -71,20 +79,25 @@ export default {
         },
 
         async getRankingData({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/home/rank', payLoad);
+            // let res = await instance.post(config.ENV + '/webfic/home/rank', payLoad);
+            let res = await instance.post(config.ENV + '/webfic/home/rank.do', payLoad);
             try {
                 res = res.data
                 if (res.status == 0) {
                     let result = res.data
                     let tabs = result.tabs || []
-                    let books = []
-                    result.itemPage.records.map((item, index) => {
-                        books.push({
-                            ...item,
-                            mine_index: index + 1
-                        })
+                    let books = result.data
+                    books.map((item,index)=>{
+                        item.mine_index = index+1
+                        return item
                     })
-                    const totals = result.itemPage.pages
+                    // result.itemPage.records.map((item, index) => {
+                    //     books.push({
+                    //         ...item,
+                    //         mine_index: index + 1
+                    //     })
+                    // })
+                    const totals = result.totalPage
                     commit('INITRANKDATA', {
                         tabs,
                         books,
@@ -101,7 +114,8 @@ export default {
         },
 
         async getBookInfoData({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/book/detail', payLoad);
+            // let res = await instance.post(config.ENV + '/webfic/book/detail', payLoad);
+            let res = await instance.post(config.ENV + '/webfic/book/detail.do', payLoad);
             let bookInfo = {},
                 originalBooks = [],
                 fafictionTitle = "",
@@ -111,10 +125,12 @@ export default {
                 nullPageFalg = true,
                 mateTheAlphaBooks = [];
             try {
+                console.log(res)
                 res = res.data;
                 if (res.status === 0) {
                     let data = res.data;
-                    bookInfo = data.book || {};
+                    // bookInfo = data.book || {};
+                    bookInfo = data || {};
                     if (data.originalBooks && data.originalBooks instanceof Array && data.originalBooks.length > 0) {
                         let str = "";
                         originalBooks = data.originalBooks;
@@ -148,7 +164,8 @@ export default {
         },
 
         async getMoreData({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/home/second/list', payLoad);
+            // let res = await instance.post(config.ENV + '/webfic/home/second/list', payLoad);
+            let res = await instance.post(config.ENV + '/webfic/home/second/list.do', payLoad);
             let books = [],
                 moreName = "",
                 allBookCount = 0;

@@ -63,7 +63,7 @@
         <div class="serarch">
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="搜索..."
             @keyup.enter="handleGoSearch"
             v-model="inputKeyword"
             @input="handleChangeInput($event)"
@@ -95,7 +95,7 @@
               ]"
               href="javascript:;"
             >
-              Contact Us
+              聯系我們
               <!-- <img
                 v-if="currentPath == '/business'"
                 class="top_arrow_down"
@@ -138,7 +138,7 @@
             <router-link
               :to="{ name: 'about_us' }"
               @click.native="routePush('/about_us')"
-              >About Us</router-link
+              >關於我們</router-link
             >
             <img class="nav_bar" src="../../assets/images/icons/btm_img.png" alt="">
 
@@ -147,7 +147,7 @@
             <router-link
               :to="{ name: 'rankings' }"
               @click.native="routePush('/more/rankings')"
-              >{{ $t("nav.ranking") }}</router-link
+              >{{ '書籍排名' }}</router-link
             >
             <img class="nav_bar" src="../../assets/images/icons/btm_img.png" alt="">
 
@@ -156,7 +156,7 @@
             <router-link
               :to="{ name: 'home' }"
               @click.native="routePush('/')"
-              >{{ $t("nav.home") }}</router-link
+              >{{ '首頁' }}</router-link
             >
             <img class="nav_bar" src="../../assets/images/icons/btm_img.png" alt="">
           </li>
@@ -303,7 +303,7 @@ export default {
 .head_box {
   margin: 0 auto;
   height: 80px;
-  background-color: #fafafa;
+  background-color: #FF5F27;
 }
 .head {
   margin: 0 auto;
@@ -313,7 +313,7 @@ export default {
 .r_logo {
   float: left;
   height: 30px;
-  width: 136px;
+  width: 130px;
   background: url("../../assets/images/common/logo.png") no-repeat center
     center/100% 100%;
   // background: url('../../assets/images/common/wsj.png') no-repeat center center/100% 100%;
@@ -359,7 +359,7 @@ export default {
   min-height: 80px;
   cursor: pointer;
   // margin-left: 40px;
-  padding: 0 20px;
+  padding: 0 40px;
   text-align: center;
   &.slide_contain {
     position: relative;
@@ -369,10 +369,12 @@ export default {
       padding: 0 14px;
       display: block;
       text-align: center;
-      background-color: #fafafa;
-      // &:hover{
-      //   background:rgba(250, 240, 245, 1);
-      // }
+      background-color: #FF5F27;
+      color: #FFF0EB;
+      &:hover{
+        color: #FFFFFF;
+        font-weight: 600;
+      }
       .top_arrow_down {
         width: 12px;
         height: 12px;
@@ -384,14 +386,17 @@ export default {
       padding: 0 14px;
       display: block;
       text-align: left;
-      background-color: #fafafa;
-      // &:hover {
-      //   background: rgba(250, 240, 245, 1);
-      // }
+      background-color: #FFFFFF;
+      color: #333333;
+      &:hover {
+        color: #FF5F27;
+      }
     }
     a.activity_slidefade {
       position: absolute;
       width: 154px;
+      height: 50px;
+      line-height: 50px;
       display: none;
       color: rgba(51, 51, 51, 1);
     }
@@ -399,10 +404,12 @@ export default {
       color: rgba(255, 126, 66, 1);
     }
     a.slide_btm1 {
-      top: 100%;
+      top: 77.5%;
+      border-radius: 4px 4px 0 0;
     }
     a.slide_btm2 {
-      top: 200%;
+      top: 140%;
+      border-radius: 0 0 4px 4px;
     }
     span.tip_top {
       position: absolute;
@@ -421,14 +428,15 @@ export default {
     }
   }
   &.slide_contain:hover {
-    a {
-      color: rgba(51, 51, 51, 1);
+    a.slide_top {
+      color: #FFF0EB;
       &:hover {
-        color: rgba(255, 126, 66, 1);
+        color: #FFFFFF;
+        font-weight: 600;
       }
-      &.activity_slidefade {
-        display: block;
-      }
+    }
+    a.activity_slidefade {
+      display: block;
     }
   }
   &.active a.activity_slide.active {
@@ -442,7 +450,7 @@ export default {
   // margin: 10px 0 0;
   height: 80px;
   font-size: 16px;
-  color: rgba(51, 51, 51, 1);
+  color: #FFF0EB;
   font-weight: 400;
   line-height: 80px;
 }
@@ -462,7 +470,8 @@ export default {
 
     &:hover {
       a {
-        color: rgba(255, 126, 66, 1);
+        color: #FFFFFF;
+        font-weight: 600;
       }
     }
     &.active {
@@ -470,7 +479,8 @@ export default {
         display: block;
       }
       a {
-        color: rgba(255, 126, 66, 1);
+        color: #FFFFFF;
+        font-weight: 600;
         &.activity_slide {
           color: rgba(51, 51, 51, 1);
           &:hover {
@@ -511,6 +521,8 @@ export default {
   line-height: 32px;
   float: right;
   margin-top: 23px;
+  background-color: #FFF1EC;
+  border-radius: 4px;
   .serarch {
     width: 100%;
     height: 100%;
@@ -525,7 +537,7 @@ export default {
       border: 1px solid rgba(197, 197, 197, 1);
       border-left: none;
       padding: 0 10px;
-      color: #333;
+      color: #FF5F27;
     }
     .search-icon {
       transition: all 0.3s;

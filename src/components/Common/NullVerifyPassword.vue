@@ -21,7 +21,7 @@
                 </div>
                 <div class="go-home" @click="$router.replace('/')">Go Home page</div>
             </template>
-            <div class="fk" v-else>No related books were found.</div>
+            <div class="fk" v-else>沒有找到相關書籍</div>
             <div class="h-tip">
                 <slot name='noBookTip'></slot>
             </div>
@@ -59,8 +59,8 @@ export default{
     text-align: center;
     padding: 20px 0;
     .null-img{
-        width: 320px;
-        height: 320px;
+        width: 300px;
+        height: 300px;
         background: url('../../assets/images/common/verify_forget_password.png') no-repeat center center/100% 100%;
         margin: 0 auto;
     }

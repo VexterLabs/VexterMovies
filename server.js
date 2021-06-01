@@ -91,10 +91,11 @@ const options = {
     target: HOST, // target host
     changeOrigin: true, // needed for virtual hosted sites
     pathRewrite: {
-        '^/webfic': '/webfic'
+        // '^/webfic': '/webfic'
+        '^/webfic': '/asg/portal'
     },
     onProxyRes(proxyRes, req, res) {
-
+        console.log(proxyRes)
         loggerLog('响应结果')
     },
     onError(err, req, res) {

@@ -18,7 +18,7 @@
             {{bookInfo.bookName}}
         </div>
         <div class="author-name" v-if="bookInfo.pseudonym">
-            Author: {{bookInfo.pseudonym}}
+            {{bookInfo.author}} 著
         </div>
         <!-- <div class="line">
             <span class="line-logo"></span>
@@ -104,7 +104,7 @@ export default{
         line-height:24px;
         text-align: center;
         margin-top: 8px;
-        font-style: italic;
+        font-style: normal;
     }
     .line{
         width: 100%;

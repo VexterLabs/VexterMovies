@@ -53,7 +53,7 @@ export default {
 
 <style>
 * {
-    font-family: 'Ubuntu';
+  font-family: PingFangTC-Regular, PingFangTC;
   /* font-family: "Vollkorn",serif; */
   border: 0;
   margin: 0;

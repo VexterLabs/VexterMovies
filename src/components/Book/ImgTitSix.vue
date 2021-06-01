@@ -63,7 +63,7 @@
   font-weight: normal;
   color: #545862;
   line-height: 20px;
-  font-style: italic;
+  font-style: normal;
   text-align: left;
   display: -webkit-box;/* autoprefixer: ignore next */
   -webkit-box-orient:vertical;
@@ -148,9 +148,9 @@
               </div>
               <div class="ititlu_main">
                 <h3>{{ item.bookName }}</h3>
-                <strong>By: {{ item.pseudonym }}</strong>
+                <strong>{{ item.author }} 著</strong>
                 <div class="view_count">
-                  {{ item.viewCountDisplay }} <span>views</span>
+                  {{ item.viewCountDisplay }} <span>阅读量</span>
                 </div>
               </div>
             </router-link>

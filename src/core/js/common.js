@@ -229,16 +229,17 @@ export const formatSpace = (param) => {
   res = decodeURI(res);
   // res = res.replace(/\?/g , '');
   // 根据URL特殊字符进行替换书名, 只保留普通英文和数字、特殊字符$-_.+!*'()
-  res = res.replace(/[^A-Za-z0-9]/ig , '-')// \_\'\*\(\)\$\+\!\-\.
-  let tempResArr = res.split('-');
-  let resArr = [];
-  tempResArr.forEach((item)=>{
-    if(item){
-      resArr.push(item);
-    }
-  })
+  // res = res.replace(/[^A-Za-z0-9]/ig , '-')// \_\'\*\(\)\$\+\!\-\.
+  // let tempResArr = res.split('-');
+  // let resArr = [];
+  // tempResArr.forEach((item)=>{
+  //   if(item){
+  //     resArr.push(item);
+  //   }
+  // })
 
-  return resArr.join('-');
+  // return resArr.join('-');
+  return res
 }
 
 

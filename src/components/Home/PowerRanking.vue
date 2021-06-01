@@ -293,7 +293,7 @@
                   <img class="cover" v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName" />
                   <div class="top3CSS">
                     <p class="title"> {{item.bookName}} </p>
-                    <p class="auth">{{item.author}}</p>
+                    <p class="auth">{{item.author}}&nbsp;著</p>
                     <p class="intr">{{item.introduction}}</p>
                     <p></p>
                   </div>
@@ -350,7 +350,7 @@
                 <div class="prrlu_info">
                   <h3 class="slh_1">{{ item.bookName }}</h3>
                   <p class="view_count">
-                    {{ item.viewCountDisplay }} <span>views</span>
+                    {{ item.viewCountDisplay }} <span>阅读量</span>
                   </p>
                 </div>
               </a>
@@ -411,11 +411,11 @@ export default {
       this.$emit("clickItem", item);
     },
     formatSpace(param) {
-      let res = encodeURI(param);
-      res = res.split("%20").join("-").split("%C2%A0").join("-");
-      // res = res.replace(/\?/g, "");
-      res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
-      return res;
+      // let res = encodeURI(param);
+      // res = res.split("%20").join("-").split("%C2%A0").join("-");
+      // // res = res.replace(/\?/g, "");
+      // res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
+      return param;
     },
   },
   components: {

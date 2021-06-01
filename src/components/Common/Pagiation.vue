@@ -12,8 +12,8 @@
         <el-pagination
         :small="false"
         layout="prev, pager, next"
-        prev-text='Prev'
-        next-text='Next'
+        prev-text='上一页'
+        next-text='下一页'
         :current-page='pageNo'
         :page-count='totals'
         @current-change='handlePageNumItem'

@@ -1,25 +1,25 @@
 <template>
   <footer class="footer">
-    <img class="logo" src="../../assets/images/common/footer_logo.png" alt="">
+    <!-- <img class="logo" src="../../assets/images/common/footer_logo.png" alt=""> -->
     <ul class="box">
       
       <li class="item">
+        <router-link class="content-li" :to="{path: '/privacy'}">隱私政策</router-link>
+      </li>
+      <li class="item">
         <!-- <h4 class="title">About</h4> -->
-        <router-link class="content-li" :to="{path: '/terms'}">Terms of Use</router-link>
+        <router-link class="content-li" :to="{path: '/terms'}">用戶協議</router-link>
       </li>
-      <li class="item">
-        <router-link class="content-li" :to="{path: '/privacy'}">Privacy Policy</router-link>
-      </li>
-      <li class="item">
+      <!-- <li class="item">
         <router-link class="content-li" :to="{path: '/dmca'}">DMCA</router-link>
-      </li>
+      </li> -->
       <li class="item">
-        <router-link class="content-li" :to="{path: '/download_apps'}">Download Apps</router-link>
+        <router-link class="content-li" :to="{path: '/download_apps'}">下载APP</router-link>
       </li>
     </ul>
 
     <div class="copy_r">
-      <div class="copy_right">© Webfic, All Right Reserved</div>
+      <div class="copy_right">© 小說大全, All Right Reserved</div>
       <div class="copy_right">DIANZHONG TECHNOLOGY SINGAPORE PTE. LTD.</div>
     </div>
   </footer>
@@ -117,13 +117,13 @@ export default {
 }
 .footer {
   width: 100%;
-  background: rgba(15, 5, 0, 1);
+  background: #EBEDF5;
   min-height: 200px;
   box-sizing: border-box;
   // position: absolute;
   min-width: 1360px;
   // bottom: 0;
-  padding-top:22px;
+  padding-top:44px;
 
   .logo{
     display: block;
@@ -134,15 +134,13 @@ export default {
   }
 
   .box {
-    width: 650px;
-    // height: 100%;
+    width: 350px;
     margin: 0 auto;
     font-size: 0;
-    background: rgba(15, 5, 0, 1);
-    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
     .item {
       text-align: center;
-      width: 25%;
       font-size: 12px;
       color:#fff;
       font-weight: 400;
@@ -158,7 +156,9 @@ export default {
       .content-li {
         display: block;
         cursor: pointer;
-        color: rgba(255, 255, 255, 0.6);
+        color: #545862;
+        font-size: 12px;
+        line-height: 14px;
         &:hover {
           color: rgba(255, 126, 66, 1);
         }
@@ -219,15 +219,15 @@ export default {
     // height: 100%;
     margin: 0 auto;
     font-size: 0;
-    background: rgba(15, 5, 0, 1);
-    padding-top:50px;
+    // background: rgba(15, 5, 0, 1);
+    padding-top:82px;
     padding-bottom:20px;
     .copy_right{
       text-align: center;
       height: 14px;
       font-size: 12px;
       font-weight: 400;
-      color: rgba(255, 255, 255, .5);
+      color: #545862;
       line-height: 14px;
       margin-bottom: 5px;
 

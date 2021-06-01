@@ -12,9 +12,9 @@
     <div class="top"></div>
     <div class="WebficReadUnlock">
       <img class="un" src="../../assets/images/icons/unlock_icon.png" alt="" />
-      <p class="p1">Locked Chapter</p>
-      <p class="p2">Want to know the content of the next exciting chapters?</p>
-      <p class="c">Download the Webfic Client</p>
+      <p class="p1">未解鎖章節</p>
+      <p class="p2">想要觀看更多精彩內容</p>
+      <p class="c">下載APP解鎖更多精彩章節</p>
       <div class="client" @click="go_down_load">
           <img class="and" src="../../assets/images/icons/and.png" alt="" />
           <img src="../../assets/images/icons/ios.png" alt="" />

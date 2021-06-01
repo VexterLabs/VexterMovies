@@ -9,20 +9,19 @@
 -->
 <template>
     <div class="block-region">
-        <div class="top">
+        <!-- <div class="top">
             <div class="top-box">
                 <div class="logo" @click="$router.push('/')"></div>
             </div>
-        </div>
+        </div> -->
         <div class="middle">
             <null-page>
                 <template slot="tip">
-                    Sorry, our service is not available <br>
-                    in your country/region yet.
+                    對不起，我們的服務在您的國家不可使用
                 </template>
             </null-page>
         </div>
-        <div class="bottom">
+        <!-- <div class="bottom">
             <div class="bottom-box">
                 <div class="bottom-box">
                     © Webfic | <span
@@ -30,7 +29,7 @@
                     @click="$router.push('/privacy')">Privacy Policy</span>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
@@ -79,7 +78,8 @@ export default{
         }
     }
     .middle{
-
+        margin-top: 150px;
+        margin-bottom: 300px;
     }
     .bottom{
         position: absolute;

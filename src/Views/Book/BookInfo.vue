@@ -94,7 +94,7 @@
   line-height: 28px;
 }
 .autor{
-  font-style: italic;
+  font-style: normal;
 }
 .bibio_li strong,
 .bibio_li span {
@@ -423,34 +423,34 @@
               <strong
                 class="auth"
                 style="color:#3A4A5A;"
-              >By:&nbsp;&nbsp;{{bookInfo.pseudonym || bookInfo.translator}}</strong>
+              >{{bookInfo.author || bookInfo.translator}} 著</strong>
               <!-- <strong class="book_status">&nbsp;&nbsp;{{bookInfo.lastUpdateTimeDisplay}}</strong> -->
             </div>
           </div>
 
           <!-- 写作状态 -->
-          <div class="bibi_other">
-            <div class="bibio_li">
+          <!-- <div class="bibi_other">
+            <div class="bibio_li"> -->
               <!-- <strong
                 class="auth"
                 style="color:#3A4A5A;"
               >By:&nbsp;&nbsp;{{bookInfo.pseudonym || bookInfo.translator}}</strong> -->
-              <strong 
+              <!-- <strong 
               class="book_status" 
               style="color:#3A4A5A;font-size:14px"
               >{{bookInfo.lastUpdateTimeDisplay}}</strong>
             </div>
-          </div>
+          </div> -->
 
           <!-- 语言 -->
-          <div class="bibi_other lang" v-if="bookInfo.language">
+          <!-- <div class="bibi_other lang" v-if="bookInfo.language">
             <div class="bibio_li">
               <strong
                 class="auth"
                 style="color:#3A4A5A;"
               >Language:&nbsp;{{handleLanguage(bookInfo.language)}}</strong>
             </div>
-          </div>
+          </div> -->
 
           <!-- alpha -->
           <div class="bibi_other alpha_contain" v-if="matePseudonym || packNum > 0">
@@ -478,36 +478,36 @@
             <div class="bibir_li" style="margin-top:5px;">
               <!-- <v-star :ratings="bookInfo.ratings" textPos="home"></v-star> -->
 
-              <strong class="home_rate">{{ bookInfo.commentCount>=20 ? filterNum(bookInfo.ratings) : "0.0"}}</strong>
+              <strong class="home_rate">{{ true ? dealRatings(bookInfo.ratings) : "0.0"}}</strong>
               <ul class="stars">
                 <li
                   v-for="(item, index) in 10"
                   :key="index"
-                  :class=" { 'star-empty':true, 'star-fill': bookInfo.commentCount>=20 && index <= Math.round(bookInfo.ratings)-1}"
+                  :class=" { 'star-empty':true, 'star-fill': true && index <= Math.round(bookInfo.ratings)-1}"
                 ></li>
               </ul>
 
               <span style="text-align:left;" v-if="allComments > 0 && bookInfo.commentCount>=20">
                 {{allComments}}
-                <template v-if="allComments == 1">rating</template>
-                <template v-else>ratings</template>
+                <!-- <template v-if="allComments == 1">rating</template> -->
+                <template>条评论</template>
               </span>
               <!-- <span style="text-align:left;" v-else >
                 Not enough ratings
               </span> -->
-              <span style="text-align:left;" >
+              <!-- <span style="text-align:left;" >
                 Taken from Webfic client user ratings
-              </span>
+              </span> -->
             </div>
 
             <div class="bibir_li">
               <strong>{{bookInfo.chapterCount}}</strong>
-              <span>Chapters</span>
+              <span>章节</span>
             </div>
 
             <div class="bibir_li">
               <strong>{{bookInfo.viewCountDisplay}}</strong>
-              <span>Views</span>
+              <span>观看数</span>
             </div>
           </div>
 
@@ -530,7 +530,7 @@
       <div class="bid_tit">
         <h2 class="bidt_h2">
           <!-- <span></span> -->
-          <strong class="special-font">Synopsis</strong>
+          <strong class="special-font">簡介</strong>
         </h2>
         <a
           href="javascript:;"
@@ -544,7 +544,7 @@
 
       <div :class="['bid_p', isviewmore ? 'bidp_more' : '']">
         <p id="bidph">{{bookInfo.introduction}}</p>
-        <a href="javascript:;" class="bidp_more_but" @click="openp">View More
+        <a href="javascript:;" class="bidp_more_but" @click="openp">展開
           <img src="../../assets/images/icons/arrow.png" alt="">
         </a>
       </div>
@@ -636,6 +636,7 @@ export default {
   name: "book_info",
   async asyncData({store,route}){
     let bookId = route.params.id || '';
+    console.log(bookId)
     await store.dispatch('HomeDataModule/getBookInfoData',{bookId: bookId || ''});
   },
   components: {
@@ -717,7 +718,7 @@ export default {
       window.scroll(0, 0);
     });
 
-    if(id) this.getComment(id)
+    // if(id) this.getComment(id)
   },
   watch: {
     $route() {
@@ -899,6 +900,19 @@ export default {
       this.pageNo = target;
       this.handleGetReloadComment({ level: 1 });
       // document.body.scrollTop = this.$refs.comments.offsetTop-200
+    },
+    dealRatings(ratings) {
+      if ((ratings + "").length > 3) {
+        var start = (ratings + "").slice(0, 3);
+        var last = (ratings + "").slice(4, 5);
+        ratings = start - 0 + (Math.round("0." + last) - 0);
+      }
+
+      if ((ratings + "").indexOf(".") > -1) {
+        return ratings;
+      } else {
+        return ratings + ".0";
+      }
     }
   },
   destroyed() {

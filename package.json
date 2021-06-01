@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "npm start",
         "start1": "cross-env PORT=9080 HOST=http://192.168.0.55:8080 node server.js",
-        "start": "cross-env PORT=8080 HOST=http://192.168.1.70:8080 node server.js",
+        "start": "cross-env PORT=8080 HOST=http://192.168.0.241:4080 node server.js",
         "server:pcqat": "cross-env NODE_ENV=production PORT=9080 HOST=http://192.168.1.70:8080 pm2 start server.js --name pcqat",
         "server:pchot": "cross-env NODE_ENV=production PORT=9080 HOST=http://192.168.0.249:8080 pm2 start server.js --name pchot",
         "server:pyfb": "cross-env NODE_ENV=production PORT=9080 TYPE_CDN=yfb HOST=http://internal-hwyc-elb-for-yfb-newm-478091964.ap-southeast-1.elb.amazonaws.com/ pm2 start server.js --name pyfb",

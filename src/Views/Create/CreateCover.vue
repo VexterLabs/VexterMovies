@@ -2103,7 +2103,7 @@ export default {
     },
 
     async getFellowBookName(bookId) {
-      let res = await this.$axios.post("/webfic/book/reader", {
+      let res = await this.$axios.post("/webfic/book/reader.do", {
         bookId: bookId,
       });
       if (res.data.status == 0) {

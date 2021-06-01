@@ -11,14 +11,14 @@
           <li
             v-for="(item, index) in 10"
             :key="index"
-            :class=" { 'star-empty':true , 'star-fill': (bookInfo.commentCount && bookInfo.commentCount>19 && index <= Math.round(bookInfo.ratings)-1) }"
+            :class=" { 'star-empty':true , 'star-fill': (true && index <= Math.round(bookInfo.ratings)-1) }"
           ></li>
         </ul>
         <span class="stars_num">
-          {{ (bookInfo.commentCount && bookInfo.commentCount>19) ? dealRatings(bookInfo.ratings) : '0.0'}}
+          {{ (true) ? dealRatings(bookInfo.ratings) : '0.0'}}
         </span>
       </div>
-      <div class="author">By: {{bookInfo.pseudonym}} &nbsp;&nbsp;</div>
+      <div class="author">{{bookInfo.author}} 著</div>
       <div class="update">{{bookInfo.lastUpdateTimeDisplay}}</div>
       <div class="book-desc">{{bookInfo.introduction}}</div>
     </div>
@@ -158,7 +158,7 @@ export default {
       font-weight: normal;
       color: #545862;
       line-height: 20px;
-      font-style: italic;
+      font-style: normal;
       margin-bottom: 6px;
     }
     .update{

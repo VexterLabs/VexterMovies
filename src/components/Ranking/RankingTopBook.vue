@@ -9,13 +9,13 @@
         <img v-lazy="bookInfo.cover" src="../../assets/images/book/book_err.gif" :alt="bookInfo.bookName" />
       </div>
       <div class="book-name" @click="handleGoBookInfo">{{bookInfo.bookName}}</div>
-      <div class="book-author">{{bookInfo.pseudonym}}</div>
+      <div class="book-author">{{bookInfo.author}} 著</div>
       <div class="ranking-star">
         <ul class="stars">
           <li
             v-for="(item, index) in 10"
             :key="index"
-            :class=" { 'star-empty':true , 'star-fill': bookInfo.commentCount>=20 &&index <= Math.round(bookInfo.ratings)-1 }"
+            :class=" { 'star-empty':true , 'star-fill': true &&index <= Math.round(bookInfo.ratings)-1 }"
           ></li>
         </ul>
         {{ bookInfo.commentCount>=20 ? dealRatings(bookInfo.ratings) :'0.0'}}

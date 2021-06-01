@@ -141,6 +141,11 @@ export default [{
         name: 'verify',
         component: resolve => require(['@/Views/Login/EmailVerify.vue'], resolve)
     },
+    {
+        path: '/block',
+        name: '403',
+        component: resolve => require(['@/Views/Home/Block403.vue'], resolve)
+    },
         /* {
             path: '/lgbt',
             name: 'lgbt',
@@ -203,11 +208,6 @@ export default [{
     path: '/judge_link',
     name: 'judge_link',
     component: resolve => require(['@/Views/Home/JudgeLink.vue'], resolve)
-},
-{
-    path: '/block',
-    name: '403',
-    component: resolve => require(['@/Views/Home/Block403.vue'], resolve)
 },
 
 ]

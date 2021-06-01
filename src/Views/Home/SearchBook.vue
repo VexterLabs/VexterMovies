@@ -2,7 +2,7 @@
     <div class="search">
         <div class="search-title">
             <div class="box">
-                <div class="title-name"> <i class="left_bar"></i> SEARCH ‘ <span class="color_web">{{keyword}}</span> ’ RESULT {{allBookCount}} BOOKS</div>
+                <div class="title-name">搜索 “ <span class="color_web">{{keyword}}</span> ” 相關的 {{allBookCount}} 本書籍</div>
                 <!-- <div class="search-tag">
                     <div class="search-tag-item" v-for="item in 5" :key="item">All</div>
                 </div> -->
@@ -102,26 +102,27 @@ export default{
     background: #fff;
     padding-bottom: 40px;
     .search-title{
-        width: 100%;
-        min-height: 120px;
+        width: 1300px;
+        margin: 20px auto 0;
+        height: 80px;
+        line-height: 80px;
         box-sizing: border-box;
         background:rgba(244,246,248,1);
         .box{
-            width: 1080px;
+            width: 100%;
             height: 100%;
-            margin: 0 auto;
             .title-name{
                 font-weight:bold;
                 color:rgba(67,83,102,1);
-                font-size: 32px;
-                padding-top: 58px;
+                font-size: 20px;
+                // padding-top: 58px;
                 margin-bottom: 40px;
                 width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 position: relative;
-                padding-left:22px;
+                padding-left:24px;
                 .left_bar{
                     position: absolute;
                     width: 6px;
@@ -133,7 +134,7 @@ export default{
                 .color_web{
                     font-weight:bold;
                 color:rgba(67,83,102,1);
-                font-size: 32px;
+                font-size: 20px;
                     color:rgb(255 ,126 ,66);
                 }
             }
@@ -164,7 +165,7 @@ export default{
         }
     }
     .container{
-        width: 1080px;
+        width: 1300px;
         margin: 0 auto;
         padding-top: 40px;
     }

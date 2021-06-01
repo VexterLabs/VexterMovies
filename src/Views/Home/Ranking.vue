@@ -114,7 +114,7 @@ export default{
     methods: {
         ...mapMutations("HomeDataModule", ["INITRANKDATA"]),
         async getPageInit(){
-            let res = await this.$axios.post('/webfic/home/rank',{
+            let res = await this.$axios.post('/webfic/home/rank.do',{
                 "columnId": this.currentColumnId,
                 "index": 0,
                 "pageNo":  this.pageNo,
@@ -124,7 +124,7 @@ export default{
             this.$store.dispatch('moduleHome/changeLoadingStatus', true)
             if(res.data.status == 0){
                 let result = res.data.data
-                let tabs=[],books=[],totals=result.itemPage.pages;
+                let tabs=[],books=[],totals=result.totalPage;
                 if(result.tabs && result.tabs.length > 0){
                     tabs = result.tabs
                     tabs.map((item,index) => {
@@ -133,12 +133,17 @@ export default{
                         }
                     })
                 }
-                result.itemPage.records.map((item,index) => {
-                    books.push({
-                        ...item,
-                        mine_index: index + 1 + (this.pageNo - 1) * this.pageSize
-                    })
+                books = result.data
+                books.map((item,index)=>{
+                    item.mine_index = index + 1 + (this.pageNo - 1) * this.pageSize
+                    return item
                 })
+                // result.itemPage.records.map((item,index) => {
+                //     books.push({
+                //         ...item,
+                //         mine_index: index + 1 + (this.pageNo - 1) * this.pageSize
+                //     })
+                // })
                 this.INITRANKDATA({tabs,books,totals})
             }
             await this.$nextTick()

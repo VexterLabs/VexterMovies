@@ -2,12 +2,12 @@
     <div class="book-read-status">
         <template v-if="bookInfo.read">
             <router-link :to="{path: `/book/${bookInfo.bookId}`}">
-                Continue
+                閱 讀
             </router-link>
         </template>
         <template v-else>
             <router-link :to="{path: `/book/${bookInfo.bookId}`}">
-                Read
+                閱 讀
             </router-link>
         </template>
     </div>

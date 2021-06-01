@@ -397,9 +397,9 @@ export default{
                 })
             }
 
-            let commentList = await this.getCommentChapter(chapterId)
+            // let commentList = await this.getCommentChapter(chapterId)
 
-            let res = await this.$axios.post('/webfic/chapter/detail', {
+            let res = await this.$axios.post('/webfic/chapter/detail.do', {
                 chapterId: chapterId,
                 bookId: this.bookId
             })
@@ -476,7 +476,7 @@ export default{
             },300)
         },
         async getBookInfo(){
-            let res = await this.$axios.post('/webfic/book/reader',{
+            let res = await this.$axios.post('/webfic/book/reader.do',{
                 bookId: this.bookId
             })
             if(res.data.status == 0){
@@ -487,7 +487,8 @@ export default{
                   this.chapterId = this.rssChapterId
                   this.rssChapterId = false;// 用完就改false
                 }else{
-                  this.chapterId = res.data.data.defaultChapterId
+                //   this.chapterId = res.data.data.defaultChapterId
+                  this.chapterId = res.data.data.chapterId
                 }
 
                 this.nullPageFalg = true
@@ -533,9 +534,10 @@ export default{
                 this.loadingFlag = false
             }
             // TODO: 评论返回后添加给对应id的 chapterLisItem中
-            let commentList = await this.getCommentChapter(chapterId)
+            let commentList = []
+            // let commentList = await this.getCommentChapter(chapterId)
 
-            let res = await this.$axios.post('/webfic/chapter/detail', {
+            let res = await this.$axios.post('/webfic/chapter/detail.do', {
                 chapterId: chapterId,
                 bookId: this.bookId
             })

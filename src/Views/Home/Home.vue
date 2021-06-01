@@ -86,6 +86,11 @@ export default {
           this.$router.push(`/book/${item.action}`);
           break;
         default:
+          this.$router.push(
+            `/book_info/${item.bookId || item.action}/${
+              item.typeTwoNames && item.typeTwoNames[0] || 'null'
+            }/${item.bookName || 'null'}`
+          );
           break;
       }
     }

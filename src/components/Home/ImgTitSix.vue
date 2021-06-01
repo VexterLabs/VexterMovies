@@ -72,9 +72,11 @@
 .ititlu_main .auth{
   height: 20px;
   font-size: 14px;
-  font-family: italic;
+  font-style: normal;
   font-weight: normal;
   color: #545862;
+  width: 100%;
+  display: inline-block;
   line-height: 20px;
   margin-bottom: 6px;
 }
@@ -112,9 +114,9 @@
                 </div>
                 <div class="ititlu_main">
                   <h3>{{ item.bookName }}</h3>
-                  <i class="auth slh_1">By: {{ item.author }}</i>
+                  <i class="auth slh_1">{{ item.author }}&nbsp;著</i>
                   <p class="views slh_1">
-                    {{ item.viewCountDisplay }} <span>views</span>
+                    {{ item.viewCountDisplay }} <span>阅读量</span>
                   </p>
                 </div>
               </div>
