@@ -18,13 +18,14 @@
       <div class="contentImg">
           <img src="../../assets/images/aboutus/wbg.png" alt title="Classicality " />
           <div class="inter">
-            <p>Webfic | Make Reading Fantastic</p>
-            <p>Free online website novels & books for fiction loves.</p>
-            <p>Popular web novels with massive original English stories, types include urban, romance, </p>
-            <p>fantasy, werewolf, classic and so on.</p>
-            <p>For more high-quality content and experience, you can download the Webfic official app</p>
-            <p>and enjoy the fun of reading together.</p>
-            <p>Download it now and enjoy reading together.</p>
+            <p>小說大全-全新海量火熱小說</p>
+            <p>【免費多顏值高、更新快的電子書閱讀神器】</p>
+            <p>頁面设计精美大方，給你超級舒適的視覺體驗；隨時隨地，連載秒更。</p>
+            <p>【百家電子文庫，私人訂製推薦】</p>
+            <p>都市辣文、玄幻修真、盜墓摸金、懸疑、鐵血軍事豪門總裁、校園純愛、古言仙俠、穿越宮鬥、幻想言情、影視原著。</p>
+            <p>【不可錯過的暢銷經典紅文】</p>
+            <p>網文：《鬼手神医：王妃请上位 》《龍王殿》《封少的掌上娇妻》《幸得相爱，陆少深深宠》《都市無敵醫聖》《至尊女婿》《騙婚總裁：獨寵小嬌妻》《閃婚老公太兇猛》等暢銷書：《你好，舊時光》《你的孤獨，雖敗猶榮》《靈魂有香氣的女子》《微微一笑很傾城》等，趕走生活中無聊的每1秒。</p>
+            <p>小說大全，千萬用戶正在使用的小說閱讀神器！打發無聊時間的裝備！百萬部經典小說樣樣俱全任你閱讀，小說更新實時提醒，從此追書也是件幸福事。</p>
           </div>
       </div>
     </div>
@@ -53,8 +54,7 @@ export default {
 .appStope{
   width: 800px;
   height: 130px;
-  margin: 74px auto;
-  margin-bottom: 240px;
+  margin: 80px auto;
 }
 .appStope img{
   width: 360px;
@@ -68,7 +68,7 @@ export default {
 }
 .navTop{
   position: relative;
-  height: 540px;
+  height: 704px;
   .auto_contain{
     position: absolute;
     width: 100%;
@@ -93,26 +93,28 @@ export default {
   img{
     position: absolute;
     width: 1600px;
-    height: 540px;
+    height: 704px;
   }
 }
 .inter{
   width: 700px;
-  height: 300px;
+  height: 434px;
   background: rgba(255,255,255,0.7);
   position: absolute;
   left: 0px;
   right: 0px;
-  margin:70px auto;
+  margin:84px auto;
   padding: 50px;
   text-align: center;
   border-radius: 4px;
+  font-weight: 400;
   p:nth-child(1){
     font-size: 24px;
     font-weight: bold;
     line-height: 28px;
-    margin-bottom: 70px;
+    margin-bottom: 24px;
     position: relative;
+    text-align: center;
     &::after{
       content: "";
       position: absolute;
@@ -123,12 +125,19 @@ export default {
       height: 2px;
       margin: auto;
       background-color: #e97020;
+      display: none;
     }
   }
-  p{
-    font-size: 17px;
-    line-height: 28px;
-    color: rgba(51,51,51,0.8);
+  p:last-child{
+    margin-top: 45px;
   }
+  p{
+    font-size: 16px;
+    line-height: 28px;
+    color: #545862;
+    text-align: left;
+    font-weight: 400;
+  }
+
 }
 </style>

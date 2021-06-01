@@ -13,7 +13,7 @@
       <!-- <li class="item">
         <router-link class="content-li" :to="{path: '/dmca'}">DMCA</router-link>
       </li> -->
-      <li class="item">
+      <li class="item itemCol">
         <router-link class="content-li" :to="{path: '/download_apps'}">下载APP</router-link>
       </li>
     </ul>
@@ -194,6 +194,14 @@ export default {
         &::placeholder {
           color: rgba(255, 255, 255, 0.6);
         }
+      }
+    }
+    .itemCol{
+      border-radius: 2px;
+      border: 1px solid;
+      border-image: linear-gradient(137deg, rgba(248, 201, 74, 1), rgba(248, 163, 62, 1)) 1 1;
+      a{
+      color: #FB571F !important;
       }
     }
   }

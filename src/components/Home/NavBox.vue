@@ -119,8 +119,7 @@
                 { active: currentPath == '/contest' },
               ]"
               href="https://docs.google.com/forms/d/e/1FAIpQLSesBR-gG8pxO2lwlMND3sYYvoOoxi08WmwtXR_4YYhN0RIL6w/viewform?usp=sf_link"
-              >Help & suggestion</a
-            >
+              >帮助和建议</a>
             <router-link
               :class="[
                 'activity_slide',
@@ -130,7 +129,7 @@
               ]"
               :to="{ name: 'business' }"
               @click.native="routePush('/business')"
-              >Business</router-link>
+              >业务</router-link>
             <img class="nav_bar" src="../../assets/images/icons/btm_img.png" alt="">
 
           </li>

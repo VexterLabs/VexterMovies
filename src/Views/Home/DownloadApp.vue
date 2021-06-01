@@ -18,10 +18,9 @@
           alt="down load goodnovel app"
         />
         <h2>
-          Copy the URL to the <br> <strong>Android phone's</strong> <br> browser to
-          download.
+          复制URL链接到 <br> <strong>安卓手机</strong> <br> 浏览器进行下载
         </h2>
-        <span @click="handleCopyLink('and')">Click to copy URL<i class="line"></i></span>
+        <span @click="handleCopyLink('and')">点击复制URL链接<i class="line"></i></span>
       </div>
 
       <div class="box">
@@ -31,10 +30,9 @@
           alt="down load goodnovel app"
         />
         <h2>
-          Copy the URL to the <br> <strong>iPhone "Safari"</strong> <br> browser to
-          download.
+          复制URL链接到<br> <strong>苹果手机</strong> <br> 浏览器“Safari”进行下载
         </h2>
-        <span @click="handleCopyLink('ios')">Click to copy URL <i class="line"></i></span>
+        <span @click="handleCopyLink('ios')">点击复制URL链接<i class="line"></i></span>
       </div>
     </div>
   </div>
@@ -46,9 +44,9 @@ export default {
   },
   methods: {
     handleCopyLink(type) {
-      let message = "https://play.google.com/store/apps/details?id=com.webfic.novel";
+      let message = "https://play.google.com/store/apps/details?id=com.dz.xsdq";
       if(type == 'ios'){
-        message = "https://apps.apple.com/us/app/id1517946671"
+        message = "https://apps.apple.com/tw/app/id1478104721"
       }
 
       this.$copyText(message).then(
