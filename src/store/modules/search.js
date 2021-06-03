@@ -27,15 +27,14 @@ export default {
                 "pageSize": state.pageSize
             })
             if (target.vm && target.vm.$store) target.vm.$store.dispatch('moduleHome/changeLoadingStatus', true)
-
-            if (res.data.status == 0 && res.data.data) {
-                let result = res.data.data
-                state.totals = result.pages
-                state.allBookCount = result.total
-                state.books = result.records
+            if (res.data.status == 0 && res.data.data.data) {
+                let result = res.data.data6
+                state.totals = result.totalPage
+                state.allBookCount = result.totalNum
+                state.books = result.data
                 state.isNull = false
 
-            } else if (res.data.status == 0 && !res.data.data) {
+            } else if (res.data.status == 0 && !res.data.data.data) {
                 state.books = []
                 state.isNull = true
                 state.allBookCount = 0

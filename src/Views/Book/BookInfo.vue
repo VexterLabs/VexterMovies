@@ -731,7 +731,7 @@ export default {
         this.allComments= 0;
         this.commentList= [];
         this.currentCommentInfo=[]
-        this.getComment(id)
+        // this.getComment(id)
       }
     }
   },
@@ -886,7 +886,7 @@ export default {
       } else {
         this.level = 1;
       }
-      this.getComment();
+      // this.getComment();
     },
     handleClickPrev() {
       this.pageNo -= 1;

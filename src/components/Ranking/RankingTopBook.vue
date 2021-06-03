@@ -18,7 +18,7 @@
             :class=" { 'star-empty':true , 'star-fill': true &&index <= Math.round(bookInfo.ratings)-1 }"
           ></li>
         </ul>
-        {{ bookInfo.commentCount>=20 ? dealRatings(bookInfo.ratings) :'0.0'}}
+        {{dealRatings(bookInfo.ratings)}}
       </div>
       <div class="ranking-read">
         <read-or-continue :bookInfo="bookInfo"></read-or-continue>

@@ -171,11 +171,11 @@ export default {
                 allBookCount = 0;
             try {
                 res = res.data;
-                if (res.status == 0 && res.data.items) {
+                if (res.status == 0 && res.data.data) {
                     let data = res.data;
-                    books = data.items;
-                    moreName = data.name;
-                    allBookCount = data.totalSize;
+                    books = data.data;
+                    moreName = data.name||'';
+                    allBookCount = data.totalNum;
                 } else {
                     this.$msg({
                         content: "Network Error , Status: " + res.data.status

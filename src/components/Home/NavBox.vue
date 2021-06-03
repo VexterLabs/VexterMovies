@@ -365,7 +365,7 @@ export default {
     padding: 0;
     z-index: 999;
     a.slide_top {
-      padding: 0 14px;
+      padding: 0 40px;
       display: block;
       text-align: center;
       background-color: #FF5F27;
