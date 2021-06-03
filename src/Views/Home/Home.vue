@@ -58,25 +58,29 @@ export default {
               items:[
                 {
                   'bannerUrl':Banner1,
-                  'bookId': "11010091629",
+                  // 'bookId': "11010091629",
+                  'bookId':'11000000227',
                   'bookName': "神王婿",
                   "author":"絕代天驕"
                 },
                 {
                   'bannerUrl':Banner2,
-                  'bookId': "11010076840",
+                  // 'bookId': "11010076840",
+                  'bookId': "11000000153",
                   'bookName': "重生之一世梟龍",
                   "author":"青海長雲"
                 },
                 {
                   'bannerUrl':Banner3,
-                  'bookId': "11010086319",
+                  // 'bookId': "11010076840",
+                  'bookId': "11000000207",
                   'bookName': "醜女重生：霍家後嬌又颯",
                   "author":"喬眉"
                 },
                 {
                   'bannerUrl':Banner4,
-                  'bookId': "11010080493",
+                  // 'bookId': "11010076840",
+                  'bookId': "11000000231",
                   'bookName': "鬼手醫妃：王爺休書請拿好",
                   "author":"勤奮的螃蟹"
                 }
