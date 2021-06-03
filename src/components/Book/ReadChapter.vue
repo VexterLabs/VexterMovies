@@ -6,16 +6,16 @@
   >
     <div :class="['read-chapter',{'noBorder': unlockFlag},'bgColor'+bgColor]">
       <div :id="chapterInfo.id" class="title">{{chapterInfo.chapterName}}</div>
-      <div class="author-info">
+      <!-- <div class="author-info">
         <div class="author-item" v-if="bookInfo.translator">
           Translator:
           <span>{{bookInfo.translator}}</span>
         </div>
         <div class="author-item" v-if="bookInfo.author">
-          Editor:
+          作者:
           <span>{{bookInfo.author}}</span>
         </div>
-      </div>
+      </div> -->
       <div
         class="read-content"
         :class="'fontSize'+fontSize"

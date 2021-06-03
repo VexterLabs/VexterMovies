@@ -119,7 +119,7 @@ export default {
   width: 100%;
   height: 80px;
   line-height: 80px;
-  background: #FFFFFF;
+  background-color: #ff5f27;
   box-sizing: border-box;
   padding: 0 10px;
   position: fixed;
@@ -137,16 +137,14 @@ export default {
       font-weight: bold;
       width: 136px;
       height: 30px;
-      // background: url("../../assets/images/common/wsj.png") no-repeat center
       background: url("../../assets/images/common/logo.png") no-repeat center
-        center/100% 100%;
+    center/100% 100%;
       position: relative;
       top: 25px;
       cursor: pointer;
     }
     .book-info {
       font-size: 16px;
-      color: #3a4a5a;
       font-weight: bold;
       width: 776px;
       padding: 0px 40px;
@@ -158,9 +156,10 @@ export default {
       white-space: nowrap;
       text-overflow: ellipsis;
       text-align: center;
-      color: rgba(51, 51, 51, 1);
+       color: white;
       .title {
         cursor: pointer;
+        color: white;
       }
     }
     .add-shelf {

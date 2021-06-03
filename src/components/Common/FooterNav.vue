@@ -20,7 +20,7 @@
 
     <div class="copy_r">
       <div class="copy_right">© 小說大全, All Right Reserved</div>
-      <div class="copy_right">DIANZHONG TECHNOLOGY SINGAPORE PTE. LTD.</div>
+      <div class="copy_right">Dianzhong Technology Co., Ltd.</div>
     </div>
   </footer>
 </template>

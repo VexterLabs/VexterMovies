@@ -48,7 +48,7 @@
             </div>
             <div class="btn_story" v-if=" hubInfo.recommendHubs && hubInfo.recommendHubs.length !=0 ">
                 <h2>
-                    You may also like
+                    看過這本書的人還在看
                 </h2>
                 <div class="list_item" v-for="(item ,index) in hubInfo.recommendHubs" :key="index">
                     <div class="line" v-if="index!=0"></div>

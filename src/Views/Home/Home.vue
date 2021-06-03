@@ -22,7 +22,7 @@
     (comitem.style=='BOOK6X1'?'ImgTitSix':(comitem.style=='RANK_GROUP1'?'PowerRanking':(comitem.style=='BOOK4X1'?'ImgTxtFour':(comitem.style=='RANK_GROUP2'?'RankingTag':'')))))"
       v-for="(comitem,index) in bookList"
       :key="comitem.id + '_' +index"
-      :componentData="comitem"
+      :componentData="comitem.style=='BANNER'?banners:comitem"
       @clickItem="handleClickItem"
       :isShowFlag="isShowFlag"
     ></component>
@@ -37,7 +37,10 @@ import PowerRanking from "@/components/Home/PowerRanking";
 import ImgTxtFour from "@/components/Home/ImgTxtFour";
 import RankingTag from "@/components/Home/RankingTag";
 import { formatSpace } from "@/core/js/common.js";
-
+import Banner1 from "../../assets/images/common/banner1.jpg";
+import Banner2 from "../../assets/images/common/banner2.jpg";
+import Banner3 from "../../assets/images/common/banner3.jpg";
+import Banner4 from "../../assets/images/common/banner4.jpg";
 export default {
     name: "home",
     async asyncData({store}){
@@ -51,6 +54,34 @@ export default {
     data() {
         return {
             isShowFlag: false,
+            banners:{
+              items:[
+                {
+                  'bannerUrl':Banner1,
+                  'bookId': "11010091629",
+                  'bookName': "神王婿",
+                  "author":"絕代天驕"
+                },
+                {
+                  'bannerUrl':Banner2,
+                  'bookId': "11010076840",
+                  'bookName': "重生之一世梟龍",
+                  "author":"青海長雲"
+                },
+                {
+                  'bannerUrl':Banner3,
+                  'bookId': "11010086319",
+                  'bookName': "醜女重生：霍家後嬌又颯",
+                  "author":"喬眉"
+                },
+                {
+                  'bannerUrl':Banner4,
+                  'bookId': "11010080493",
+                  'bookName': "鬼手醫妃：王爺休書請拿好",
+                  "author":"勤奮的螃蟹"
+                }
+              ]
+            },
         };
     },
 

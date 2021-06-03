@@ -14,7 +14,7 @@
 }
 .ct_more{
   float: right;
-  width: 63px;
+  width: 83px;
   margin: 46px 0 0 0;
   padding-right: 26px;
   height: 20px;
@@ -50,9 +50,9 @@
 <template>
   <div class="common_tit">
     <!-- <a href="javascript:;" @click="handleGoRanking" class="ct_more" v-if="isMore && goRanking">More</a> -->
-    <a href="/more/rankings" class="ct_more" v-if="isMore && goRanking">View All</a>
-    <a :href="'/more/'+ id +'/' + formatSpace(name.toLowerCase())" class="ct_more" v-if="isMore && !goRanking && name && id">View All</a>
-    <a :href="'/more/'+ id +'/popular'" class="ct_more" v-if="isMore && !goRanking && !name && id">View All</a>
+    <a href="/more/rankings" class="ct_more" v-if="isMore && goRanking">查看更多</a>
+    <a :href="'/more/'+ id +'/' + formatSpace(name.toLowerCase())" class="ct_more" v-if="isMore && !goRanking && name && id">查看更多</a>
+    <a :href="'/more/'+ id +'/popular'" class="ct_more" v-if="isMore && !goRanking && !name && id">查看更多</a>
    
     <h2 class="fs_u"> <i class="left_bar"></i> {{ commontit.tit }}</h2>
   </div>

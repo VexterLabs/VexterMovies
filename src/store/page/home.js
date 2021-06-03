@@ -8,7 +8,7 @@ export default {
         originalBooks: [],
         fafictionTitle: "",
         maylikelist: {
-            name: "You may also like",
+            name: "看過這本書的人還在看",
             items: []
         },
         packNum: 0,

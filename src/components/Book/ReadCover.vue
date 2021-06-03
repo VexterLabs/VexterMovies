@@ -17,7 +17,7 @@
         <div class="book-name">
             {{bookInfo.bookName}}
         </div>
-        <div class="author-name" v-if="bookInfo.pseudonym">
+        <div class="author-name" v-if="bookInfo.author">
             {{bookInfo.author}} 著
         </div>
         <!-- <div class="line">

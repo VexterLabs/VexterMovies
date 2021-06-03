@@ -468,7 +468,7 @@
 
           <!-- <div class="bibi_other">
             <div class="bibio_li" v-if="bookInfo.editor">
-              <strong>Editor:</strong>
+              <strong>作者:</strong>
               <span>{{bookInfo.editor}}</span>
             </div>
           </div> -->
@@ -677,7 +677,7 @@ export default {
       // originalBooks: [],
       // fafictionTitle: "",
       // maylikelist: {
-      //   name: "You may also like",
+      //   name: "看過這本書的人還在看",
       //   items: []
       // },
       // matePseudonym:false,

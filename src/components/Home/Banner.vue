@@ -100,6 +100,7 @@ export default {
   mounted() {
     let that = this;
     vm = this;
+    console.log()
     if (this.componentData.items && this.componentData.items.length === 1) {
       this.swiperOption.autoplay = false;
       this.swiperOption.pagination = {};
