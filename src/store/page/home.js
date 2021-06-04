@@ -80,6 +80,7 @@ export default {
 
         async getRankingData({ commit }, payLoad) {
             // let res = await instance.post(config.ENV + '/webfic/home/rank', payLoad);
+            //排行榜接口
             let res = await instance.post(config.ENV + '/webfic/home/rank.do', payLoad);
             try {
                 res = res.data
@@ -87,9 +88,6 @@ export default {
                     let result = res.data
                     let tabs = result.tabs || []
                     let books = result.data
-                    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
-                    console.log(res)
-                    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
                     books.map((item,index)=>{
                         item.mine_index = index+1
                         return item

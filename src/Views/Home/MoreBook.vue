@@ -59,7 +59,6 @@ export default {
     mounted() {
         // console.log('moreBooks',this.moreBooks)
         // this.getMoreList(this.pageNo);
-        console.log(moreBooks)
     },
     methods: {
         async getMoreList(pageNo) {
