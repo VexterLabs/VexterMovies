@@ -87,6 +87,9 @@ export default {
                     let result = res.data
                     let tabs = result.tabs || []
                     let books = result.data
+                    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
+                    console.log(res)
+                    console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
                     books.map((item,index)=>{
                         item.mine_index = index+1
                         return item
