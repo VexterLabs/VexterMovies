@@ -3,6 +3,7 @@
     class="read-box"
     :data-chapterid="chapterInfo.id"
     :data-chaptername="chapterInfo.chapterName"
+    :style="unlockFlag?'margin-bottom:110px':''"
   >
     <div :class="['read-chapter',{'noBorder': unlockFlag},'bgColor'+bgColor]">
       <div :id="chapterInfo.id" class="title">{{chapterInfo.chapterName}}</div>
