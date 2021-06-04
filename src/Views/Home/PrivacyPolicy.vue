@@ -1,159 +1,86 @@
 <template>
   <div class="special-page">
-    <h4 class="top-title">Privacy Policy</h4>
+    <h4 class="top-title">隱私政策</h4>
     <div class="content">
       <div class="item-tip">
+        <p class="article">本公司非常重視用戶個人資訊的保護。您在使用我們的產品或服務時，我們可能會收集和使用您的相關資訊。請您務必仔細閱讀並透徹理解本聲明。一旦您選擇使用我們的產品或服務，即表示您認可並接受本條款現有內容及其可能隨時更新的內容。</p>
+        <p class="article">一、資訊收集</p>
         <p class="article">
-          This Privacy Policy explains the information that Webfic may collect
-          when you interact with us and our practices with respect to that
-          information. Please read this Privacy Policy carefully. In addition,
-          please review the applicable terms of use for the Properties, which
-          governs your use of the properties and services.
-        </p>
-        <p class="article">1. Data Collection</p>
-        <p class="article">
-          In order to help you to create an account with Webfic and use our
-          Platform, we need to collect and process some Personal Information.
-          "Personal Information" is any information that can identify you. This
-          may include but not limited to your name, mailing address, telephone
-          number, email address, Internet Protocol (“IP”) address, age, gender,
-          credit card information. We use the Personal Information to:
+          1、您向本公司提供的資訊為了向您提供更好的服務，當您使用本軟件以及您自願選擇本公司提供的相關服務時填寫或提交的資訊，系統自動存儲，包括您的姓名、性別、電話號碼、電子郵箱、地址等其他協力廠商帳號。如果因填寫或提交的資訊不真實而引起的問題，由您自行承擔相應的後果。請您不要將您的帳號轉讓或出借予他人使用。如您發現您的帳號遭他人非法使用，應立即通知本公司。互聯網上不排除因駭客行為或用戶的保管疏忽導致帳號遭他人非法使用，此類情况與本公司無關。
         </p>
         <p class="article">
-          Create your Webfic account and provide you with our Services;
+          2、我們獲取的您的資訊日誌資訊，指您使用我們的產品或服務時，我們可能會自動記錄某些資訊，包括：設備或軟件資訊，例如您的移動設備、網頁瀏覽器或用於接入我們服務的其他程式所提供的配寘資訊、您的IP地址和移動設備所用的版本和設備識別碼等。
         </p>
-        <p class="article">Identify you across the Platform;</p>
-        <p class="article">Make age appropriate content available to you;</p>
-        <p class="article">Provide you with technical support services;</p>
+        <p class="article">3、您對我們產品或服務的使用情况，例如使用時長、閱讀記錄等數據。</p>
+        <p class="article">二、資訊使用</p>
+        <p class="article">我們可能將在向您提供服務的過程之中將所收集的資訊用作下列用途：</p>
         <p class="article">
-          Communicate with you (e.g. letting you know about upcoming changes or
-          improvements);
+          1、向您提供各項服務，並幫助我們設計新服務，改善現有服務；
         </p>
-        <p class="article">Send you marketing emails, unless you opt-out;</p>
+        <p class="article">2、在我們提供服務時，用於身份驗證、客戶服務、安全防範、詐騙監測、存檔和備份用途，確保我們向您提供的產品和服務的安全性；</p>
         <p class="article">
-          Calculate anonymous and aggregate statistics to better understand our
-          users, improve our services, develop new features, personalize and
-          customize your story discovery experience;
+         3、向您推薦您可能感興趣的內容，例如個性化的幫助服務和訓示，或對您和其他用戶作出其他方面的回應；
         </p>
         <p class="article">
-          Help prevent spam, fraud, abuse, and other prohibited activity;
+          4、向您提供與您更加相關的廣告以替代普遍投放的廣告；
         </p>
         <p class="article">
-          Display relevant, tailored advertisements and improve your ad
-          experience, except where your separate consent is required;
+         5、評估我們服務中的廣告和其他促銷及推廣活動的效果，並加以改善
         </p>
         <p class="article">
-          For security purposes, other purpose aims to operate, develop and
-          improve our services.
-        </p>
-        <p class="article">2. Information Sharing</p>
-        <p class="article">
-          2.1 We treat the personal information above as private by default, so
-          it won’t be displayed on the Platform (unless you choose to publicly
-          display applicable information via your account settings) or revealed
-          to other Webfic users unless the data has been anonymized.
+          6、讓您參與有關我們產品和服務的調查。
         </p>
         <p class="article">
-          2.2 Our Platform are designed to help you share information with the
-          Webfic community. Any personal information that you voluntarily choose
-          to include in a publicly accessible space of the Platform will be
-          available to anyone who has access to that content (including other
-          Webfic users), such as your username, name, the description you
-          create, and your location, as well as the messages you post whether on
-          your profile, on our forums or to other users, and the lists you
-          create, people you follow, stories you write, and many other bits of
-          information that result from your use of the Platform.
+          為了讓您有更好的體驗、改善我們的服務或您同意的其他用途，在符合相關法律法規的前提下，我們可能將通過某一項服務所收集的資訊，以彙集資訊或者個性化的管道，用於我們的其他服務。例如，在您使用我們的一項服務時所收集的資訊，可能在另一服務中用於向您提供特定內容，或向您展示與您相關的、非普遍推送的資訊。如果我們在相關服務中提供了相應選項，您也可以授權我們將該服務所提供和儲存的資訊用於我們的其他服務。在如下情况下，本公司可能會披露您的資訊：
         </p>
         <p class="article">
-          2.3 We do not rent or sell your personally identifying information to
-          other companies or individuals, unless we have your consent, except in
-          the following very limited situations:
+          （1）事先獲得您的授權；
         </p>
         <p class="article">
-          To comply with an applicable law (including investigations of any
-          crime), regulation, legal process or enforceable governmental request;
+          （2）您使用共亯功能；
         </p>
         <p class="article">
-          To enforce or apply our Terms of Use and other policies, including
-          investigation of potential violations;
+         （3）根據法律、法規、法律程式的要求或政府首長部門的強制性要求；
         </p>
         <p class="article">
-          To protect the rights, property, or safety of Webfic, Webfic’s
-          employees and users, or the public.
-        </p>
-        <p class="article">3. Information Security</p>
-        <p class="article">
-          We are continuously implementing and updating physical,
-          organizational, contractual and technological security measures to
-          protect your Personal Information from loss, theft, unauthorized
-          access, disclosure, copying, use or modification. The only employees
-          who are granted access to your Personal Information are those with a
-          business “need-to-know” or whose duties reasonably require such
-          information. On all Webfic platforms, we support encryption on all
-          transmissions to protect Personal Information submitted on our
-          Platform.
-        </p>
-        <p class="article">4. Non-personal Information</p>
-        <p class="article">
-          4.1 Webfic uses cookies, tracking pixels and similar technologies on
-          our Platform to collect information that cannot identify you as an
-          individual (“non-personal information”) that helps us provide our
-          Service to you and to learn how our Service is used. We also use these
-          technologies to help deliver promotional messages and ads for relevant
-          Webfic products and services.
+          （4）以學術研究或公共利益為目的；
         </p>
         <p class="article">
-          4.2 We may share non-personal information publicly and with various
-          third parties like publishers or advertisers. For example, we may
-          share information with advertisers or publicly show trends about the
-          general use of our Platform.
+          （5）為維護本公司的合法權益，例如查找、預防、處理欺詐或安全方面的問題；
         </p>
         <p class="article">
-          5. Third-party Advertisers, Links to Other Platforms
+          （6）符合相關服務條款或使用協定的規定。
+        </p>
+        <p class="article">三、資訊安全</p>
+        <p class="article">
+          我們努力使用各種安全技術和措施，以防您的資訊的洩露、毀損或遺失。例如，在某些服務中，我們將利用加密技術來保護您提供的個人資訊。但請您理解，由於科技的限制以及可能存在的各種惡意手段，在互聯網行業，即便竭盡所能加强安全措施，也不可能始終保證資訊百分之百的安全。您需要瞭解，您接入我們的服務所用的系統和通訊網絡，有可能因我們可控範圍外的因素而出現問題。
+        </p>
+        <p class="article">四、未成年人使用我們的服務</p>
+        <p class="article">
+          我們建議若您是18周歲以下的未成年人，在使用我們的產品或服務前，應事先取得其父母或監護人的同意，並建議未成年人在提交的個人資訊之前尋求父母或監護人的同意和指導。
         </p>
         <p class="article">
-          5.1 Webfic allows other companies, which are known as third-party ad
-          servers or ad networks, to serve advertisements within Webfic’s
-          Platform. These third-party ad servers or ad networks use technology
-          to send the advertisements and links that appear on Webfic directly to
-          you. They automatically receive your IP address when the advertising
-          happens. They may also use other technologies (such as cookies,
-          JavaScript, or Web Beacons) to measure the effectiveness of their
-          advertisements and to personalize the advertising content you see.
+          五、隱私政策的適用範圍
         </p>
         <p class="article">
-          5.2 Webfic does not provide any personally identifiable information to
-          these third-party ad servers or ad networks without your consent or
-          except as part of a specific program or feature for which you will
-          have the ability to opt-in or opt-out.
+          我們的隱私政策適用於本公司及其關聯公司提供的所有服務。但另外設定隱私政策且未納入本隱私政策的服務不在此列
         </p>
         <p class="article">
-          5.3 You should consult the respective privacy policies of these
-          third-party ad servers or ad networks for more information on their
-          practices and for instructions on how to opt-out of certain practices.
-          Webfic’s Privacy Policy does not apply to, and we cannot control the
-          activities of, such other advertisers or platforms. Any data obtained
-          by third-party ad servers and subsequently shared with Webfic is
-          maintained and dealt with by Webfic in accordance with this Privacy
-          Policy.
+          請您注意，本隱私政策不適用於以下情况：
         </p>
-        <p class="article">6. Policy Governs Use: Changes to Privacy Policy</p>
         <p class="article">
-          Webfic reserves the right to change this Privacy Policy at any time,
-          without prior notice to you, and any changes will become effective
-          immediately upon posting, so please review this Privacy Policy
-          periodically.
+          1、通過我們的服務而接入的協力廠商服務（包括任何協力廠商網站）收集的資訊；
         </p>
-        <p class="article">7. Questions</p>
         <p class="article">
-          If you have any questions or comments about our practices regarding
-          this Privacy Policy, please write to us at Webfic, Privacy Office, 2
-          VENTURE DRIVE #11-31 VISION EXCHANGE SINGAPORE 608526 or submit your
-          request via email at 
-          <a style="color:rgba(255, 126, 66, 1);" href="mailto:webficread@gmail.com">webficread@gmail.com</a>. 
-           <br />
-          Data protection officer：Terry. Tel.+65 96747336
+          2、通過在我們服務中進行廣告服務的其他公司或機构所收集的資訊。
         </p>
+        <p class="article">六、法律適用及爭議解决</p>
+        <p class="article">
+          1、本《個人信息保護政策》的成立、生效、履行、解釋及爭議的解决均應適用中華人民共和國大陸地區法律。
+        </p>
+        <p class="article">2、因本《個人信息保護政策》解釋或執行引起的任何爭議，您和本平臺均同意如協商不成時，則任一方均可將爭議提交北京仲裁委員會依據其届時有效的仲裁規則以仲裁管道解决。仲裁地點為北京，仲裁語言為中文。仲裁裁决為終局的，對各方均有法律約束力。</p>
+        <p class="article">七、變更</p>
+        <p class="article">我們的隱私政策隨時可能變更，我們會在本頁面上發佈隱私政策所做的任何變更。</p>
       </div>
     </div>
   </div>
@@ -209,7 +136,6 @@ a {
         margin-bottom: 20px;
         font-size: 18px;
         color: rgba(58, 74, 90, 1);
-        text-align: justify;
         span {
           color: #ee3799;
           font-size: 18px;

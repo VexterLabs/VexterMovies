@@ -1,400 +1,126 @@
 <template>
   <div class="special-page">
-    <h3 class="top-title">Terms of Use</h3>
+    <h3 class="top-title">使用協定</h3>
     <div class="content">
       <div class="item-tip">
         <p class="article">
-          DianZhong Technology Singapore PTE, LTD., registered in Singapore
-          (“Webfic”, “we”, “our”), provides a Platform (as defined below) for
-          writers and publishers to distribute and monetize various literary
-          works (a “Work” or “Works”). These TERMS OF USE, together with all
-          documents referred to herein and all other operating rules, policies
-          and procedures that Webfic may publish from time to time, govern
-          Webfic’s relationship with users (“users”, “you”) of the Webfic
-          platform, including all sub-domains and associated websites
-          (collectively, the “Website”), the Webfic mobile application(s),
-          including iPhone and Android mobile applications (“Apps”), any and all
-          other platforms on which content is accessed, published, or
-          distributed, and all associated services, features, or content made
-          available through any of the foregoing (“Services”) (together, the
-          “Platform”). The Terms constitute a legally binding agreement between
-          Webfic and you.
+          軟體使用協定（以下簡稱“本協定”）是（以下簡稱“”）與您就“”軟件（以下簡稱“”或“本軟件”）的安裝及使用等相關事項所訂立的有效合約。您通過點擊確認本協定或以其他管道選擇接受本協定，即表示您已與達成協議並同意接受本協定的全部如下約定內容。
         </p>
         <p class="article">
-          By accessing or using the Platform, you confirm that you
-          unconditionally accept these Terms and that you agree to fully comply
-          with them. Please read these Terms carefully before using the
-          Platform. If you do not agree to these Terms, please do not use the
-          Platform and you are not granted permission to access, view, or
-          otherwise use the Platform for any purpose.
+         一、請務必認真閱讀和理解本協定中規定的所有權利和限制。您一旦安裝、複製、下載、訪問或以其它管道使用產品，將視為對本協定的接受，即表示您同意接受本協定各項條款的約束。您務必保證從指定的網站下載產品以及發行的介質上獲得產品，否則囙此導致可能的風險及損失，不承擔任何責任。
         </p>
         <p class="article">
-          The Platform may contain links or embedded material to third party
-          content, which Webfic has not reviewed, including, without limitation,
-          other websites and third party services, for the convenience of
-          visitors, advertising purposes, or for other similar functions related
-          to Webfic’s business. Webfic linking or embedding to third party
-          content does not imply an advertisement or endorsement of any good,
-          service, product, or otherwise, provided by such third party. Webfic
-          is not responsible for any third party content linked or embedded to
-          or from the Platform and expressly disclaims, without limitation, any
-          responsibility for any third party content, the accuracy of any
-          information found on any third party website, or the quality of
-          products of services provided by or advertised on such third party
-          website.
+          二、權利聲明
         </p>
         <p class="article">
-          Webfic may add to, change, or remove any part of this Terms of Use at
-          any time, without notice. Any changes to this Terms of Use or any
-          terms posted on this Site apply as soon as they are posted. By
-          continuing to use this Site after any changes are posted, you are
-          indicating your acceptance of those changes. Webfic may add, change,
-          discontinue, remove, or suspend any other Content posted on this Site,
-          including Works described or depicted on the Site, temporarily or
-          permanently, at any time, without notice and without liability.
+          1、系的著作權人，的一切知識產權，以及與相關的所有資訊內容，包括但不限於文字表述及其組合、圖標、圖飾、影像、圖表、色彩、介面設計、版面框架、有關資料、附加程式、印刷資料或電子文檔等均為所有，受著作權法和國際著作權條約以及其他知識產權法律法規的保護。
         </p>
-        <p class="article">1. Eligibility</p>
+        <p class="article">2、未經書面同意，用戶不得以任何營利性或非營利性的目的自行實施、利用、轉讓或許可任何協力廠商實施、利用、轉讓上述知識產權，保留追究上述未經許可行為的權利。</p>
         <p class="article">
-          You must be at least 13 years of age to use the Platform. By agreeing
-          to these Terms, you represent and warrant to us that: (a) you are at
-          least 13 years of age; (b) you have not previously been suspended or
-          removed from the Service; and (c) your registration and your use of
-          the Platform is in compliance with all applicable laws and
-          regulations. If you are using the Service on behalf of an entity,
-          organization, or company, you represent and warrant that you have the
-          authority to bind that organization to these Terms and you agree to be
-          bound by these Terms on behalf of that organization.
+          3、禁止反向工程、反向編譯和反向彙編：用戶不得對本軟體產品進行反向工程（Reverse Engineer）、反向編譯（Decompile）或反向彙編（Disassemble），同時不得改動編譯在程式檔案內部的任何資源。除法律、法規明文規定允許上述活動外，用戶必須遵守此協定限制。
         </p>
-        <p class="article">2. License to Users</p>
+        <p class="article">4、組件分割：本軟體產品是作為一個整體產品而被授予許可使用，用戶不得將各個部分分開用於任何目的。</p>
         <p class="article">
-          2.1 Subject to your full compliance with the Terms and to the extent
-          we are lawfully able to grant such rights, Webfic grants you a
-          non-exclusive, non-sublicensable and non-transferable license to the
-          Intellectual Property solely for the purposes of accessing Works,
-          using the Platform, and for other purposes expressly stated herein.
+          5、個別授權：如需進行商業性的銷售、複製、分發，包括但不限於軟體銷售、預裝、捆綁等，必須獲得的書面授權和許可。
         </p>
         <p class="article">
-          2.2 For the avoidance of doubt, the Terms do not transfer from us to
-          you any of our, or any third party’s intellectual property rights, and
-          all right, title and interest in and to such property will remain
-          vested with the applicable owner.
+          6、保留權利：本協定未明示授權的其他一切權利仍歸所有，用戶使用其他權利時必須獲得的書面同意。
         </p>
-        <p class="article">3. Registration and Accounts</p>
+        <p class="article">7、提供的書籍內容僅代表作者自己的立場和觀點，與無關，由作者本人承擔一切法律責任。</p>
         <p class="article">
-          3.1 To use certain features of the Platform, you are required to
-          register for a Webfic account (an “Account”). You agree that all
-          information that you submit during the Account signup process, or
-          additional information you submit to your Account profile at any time
-          thereafter, shall be accurate and truthful, and you shall keep the
-          same up to date.
+          三、用戶使用須知
         </p>
         <p class="article">
-          3.2 Your Account is unique and personal to you, and you are
-          responsible for maintaining the security of, and restricting access
-          to, your account and password, and you agree to accept responsibility
-          for all purchases and other activities that occur under your Account.
+          1、軟體功能：查找、瀏覽電子書；充值、下載、購買電子書；閱讀、保存閱讀進度。
         </p>
         <p class="article">
-          3.3 You have the ability to delete your Account, and you should
-          understand that upon deletion of your Account, you will lose the right
-          to access or use all or part of the Platform.
+         2、關於數位內容的付費：本軟件內數位內容由免費內容和收費內容組成，免費內容分為限時免費內容和永久免費內容。有權决定所提供服務的標準和收費方式，並在相關服務頁面對資費標準作出提示，用戶有權選擇是否支付相應費用以繼續使用本軟件提供的收費服務。用戶在本軟件充值後獲得對應的虛擬幣，用戶可使用虛擬幣購買本軟件提供的付費服務。用戶一旦充值成功，不得以任何理由要求退還全部或部分已充值款項，因不可抗力或單方面原因導致本協定終止的情况除外。
         </p>
         <p class="article">
-          3.4 We reserve the right to disable, suspend, or terminate your
-          Account, at any time, for any reason in our discretion, especially
-          when you fail to comply with any provision of these Terms.
+          3、軟件的修改和陞級：保留隨時為用戶提供本軟件的修改、升級版本的權利。由用戶選擇確定後，軟件會進行陞級更新，使用運營商網絡產生相應的數據流量費，由運營商收取。
         </p>
-        <p class="article">4. Content Policy</p>
+        <p class="article">4、用戶應在遵守法律及本協定的前提下使用本軟件。用戶無權實施包括但不限於下列行為：</p>
         <p class="article">
-          4.1 Our content policy, (“Content Policy”), sets out, among other
-          things, the terms on Webfic’s uses of Content which writers and
-          publishers upload to the Platform. You must review and agree to the
-          Content Policy prior to uploading any Works on the Platform.
+          （1）删除或者改變本軟件上的所有權利管理電子資訊；
         </p>
         <p class="article">
-          4.2 For the avoidance of doubt, all rights not expressly granted to
-          Webfic herein shall be reserved to you and Webfic is not claiming any
-          ownership in and to your Content.
+          （2）故意避開或者破壞著作權人為保護本軟件著作權而採取的科技措施；
         </p>
-        <p class="article">5. Comments on Platform</p>
+        <p class="article">（3）利用本軟件誤導、欺騙他人；</p>
         <p class="article">
-          5.1 Webfic welcomes your interaction on the Platform, and you may be
-          able to submit materials to Webfic which are not Content. By
-          submitting any comments or feedback (together, a “Comment” or
-          “Comments”) through the Platform or otherwise, such as emailing Webfic
-          about the Platform, posting on a message board, or reviewing a Work,
-          Webfic will be free to use the Comment for any purpose, in all media,
-          in perpetuity, without owing any obligation or liability to you
-          whatsoever. If you wish to keep a Comment private or proprietary,
-          please do not transmit any Comment to Webfic or share any Comment with
-          others.
+          （4）違反國家規定，對電腦資訊系統功能進行删除、修改、新增、干擾，造成電腦資訊系統不能正常運行；
         </p>
         <p class="article">
-          5.2 Comments must not include or embody, in whole or part, (a)
-          infringe, violate, or misappropriate any third-party right, including
-          any copyright, trademark, patent, trade secret, moral right, privacy
-          right, right of publicity, or any other intellectual property or
-          proprietary right; (b) slander, defame, libel, or invade the right of
-          privacy, publicity or other property rights of any other person; or
-          (c) any other Webfic policies or guidelines to which your User Content
-          is subject; (d) cause Webfic to violate any law or regulation.
+          （5）未經允許，進入電腦資訊網路或者使用電腦資訊網路資源；
         </p>
         <p class="article">
-          5.3 Comments found to be in violation of any of the above may subject
-          you to the termination or suspension of your Account or the immediate
-          removal of the Comments from the Platform, without notice to you, in
-          our sole discretion.
+          （6）未經允許，對電腦資訊網路功能進行删除、修改或者新增；
         </p>
-        <p class="article">6. Restricted User Conduct</p>
+        <p class="article">（7）未經允許，對電腦資訊網路中存儲、處理或者傳輸的數據和應用程序進行删除、修改或者新增；</p>
         <p class="article">
-          6.1 Except and solely to the extent such a restriction is
-          impermissible under applicable law, you may not: (a) reproduce,
-          distribute, publicly display, or publicly perform the Service; (b)
-          make modifications to the Service; or (c) interfere with or circumvent
-          any feature of the Service, including any security or access control
-          mechanism. If you are prohibited under applicable law from using the
-          Service, you may not use it.
+          （8）破壞本軟件系統或網站的正常運行，故意傳播電腦病毒等破壞性程式；
         </p>
         <p class="article">
-          6.2 You will not alter or modify the Platform in any way nor use other
-          technology or means to access the Platform except for the means
-          authorized by Webfic, including, without limitation, using no bots,
-          spiders, or other automated means of accessing the Platform.
+          （9）其他任何危害電腦資訊網路安全的行為。
         </p>
-        <p class="article">7. Payment Terms</p>
+        <p class="article">5、對於從非指定網站下載的本軟體產品以及從非發行的介質上獲得的本軟體產品，無法保證該軟件是否感染電腦病毒、是否隱藏有偽裝的木馬程式或者駭客軟體，使用此類軟件，將可能導致不可預測的風險，建議用戶不要輕易下載、安裝、使用，不承擔任何由此產生的法律責任。</p>
         <p class="article">
-          7.1 Access to the Platform, or to certain features of the Service, may
-          require you to pay fees. Before you pay any fees, you will have an
-          opportunity to review and accept the fees that you will be charged.
-          All fees are in U.S. dollars and are non-refundable.
+         6、隱私權保護承諾遵守《隱私策略》以及適用法律的規定。製定了以下四項隱私權保護原則，指導我們如何來處理產品中涉及到用戶隱私權和用戶資訊等方面的問題：
         </p>
         <p class="article">
-          7.2 Webfic reserves the right to determine pricing for the Service.
-          Webfic will make reasonable efforts to keep pricing information
-          published on the website up to date. We encourage you to check our
-          website periodically for current pricing information.
+          （1）利用我們收集的資訊為用戶提供有價值的產品和服務。
         </p>
         <p class="article">
-          7.3 Webfic will charge the payment method you specify at the time of
-          purchase. You authorize Webfic to charge to that payment method all
-          sums for orders that you make and any level of Service you select as
-          described in these Terms or published by the Company. If you pay any
-          fees with a credit card, Webfic may seek pre-authorization of your
-          credit card account prior to your purchase to verify that the credit
-          card is valid and has the necessary funds or credit available to cover
-          your purchase. Payment processing services are provided by the
-          third-party service through which the purchase is made (e.g., Apple
-          In-App Purchases, Google Play, PayPay).
+          （2）開發符合隱私權標準和隱私權慣例的產品。
         </p>
         <p class="article">
-          7.4 All purchases may be subject to taxes and other fees, including,
-          without limitation, foreign exchange fees or differences in prices
-          based on location (e.g. exchange rates). We may calculate taxes
-          payable by you based on the information that you provide us via your
-          Account or at the time or purchase.
+          （3）將個人資訊的收集透明化。
         </p>
         <p class="article">
-          7.5 Users can top up to acquire Coin (s). Coin (s) should be utilized
-          in Webfic only, and cannot be exchanged to any currency.
+         （4）盡最大的努力保護我們掌握的資訊。
         </p>
-        <p class="article">8. Disclaimers</p>
+        <p class="article">四、對用戶和協力廠商的知識產權的保護</p>
         <p class="article">
-          8.1 The Platform is made available “as is”, “as available”, and “with
-          all faults” for the stated purposes herein. Use of the Platform is
-          entirely at your own risk and you should use your best judgment and
-          exercise caution while using the Platform.
+          1、用戶在使用本軟件所含服務過程中，可能需要通過發表評論等各種管道向提供內容，用戶在本軟件上發表的全部原創內容，著作權均歸用戶本人所有。用戶發表的評論僅代表用戶觀點，與無關。
         </p>
         <p class="article">
-          8.2 Webfic makes no guarantee that your use of the Platform, and all
-          other features or functionalities associated with the Platform, or
-          delivery or display of the Platform, will be available, uninterrupted,
-          interference free, or error free, or be free from any viruses, worms,
-          or other security intrusions. You understand and agree that you use
-          the Platform, and use, access, download, or otherwise obtain materials
-          or content through the Platform and any associated sites or Platforms,
-          at your own discretion and risk, and that you are solely responsible
-          for any damage to your property (including your computer system or
-          mobile device used in connection with the Platform), or the loss of
-          data that results from the use if the Platform or the download or use
-          of that material or content.
+          2、用戶不能侵犯包括他人的著作權在內的知識產權以及其他權利。一旦由於用戶發表的任何內容發生法律糾紛，其責任由用戶本人承擔。
         </p>
         <p class="article">
-          8.3 Webfic does not guarantee the availability, delivery, performance,
-          pricing, or punctuality of any Works or other Intellectual Property
-          appearing on the Platform. Without limitation, this includes making no
-          guarantee that any future Episodes of a Work are posted by a writer or
-          publisher in a timely manner, that Works will remain available on the
-          Platform, or the pricing of Works or Services.
+          3、對於用戶發表到本軟件上的任何內容，用戶同意授權在全球範圍內具有免費的、永久性的、不可撤銷的、非獨家的權利和許可，允許以使用、複製、修改、改編、出版、翻譯、再許可、創作衍生作品、出版、傳播、表演和展示此等內容（整體或部分），和/或將此等內容編入當前已知的或以後開發的其他任何形式的作品、媒體或科技中。並且，用戶許可有權利就任何主體侵權而單獨採取法律行動（包括但不限於訴訟、舉報、律師函等形式）。
         </p>
         <p class="article">
-          8.4 Webfic assumes no responsibility for the deletion or failure to
-          store any Comments or other information submitted by you to the
-          Platform, and we expressly do not promise to store or keep any
-          Comments that you have submitted to the Platform. You are solely
-          responsible for saving backup copies of any Comments that you upload
-          to the Platform.
+          4、如用戶的言論侵犯了協力廠商的著作權或其他權利，協力廠商提出異議的時候，有權删除相關的內容，且追究用戶的法律責任。
         </p>
         <p class="article">
-          8.5 You understand and agree that Webfic is not liable for any failure
-          of performance due to any cause beyond its control, including, without
-          limitation, acts of God, fire, explosion, vandalism, terrorism,
-          weather disturbances, national emergencies, riots, wars, labor
-          difficulties, supplier failures, shortages, breaches, action or
-          request by any government, suspension of existing service in
-          compliance with state or federal law, rule, or regulations.
+          5、未經書面許可，禁止使用任何爬蟲程式、蜘蛛程式、擬人程式、其他自動設備，或手動程式來讀取、複製、存儲本軟件或其所包含的任何內容。否則，有權依法追究法律責任。
         </p>
-        <p class="article">9. Limitation of Liability</p>
+        <p class="article">五、內容版權聲明</p>
         <p class="article">
-          9.1 Notwithstanding anything to the contrary contained herein, Webfic
-          shall not be liable to you for any direct, indirect, special,
-          incidental, consequential, exemplary, extra-contractual, or punitive
-          damages of any kind whatsoever, which are in any way related to the
-          Platform or these Terms, regardless of legal theory (including,
-          without limitation, contract, tort, personal injury, property damage,
-          negligence, warranty, or strict liability), whether or not Webfic has
-          been advised of the possibility or probability of such damages, and
-          even if the remedies otherwise available fail of their essential
-          purposes. If you are dissatisfied with the Platform, or with any of
-          these Terms, or feel Webfic has breached these Terms, your sole and
-          exclusive remedy is to discontinue using the Platform. This limitation
-          of liability is part of the basis of the bargain between us.
+          承諾遵守並尊重中國現行法律法規及其他規範性檔對著作權人的保護。作為權利人，當您發現提供的內容侵犯了您的合法權益時，您應當按照處理流程首先向我們發送“權利通知”，我們將根據中國法律法規和政府規範性檔採取措施移除相關內容或斷開、遮罩相關連結。
         </p>
         <p class="article">
-          9.2 Notwithstanding anything to the contrary herein, if any part of
-          this limitation of liability is found to be invalid or unenforceable
-          for any reason, Webfic’s agreement liability arising out of breach of
-          this Terms and/or your use of the Platform will not exceed, in the
-          agreement amount for all claims, five hundred dollars ($500.00 USD).
+          六、免責及責任的限制
         </p>
-        <p class="article">10. Indemnification</p>
+        <p class="article">1、用戶確認，其知悉本軟件所有功能及為實現本軟件各功能所進行的必要操作，其根據自身需求自願選擇使用本軟件及相關服務，因使用本軟件及相關服務所存在的風險和一切後果將完全由其自己承擔，不承擔任何責任。</p>
         <p class="article">
-          10.1 You are responsible for your use of the Platform, and you will
-          defend and indemnify Webfic and its officers, directors, employees,
-          consultants, affiliates, subsidiaries and agents (together, the
-          “Webfic Entities”) from and against every claim, liability, damage,
-          loss, and expense, including reasonable attorneys' fees and costs,
-          arising out of or in any way connected with: (a) your access to, use
-          of, or alleged use of, the Platform; (b) your violation of any portion
-          of these Terms, any representation, warranty, or agreement referenced
-          in these Terms, or any applicable law or regulation; (c) your
-          violation of any third-party right, including any intellectual
-          property right or publicity, confidentiality, other property, or
-          privacy right; or (d) any dispute or issue between you and any third
-          party. We reserve the right, at our own expense, to assume the
-          exclusive defense and control of any matter otherwise subject to
-          indemnification by you (without limiting your indemnification
-          obligations with respect to that matter), and in that case, you agree
-          to cooperate with our defense of that claim.
+          2、本軟件經過詳細的測試，但不能保證與所有的軟硬體系統完全相容，不能保證本軟件完全沒有錯誤。如果出現不相容及軟件錯誤的情况，用戶可撥打客服電話將情況報告，獲得技術支援。如果無法解决相容性問題，用戶可以删除本軟件。
+        <p class="article">
+          3、在適用法律允許的最大範圍內，對因使用或不能使用本軟件所產生的損害及風險，包括但不限於直接或間接的個人損害、商業贏利的喪失、貿易中斷、商業資訊的遺失或任何其它經濟損失，不承擔任何責任。
+        </p>
+        <p class="article">4、對於因電信系統或互聯網網路故障、手機故障或病毒、資訊損壞或遺失、手機系統問題或其它任何不可抗力原因而產生損失，不承擔任何責任。</p>
+        <p class="article">
+          5、用戶違反本協議規定，對造成損害的，有權採取包括但不限於中斷使用許可、停止提供服務、限制使用、法律追究等措施。
+        </p>
+        <p class="article">七、法律及爭議解决</p>
+        <p class="article">1、因本協定引起的或與本協定有關的任何爭議，各方應友好協商解决；協商不成的，任何一方均有權向被告住所地法院提起訴訟。</p>
+        <p class="article">八、其他條款</p>
+        <p class="article">1、如果本協定中的任何條款無論因何種原因完全或部分無效或不具有執行力，或違反任何適用的法律，則該條款被視為删除，但本協定的其餘條款仍應有效並且有約束力。</p>
+        <p class="article">
+          2、有權隨時根據有關法律、法規的變化以及公司經營狀況和經營策略的調整等修改本協定。修改後的協定會在網站上公佈，並隨附於新版本軟件。當發生有關爭議時，以最新的協定文本為准。如果不同意改動的內容，用戶可以自行删除本軟件。如果用戶繼續使用本軟件，則視為您接受本協定的變動。
         </p>
         <p class="article">
-          10.2 Webfic reserves the right to take over the exclusive defense of
-          Claims for which Webfic is entitled to indemnification, and in such
-          event, you shall provide prompt and reasonable cooperation to Webfic
-          at your own expense.
-        </p>
-        <p class="article">11. Promotions</p>
-        <p class="article">
-          In addition to these Terms, a Promotion made available by Webfic
-          through the Platform, or otherwise may have specific rules that are
-          different from these Terms. By participating in a Promotion, you agree
-          to and will become subject to those additional terms and conditions,
-          which will be provided to you when a Promotion is offered. Webfic
-          urges you to review all rules before you participate in any Promotion.
-          The rules of a specific Promotion will take priority over these Terms
-          in the event of any conflict of the language with a given Promotion.
-        </p>
-        <p class="article">12. Infringement of Intellectual Property Rights</p>
-        <p class="article">
-          12.1 Webfic respects the intellectual property rights of others and
-          desires to offer a Platform that contains no material that violates
-          the intellectual property rights of others. If you believe in good
-          faith that your intellectual property rights have been infringed
-          through use on the Platform, you may notify us by email at:
-          <a style="color:rgba(255, 126, 66, 1);" href="mailto:webficread@gmail.com">webficread@gmail.com</a>. 
-           with “Notice of Infringement” in the subject
-          line, which contains: An electronic or physical signature of the
-          person authorized to act on behalf of the owner of the copyright (or
-          other intellectual property) interest; A description of the
-          copyrighted work (or other intellectual property interest) that you
-          claim has been infringed; A description specifying the location on the
-          Platform of the material that you claim is infringing; Your email
-          address and your mailing address and/or telephone number; A statement
-          by you that you have a good faith belief that the disputed use is not
-          authorized by the copyright (or other intellectual property) owner,
-          its agent, or the law; and A statement by you made under penalty of
-          perjury, that the information in your notice is accurate and that you
-          are the copyright (or other intellectual property) owner or authorized
-          to act on the copyright (or other intellectual property) owner’s
-          behalf. If you believe that a notice of intellectual property
-          infringement has been improperly submitted against you, you may submit
-          a “Counter-Notice of Infringement” to Webfic, which contains: Your
-          physical or electronic signature; Identification of the material
-          removed or to which access has been disabled; A statement under
-          penalty of perjury that you have a good faith belief that removal or
-          disablement of the material was a mistake or that the material was
-          misidentified; and Your full name, your email address, your mailing
-          address, and a statement that you consent to the jurisdiction of the
-          court (a) in the judicial district where your address is located if
-          the address is in Singapore, or (b) located in Singapore, if your
-          address is located outside Singapore, and that you will accept service
-          of process from the complainant submitting the notice or his/her
-          authorized agent.
-        </p>
-        <p class="article">
-          12.2 Any notice or counter-notice you submit pursuant to the foregoing
-          must be truthful and must be submitted under penalty of perjury. A
-          false notice or counter-notice may give rise to personal liability.
-          You may therefore want to seek the advice of legal counsel before
-          submitting a notice or a counter-notice. Notwithstanding anything to
-          the contrary stated herein, please note that whether or not Webfic
-          disables access to or removes any materials pursuant to the foregoing,
-          Webfic may disclose your identity to any third party who has alleged a
-          violation of intellectual property rights hereunder, or supplied us
-          with a counter-notice, as well as disclose the contents of any notice
-          of counter-notice. You acknowledge and agree that any disclosures by
-          us pursuant to the foregoing shall not violate any of your rights,
-          including, without limitation, any rights of privacy that you may
-          have.
-        </p>
-        <p class="article">13. Choice of Law and Dispute Resolution</p>
-        <p class="article">
-          13.1 You consent and agree that the Terms will be exclusively governed
-          by the laws of Singapore applicable to contracts entered into and
-          performed within Singapore and notwithstanding any conflict of law
-          principles.
-        </p>
-        <p class="article">
-          13.2 You and Webfic agree that any dispute, claim, or controversy
-          between you and Webfic arising in connection with or relating in any
-          way to these Terms or to your relationship with Webfic (whether based
-          in contract, tort, fraud, misrepresentation, or any other legal
-          theory, and regardless if the claims arise during or after the
-          termination of the Terms) will be determined by mandatory binding
-          arbitration. Any arbitration between you and Webfic will be resolved
-          by binding arbitration administered by the Singapore International
-          Arbitration Centre (”SIAC”) under the Administrative Arbitration Rules
-          of the Singapore International Arbitration Centre in force when the
-          notice of arbitration is submitted.
-        </p>
-        <p class="article">14. Notices</p>
-        <p class="article">
-          All legal notices pursuant to the Terms shall be in writing and shall
-          be given by email to Webfic at: 
-          <a style="color:rgba(255, 126, 66, 1);" href="mailto:webficread@gmail.com">webficread@gmail.com</a>. 
-           By using the Platform, you agree that any notice due under the Terms that Webfic
-          sends you electronically will satisfy any legal communication or
-          notification. You agree to keep all of your contact information
-          contained in your Account up to date, and we are not responsible in
-          the event you fail to keep your Account or contact information up to
-          date.
-        </p>
-        <p class="article">15. Contact Information</p>
-        <p class="article">
-          The Platform is operating by DianZhong Technology Singapore PTE, LTD.,
-          located at 2 VENTURE DRIVE #11-31 VISION EXCHANGE SINGAPORE 608526.
-          You may contact us by sending correspondence to that address or by
-          emailing us at  <a style="color:rgba(255, 126, 66, 1);" href="mailto:webficread@gmail.com">webficread@gmail.com</a>. 
-
+         3、在法律允許的最大範圍內對本協定擁有解釋權與修改權。
         </p>
       </div>
     </div>
@@ -451,7 +177,6 @@ a {
         margin-bottom: 20px;
         font-size: 18px;
         color: rgba(58, 74, 90, 1);
-        text-align: justify;
         span {
           color: #ee3799;
           font-size: 18px;
