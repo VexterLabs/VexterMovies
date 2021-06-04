@@ -9,7 +9,7 @@
         <v-star :ratings="bookInfo.ratings" :count="bookInfo.commentCount">
         </v-star>
       </div>
-      <div class="author">By: {{bookInfo.author}}</div>
+      <div class="author">作者: {{bookInfo.author}}</div>
       <div class="progress">{{bookInfo.lastUpdateTimeDisplay}}</div>
       <div class="book-desc">{{bookInfo.introduction}}</div>
     </div>

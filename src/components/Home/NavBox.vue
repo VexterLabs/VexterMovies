@@ -118,7 +118,7 @@
                 'slide_btm1',
                 { active: currentPath == '/contest' },
               ]"
-              href="https://docs.google.com/forms/d/e/1FAIpQLSesBR-gG8pxO2lwlMND3sYYvoOoxi08WmwtXR_4YYhN0RIL6w/viewform?usp=sf_link"
+              href="https://docs.google.com/forms/d/e/1FAIpQLScrrnis4t6XFnqjm6UolgH4OWiGY2BJ67JGwhg5FTb8Qq76oQ/viewform?usp=pp_url"
               >帮助和建议</a>
             <router-link
               :class="[
