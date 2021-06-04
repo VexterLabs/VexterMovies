@@ -24,6 +24,9 @@ export const handleSEO = function (context) {
 
         let bookInfo = context.state.HomeDataModule.bookInfo;
         context.title = bookInfo.bookName;
+        console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
+        console.log(bookInfo);
+        console.log('yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
         context.introduction = bookInfo.introduction;
         context.keywords = bookInfo.bookName + "," + bookInfo.pseudonym + "," + context.keywords; // 拼接书名作者名
 

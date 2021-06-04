@@ -53,7 +53,7 @@
       </div> -->
     </div>
 
-    <WebficReadUnlock v-if="unlockFlag"></WebficReadUnlock>
+    <WebficReadUnlock :chapterInfo='chapterInfo' v-if="unlockFlag"></WebficReadUnlock>
 
     <!-- <read-unlock v-if="unlockFlag" :chapterInfo="chapterInfo" @payMoneyBook="payMoneyBook" @payMoneyChapter="payMoneyChapter"></read-unlock> -->
   </div>
