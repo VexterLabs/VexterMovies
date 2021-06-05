@@ -9,7 +9,7 @@
         "server:ptest": "cross-env PORT=8080 HOST=http://192.168.0.241:4080  pm2 start server.js --name ptest",
         "server:pcqat": "cross-env NODE_ENV=production PORT=9080 HOST=http://192.168.1.70:8080 pm2 start server.js --name pcqat",
         "server:pchot": "cross-env NODE_ENV=production PORT=9080 HOST=http://192.168.0.249:8080 pm2 start server.js --name pchot",
-        "server:pyfb": "cross-env NODE_ENV=production PORT=9080 TYPE_CDN=yfb HOST=http://internal-hwyc-elb-for-yfb-newm-478091964.ap-southeast-1.elb.amazonaws.com/ pm2 start server.js --name pyfb",
+        "server:pyfb": "cross-env NODE_ENV=production PORT=9080 TYPE_CDN=yfb HOST=http://172.31.19.6:8080 pm2 start server.js --name pyfb",
         "server:ponline": "cross-env NODE_ENV=production PORT=9090 TYPE_CDN=line HOST=http://internal-hwyc-elb-for-newm-124074560.ap-southeast-1.elb.amazonaws.com/ pm2 start server.js --name ponline",
         "build": "rimraf dist && npm run build:client && npm run build:server",
         "build:client": "cross-env NODE_ENV=production webpack --color --config build/webpack.client.config.js --progress --hide-modules",
