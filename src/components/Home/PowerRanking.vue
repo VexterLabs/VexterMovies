@@ -381,8 +381,13 @@ export default {
       // for (var i = 0; i < 3; i++) {
       //   arr.unshift(this.componentData.columns[0]["items"][i]);
       // }
-      return this.componentData.columns[0]["items"].reduce((curent,item)=>{
+      return this.componentData.columns[0]["items"].reduce((curent,item,index)=>{
         curent.push(item)
+        if(index==2){
+          let curent0= curent[0];
+          curent[2] = curent0;
+          curent[0] = item;
+        }
         return curent;
       },[])
     },
