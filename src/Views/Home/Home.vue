@@ -72,14 +72,14 @@ export default {
                 },
                 {
                   'bannerUrl':Banner3,
-                  'bookId': "11010076840",
+                  'bookId': "11010086319",
                   // 'bookId': "11000000207",
                   'bookName': "醜女重生：霍家後嬌又颯",
                   "author":"喬眉"
                 },
                 {
                   'bannerUrl':Banner4,
-                  'bookId': "11010076840",
+                  'bookId': "11010080493",
                   // 'bookId': "11000000231",
                   'bookName': "鬼手醫妃：王爺休書請拿好",
                   "author":"勤奮的螃蟹"
