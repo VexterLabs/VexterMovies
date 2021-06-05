@@ -412,10 +412,10 @@ export default{
                         content: res.data.data.previewContent || '',
                     }, res.data.data))
                     this.needLockChapterId = res.data.data.id
-                    this.prevChapterId = res.data.data.prev ? res.data.data.prev.id : ''
-                    if(res.data.data.prev){
+                    this.prevChapterId = res.data.data.pre ? res.data.data.pre.id : ''
+                    if(res.data.data.pre){
                         // 有上一章
-                        this.prevChapterId = res.data.data.prev.id
+                        this.prevChapterId = res.data.data.pre.id
                         this.firstChapterFlag = false
                     }else{
                         this.firstChapterFlag = true
@@ -428,20 +428,20 @@ export default{
                     // 预处理上一章节，接口请求完成之后直接替换原来的内容
                     this.chapterList[0] = Object.assign({
                         content: res.data.data.content || '',
-                        commentList: commentList
+                        // commentList: commentList
                     }, res.data.data)
                 }else{
                     this.chapterList.unshift(Object.assign({
                         content: res.data.data.content || '',
-                        commentList: commentList
+                        // commentList: commentList
                     }, res.data.data))
                 }
 
-                if(res.data.data.prev){
+                if(res.data.data.pre){
                     // 有上一章
-                    this.prevChapterId = res.data.data.prev.id
+                    this.prevChapterId = res.data.data.pre.id
                     this.firstChapterFlag = false
-                    this.prevChapterObj = res.data.data.prev
+                    this.prevChapterObj = res.data.data.pre
                 }else{
                     this.firstChapterFlag = true
                 }
@@ -559,11 +559,11 @@ export default{
                 }
                 if(this.isFristLoading){
                     // 向下滚动加载时以第一次加载时获取的上张章节id为准
-                    if(res.data.data.prev){
+                    if(res.data.data.pre){
                         // 有上一章
-                        this.prevChapterId = res.data.data.prev.id
+                        this.prevChapterId = res.data.data.pre.id
                         this.firstChapterFlag = false
-                        this.prevChapterObj = res.data.data.prev
+                        this.prevChapterObj = res.data.data.pre
                     }else{
                         this.firstChapterFlag = true
                     }
@@ -592,12 +592,12 @@ export default{
                     // 处理之前的下章章节内容，通过请求后的内容把之前的替换掉
                     this.chapterList[this.chapterList.length - 1] = (Object.assign({
                         content: res.data.data.content || '',
-                        commentList: commentList
+                        // commentList: commentList
                     }, res.data.data))
                 }else{
                     this.chapterList.push(Object.assign({
                         content: res.data.data.content || '',
-                        commentList: commentList,
+                        // commentList: commentList,
 
                     }, res.data.data))
                 }
