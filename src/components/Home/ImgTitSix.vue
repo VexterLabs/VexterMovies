@@ -2,7 +2,7 @@
 .imgtitsix{
   overflow: hidden;
   min-width: 1360px;
-  background-color: rgba(245, 246, 250, 1);
+background: #FFFFFF;
   padding-bottom: 40px;
 }
 .itit_box{
@@ -159,6 +159,11 @@ export default {
   methods: {
     handleClickItem (item) {
       this.$emit('clickItem', item)
+      let target = {};
+      target.tit = this.commontit.tit;
+      target.url = '/more/'+ this.componentData.id +'/' + this.formatSpace(this.componentData.name.toLowerCase());
+      target = JSON.stringify(target);
+      window.sessionStorage.setItem('target',target);
     },
     formatSpace(param) {
       let res = encodeURI(param);

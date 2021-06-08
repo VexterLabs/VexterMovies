@@ -117,14 +117,14 @@ export default {
 }
 .footer {
   width: 100%;
-  background: #EBEDF5;
+  background: #FFF  url("../../assets/images/common/footerBg.png") no-repeat center top/100% 2px;
   min-height: 200px;
   box-sizing: border-box;
   // position: absolute;
   min-width: 1360px;
   // bottom: 0;
   padding-top:44px;
-
+  
   .logo{
     display: block;
     width: 30px;

@@ -1,12 +1,15 @@
 <template>
     <div class="book-read" :class="'bgColor'+bgColor">
-
-        <read-nav @closeloginparent="changeLoginStatus" :bookInfo="bookInfo" v-if="!isPreview"></read-nav>
+        
+        <!-- 展现随当前阅读的章节 xx书名/xx章节-->
+        <!-- <read-nav @closeloginparent="changeLoginStatus" :bookInfo="bookInfo" v-if="!isPreview"></read-nav> -->
         <template v-if="nullPageFalg">
         <div class="container" >
             <div class="box"
             ref='chapterBox'
             >
+                <!-- 面包线 -->
+                <router-line :bookInfo='bookInfo'></router-line>
                 <!-- 书封 -->
                 <read-cover v-if="bookInfo.bookId && firstChapterFlag" :bookInfo='bookInfo'></read-cover>
                 <!-- 加载上一章 -->
@@ -63,6 +66,7 @@
 </template>
 <script>
 import ToolBar from '@/components/Book/ToolBar.vue'
+import RouterLine from '@/components/Common/RouterLine.vue'
 import ReadNav from '@/components/Book/ReadNav.vue'
 import ReadCover from '@/components/Book/ReadCover.vue'
 import ReadChapter from '@/components/Book/ReadChapter.vue'
@@ -98,7 +102,8 @@ export default{
          LoadingPrevTip,
          RechargeStatus,
          NullVerifyPassword,
-         FooterNav
+         FooterNav,
+         RouterLine
      },
      computed: {
          ...mapState({
@@ -717,7 +722,7 @@ export default{
     .container{
         width: 100%;
         height: 100%;
-        padding-top: 150px;
+        padding-top: 100px;
         .box{
             width: 856px;
             min-height: 1000px;
@@ -725,6 +730,7 @@ export default{
             background: #fff;
             box-sizing: border-box;
             padding: 20px 78px 50px;
+            position: relative;
         }
     }
 }

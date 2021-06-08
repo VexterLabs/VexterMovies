@@ -273,6 +273,10 @@ export default {
         keyword: this.inputKeyword,
         vm: this,
       });
+      let target = window.sessionStorage.getItem('target');
+      if(target){
+        window.sessionStorage.removeItem('target');
+      }
     },
     async handleLogout() {
       let res = await this.$axios.post("/webfic/user/logout");
@@ -520,7 +524,7 @@ export default {
   line-height: 32px;
   float: right;
   margin-top: 23px;
-  background-color: #FFF1EC;
+  background: #FFF1EC;  
   border-radius: 4px;
   .serarch {
     width: 100%;
@@ -529,18 +533,34 @@ export default {
     cursor: pointer;
     input {
       transition: all 0.3s;
-      width: 170px;
+      width: 192px;
       height: 100%;
       border-radius: 0 4px 4px 0;
       box-sizing: border-box;
       border: 1px solid rgba(197, 197, 197, 1);
       border-left: none;
-      padding: 0 10px;
+      padding: 0 8px;
+      padding-right: 24px;
       color: #FF5F27;
+      border-color:rgba(255, 126, 66, 1);
     }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+      color: #FF5F27;
+      font-size: 14px;
+    }
+
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: #FF5F27;
+      font-size: 14px;
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: #FF5F27;
+      font-size: 14px;
+    } 
     .search-icon {
       transition: all 0.3s;
-      width: 50px;
+      width: 28px;
       height: 32px;
       float: left;
       border-radius: 4px 0 0 4px;
@@ -548,16 +568,13 @@ export default {
       border-right: none;
       box-sizing: border-box;
       background: #fff
-        url("../../assets/images/common/search_unactive.png") no-repeat center
+        url("../../assets/images/common/search_unactive.png") no-repeat 12px
         center/16px 16px;
     }
     .search-icon {
         background-image: url("../../assets/images/common/search_active.png");
         border-color: rgba(255, 126, 66, 1);
         // background-color: rgba(255, 126, 66, 1);
-      }
-      input {
-        border-color:rgba(255, 126, 66, 1);
       }
   }
 }

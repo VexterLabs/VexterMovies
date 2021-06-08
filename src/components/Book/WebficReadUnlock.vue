@@ -183,6 +183,7 @@ export default {
   height:210px;
   margin: 32px auto;
   margin-bottom: 0;
+  position: relative;
   .box{
     width: 144px;
     float: left;
@@ -193,6 +194,7 @@ export default {
       img{
         width: 100%;
         // height: 100px;
+        border: 1px solid #DBDBDB;
         transform: scale(0.7);
         margin-top: -15%;
       }

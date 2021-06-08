@@ -10,14 +10,14 @@
         </v-star>
       </div>
       <div class="author">作者: {{bookInfo.author}}</div>
-      <div class="progress">{{bookInfo.lastUpdateTimeDisplay}}</div>
+      <!-- <div class="progress">{{bookInfo.lastUpdateTimeDisplay}}</div> -->
       <div class="book-desc">{{bookInfo.introduction}}</div>
     </div>
 
     <!-- webfic 隐藏添加书架 -->
     <div class="book-handle">
       <div class="book-continue">
-        <read-or-continue :bookInfo="bookInfo"></read-or-continue>
+        <read-or-continue :bookInfo="bookInfo" :moreName = "moreName" ></read-or-continue>
       </div>
       <!-- <div class="add-shelf">
         <add-or-inlibrary :bookInfo="bookInfo"></add-or-inlibrary>
@@ -31,7 +31,7 @@ import VStar from "@/components/Common/Star.vue";
 import ReadOrContinue from "@/components/Common/ReadOrContinue.vue";
 import { formatSpace } from "@/core/js/common.js";
 export default {
-  props: ["bookInfo"],
+  props: ["bookInfo","moreName"],
   components: {
     VStar,
     // AddOrInlibrary,
@@ -43,6 +43,12 @@ export default {
   methods: {
     handleGoBookInfo() {
       this.$router.push(`/book_info/${this.bookInfo.bookId}/${formatSpace(this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0] || 'null')}/${formatSpace(this.bookInfo.bookName)}`);
+    },
+    routerLine(url,tit){    
+      let target = {};
+      target.tit = tit;
+      target.url = url;
+      this.$store.dispatch('moduleHome/changeRouterLine',target)
     }
   }
 };
@@ -79,7 +85,7 @@ export default {
     }
     .book-star {
       font-size: 0;
-      margin: 12px 0;
+      margin: 8px 0;
       .book-star-item {
         display: inline-block;
         width: 16px;
@@ -104,12 +110,11 @@ export default {
       font-weight: normal;
       color: #545862;
       line-height: 20px;
-      font-style: italic;
       margin-bottom: 6px;
     }
     .book-desc {
       width: 100%;
-      margin-top: 10px;
+      margin-top: 12px;
       box-sizing: border-box;
       padding-right: 10px;
       display: -webkit-box;

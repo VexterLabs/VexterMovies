@@ -53,11 +53,11 @@
 }
 .itslu_main h3{
   overflow: hidden;
-  height: 52px;
-  font-size: 20px;
+  height: 22px;
+  font-size: 16px;
   color: #333;
   font-weight: bold;
-  line-height: 26px;
+  line-height: 22px;
   display: -webkit-box;/* autoprefixer: ignore next */
   -webkit-box-orient:vertical;
   word-break: break-word;
@@ -65,13 +65,12 @@
   margin-bottom: 8px;
 }
 .itslu_main .auth{
-  height: 20px;
+  height: 28px;
   font-size: 14px;
   font-style: normal;
   font-weight: normal;
   color: #545862;
   line-height: 20px;
-  margin-bottom: 6px;
 }
 .itslu_main .update{
   height: 16px;
@@ -83,18 +82,19 @@
 }
 .itslu_main .views{
   color:rgba(255, 126, 66, 1);
-  height: 19px;
+  height: 20px;
   font-size: 14px;
   font-weight: bold;
-  line-height: 19px;
-  margin-bottom: 20px;
+  line-height: 20px;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 .itslu_main .views span{
   color:rgba(127, 132, 147, 1);
 }
 .itslu_main .intr{
   height: 66px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   color: #545862;
   line-height: 22px;
@@ -130,8 +130,8 @@
               </div>
               <div class="itslu_main">
                 <h3>{{ fixPopularTitle(item.bookName) }}</h3>
-                <i class="auth slh_1">{{ item.author }}&nbsp;著</i>
-                <p class="update slh_1">{{ item.lastUpdateTimeDisplay }}</p>
+                <i class="auth slh_1">{{ item.author }}&nbsp;著3</i>
+                <!-- <p class="update slh_1">{{ item.lastUpdateTimeDisplay }}</p> -->
                 <p class="views slh_1">
                   {{ item.viewCountDisplay }} <span>阅读量</span>
                 </p>
@@ -178,6 +178,11 @@ export default {
   methods: {
     handleClickItem (item) {
       this.$emit('clickItem', item)
+      let target = {};
+      target.tit = this.commontit.tit;
+      target.url = '/more/'+ this.componentData.id +'/' + this.formatSpace(this.componentData.name.toLowerCase());
+      target = JSON.stringify(target);
+      window.sessionStorage.setItem('target',target);
     },
     fixPopularTitle(titleStr){
       return titleStr.replace(/&nbsp;/g , ' ').replace(/\s+/g, ' ');

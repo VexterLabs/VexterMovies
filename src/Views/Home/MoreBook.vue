@@ -10,7 +10,7 @@
     </div>
     <div class="container">
       <template v-if="moreBooks.length > 0">
-        <more-book v-for="item in moreBooks" :key="item.bookId" :bookInfo="item"></more-book>
+        <more-book v-for="item in moreBooks" :key="item.bookId" :bookInfo="item" :moreName='moreName'></more-book>
         <v-pagiation
           :totals="Math.ceil(allBookCount / pageSize)"
           :pageNo="pageNo"
@@ -110,21 +110,19 @@ export default {
   padding-bottom: 40px;
   .search-title {
     width: 100%;
-    min-height: 120px;
+    height: 80px;
     box-sizing: border-box;
-    background: rgba(244, 246, 248, 1);
+      margin-top: 10px;
     .box {
       width: 1080px;
-      height: 100%;
+      height:80px;
       margin: 0 auto;
-      
       .title-name {
         font-size: 32px;
         font-weight: bold;
+        height: 80px;
+        line-height: 80px;
         color: #333333;
-        padding-top: 58px;
-        margin-bottom: 40px;
-        width: 100%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -136,7 +134,7 @@ export default {
           width: 6px;
           height: 22px;
           left:0;
-          top:66px;
+          top:29px;
           background:rgba(255, 126, 66, 1);
         }
       }
@@ -173,7 +171,7 @@ export default {
   .container {
     width: 1080px;
     margin: 0 auto;
-    padding-top: 40px;
+    padding-top: 20px;
   }
 }
 </style>

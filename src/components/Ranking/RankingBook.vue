@@ -212,15 +212,15 @@ export default {
     }
     .book-continue {
       width: 150px;
-      height: 44px;
-      line-height: 44px;
+      height: 48px;
+      line-height: 48px;
       text-align: center;
       background: rgba(255, 126, 66, 1);
       border-radius: 4px;
       cursor: pointer;
-      font-weight: 400;
+      font-weight: bold;
       color: rgba(255, 255, 255, 1);
-      font-size: 20px;
+      font-size: 16px;
     }
     .add-box {
       margin-top: 36px;

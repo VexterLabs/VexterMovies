@@ -57,7 +57,7 @@
   text-align: left;
 }
 .bib_info h1 {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   overflow: hidden;
   // height: 134px;
   font-weight: bold;
@@ -142,6 +142,7 @@
 .bibi_record {
   overflow: hidden;
   margin-bottom: 40px;
+  margin-top: 28px;
   .home_rate {
     font-size: 30px;
     margin-right: 10px;

@@ -186,14 +186,14 @@ export default [{
             name: 'account',
             component: resolve => require(['@/Views/Account/account.vue'], resolve)
         } */
-
+        {
+            path: '/book/:id',
+            name: 'book_read',
+            component: resolve => require(['@/Views/Book/BookRead.vue'], resolve)
+        },
     ]
 },
-{
-    path: '/book/:id',
-    name: 'book_read',
-    component: resolve => require(['@/Views/Book/BookRead.vue'], resolve)
-},
+
 {
     path: '*',
     name: 'error_page',

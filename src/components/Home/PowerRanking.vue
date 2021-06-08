@@ -216,6 +216,7 @@
   font-weight: bold;
   color: #FF7E42;
   line-height: 19px;
+  margin-top: 8px;
 }
 .prrlu_info .view_count span{
   color:rgba(127, 132, 147, 1);
@@ -278,7 +279,7 @@
                 :key="index"
                 style="cursor: pointer;"
                 :class="[index==0?'prli_2':(index==1?'prli_1':'prli_3')]"
-                @click.prevent="handleClickItem(item)"
+                @click.prevent="handleClickItem(item,'left')"
               >
               <div v-if="index<3">
                 <a
@@ -293,7 +294,7 @@
                   <img class="cover" v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName" />
                   <div class="top3CSS">
                     <p class="title"> {{item.bookName}} </p>
-                    <p class="auth">{{item.author}}&nbsp;著</p>
+                    <p class="auth">{{item.author}}&nbsp;著77</p>
                     <p class="intr">{{item.introduction}}</p>
                     <p></p>
                   </div>
@@ -331,7 +332,7 @@
             <li
               v-for="(item, index) in prr_list"
               :key="index"
-              @click.prevent="handleClickItem(item)"
+              @click.prevent="handleClickItem(item,'right')"
               :style=" index > 4 ? 'height:0px;padding:0px':'' "
             >
             <div v-if="index<5">
@@ -350,7 +351,7 @@
                 <div class="prrlu_info">
                   <h3 class="slh_1">{{ item.bookName }}</h3>
                   <p class="view_count">
-                    {{ item.viewCountDisplay }} <span>阅读量</span>
+                    {{ item.viewCountDisplay }} <span>阅读量88</span>
                   </p>
                 </div>
               </a>
@@ -412,8 +413,18 @@ export default {
     routePush(url) {
       this.$router.push(url);
     },
-    handleClickItem(item) {
+    handleClickItem(item,part) {
       this.$emit("clickItem", item);
+      let target = {};
+      if(part=='left'){
+       target.tit = this.commontit_left.tit;
+       target.url = '/more/rankings';
+      }else{
+        target.url='';
+        target.tit = this.commontit_right||'';
+      }
+      target = JSON.stringify(target);
+      window.sessionStorage.setItem('target',target);
     },
     formatSpace(param) {
       // let res = encodeURI(param);

@@ -29,9 +29,11 @@
           </div>
       </div>
     </div>
-    <div class="appStope">
-      <img src="../../assets/images/aboutus/iOSAPP.png" @click="downApp" />
-      <img src="../../assets/images/aboutus/Android APP.png" @click="downApp" />
+    <div class="stoerBox">
+      <div class="appStope">
+        <img src="../../assets/images/aboutus/iOSAPP.png" @click="downApp" />
+        <img src="../../assets/images/aboutus/Android APP.png" @click="downApp" />
+      </div>
     </div>
   </div>
 </template>
@@ -51,10 +53,15 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.stoerBox{
+  background: white;
+  height: 130px;
+  padding:80px 0px;
+}
 .appStope{
   width: 800px;
   height: 130px;
-  margin: 80px auto;
+  margin: 0px auto;
 }
 .appStope img{
   width: 360px;
@@ -76,11 +83,11 @@ export default {
     .autoLeft , .autoRight{
       width: 50%;
       height: 100%;
-      background:#FEDF87;
+      background:#DFDCF0;
       float: left;
     }
     .autoRight{
-      background:#FF7DC0;
+      background:#DFDCF0;
     }
   }
 }
