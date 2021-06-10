@@ -765,7 +765,7 @@ export default {
         event: "fqglfxmqq" // 发起关联分享码请求
       });
 
-      let res = await this.$axios.post("/webfic/activity/alpha/user/binding", {
+      let res = await this.$axios.post("/xsdq/activity/alpha/user/binding", {
         shareCode: share
       });
 
@@ -784,7 +784,7 @@ export default {
     // 绑定mate请求userInfo
     async bindMate(type, share) {
       // 请求邀请人信息(用户名, ID等)
-      let res = await this.$axios.post("/webfic/activity/alpha/info", {
+      let res = await this.$axios.post("/xsdq/activity/alpha/info", {
         shareCode: share
       });
       // TODO 展示邀请人信息
@@ -909,7 +909,7 @@ export default {
         event: "fqglfxmqq" // 发起关联分享码请求
       });
 
-      let res = await this.$axios.post("/webfic/activity/alpha/user/binding", {
+      let res = await this.$axios.post("/xsdq/activity/alpha/user/binding", {
         shareCode: share
       });
       // console.log(3);
@@ -1257,7 +1257,7 @@ export default {
 
     
     async getBookInfo2(){
-      let res = await this.$axios.post("/webfic/activity/alpha/contest");
+      let res = await this.$axios.post("/xsdq/activity/alpha/contest");
       if (res.data.status == 0) {
         this.$store.dispatch('AlphaDataModule/initAlphaData' , {
           rankBooks :res.data.data.rankList,
@@ -1297,7 +1297,7 @@ export default {
           event: "fqsjsjqq" // 发起书籍数据请求
         });
       }
-      // let res = await this.$axios.post("/webfic/activity/alpha/contest");
+      // let res = await this.$axios.post("/xsdq/activity/alpha/contest");
       if (this.errStatus == 0) {
         // this.rankBooks = res.data.data.rankList;
         // this.activityId = res.data.data.activityId;

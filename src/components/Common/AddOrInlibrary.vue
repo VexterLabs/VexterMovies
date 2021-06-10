@@ -30,7 +30,7 @@ export default{
             if(!this.currentBookInfo.bookId){
                 return
             }
-            let res = await this.$axios.post('/webfic/shelf/add',{
+            let res = await this.$axios.post('/xsdq/shelf/add',{
                 "bookId": target.bookId,
             })
             if(res.data.status == 0){
@@ -39,7 +39,7 @@ export default{
             }
         },
         async handleRemoveLibrary(){
-            let res = await this.$axios.post('/webfic/shelf/delete/batch',{
+            let res = await this.$axios.post('/xsdq/shelf/delete/batch',{
                 idList: [this.bookInfo.libraryId || this.bookInfo.id ]
             })
             if(res.data.status == 0){

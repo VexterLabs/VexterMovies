@@ -110,7 +110,7 @@ export default{
                 "typeOneId": this.typeOneId,
                 "typeTwoId": this.typeTwoId
             })
-            // let res = await this.$axios.post('/webfic/book/browse',{
+            // let res = await this.$axios.post('/xsdq/book/browse',{
             //     "facet": this.facet,
             //     "pageNo": this.pageNo,
             //     "pageSize": this.pageSize,

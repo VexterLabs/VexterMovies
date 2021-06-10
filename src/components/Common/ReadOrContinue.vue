@@ -16,7 +16,8 @@
 export default{
     props: [
         'bookInfo',
-        'type'
+        'type',
+        'moreName'
     ],
     data () {
         return {
@@ -36,7 +37,7 @@ export default{
             // }else{
             //     this.$router.push(`/book_info/${this.bookInfo.bookId}`)
             // }
-        }
+        },
     }
 }
 </script>
@@ -44,14 +45,14 @@ export default{
 .book-read-status a{
     display: inline-block;
     width: 120px;
-    height: 40px;
+    height: 48px;
     background: #FF7E42;
-    line-height: 40px;
+    line-height: 48px;
     text-align: center;
     border-radius: 4px;
     cursor: pointer;
     color:rgba(255,255,255,1);
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: bold;
 }
 </style>

@@ -158,7 +158,7 @@ export default {
     methods: {
         // 进入页面初始化
         async infoInit() {
-            let res = await this.$axios.post("/webfic/activity/halloween/info");
+            let res = await this.$axios.post("/xsdq/activity/halloween/info");
             if (res.data.status == 0) {
 
                 $logEvent({
@@ -210,7 +210,7 @@ export default {
             });
 
             // 已登录 进行请求
-            let res = await this.$axios.post("/webfic/activity/halloween/dailySignIn");
+            let res = await this.$axios.post("/xsdq/activity/halloween/dailySignIn");
             // console.log(res)
             if (res.data.status == 0) {
                 let earnInfo = res.data.data;

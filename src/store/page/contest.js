@@ -28,7 +28,7 @@ export default {
     actions: {
 
         async getRankList({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/activity/writingcontest');
+            let res = await instance.post(config.ENV + '/xsdq/activity/writingcontest');
             try {
                 res = res.data;
                 let rankBooks = [],

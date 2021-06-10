@@ -42,7 +42,7 @@ export default {
         zone: "djcjdd", // 点击创建订单
         adid: "click-create-order"
       });
-      let res = await this.$axios.post("/webfic/pay/get/money/info", {
+      let res = await this.$axios.post("/xsdq/pay/get/money/info", {
         bookId: this.moneyinfo.bookId
       });
 
@@ -57,7 +57,7 @@ export default {
     },
 
     async handleCreateOrder() {
-      let res = await this.$axios.post("/webfic/pay/create/order", {
+      let res = await this.$axios.post("/xsdq/pay/create/order", {
         bookId: this.moneyinfo.bookId,
         channelCode: "GNP",
         moneyId: this.currentInfo.moneyId

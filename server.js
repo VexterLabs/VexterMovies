@@ -91,8 +91,8 @@ const options = {
     target: HOST, // target host
     changeOrigin: true, // needed for virtual hosted sites
     pathRewrite: {
-        // '^/webfic': '/webfic'
-        '^/webfic': '/asg/portal'
+        // '^/xsdq': '/xsdq'
+        '^/xsdq': '/asg/portal'
     },
     onProxyRes(proxyRes, req, res) {
         console.log(proxyRes)
@@ -109,7 +109,7 @@ const options = {
     onProxyReq(proxyRes, req, res) { }
 };
 const exampleProxy = createProxyMiddleware(options);
-app.use('/webfic', exampleProxy)
+app.use('/xsdq', exampleProxy)
 
 async function render(req, res) {
     const s = Date.now()

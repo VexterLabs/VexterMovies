@@ -95,6 +95,10 @@ export default {
         "clickItem",
         this.componentData.items[item]
       );
+      let target = window.sessionStorage.getItem('target');
+      if(target){
+        window.sessionStorage.removeItem('target');
+      }
     },
   },
   mounted() {

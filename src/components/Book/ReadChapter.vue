@@ -107,7 +107,7 @@ export default {
 
       let chapterId = this.$route.params.id.split('-')[1];
 
-      let res = await this.$axios.post("/webfic/comment/book/comments", {
+      let res = await this.$axios.post("/xsdq/comment/book/comments", {
         bookId: this.bookInfo.bookId,
         bookName: this.bookInfo.bookName,
         bookCover: this.bookInfo.cover,

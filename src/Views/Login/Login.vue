@@ -487,7 +487,7 @@ export default {
       this.handleEmailRegister();
     },
     async getHellloInfo() {
-      let res = await this.$axios.post("/webfic/user/third/login/attrs", {});
+      let res = await this.$axios.post("/xsdq/user/third/login/attrs", {});
       if (res.data.status == 0) {
         this.initOptions = res.data.data;
       }
@@ -547,7 +547,7 @@ export default {
         p.shareCodeWriting = this.inviteId;
       }
 
-      let res = await this.$axios.post("/webfic/user/email/register", p);
+      let res = await this.$axios.post("/xsdq/user/email/register", p);
       this.throttleFlag = false;
       if (res.data.status == 0) {
 
@@ -660,7 +660,7 @@ export default {
         p.shareCodeWriting = this.inviteId;
       }
 
-      let res = await this.$axios.post("/webfic/user/login", p);
+      let res = await this.$axios.post("/xsdq/user/login", p);
 
       this.throttleFlag = false;
       if (res.data.status == 0) {
@@ -690,7 +690,7 @@ export default {
         return;
       }
       this.throttleFlag = true;
-      let res = await this.$axios.post("/webfic/user/email/password/reset", {
+      let res = await this.$axios.post("/xsdq/user/email/password/reset", {
         email: this.forgetPasswordEmail,
       });
       this.throttleFlag = false;
@@ -711,7 +711,7 @@ export default {
     },
     // 忘记密码重新发送
     async handleResendForgetEmail() {
-      let res = await this.$axios.post("/webfic/user/email/password/reset", {
+      let res = await this.$axios.post("/xsdq/user/email/password/reset", {
         email: this.forgetPasswordEmail,
       });
       if (res.data.status == 0) {
@@ -808,7 +808,7 @@ export default {
             }
 
             that.$axios
-              .post("/webfic/user/login", p)
+              .post("/xsdq/user/login", p)
               .then((data) => {
                 if (data.data.status == 0) {
 
@@ -871,7 +871,7 @@ export default {
               p.shareCodeWriting = that.inviteId;
             }
             that.$axios
-              .post("/webfic/user/login", p)
+              .post("/xsdq/user/login", p)
               .then((data) => {
                 if (data.data.status == 0) {
 
@@ -904,7 +904,7 @@ export default {
       //   content: 'This login is currently not available.'
       // })
       // return
-      let res = await this.$axios.post("/webfic/user/twitter/get/authurl");
+      let res = await this.$axios.post("/xsdq/user/twitter/get/authurl");
       if (res.data.status == 0) {
         var height = 900;
         var width = 700;
@@ -952,7 +952,7 @@ export default {
           event: "fqglfxmqq", // 发起关联分享码请求
         });
 
-        let res = await this.$axios.post("/webfic/activity/alpha/user/binding" , {shareCode : this.packcode});
+        let res = await this.$axios.post("/xsdq/activity/alpha/user/binding" , {shareCode : this.packcode});
 
         if(res.data.status == 0){
           $logEvent({

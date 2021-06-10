@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     async getList() {
-      let res = await this.$axios.post("/webfic/pay/list");
+      let res = await this.$axios.post("/xsdq/pay/list");
       if (res.data.status == 0) {
         this.payList = res.data.data.payPalList;
         this.currentInfo = res.data.data.payPalList[0];
@@ -81,7 +81,7 @@ export default {
         adid: "click-create-order"
       });
 
-      let res = await this.$axios.post("/webfic/pay/create/order", {
+      let res = await this.$axios.post("/xsdq/pay/create/order", {
         moneyId: this.currentInfo.moneyId,
         channelCode: "GNP",
       });

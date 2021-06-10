@@ -29,7 +29,7 @@ export default{
     methods: {
         async getPageInit(){
             let query = this.$route.query
-            let res = await this.$axios.post('/webfic/user/email/verify',{
+            let res = await this.$axios.post('/xsdq/user/email/verify',{
                 token: query.token
             })
             if(res.data.status == 0){

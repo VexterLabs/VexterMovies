@@ -57,7 +57,7 @@
   text-align: left;
 }
 .bib_info h1 {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   overflow: hidden;
   // height: 134px;
   font-weight: bold;
@@ -142,6 +142,7 @@
 .bibi_record {
   overflow: hidden;
   margin-bottom: 40px;
+  margin-top: 28px;
   .home_rate {
     font-size: 30px;
     margin-right: 10px;
@@ -765,7 +766,7 @@ export default {
       let that = this;
       //获取用户信息
       that.$axios
-        .post("/webfic/book/detail", {
+        .post("/xsdq/book/detail", {
           bookId: params.id
         })
         .then(data => {
@@ -845,7 +846,7 @@ export default {
       }
     },
     async getComment(bookId) {
-      let res = await this.$axios.post("/webfic/comment/book/comments", {
+      let res = await this.$axios.post("/xsdq/comment/book/comments", {
         bookId: bookId || this.bookInfo.bookId,
         chapterId: 0,
         order: "",

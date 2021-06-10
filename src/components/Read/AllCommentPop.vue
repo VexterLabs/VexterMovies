@@ -89,7 +89,7 @@ export default {
         return;
       }
       this.throttleFlag = true;
-      let res = await this.$axios.post("/webfic/comment/add", {
+      let res = await this.$axios.post("/xsdq/comment/add", {
         bookCover: this.bookInfo.cover,
         bookId: this.bookInfo.bookId,
         bookName: this.bookInfo.bookName,
@@ -122,7 +122,7 @@ export default {
       }
     },
     async starAjax() {
-      let res = await this.$axios.post("/webfic/comment/praise", {
+      let res = await this.$axios.post("/xsdq/comment/praise", {
         bookId: this.bookInfo.bookId,
         chapterId: this.chapterCurrentIndex,
         refer2Id: "",
@@ -137,7 +137,7 @@ export default {
       }
     },
     async getReplyComment() {
-      let res = await this.$axios.post("/webfic/comment/book/comments", {
+      let res = await this.$axios.post("/xsdq/comment/book/comments", {
         bookId: this.bookInfo.bookId,
         bookName: this.bookInfo.bookName,
         bookCover: this.bookInfo.cover,

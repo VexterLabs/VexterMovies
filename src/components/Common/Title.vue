@@ -14,9 +14,8 @@
 }
 .ct_more{
   float: right;
-  width: 83px;
+  width: 90px;
   margin: 46px 0 0 0;
-  padding-right: 26px;
   height: 20px;
   background: url('../../assets/images/common/more_icon.png') no-repeat right center;
   background-size: 16px 16px;
@@ -50,17 +49,15 @@
 <template>
   <div class="common_tit">
     <!-- <a href="javascript:;" @click="handleGoRanking" class="ct_more" v-if="isMore && goRanking">More</a> -->
-    <a href="/more/rankings" class="ct_more" v-if="isMore && goRanking">查看更多</a>
-    <a :href="'/more/'+ id +'/' + formatSpace(name.toLowerCase())" class="ct_more" v-if="isMore && !goRanking && name && id">查看更多</a>
-    <a :href="'/more/'+ id +'/popular'" class="ct_more" v-if="isMore && !goRanking && !name && id">查看更多</a>
-   
+    <a href="/more/rankings" class="ct_more" v-if="isMore && goRanking"  @click=" localStorageLine('/more/rankings')">查看更多</a>
+    <a :href="'/more/'+ id +'/' + formatSpace(name.toLowerCase())" class="ct_more" v-if="isMore && !goRanking && name && id" @click=" localStorageLine('/more/'+ id +'/' + formatSpace(name.toLowerCase()))">查看更多</a>
+    <a :href="'/more/'+ id +'/popular'" class="ct_more" v-if="isMore && !goRanking && !name && id"  @click=" localStorageLine('/more/' + id +'/popular')">查看更多</a>
     <h2 class="fs_u"> <i class="left_bar"></i> {{ commontit.tit }}</h2>
   </div>
 </template>
 
 <script>
 import { formatSpace } from "@/core/js/common.js";
-
 export default {
   name: 'common_tit',
   props: ['commontit', 'isMore', 'id' ,'name' , 'goRanking'],
@@ -80,6 +77,14 @@ export default {
         this.$router.push(`/more/${this.id}/${formatSpace(this.name.toLowerCase())}`)
       }
     },
+    localStorageLine(url){    
+      let target = {};
+      target.tit = this.commontit.tit;
+      target.url = url;
+      target = JSON.stringify(target);
+      window.sessionStorage.setItem('target',target);
+    }
+
   }
 }
 </script>

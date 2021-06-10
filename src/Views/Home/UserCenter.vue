@@ -203,7 +203,7 @@ export default {
 
     async pageInit() {
       this.isLoading = false;
-      let res = await this.$axios.post("/webfic/profile/my/books", {
+      let res = await this.$axios.post("/xsdq/profile/my/books", {
         authorId: this.userInfo.id,
         order: "",
         pageNo: this.storyPageNo,
@@ -232,7 +232,7 @@ export default {
       this.$store.dispatch("moduleHome/changeLoadingStatus", true);
     },
     async getCommentList() {
-      let res = await this.$axios.post("/webfic/profile/my/comments", {
+      let res = await this.$axios.post("/xsdq/profile/my/comments", {
         pageNo: this.commentPageNo,
         pageSize: this.commentPageSize,
         userId: this.userInfo.id
@@ -245,7 +245,7 @@ export default {
       window.scroll(0, 0);
     },
     async getUserInfo() {
-      let res = await this.$axios.post("/webfic/profile/user/info", {
+      let res = await this.$axios.post("/xsdq/profile/user/info", {
         id: this.userInfo.id
       });
       if (res.data.status == 0 && res.data.data) {
@@ -257,7 +257,7 @@ export default {
       }
     },
     async getUserAccount() {
-      let res = await this.$axios.post("/webfic/profile/user/account", {});
+      let res = await this.$axios.post("/xsdq/profile/user/account", {});
       // console.log(res);
     },
 

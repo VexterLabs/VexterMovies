@@ -114,7 +114,7 @@ export default{
     methods: {
         ...mapMutations("HomeDataModule", ["INITRANKDATA"]),
         async getPageInit(){
-            let res = await this.$axios.post('/webfic/home/rank.do',{
+            let res = await this.$axios.post('/xsdq/home/rank.do',{
                 "columnId": this.currentColumnId,
                 "index": 0,
                 "pageNo":  this.pageNo,

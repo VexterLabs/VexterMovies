@@ -96,7 +96,7 @@ export default {
         return;
       }
       this.throttleFlag = true;
-      let res = await this.$axios.post("/webfic/comment/add", {
+      let res = await this.$axios.post("/xsdq/comment/add", {
         bookCover: this.currentCommentInfo.bookCover,
         bookId: this.currentCommentInfo.bookId,
         bookName: this.currentCommentInfo.bookName,
@@ -130,7 +130,7 @@ export default {
       }
     },
     async starAjax() {
-      let res = await this.$axios.post("/webfic/comment/praise", {
+      let res = await this.$axios.post("/xsdq/comment/praise", {
         bookId: this.currentCommentInfo.bookId,
         chapterId: "",
         refer2Id: "",
@@ -143,7 +143,7 @@ export default {
       }
     },
     async getReplyComment() {
-      let res = await this.$axios.post("/webfic/comment/book/comments", {
+      let res = await this.$axios.post("/xsdq/comment/book/comments", {
         bookId: this.bookInfo.bookId,
         chapterId: 0,
         order: "",

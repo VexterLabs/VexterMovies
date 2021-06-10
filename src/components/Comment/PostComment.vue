@@ -79,7 +79,7 @@ export default {
         zone: "djfbpl",
         adid: "post-review"
       });
-      let res = await this.$axios.post("/webfic/comment/add", {
+      let res = await this.$axios.post("/xsdq/comment/add", {
         bookCover: this.bookInfo.cover,
         bookId: this.bookInfo.bookId,
         bookName: this.bookInfo.bookName,

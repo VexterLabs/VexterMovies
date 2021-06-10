@@ -202,7 +202,7 @@ export default {
   },
   methods: {
     async getBookInfo(){
-      let res = await this.$axios.post('/webfic/book/edit/detail' , {
+      let res = await this.$axios.post('/xsdq/book/edit/detail' , {
         bookId:this.bookId
       });
       if(res.data.status == 0){
@@ -365,7 +365,7 @@ export default {
       });
     },
     async getChapterList() {
-      let res = await this.$axios.post("/webfic/chapter/edit/list", {
+      let res = await this.$axios.post("/xsdq/chapter/edit/list", {
         bookId: this.bookId
       });
       if (res.data.status == 0) {
@@ -591,7 +591,7 @@ export default {
       }
 
       // 提交请求
-      let res = await this.$axios.post("/webfic/chapter/save", {
+      let res = await this.$axios.post("/xsdq/chapter/save", {
         bookId: this.bookId,
         chapterVo: chapterVo
       });
@@ -725,7 +725,7 @@ export default {
         // 删除
         let currentChapter = this.chapterList[index];
         if (this.chapterList.length > 1) {
-          let res = await this.$axios.post("/webfic/chapter/delete", {
+          let res = await this.$axios.post("/xsdq/chapter/delete", {
             bookId: currentChapter.bookId,
             chapterId: currentChapter.id,
             status: currentChapter.status // 增加刪除的章節狀態
@@ -816,7 +816,7 @@ export default {
         if(!flag)return;
 
         // TODO:请求 还原数据接口
-        let res = await this.$axios.post("/webfic/chapter/edit/restore" , {
+        let res = await this.$axios.post("/xsdq/chapter/edit/restore" , {
           bookId:that.bookId,
           chapterId:chapterInfo.id,
         })

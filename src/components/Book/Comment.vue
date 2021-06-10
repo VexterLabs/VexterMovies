@@ -75,7 +75,7 @@ export default {
       this.starAjax();
     },
     async starAjax() {
-      let res = await this.$axios.post("/webfic/comment/praise", {
+      let res = await this.$axios.post("/xsdq/comment/praise", {
         bookId: this.commentInfo.bookId,
         chapterId: "",
         refer2Id: "",
@@ -111,7 +111,7 @@ export default {
         return;
       }
       this.throttleFlag = true;
-      let res = await this.$axios.post("/webfic/comment/add", {
+      let res = await this.$axios.post("/xsdq/comment/add", {
         bookCover: this.commentInfo.bookCover,
         bookId: this.commentInfo.bookId,
         bookName: this.commentInfo.bookName,

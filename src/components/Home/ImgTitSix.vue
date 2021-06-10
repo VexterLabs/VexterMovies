@@ -2,7 +2,7 @@
 .imgtitsix{
   overflow: hidden;
   min-width: 1360px;
-  background-color: rgba(245, 246, 250, 1);
+background: #FFFFFF;
   padding-bottom: 40px;
 }
 .itit_box{
@@ -130,7 +130,6 @@
 
 <script>
 import Title from '@/components/Common/Title'
-import {formatSpace} from "@/core/js/common.js"
 
 export default {
   name: 'imgtitsix',
@@ -159,12 +158,17 @@ export default {
   methods: {
     handleClickItem (item) {
       this.$emit('clickItem', item)
+      let target = {};
+      target.tit = this.commontit.tit;
+      target.url = '/more/'+ this.componentData.id +'/' + this.formatSpace(this.componentData.name.toLowerCase());
+      target = JSON.stringify(target);
+      window.sessionStorage.setItem('target',target);
     },
     formatSpace(param) {
-      let res = encodeURI(param);
-      res = res.split("%20").join("-").split("%C2%A0").join("-");
-      res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
-      return res;
+      // let res = encodeURI(param);
+      // res = res.split("%20").join("-").split("%C2%A0").join("-");
+      // res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
+      return param;
     },
   },
   components:{

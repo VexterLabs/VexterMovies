@@ -115,7 +115,7 @@ export default{
                 return
             }
 
-            let res = await this.$axios.post('/webfic/user/password/reset',{
+            let res = await this.$axios.post('/xsdq/user/password/reset',{
                 password: this.registerPasswordConfirm,
                 token: this.$route.query.token || ''
             })

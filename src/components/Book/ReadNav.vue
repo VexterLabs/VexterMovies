@@ -64,7 +64,7 @@ export default {
       return res;
     },
     async handleAddLibrary() {
-      let res = await this.$axios.post("/webfic/shelf/add", {
+      let res = await this.$axios.post("/xsdq/shelf/add", {
         bookId: this.bookInfo.bookId,
       });
       if (res.data.status == 0) {
@@ -83,7 +83,7 @@ export default {
     },
     // 退出登录
     async handleLogout() {
-      let res = await this.$axios.post("/webfic/user/logout");
+      let res = await this.$axios.post("/xsdq/user/logout");
       if (res.data.status == 0) {
         clearCookie("TOKEN");
         localStorage.removeItem("userInfo");
@@ -97,7 +97,7 @@ export default {
       this.userCenterFlag = false;
     },
     async handleRemoveLibrary() {
-      let res = await this.$axios.post("/webfic/shelf/delete/batch", {
+      let res = await this.$axios.post("/xsdq/shelf/delete/batch", {
         idList: [this.bookInfo.libraryId],
       });
       if (res.data.status == 0) {

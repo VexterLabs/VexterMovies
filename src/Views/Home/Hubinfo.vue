@@ -130,7 +130,7 @@ export default {
             if(OpenDetail) {
                 // 发起hub详情请求
                 $logEvent({event: "fqhubxqqq", map: {module: "hub_info"}});
-                let res = await this.$axios.post('/webfic/hub/detail', param);
+                let res = await this.$axios.post('/xsdq/hub/detail', param);
                 if (res.data.status == 0 && res.data.data) {
                     data = res.data.data;
                     this.INIHUBINFODATA({hubInfo:data,initLoad: true})
@@ -171,13 +171,13 @@ export default {
         async addOrRemoveShelf(book, index) {
             if (this.addingFlag) return;
             this.addingFlag = true;
-            let url = '/webfic/shelf/add'
+            let url = '/xsdq/shelf/add'
             let param = {
                 "bookId": book.bookId,
             }
 
             if (!!(book.inShelf)) {
-                url = '/webfic/shelf/delete/batch2'
+                url = '/xsdq/shelf/delete/batch2'
                 param = {
                     bookIds: [book.bookId]
                 }

@@ -1612,7 +1612,7 @@ export default {
         return;
       }
 
-      let res = await this.$axios.post("/webfic/book/create/skip", {});
+      let res = await this.$axios.post("/xsdq/book/create/skip", {});
       if (res.data.status == 0) {
         // 创建书籍成功
         $logEvent({
@@ -1663,7 +1663,7 @@ export default {
     //提交表单
     async formSubmit() {
       let that = this;
-      let url = "/webfic/book/create";
+      let url = "/xsdq/book/create";
 
       this.formMessage.period = this.formMessage.period || "CONTEMPORARY"; // 给出默认值
       this.formMessage.writeStatus = this.formMessage.writeStatus || "ONGOING"; // 给出默认值
@@ -1819,7 +1819,7 @@ export default {
       }
       if (this.$route.query.bookId) {
         formData.append("bookId", this.$route.query.bookId);
-        url = "/webfic/book/update";
+        url = "/xsdq/book/update";
       }
       if (this.throttleFlag) {
         return;
@@ -2001,7 +2001,7 @@ export default {
       reader.readAsDataURL(file);
     },
     async getAttributes() {
-      let res = await this.$axios.post("/webfic/book/attributes", {});
+      let res = await this.$axios.post("/xsdq/book/attributes", {});
       if (res.data.status == 0) {
         this.ocreate = res.data.data;
         this.genderList = this.ocreate.bookType[0].subTypes;
@@ -2009,7 +2009,7 @@ export default {
       }
     },
     async getBookInfo() {
-      let res = await this.$axios.post("/webfic/book/edit/detail", {
+      let res = await this.$axios.post("/xsdq/book/edit/detail", {
         bookId: this.$route.query.bookId,
       });
       if (res.data.status == 0) {
@@ -2103,7 +2103,7 @@ export default {
     },
 
     async getFellowBookName(bookId) {
-      let res = await this.$axios.post("/webfic/book/reader.do", {
+      let res = await this.$axios.post("/xsdq/book/reader.do", {
         bookId: bookId,
       });
       if (res.data.status == 0) {
@@ -2133,7 +2133,7 @@ export default {
       this.throttleFellowFlag = false;
       this.$axios({
         method: "post",
-        url: "/webfic/book/suggest",
+        url: "/xsdq/book/suggest",
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
         },
@@ -2332,7 +2332,7 @@ export default {
 
     // 查询用户是否有邮箱
     async getUserInfo() {
-      let res = await this.$axios.post("/webfic/profile/user/info", {
+      let res = await this.$axios.post("/xsdq/profile/user/info", {
         id: this.userInfo.id,
       });
       if (res.data.status == 0 && res.data.data) {
@@ -2352,7 +2352,7 @@ export default {
       let formData = new FormData();
       formData.append("nickname", that.userInfo.nickname);
       formData.append("email", that.userEmail);
-      let res = await that.$axios.post("/webfic/profile/user/edit", formData);
+      let res = await that.$axios.post("/xsdq/profile/user/edit", formData);
 
       if (res.data.status == 0) {
         // 更新成功返回true, 继续提交表单

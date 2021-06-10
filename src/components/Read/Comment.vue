@@ -79,7 +79,7 @@ export default {
         return;
       }
       this.throttleFlag = true;
-      let res = await this.$axios.post("/webfic/comment/add", {
+      let res = await this.$axios.post("/xsdq/comment/add", {
         bookCover: this.commentInfo.bookCover,
         bookId: this.commentInfo.bookId,
         bookName: this.commentInfo.bookName,

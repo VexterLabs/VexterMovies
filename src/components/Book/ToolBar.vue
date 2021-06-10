@@ -142,7 +142,7 @@ export default{
         },
         async getChapterList(){
             this.chapterList = []
-            let res = await this.$axios.post('/webfic/chapter/list.do', {
+            let res = await this.$axios.post('/xsdq/chapter/list.do', {
                 bookId: this.bookId
             })
             if(res.data.status == 0 && res.data.data.length > 0){
