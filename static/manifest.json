@@ -30,7 +30,7 @@
         "type": "image/png"
       }
     ],
-    "name": "Webfic",
-    "short_name": "Webfic",
+    "name": "小說大全",
+    "short_name": "小說大全",
     "start_url": "/?from=desk"
   }
