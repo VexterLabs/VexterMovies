@@ -224,7 +224,7 @@ export default{
                   adid: "click-chapter-unclock"
                 });
 
-            let res = await this.$axios.post('/webfic/chapter/unlock',{
+            let res = await this.$axios.post('/xsdq/chapter/unlock',{
                 bookId: this.bookId,
                 chapterId: chapterId
             })
@@ -258,7 +258,7 @@ export default{
             });
 
 
-            let res = await this.$axios.post('/webfic/chapter/unlock',{
+            let res = await this.$axios.post('/xsdq/chapter/unlock',{
                 bookId: this.bookId,
                 chapterId: chapterInfo.id,
             })
@@ -404,7 +404,7 @@ export default{
 
             // let commentList = await this.getCommentChapter(chapterId)
 
-            let res = await this.$axios.post('/webfic/chapter/detail.do', {
+            let res = await this.$axios.post('/xsdq/chapter/detail.do', {
                 chapterId: chapterId,
                 bookId: this.bookId
             })
@@ -481,7 +481,7 @@ export default{
             },300)
         },
         async getBookInfo(){
-            let res = await this.$axios.post('/webfic/book/reader.do',{
+            let res = await this.$axios.post('/xsdq/book/reader.do',{
                 bookId: this.bookId
             })
             if(res.data.status == 0){
@@ -495,7 +495,8 @@ export default{
                 //   this.chapterId = res.data.data.defaultChapterId
                   this.chapterId = res.data.data.chapterId
                 }
-
+                //初始获取章节信息需要把章节id放url中
+                exchangeURI( this.bookInfo.bookId , this.chapterId);
                 this.nullPageFalg = true
             }else{
                 this.nullPageFalg = false
@@ -542,7 +543,7 @@ export default{
             let commentList = []
             // let commentList = await this.getCommentChapter(chapterId)
 
-            let res = await this.$axios.post('/webfic/chapter/detail.do', {
+            let res = await this.$axios.post('/xsdq/chapter/detail.do', {
                 chapterId: chapterId,
                 bookId: this.bookId
             })
@@ -625,6 +626,8 @@ export default{
                     item.totalCommenCount = this.chapterTotalComments
                   }
                 })
+                //章节列表点击后url拼接章节
+                exchangeURI( this.bookId , chapterId);
 
             }else if(res.data.status == 12005){
                 // 如果存在错误章节,重新请求阅读记录中的章节
@@ -644,7 +647,7 @@ export default{
         },
         async getCommentChapter(chapterId){
             let _this = this;
-            let res = await this.$axios.post('/webfic/comment/book/comments', {
+            let res = await this.$axios.post('/xsdq/comment/book/comments', {
                 "bookId": this.bookInfo.bookId,
                 "bookName": this.bookInfo.bookName,
                 bookCover: this.bookInfo.cover,

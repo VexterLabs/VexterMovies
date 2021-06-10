@@ -137,7 +137,7 @@ export default {
       }
     },
     async getIncomeList() {
-      let res = await this.$axios.post("/webfic/income/t2/list", {
+      let res = await this.$axios.post("/xsdq/income/t2/list", {
         dateTime: this.date
       });
       if (res.data.status == 0) {

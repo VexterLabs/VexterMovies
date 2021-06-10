@@ -57,7 +57,7 @@ export default{
     },
     methods: {
         async getPageInit(){
-            let res = await this.$axios.post('/webfic/profile/recharges',{
+            let res = await this.$axios.post('/xsdq/profile/recharges',{
                 pageNo: this.pageNo,
                 pageSize: this.pageSize,
                 userId: this.userInfo.id,

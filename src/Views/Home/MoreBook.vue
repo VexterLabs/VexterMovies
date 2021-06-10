@@ -68,7 +68,7 @@ export default {
                 pageNo: pageNo,
                 pageSize: that.pageSize}
             this.$store.dispatch('HomeDataModule/getMoreData',payLoad)
-            // let res = await this.$axios.post("/webfic/home/second/list", payLoad);
+            // let res = await this.$axios.post("/xsdq/home/second/list", payLoad);
             // if (res.data.status == 0) {
             //     this.moreBooks = res.data.data.items;
             //     this.moreName = res.data.data.name;

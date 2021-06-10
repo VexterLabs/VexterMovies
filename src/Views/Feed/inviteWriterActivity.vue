@@ -574,7 +574,7 @@ export default {
         event: "fqfxmqq", // 发起分享码请求
       });
       let res = await this.$axios.post(
-        "/webfic/activity/writingcontest/sharecode",
+        "/xsdq/activity/writingcontest/sharecode",
         {
           activityId: this.activityId,
         }
@@ -630,7 +630,7 @@ export default {
         });
       }
       
-      // let res = await this.$axios.post("/webfic/activity/writingcontest");
+      // let res = await this.$axios.post("/xsdq/activity/writingcontest");
       // if (res.data.status == 0) {
       //   this.rankBooks = res.data.data.rankList;
       //   this.activityId = res.data.data.activityId;

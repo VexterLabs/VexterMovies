@@ -23,7 +23,7 @@ export default {
     },
     actions: {
         async getCategoryData({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/book/browse', payLoad);
+            let res = await instance.post(config.ENV + '/xsdq/book/browse', payLoad);
             let bookTypes = [],
                 books = [],
                 totals = 0;

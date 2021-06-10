@@ -92,7 +92,7 @@ export default{
             
         },
         async getHisotryList(){
-            let res = await this.$axios.post('/webfic/shelf/list/recently', {
+            let res = await this.$axios.post('/xsdq/shelf/list/recently', {
                 pageNo: this.historyPageNo,
                 pageSize: this.historyPageSizea
             })
@@ -111,7 +111,7 @@ export default{
                 content: 'Delete this book or not'
             }).then(async val => {
                 // 删除
-                let res = await this.$axios.post('/webfic/shelf/delete/batch/recently', {
+                let res = await this.$axios.post('/xsdq/shelf/delete/batch/recently', {
                     idList: [target.id]
                 })
                 if(res.data.status == 0){
@@ -129,7 +129,7 @@ export default{
         },
         async getLibraryList(){
             // 获取书架的出事函数
-            let res = await this.$axios.post('/webfic/shelf/list',{
+            let res = await this.$axios.post('/xsdq/shelf/list',{
                 pageNo: this.pageNo,
                 pageSize: this.pageSize
             })
@@ -150,7 +150,7 @@ export default{
                 content: 'Delete this book or not'
             }).then(async val => {
                 // 删除
-                let res = await this.$axios.post('/webfic/shelf/delete/batch',{
+                let res = await this.$axios.post('/xsdq/shelf/delete/batch',{
                     idList: this.removeShelfBooksId
                 })
                 if(res.data.status == 0){

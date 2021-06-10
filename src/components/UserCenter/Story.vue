@@ -275,7 +275,7 @@ export default {
         type: "resume",
       }).then(async (flag) => {
         if (!flag) return;
-        let res = await this.$axios.post("/webfic/book/edit/restore", {
+        let res = await this.$axios.post("/xsdq/book/edit/restore", {
           bookId: this.bookInfo.bookId,
         });
 
@@ -338,7 +338,7 @@ export default {
         content: "Delete this book or not",
       }).then(async (val) => {
         // 删除
-        let res = await this.$axios.post("/webfic/book/delete", {
+        let res = await this.$axios.post("/xsdq/book/delete", {
           bookId: this.bookInfo.bookId,
         });
         this.isShow = false;
@@ -390,7 +390,7 @@ export default {
 
     async judgeSign() {
       let that = this;
-      let res = await this.$axios.post("/webfic/contract/apply", {
+      let res = await this.$axios.post("/xsdq/contract/apply", {
         bookId: that.bookInfo.bookId,
       });
 

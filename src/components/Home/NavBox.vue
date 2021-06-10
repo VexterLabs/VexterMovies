@@ -227,7 +227,7 @@ export default {
         this.loadingFlag = true;
         return;
       }
-      let res = await this.$axios.post("/webfic/user/info");
+      let res = await this.$axios.post("/xsdq/user/info");
       this.loadingFlag = true;
       this.$store.dispatch("moduleHome/changeUserInfo", res.data.data || {});
     },
@@ -279,7 +279,7 @@ export default {
       }
     },
     async handleLogout() {
-      let res = await this.$axios.post("/webfic/user/logout");
+      let res = await this.$axios.post("/xsdq/user/logout");
       if (res.data.status == 0) {
         clearCookie("TOKEN");
         this.$store.dispatch("moduleHome/changeUserInfo", {});

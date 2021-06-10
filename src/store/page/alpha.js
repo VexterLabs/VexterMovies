@@ -36,7 +36,7 @@ export default {
     actions: {
 
         async getAlphaList({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/activity/alpha/contest');
+            let res = await instance.post(config.ENV + '/xsdq/activity/alpha/contest');
             try {
                 res = res.data;
                 let rankBooks = [],

@@ -84,7 +84,7 @@ export default {
         return;
       }
       this.errorIndex = -1;
-      let res = await this.$axios.post("/webfic/home/feedBack", {
+      let res = await this.$axios.post("/xsdq/home/feedBack", {
         content: this.content,
         userName: this.name,
         email: this.email
@@ -117,7 +117,7 @@ export default {
 }
 .footer {
   width: 100%;
-  background: #FFF  url("../../assets/images/common/footerBg.png") no-repeat center top/100% 2px;
+  background: #FFF  url("../../assets/images/common/footerBg.png") no-repeat left top/100% 2px;
   min-height: 200px;
   box-sizing: border-box;
   // position: absolute;

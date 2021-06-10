@@ -230,7 +230,7 @@ export default {
       }
 
       // formData.append('id', this.formMessage.id)
-      let res = await this.$axios.post("/webfic/profile/user/edit", formData);
+      let res = await this.$axios.post("/xsdq/profile/user/edit", formData);
       if (res.data.status == 0) {
         localStorage.setItem("userInfo", JSON.stringify(res.data.data));
         this.$store.dispatch("moduleHome/changeUserInfo", res.data.data);

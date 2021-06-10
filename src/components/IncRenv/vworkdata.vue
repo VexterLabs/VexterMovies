@@ -112,7 +112,7 @@ export default {
     async getWorkDataList() {
       let that = this;
 
-      let res = await this.$axios.post("/webfic/user/work/data", {
+      let res = await this.$axios.post("/xsdq/user/work/data", {
         month: that.date
       });
       this.$store.dispatch("moduleHome/changeLoadingStatus", false);

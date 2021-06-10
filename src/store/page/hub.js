@@ -29,7 +29,7 @@ export default {
     },
     actions: {
         async getHubList({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/hub', payLoad);
+            let res = await instance.post(config.ENV + '/xsdq/hub', payLoad);
             try {
                 res = res.data;
                 let books = [];
@@ -54,7 +54,7 @@ export default {
         },
 
         async getHubInfo({ commit }, payLoad) {
-            let res = await instance.post(config.ENV + '/webfic/hub/detail', payLoad);
+            let res = await instance.post(config.ENV + '/xsdq/hub/detail', payLoad);
             try {
                 res = res.data;
                 let hubInfo = {};

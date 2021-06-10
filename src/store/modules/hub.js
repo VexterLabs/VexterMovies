@@ -27,7 +27,7 @@ export default {
             if (target.keyword) {
                 state.keyword = target.keyword
             }
-            let res = await target.vm.$axios.post('/webfic/hub', {
+            let res = await target.vm.$axios.post('/xsdq/hub', {
                 "pageNo": state.pageNo,
                 "pageSize": state.pageSize
             })

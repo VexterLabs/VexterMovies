@@ -201,7 +201,7 @@ export default {
     async getAccountInfo() {
       // !有值处于查看状态, 无值处于可编辑可添加状态
       // ! 有值
-      let res = await this.$axios.post("/webfic/user/receiving/account");
+      let res = await this.$axios.post("/xsdq/user/receiving/account");
 
       if (res.data && res.data.status == 0) {
         if (res.data.data.paymentMethod == "PAYPAL") {
@@ -368,7 +368,7 @@ export default {
           reason: "pre ajax",
         },
       });
-      let res = await this.$axios.post("/webfic/user/receiving/account/update", {
+      let res = await this.$axios.post("/xsdq/user/receiving/account/update", {
         receivingAccount: this.receivingAccount,
         rid: "",
       });

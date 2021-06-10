@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     async init() {
-      let res = await this.$axios.post("/webfic/chapter/findByBookId", {
+      let res = await this.$axios.post("/xsdq/chapter/findByBookId", {
         bookId: this.bookId
       });
       if (res.data.status == 0) {
@@ -81,7 +81,7 @@ export default {
     },
 
     async handlePost(param) {
-      return await this.$axios.post("/webfic/chapter/updateChapterStatus", {
+      return await this.$axios.post("/xsdq/chapter/updateChapterStatus", {
         bookId: this.bookId,
         chapterDraftStatusEnum: param.key,
         chapterIds: param.ids

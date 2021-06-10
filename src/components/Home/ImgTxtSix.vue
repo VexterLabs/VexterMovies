@@ -188,11 +188,11 @@ export default {
       return titleStr.replace(/&nbsp;/g , ' ').replace(/\s+/g, ' ');
     },
     formatSpace(param) {
-      let res = encodeURI(param);
-      res = res.split("%20").join("-").split("%C2%A0").join("-");
-      // res = res.replace(/\?/g, "");
-      res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
-      return res;
+      // let res = encodeURI(param);
+      // res = res.split("%20").join("-").split("%C2%A0").join("-");
+      // // res = res.replace(/\?/g, "");
+      // res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
+      return param;
     },
   },
   components: {

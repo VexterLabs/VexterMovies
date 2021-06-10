@@ -130,7 +130,6 @@ background: #FFFFFF;
 
 <script>
 import Title from '@/components/Common/Title'
-import {formatSpace} from "@/core/js/common.js"
 
 export default {
   name: 'imgtitsix',
@@ -166,10 +165,10 @@ export default {
       window.sessionStorage.setItem('target',target);
     },
     formatSpace(param) {
-      let res = encodeURI(param);
-      res = res.split("%20").join("-").split("%C2%A0").join("-");
-      res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
-      return res;
+      // let res = encodeURI(param);
+      // res = res.split("%20").join("-").split("%C2%A0").join("-");
+      // res = res.replace(/[^A-Za-z0-9]/ig , '')// \_\'\*\(\)\$\+\!\-\.
+      return param;
     },
   },
   components:{

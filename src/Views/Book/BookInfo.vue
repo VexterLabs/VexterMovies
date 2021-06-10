@@ -766,7 +766,7 @@ export default {
       let that = this;
       //获取用户信息
       that.$axios
-        .post("/webfic/book/detail", {
+        .post("/xsdq/book/detail", {
           bookId: params.id
         })
         .then(data => {
@@ -846,7 +846,7 @@ export default {
       }
     },
     async getComment(bookId) {
-      let res = await this.$axios.post("/webfic/comment/book/comments", {
+      let res = await this.$axios.post("/xsdq/comment/book/comments", {
         bookId: bookId || this.bookInfo.bookId,
         chapterId: 0,
         order: "",

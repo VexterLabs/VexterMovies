@@ -65,7 +65,7 @@ export default {
           event: "fqglfxmqq", // 发起关联分享码请求
         });
 
-        let res = await this.$axios.post("/webfic/activity/alpha/user/binding" , {shareCode : this.packcode});
+        let res = await this.$axios.post("/xsdq/activity/alpha/user/binding" , {shareCode : this.packcode});
 
         if(res.data.status == 0){
           $logEvent({
@@ -104,7 +104,7 @@ export default {
         param.halloweenShare = halloweenShare;
       }
 
-      let res = await this.$axios.post("/webfic/user/login", param);
+      let res = await this.$axios.post("/xsdq/user/login", param);
       if (res.data.status == 0) {
         if (shareCodeWriting) {
           $logEvent({

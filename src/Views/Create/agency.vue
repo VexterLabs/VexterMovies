@@ -901,7 +901,7 @@ export default {
       }
 
       try {
-        let res = await this.$axios.post("/webfic/contract/submit", formData);
+        let res = await this.$axios.post("/xsdq/contract/submit", formData);
         if (res.data.status == 0) {
           $logEvent({
             event: "xsqycg", // 线上签约成功
@@ -934,7 +934,7 @@ export default {
           zone: "xsqysb_api", // 点击线上签约提交
           adid: "click-signonline-submit",
           map: {
-            url: "/webfic/contract/submit",
+            url: "/xsdq/contract/submit",
             reason: "api error",
           },
         });

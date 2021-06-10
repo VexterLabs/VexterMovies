@@ -77,7 +77,7 @@ export default{
             // })
         },
         async starAjax() {
-        let res = await this.$axios.post("/webfic/comment/praise", {
+        let res = await this.$axios.post("/xsdq/comment/praise", {
           bookId: this.commentInfo.bookId,
           chapterId: "",
           refer2Id: "",

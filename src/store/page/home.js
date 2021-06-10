@@ -65,8 +65,8 @@ export default {
 
     actions: {
         async getIndexData({ commit }, payload) {
-            // let res = await instance.post(config.ENV + '/webfic/home/index');
-            let res = await instance.post(config.ENV + '/webfic/home/index.do');
+            // let res = await instance.post(config.ENV + '/xsdq/home/index');
+            let res = await instance.post(config.ENV + '/xsdq/home/index.do');
             try {
                 res = res.data
                 if (res.status == 0) {
@@ -79,9 +79,9 @@ export default {
         },
 
         async getRankingData({ commit }, payLoad) {
-            // let res = await instance.post(config.ENV + '/webfic/home/rank', payLoad);
+            // let res = await instance.post(config.ENV + '/xsdq/home/rank', payLoad);
             //排行榜接口
-            let res = await instance.post(config.ENV + '/webfic/home/rank.do', payLoad);
+            let res = await instance.post(config.ENV + '/xsdq/home/rank.do', payLoad);
             try {
                 res = res.data
                 if (res.status == 0) {
@@ -115,8 +115,8 @@ export default {
         },
 
         async getBookInfoData({ commit }, payLoad) {
-            // let res = await instance.post(config.ENV + '/webfic/book/detail', payLoad);
-            let res = await instance.post(config.ENV + '/webfic/book/detail.do', payLoad);
+            // let res = await instance.post(config.ENV + '/xsdq/book/detail', payLoad);
+            let res = await instance.post(config.ENV + '/xsdq/book/detail.do', payLoad);
             let bookInfo = {},
                 originalBooks = [],
                 fafictionTitle = "",
@@ -165,8 +165,8 @@ export default {
         },
 
         async getMoreData({ commit }, payLoad) {
-            // let res = await instance.post(config.ENV + '/webfic/home/second/list', payLoad);
-            let res = await instance.post(config.ENV + '/webfic/home/second/list.do', payLoad);
+            // let res = await instance.post(config.ENV + '/xsdq/home/second/list', payLoad);
+            let res = await instance.post(config.ENV + '/xsdq/home/second/list.do', payLoad);
             let books = [],
                 moreName = "",
                 allBookCount = 0;
