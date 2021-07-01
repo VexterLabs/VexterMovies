@@ -64,8 +64,7 @@ export default {
   text-decoration: none;
   list-style: none;
   outline: none;
-  word-break: keep-all;
-  word-wrap: break-word;
+  word-break: normal;
   -webkit-tap-highlight-color: transparent;
   -moz-tap-highlight-color: transparent;
   -ms-tap-highlight-color: transparent;

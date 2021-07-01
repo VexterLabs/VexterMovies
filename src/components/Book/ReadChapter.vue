@@ -140,7 +140,10 @@ export default {
     handleHypeLinks(content) {
       // 使用'' 替换内容中的超链接
       var reg = /<\/?a.*?>/gi;
-      return content.replace(reg, "");
+      content = content.replace(reg, "")
+      let name = this.chapterInfo.chapterName.split(' ').join('');
+      content =  content.substr(0,35).replace(name,'') + content.substr(35);
+      return content;
     }
   }
 };
@@ -213,6 +216,7 @@ export default {
     font-size: 28px;
     font-family: "Vollkorn", serif;
     line-height: 32px;
+    margin-bottom: 17px;
   }
   .author-info {
     font-size: 0;
@@ -235,9 +239,9 @@ export default {
     font-size: 18px;
     color: rgba(51, 51, 51, 1);
     line-height: 32px;
-    // word-break: break-all;
-    word-wrap: break-word;
-    white-space: pre-wrap;
+    word-break: normal;
+    // word-wrap: break-word;
+    // white-space: pre-wrap;
     text-align: justify;
   }
   .read-content p {
