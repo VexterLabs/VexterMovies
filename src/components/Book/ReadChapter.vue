@@ -142,7 +142,7 @@ export default {
       var reg = /<\/?a.*?>/gi;
       content = content.replace(reg, "")
       let name = this.chapterInfo.chapterName.split(' ').join('');
-      content =  content.substr(0,35).replace(name,'') + content.substr(35);
+      content =  content.substr(0,50).replace(name,'') + content.substr(50);
       return content;
     }
   }
