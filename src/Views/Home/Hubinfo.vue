@@ -278,25 +278,10 @@ export default {
         },
         handleCopy() {
 
-            $logClick({
-                module: "Hub_info",
-                zone: "djfz", // 点击复制
-                adid: "hub_copy",
-                map: {
-                    hubid: this.hubInfo.id,
-                },
-            });
-
             let message = window.location.href.split("?")[0] + '?from=copylink'
 
             this.$copyText(message).then(
                 (e) => {
-                    $logEvent({
-                        event: "fzfxljcg", // 复制分享链接成功
-                        map: {
-                            module: 'hub_info', // 分享码
-                        },
-                    });
 
                     this.$msg({
                         content: "The link has been pasted to your clipboard.",
@@ -305,12 +290,6 @@ export default {
                 },
 
                 (e) => {
-                    $logEvent({
-                        event: "fzfxljsb", // 复制分享链接失败
-                        map: {
-                            module: 'hub_info', // 分享码
-                        },
-                    });
 
                     this.$msg({
                         content: "Oops! something is wrong , please try again later.",

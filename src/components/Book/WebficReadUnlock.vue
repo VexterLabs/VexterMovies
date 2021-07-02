@@ -66,9 +66,6 @@ export default {
 
       this.$copyText(message).then(
         (e) => {
-          $logEvent({
-            event: "from_download_page_" + type, // 复制分享链接成功
-          });
 
           this.$msg({
             content: "你拿到連結了！",
@@ -76,12 +73,6 @@ export default {
         },
 
         (e) => {
-          $logEvent({
-            event: "fzxzljsb", // 复制下载链接失败
-            map: {
-              module: type, // 分享码
-            },
-          });
 
           this.$msg({
             content: "哎呀！有問題，請稍後再試。",
