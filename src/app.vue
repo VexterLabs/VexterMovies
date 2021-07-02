@@ -26,28 +26,6 @@ export default {
       this.$store.dispatch("moduleHome/changeLoginShow");
     }
   },
-  mounted() {
-      let routeInfo = this.$route;
-      $logPv({
-          ptype: routeInfo.name,
-          prev: '',
-          map: {
-              bookId: routeInfo.params.bookid,
-          },
-      });
-    },
-
-    watch: {
-        '$route'(to, from) {
-          $logPv({
-              ptype: to.name,
-              prev: from.name,
-              map: {
-                  bookId: to.params.bookid,
-              },
-          });
-        }
-    }
 };
 </script>
 

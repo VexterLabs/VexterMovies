@@ -247,11 +247,11 @@ export default {
       this.$store.dispatch("moduleHome/changeLoginShow");
     },
     routePush(url) {
-      $logClick({
-        module: "nav_box",
-        zone: "djdh", //点击导航
-        adid: url, // 导航路由地址
-      });
+      // $logClick({
+      //   module: "nav_box",
+      //   zone: "djdh", //点击导航
+      //   adid: url, // 导航路由地址
+      // });
       // this.$router.push(url)
     },
     handleGoSearch() {
