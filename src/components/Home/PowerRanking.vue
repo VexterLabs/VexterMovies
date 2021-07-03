@@ -294,7 +294,7 @@
                   <img class="cover" v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName" />
                   <div class="top3CSS">
                     <p class="title"> {{item.bookName}} </p>
-                    <p class="auth">{{item.author}}&nbsp;著77</p>
+                    <p class="auth">{{item.author}}&nbsp;著</p>
                     <p class="intr">{{item.introduction}}</p>
                     <p></p>
                   </div>
@@ -351,7 +351,7 @@
                 <div class="prrlu_info">
                   <h3 class="slh_1">{{ item.bookName }}</h3>
                   <p class="view_count">
-                    {{ item.viewCountDisplay }} <span>阅读量88</span>
+                    {{ item.viewCountDisplay }} <span>阅读量</span>
                   </p>
                 </div>
               </a>

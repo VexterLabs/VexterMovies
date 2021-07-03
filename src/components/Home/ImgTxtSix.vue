@@ -130,7 +130,7 @@
               </div>
               <div class="itslu_main">
                 <h3>{{ fixPopularTitle(item.bookName) }}</h3>
-                <i class="auth slh_1">{{ item.author }}&nbsp;著3</i>
+                <i class="auth slh_1">{{ item.author }}&nbsp;著</i>
                 <!-- <p class="update slh_1">{{ item.lastUpdateTimeDisplay }}</p> -->
                 <p class="views slh_1">
                   {{ item.viewCountDisplay }} <span>阅读量</span>
