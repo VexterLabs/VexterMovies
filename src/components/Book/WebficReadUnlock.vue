@@ -50,7 +50,7 @@
 </template>
 <script>
 export default {
-  props:['bgColor','chapterInfo'],
+  props:['bgColor','chapterInfo','bookInfo'],
   data() {
     return {};
   },
@@ -59,10 +59,13 @@ export default {
       this.$router.push("/download_apps")
     },
     handleCopyLink(type) {
+      let title = 1
       let message = this.chapterInfo.androidUrl
       if(type == 'ios'){
         message = this.chapterInfo.iosUrl
+        title = 0
       }
+      $logEvent({uid:this.$root.$options.fackUid,type:'Click',event:'readerpage_item_click',data:{'book_id':this.bookInfo.bookId || '','Chapter_id':this.chapterInfo.id || '','title':title}})
 
       this.$copyText(message).then(
         (e) => {

@@ -27,9 +27,12 @@ export function createApp() {
 
     // 同步路由状态(route state)到 store
     sync(store, router)
-
+    function getUuiD(randomLength){
+        return Number(Math.random().toString().substr(2,randomLength) + Date.now()).toString(36)
+    }
     // 创建应用程序实例，将 router 和 store 注入
     const app = new Vue({
+        fackUid: getUuiD(16),
         router,
         store,
         i18n,

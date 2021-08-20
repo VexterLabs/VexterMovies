@@ -180,9 +180,11 @@ export default{
             let reg = /^-?\d+(\.\d+)?$/;
 
             if(reg.test(bookInfo[1])){this.rssChapterId = bookInfo[1];}
+            $logEvent({uid:this.$root.$options.fackUid,type:'Pageview',event:'Readerpageview',data:{'book_id':this.bookId || '','Chapter_id':this.rssChapterId || ''}})
 
           }else {
             this.bookId = this.$route.params.id
+            $logEvent({uid:this.$root.$options.fackUid,type:'Pageview',event:'Readerpageview',data:{'book_id':this.bookId || '','Chapter_id':''}})
           }
 
           await this.getBookInfo()
@@ -229,13 +231,6 @@ export default{
                 chapterId: chapterId
             })
             if(res.data.status == 0){
-              $logEvent({
-                event: "gmzjcg", //购买章节成功
-                map: {
-                  module: chapterId // 章节ID数据
-                }
-              });
-
                 // 解锁
                 this.getBookChapter(chapterId,true)
             }else if(res.data.status == 6){
@@ -263,12 +258,6 @@ export default{
                 chapterId: chapterInfo.id,
             })
             if(res.data.status == 0){
-              $logEvent({
-                event: "gmzbcg", //购买整本成功
-                map: {
-                  module: this.bookId // 章节ID数据
-                }
-              });
                 // 解锁
                 this.getBookChapter(chapterInfo.id,true)
             }else if(res.data.status == 6){

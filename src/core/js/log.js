@@ -1,12 +1,7 @@
 // http://log.goodnovel.com/pclogpd.php, 打点的url
 // http://log.goodnovel.com/pclog_bgdj.php，也可以走https线路
-let logUrl = 'https://log.webfic.com/pclogpd.php' // 点击、pv、event打点url
-let exposureUrl = 'https://log.goodnovel.com/pclog_bgdj.php' // 曝光url
+let logUrl = 'https://log.klynf.com/h5_stand_final_log.php' // 点击、pv、event打点url
 import logAxios from '../axios/logAjax'
-import { getCookie } from './cookie'
-import {logAddUserId} from "./common"
-
-const deviceId = getCookie('visitor')
 
 // if(process.env.NODE_ENV === 'development'){
 //     logUrl = '/logApi/pclogpd.php'
@@ -120,8 +115,16 @@ class LogEvent{
         const windowNavigator = window.navigator
         let locationhref = window.location.href;
         data = data||{}
+        function getUtdidTmp(){
+            var sChar = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'+new Date().getTime();
+            var aChar = sChar.split('');
+            aChar.sort(function() {
+                return (0.5-Math.random());
+            })
+            return aChar.join('').substr(0,16)
+        }
         this.data = {
-            tag: 103, // tag=103是事件打点类型
+            // tag: 103, // tag=103是事件打点类型
             appName: windowNavigator.appName, // 浏览器的官方名称
             appVersion: windowNavigator.appVersion, // 表示浏览器的版本
             platform: windowNavigator.platform, // 表示浏览器的所在系统平台
@@ -129,21 +132,22 @@ class LogEvent{
             userAgent: windowNavigator.userAgent, // 当前浏览器的用户代理字符串
             sw: window.screen.width, // 获取屏幕分辨率的宽度
             sh: window.screen.height, // 获取屏幕分辨率的高度
+            log_id: getUtdidTmp(),
+            bline: 'h5',  
+            pline: 'clt_ft',
+            cts: new Date().getTime(),
+            uid: data.uid || '',
+            type: 'xsdq_pc_' + (data.type || ''), // 事件类型 Pageview || Click
             event: data.event || '', // 事件名称：例如，czcg,fbcg
-            deviceId: deviceId, // 唯一标识符
-            map: data.map||{}, // 其他非必填参数
+            data: data.data||{}, // 其他非必填参数
         }
-        this.data.map.platform = "WEB"
-        this.data.map.url = locationhref;
+        this.data.data.url = locationhref;
         this.logPvAjax()
     }
     logPvAjax(){
-    //   console.log("EVENT--start");
-    //   console.log(this.data);
-    //   console.log("EVENT--end");
 
         try {
-            logAxios.get(logUrl +'?json=' + JSON.stringify(this.data))
+            logAxios.get(logUrl ,{params:this.data})
         } catch (error) {
 
         }

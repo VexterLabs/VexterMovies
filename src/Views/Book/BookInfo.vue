@@ -710,6 +710,7 @@ export default {
   },
   mounted() {
     let {id} = this.$route.params;
+    $logEvent({uid:this.$root.$options.fackUid,type:'Pageview',event:'DetailPageView',data:{'book_id':id}})
     document.body.scrollTop = 0;
     setTimeout(function() {
       this.isviewmore = document.getElementById("bidph").offsetHeight > 84;

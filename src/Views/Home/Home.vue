@@ -95,13 +95,14 @@ export default {
         this.isShowFlag = true;
         document.body.scrollTop = 0;
       });
+      console.log('fackUid:',this.$root.$options.fackUid)
+      $logEvent({uid:this.$root.$options.fackUid,type:'Pageview',event:'Homepageview'})
 	},
   methods: {
     handleClickItem(item) {
       this.dealActionType(item);
     },
     dealActionType(item) {
-      // console.log(item)
       switch (item.actionType) {
         case "URL":
           window.open(item.action, "_blank");
@@ -121,6 +122,7 @@ export default {
           this.$router.push(`/book/${item.action}`);
           break;
         default:
+          $logEvent({uid:this.$root.$options.fackUid,type:'Click',event:'homepage_item_click',data:{'book_id':item.bookId || ''}})
           this.$router.push(
             `/book_info/${item.bookId || item.action}/${
               item.typeTwoNames && item.typeTwoNames[0] || 'null'
