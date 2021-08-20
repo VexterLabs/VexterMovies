@@ -147,7 +147,7 @@ class LogEvent{
     logPvAjax(){
 
         try {
-            logAxios.get(logUrl ,{params:this.data})
+            logAxios.post(logUrl ,this.data)
         } catch (error) {
 
         }
