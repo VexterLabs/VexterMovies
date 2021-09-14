@@ -1,5 +1,12 @@
 <template>
     <div class="ranking">
+        <div v-if="pageNo == 1">
+            <break-line  />
+        </div>
+        <div v-else>
+            <break-line  style="top:-19px" />
+        </div>
+        
         <!-- <div class="ranking-title">
             <div class="box">
                 <div class="title-name">BOOK RANKING</div>
@@ -52,6 +59,7 @@ import { mapState, mapMutations } from "vuex";
 import RankingTopBook from '@/components/Ranking/RankingTopBook.vue'
 import RankingBook from '@/components/Ranking/RankingBook.vue'
 import VPagiation from '@/components/Common/Pagiation.vue'
+import BreakLine from '../../components/Common/BreakLine.vue';
 export default{
     async asyncData({store, route}){
         let currentColumnId = route.query.id || '';
@@ -70,7 +78,8 @@ export default{
     components: {
         RankingTopBook,
         RankingBook,
-        VPagiation
+        VPagiation,
+        BreakLine
     },
     data () {
         return {

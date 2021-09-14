@@ -47,7 +47,7 @@ export default {
       window.location.href = url;
     },
     downApp(){
-      this.$router.push('/download_apps')
+      this.$router.push('/download')
     }
   }
 };

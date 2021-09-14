@@ -104,7 +104,8 @@
         <ul class="itsl_ul">
           <li v-for="(item, index) in imgtxtsix_list.items" :key="index"
           @click.prevent="handleClickItem(item)">
-            <a class="itslu_a" :href="'/book_info/'+item.bookId" target="_blank" style="display:inline-block;" @click.self.prevent="">
+            <!-- <a class="itslu_a" :href="'/book_info/'+item.bookId" target="_blank" style="display:inline-block;" @click.self.prevent=""> -->
+            <a class="itslu_a" :href="'/book/'+item.bookId" target="_blank" style="display:inline-block;" @click.self.prevent="">
               <div class="itslu_img">
                 <img v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName">
               </div>

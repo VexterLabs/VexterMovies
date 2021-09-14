@@ -19,10 +19,15 @@ export default [{
         component: resolve => require(['@/Views/Trash/Trash.vue'], resolve)
     }, */
     {
-        path: '/book_info/:id/:category/:bookName',
+        path: '/book/:id',
         name: 'book_info',
         component: BookInfo
     },
+    // {
+    //     path: '/book_info/:id/:category/:bookName',
+    //     name: 'book_info',
+    //     component: BookInfo
+    // },
     /* {
         path: '/category',
         name: 'genre',
@@ -85,8 +90,8 @@ export default [{
         component: resolve => require(['@/Views/Home/PrivacyPolicy.vue'], resolve)
     },
     {
-        path: '/download_apps',
-        name: 'download_apps',
+        path: '/download',
+        name: 'download',
         component: resolve => require(['@/Views/Home/DownloadApp.vue'], resolve)
     },
     {
@@ -95,8 +100,8 @@ export default [{
         component: resolve => require(['@/Views/Home/Business.vue'], resolve)
     },
     {
-        path: '/about_us',
-        name: 'about_us',
+        path: '/about-us',
+        name: 'about-us',
         // component: resolve => require(['@/Views/Home/AboutUs.vue'], resolve)
         component: resolve => require(['@/Views/Home/AboutUsWebfic.vue'], resolve)
     },
@@ -187,7 +192,7 @@ export default [{
             component: resolve => require(['@/Views/Account/account.vue'], resolve)
         } */
         {
-            path: '/book/:id',
+            path: '/bookcontent/:id',
             name: 'book_read',
             component: resolve => require(['@/Views/Book/BookRead.vue'], resolve)
         },
@@ -198,6 +203,11 @@ export default [{
     path: '*',
     name: 'error_page',
     component: resolve => require(['@/Views/Home/404.vue'], resolve)
+},
+{
+    path: '/error',
+    name: 'errorpage',
+    component: resolve => require(['@/Views/Home/error.vue'], resolve)
 },
 {
     path: '/recharge_other',

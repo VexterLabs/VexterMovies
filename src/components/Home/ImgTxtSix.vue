@@ -123,7 +123,8 @@
         <ul class="itsl_ul">
           <li v-for="(item, index) in componentData.items"
           :key="index" @click.prevent="handleClickItem(item)">
-            <a :href="'/book_info/'+item.bookId + '/'+ formatSpace(item.typeTwoNames && item.typeTwoNames[0] || 'null') +'/'+formatSpace(item.bookName)" target="_blank" style="display:inline-block;" @click.self.prevent="">
+            <!-- <a :href="'/book_info/'+item.bookId + '/'+ formatSpace(item.typeTwoNames && item.typeTwoNames[0] || 'null') +'/'+formatSpace(item.bookName)" target="_blank" style="display:inline-block;" @click.self.prevent=""> -->
+            <a :href="'/book/'+item.bookId" target="_blank" style="display:inline-block;" @click.self.prevent="">
               <div class="itslu_a" :to="{ path: item.url, query: item.search }">
               <div class="itslu_img">
                 <img v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName">
@@ -180,7 +181,8 @@ export default {
       this.$emit('clickItem', item)
       let target = {};
       target.tit = this.commontit.tit;
-      target.url = '/more/'+ this.componentData.id +'/' + this.formatSpace(this.componentData.name.toLowerCase());
+      // target.url = '/more/'+ this.componentData.id +'/' + this.formatSpace(this.componentData.name.toLowerCase());
+      target.url = '/more/'+ this.componentData.id +'/type';
       target = JSON.stringify(target);
       window.sessionStorage.setItem('target',target);
     },

@@ -5,8 +5,8 @@
             <img v-lazy="bookInfo.cover" :alt="bookInfo.bookName">
         </div>
         <div class="book-item-info">
-            <div class="book-title"
-            @click="handleGoDetail">{{bookInfo.bookName}}</div>
+            <h3 class="book-title"
+            @click="handleGoDetail">{{bookInfo.bookName}}</h3>
             <div class="book-tag-list" v-if="bookInfo.labels">
                 <div v-for="(item,index) in bookInfo.labels"
                 :key="index"

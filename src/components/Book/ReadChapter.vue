@@ -6,7 +6,7 @@
     :style="unlockFlag?'margin-bottom:110px':''"
   >
     <div :class="['read-chapter',{'noBorder': unlockFlag},'bgColor'+bgColor]">
-      <div :id="chapterInfo.id" class="title">{{chapterInfo.chapterName}}</div>
+      <h1 :id="chapterInfo.id" class="title">{{chapterInfo.chapterName}}</h1>
       <!-- <div class="author-info">
         <div class="author-item" v-if="bookInfo.translator">
           Translator:

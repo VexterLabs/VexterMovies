@@ -18,7 +18,7 @@
             <a href="/more/1195/popular" class="title link" style="font-size: 22px;">Popular </a>
             <a href="/create_book" class="title link" style="font-size: 22px;">Create </a>
             <a href="/writer_benefit" class="title link" style="font-size: 22px;">Writer Benefit </a>
-            <a href="/about_us" class="title link" style="font-size: 22px;">About Us </a>
+            <a href="/about-us" class="title link" style="font-size: 22px;">About Us </a>
             <a href="/hub/articles/is-goodnovel-legit" class="title link" style="font-size: 22px;">Webfic Legit </a>
         </div>
     </div>

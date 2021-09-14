@@ -56,7 +56,7 @@ export default {
   },
   methods:{
     go_down_load(){
-      this.$router.push("/download_apps")
+      this.$router.push("/download")
     },
     handleCopyLink(type) {
       let title = 1

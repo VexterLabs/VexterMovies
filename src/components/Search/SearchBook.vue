@@ -4,7 +4,7 @@
       <img v-lazy="bookInfo.cover" alt="bookInfo.bookName" />
     </div>
     <div class="book-info">
-      <div class="book-title" @click="handleGoBookInfo">{{bookInfo.bookName}}</div>
+      <h3 class="book-title" @click="handleGoBookInfo">{{bookInfo.bookName}}</h3>
       <div class="book-star">
         <v-star :ratings="bookInfo.ratings" :count="bookInfo.commentCount">
         </v-star>

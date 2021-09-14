@@ -293,7 +293,7 @@
                   <img v-if="index==0" class="top2" src="../../assets/images/common/top3.png" alt="">
                   <img class="cover" v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName" />
                   <div class="top3CSS">
-                    <p class="title"> {{item.bookName}} </p>
+                    <h3 class="title"> {{item.bookName}} </h3>
                     <p class="auth">{{item.author}}&nbsp;著</p>
                     <p class="intr">{{item.introduction}}</p>
                     <p></p>

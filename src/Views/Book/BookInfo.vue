@@ -388,6 +388,7 @@
 
 <template>
   <div class="bookinfo" v-if="nullPageFalg">
+    <router-line :bookInfo="bookInfo" style="top: 9px;left: 40px;"/>
     <div class="newBackground">
     <div class="bi_banner">
       <div class="bib_box">
@@ -633,12 +634,15 @@ import VStar from "@/components/Common/Star.vue";
 import NullVerifyPassword from "@/components/Common/NullVerifyPassword.vue";
 import { formatSpace } from "@/core/js/common.js";
 import { mapState } from "vuex";
+import RouterLine from '../../components/Common/RouterLine.vue';
 export default {
   name: "book_info",
   async asyncData({store,route}){
     let bookId = route.params.id || '';
     console.log(bookId)
     await store.dispatch('HomeDataModule/getBookInfoData',{bookId: bookId || ''});
+    var nullPage = store.state.HomeDataModule.nullPage
+    console.log(nullPage,store);
   },
   components: {
     BookImgTitSix,
@@ -651,14 +655,15 @@ export default {
     ReadOrContinue,
     NullComment,
     VStar,
-    NullVerifyPassword
+    NullVerifyPassword,
+    RouterLine
   },
   data() {
     return {
       title:"",
       desc:"",
       isviewmore: false,
-      
+      nullPageF :false,
       fellowList: {
         // 同人数据
         name: "Fanfictions of this book",
@@ -698,6 +703,7 @@ export default {
     },
   },
   created() {
+     this.nullPageF = this.$store.state.HomeDataModule.nullPage
     // document.body.scrollTop = 0;
   },
   computed: {
@@ -719,7 +725,6 @@ export default {
       this.$store.dispatch("moduleHome/changeLoadingStatus", true);
       window.scroll(0, 0);
     });
-
     // if(id) this.getComment(id)
   },
   watch: {
@@ -734,6 +739,14 @@ export default {
         this.commentList= [];
         this.currentCommentInfo=[]
         // this.getComment(id)
+      }
+    },
+     nullPageF:{
+      handler(){
+        console.log(this.nullPageF,'ddd');
+        if(this.nullPageF){
+          // this.$router.push('/error')
+        }
       }
     }
   },
@@ -771,6 +784,11 @@ export default {
           bookId: params.id
         })
         .then(data => {
+          if (data.data.data.bookId) {
+            console.log('youid');
+          }else{
+            console.log('没有');
+          }
           if (data.data.status === 12000) {
             this.nullPageFalg = false;
             window.scroll(0, 0);
@@ -778,6 +796,7 @@ export default {
           }
           this.nullPageFalg = true;
           that.bookInfo = data.data.data.book;
+          console.log(that.bookInfo,'bookInfo');
           try {
             // console.log(data);
             that.title = that.bookInfo.bookName || 'Webfic'

@@ -3,6 +3,7 @@
     <div class="search-title">
       <div class="box">
         <div class="title-name"> <i class="left_bar"></i> {{moreName}}</div>
+        <break-line style="top: -20px;left: 138px;" />
         <!-- <div class="search-tag">
                     <div class="search-tag-item" v-for="item in 5" :key="item">All</div>
         </div>-->
@@ -28,6 +29,7 @@ import { mapState, mapMutations } from "vuex";
 import MoreBook from "@/components/More/more.vue";
 import VPagiation from "@/components/Common/Pagiation.vue";
 import NullVerifyPassword from "@/components/Common/NullVerifyPassword.vue";
+import BreakLine from '../../components/Common/BreakLine.vue';
 export default {
     async asyncData({store, route}){
         let columnId = route.params.id || '';
@@ -40,7 +42,8 @@ export default {
     components: {
         MoreBook,
         VPagiation,
-        NullVerifyPassword
+        NullVerifyPassword,
+        BreakLine
     },
      computed:{
         ...mapState('HomeDataModule', [
@@ -106,6 +109,7 @@ export default {
 .search {
   width: 100%;
   min-height: 800px;
+  margin-top: 34px;
   background: #fff;
   padding-bottom: 40px;
   .search-title {

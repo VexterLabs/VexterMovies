@@ -1,10 +1,11 @@
 <template>
+<!--  -->
   <div class="history">
     <div class="book-cover" @click="handleGoBookInfo">
       <img v-lazy="bookInfo.cover" :alt="bookInfo.bookName" />
     </div>
     <div class="book-info">
-      <div class="book-title" @click="handleGoBookInfo">{{bookInfo.bookName}}</div>
+      <h3 class="book-title" @click="handleGoBookInfo">{{bookInfo.bookName}}</h3>
       <div>
         <v-star :ratings="bookInfo.ratings" ></v-star>
         <!-- :count="bookInfo.commentCount" -->
@@ -45,11 +46,14 @@ export default {
     },
     handleGoBookInfo() {
       this.$router.push(
-        `/book_info/${this.bookInfo.bookId}/${formatSpace(
-          (this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0]) ||
-            "null"
-        )}/${formatSpace(this.bookInfo.bookName)}`
+        `/book/${this.bookInfo.bookId}`
       );
+      // this.$router.push(
+      //   `/book_info/${this.bookInfo.bookId}/${formatSpace(
+      //     (this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0]) ||
+      //       "null"
+      //   )}/${formatSpace(this.bookInfo.bookName)}`
+      // );
     },
   },
 };

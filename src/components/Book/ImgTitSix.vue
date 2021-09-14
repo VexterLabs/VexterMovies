@@ -139,7 +139,8 @@
           v-show="index < 5"
           :key="index"
           @click.native="handleGetBookInfo(item , index)">
-            <router-link class="ititlu_a" replace :to="{path:'/book_info/'+ item.bookId + '/'+ formatSpace(item.typeTwoNames && item.typeTwoNames[0] || 'null') + '/' +formatSpace(item.bookName)}">
+            <!-- <router-link class="ititlu_a" replace :to="{path:'/book_info/'+ item.bookId + '/'+ formatSpace(item.typeTwoNames && item.typeTwoNames[0] || 'null') + '/' +formatSpace(item.bookName)}"> -->
+            <router-link class="ititlu_a" replace :to="{path:'/book/'+ item.bookId}">
               <div class="ititlu_img">
               <!--
                 <img v-lazy="item.cover" src="../../assets/images/book/book_err.gif" :alt="item.bookName">
@@ -207,7 +208,8 @@ export default {
           },
         });
       }
-      this.$router.replace('/book_info/'+target.bookId + '/'+ formatSpace(target.typeTwoNames && target.typeTwoNames[0] || "null") +'/'+formatSpace(target.bookName));
+      // this.$router.replace('/book_info/'+target.bookId + '/'+ formatSpace(target.typeTwoNames && target.typeTwoNames[0] || "null") +'/'+formatSpace(target.bookName));
+      this.$router.replace('/book/'+target.bookId);
     }
   },
   components:{

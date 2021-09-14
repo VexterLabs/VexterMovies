@@ -50,7 +50,8 @@
   <div class="common_tit">
     <!-- <a href="javascript:;" @click="handleGoRanking" class="ct_more" v-if="isMore && goRanking">More</a> -->
     <a href="/more/rankings" class="ct_more" v-if="isMore && goRanking"  @click=" localStorageLine('/more/rankings')">查看更多</a>
-    <a :href="'/more/'+ id +'/' + formatSpace(name.toLowerCase())" class="ct_more" v-if="isMore && !goRanking && name && id" @click=" localStorageLine('/more/'+ id +'/' + formatSpace(name.toLowerCase()))">查看更多</a>
+    <a :href="'/more/'+ id +'/' + 'type'" class="ct_more" v-if="isMore && !goRanking && name && id" @click=" localStorageLine('/more/'+ id +'/type')">查看更多</a>
+    <!-- <a :href="'/more/'+ id +'/' + 'type'" class="ct_more" v-if="isMore && !goRanking && name && id" @click=" localStorageLine('/more/type'+ id +'/' + formatSpace(name.toLowerCase()))">查看更多</a> -->
     <a :href="'/more/'+ id +'/popular'" class="ct_more" v-if="isMore && !goRanking && !name && id"  @click=" localStorageLine('/more/' + id +'/popular')">查看更多</a>
     <h2 class="fs_u"> <i class="left_bar"></i> {{ commontit.tit }}</h2>
   </div>

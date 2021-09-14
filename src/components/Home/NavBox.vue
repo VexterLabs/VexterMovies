@@ -133,10 +133,10 @@
             <img class="nav_bar" src="../../assets/images/icons/btm_img.png" alt="">
 
           </li>
-          <li :class="[{ active: currentPath == '/about_us' }]">
+          <li :class="[{ active: currentPath == '/about-us' }]">
             <router-link
-              :to="{ name: 'about_us' }"
-              @click.native="routePush('/about_us')"
+              :to="{ name: 'about-us' }"
+              @click.native="routePush('/about-us')"
               >關於我們</router-link
             >
             <img class="nav_bar" src="../../assets/images/icons/btm_img.png" alt="">

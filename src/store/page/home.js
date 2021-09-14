@@ -14,6 +14,7 @@ export default {
         packNum: 0,
         matePseudonym: false,
         nullPageFalg: true,
+        nullPage: false,
         alphalist: {
             name: "Myths from Alpha and Luna",
             items: [],
@@ -54,6 +55,7 @@ export default {
             state.matePseudonym = payload.matePseudonym;
             state.alphalist.items = payload.mateTheAlphaBooks;
             state.nullPageFalg = payload.nullPageFalg
+            state.nullPage = payload.nullPage
         },
 
         INITMOREDATA(state, payload) {
@@ -113,7 +115,6 @@ export default {
                 })
             }
         },
-
         async getBookInfoData({ commit }, payLoad) {
             // let res = await instance.post(config.ENV + '/xsdq/book/detail', payLoad);
             let res = await instance.post(config.ENV + '/xsdq/book/detail.do', payLoad);
@@ -124,9 +125,18 @@ export default {
                 packNum = 0,
                 matePseudonym = false,
                 nullPageFalg = true,
+                nullPage = false,
                 mateTheAlphaBooks = [];
             try {
                 console.log(res)
+                if (res.data.data.bookId) {
+                    console.log('youid');
+                    nullPage = false
+                  }else{
+                    console.log('没有');
+                    nullPage = true
+                    // this.$router.push("/error")
+                  }
                 res = res.data;
                 if (res.status === 0) {
                     let data = res.data;
@@ -148,7 +158,6 @@ export default {
                     nullPageFalg = false
                 }
 
-
             } catch (error) {
 
             }
@@ -160,8 +169,10 @@ export default {
                 packNum,
                 matePseudonym,
                 mateTheAlphaBooks,
-                nullPageFalg
+                nullPageFalg,
+                nullPage
             })
+            console.log(nullPage,'nullPage');
         },
 
         async getMoreData({ commit }, payLoad) {

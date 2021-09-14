@@ -109,10 +109,13 @@ export default {
           break;
         case "BOOK":
           this.$router.push(
-            `/book_info/${item.bookId || item.action}/${formatSpace(
-              item.typeTwoNames && item.typeTwoNames[0] || 'null'
-            )}/${formatSpace(item.bookName || 'null')}`
+            `/book/${item.bookId || item.action}`
           );
+          // this.$router.push(
+          //   `/book_info/${item.bookId || item.action}/${formatSpace(
+          //     item.typeTwoNames && item.typeTwoNames[0] || 'null'
+          //   )}/${formatSpace(item.bookName || 'null')}`
+          // );
           break;
         case "CATEGORY":
           this.$router.push("/search?other=1");
@@ -124,10 +127,13 @@ export default {
         default:
           $logEvent({uid:this.$root.$options.fackUid,type:'Click',event:'homepage_item_click',data:{'book_id':item.bookId || ''}})
           this.$router.push(
-            `/book_info/${item.bookId || item.action}/${
-              item.typeTwoNames && item.typeTwoNames[0] || 'null'
-            }/${item.bookName || 'null'}`
+            `/book/${item.bookId || item.action}`
           );
+          // this.$router.push(
+          //   `/book_info/${item.bookId || item.action}/${
+          //     item.typeTwoNames && item.typeTwoNames[0] || 'null'
+          //   }/${item.bookName || 'null'}`
+          // );
           break;
       }
     }

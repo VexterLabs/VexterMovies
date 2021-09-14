@@ -10,10 +10,19 @@
 <style lang='scss' scoped>
 .breadLine{
     position: absolute;
-    top: -88px;
-    left: 0;
+    top: 8px;
+    left: 32px;
+    z-index: 9999;
     cursor: pointer;
-    span,a {
+    a {
+        font-size: 14px;
+        font-family: PingFangTC-Regular, PingFangTC;
+        font-weight: 400;
+        color: #333333;
+        opacity: 0.7;
+        line-height: 20px;
+    }
+    .breadSpan {
         font-size: 14px;
         font-family: PingFangTC-Regular, PingFangTC;
         font-weight: 400;
@@ -22,14 +31,35 @@
         line-height: 20px;
     }
 }
+.breadLine1{
+    position: absolute;
+    top: -19px;
+    left: 32px;
+    z-index: 9999;
+    cursor: pointer;
+    a {
+        font-size: 14px;
+        font-family: PingFangTC-Regular, PingFangTC;
+        font-weight: 400;
+        color: #333333;
+        line-height: 20px;
+    }
+    .breadSpan {
+        font-size: 14px;
+        font-family: PingFangTC-Regular, PingFangTC;
+        font-weight: 400;
+        color: #333333;
+        line-height: 20px;
+    }
+}
 </style>
 
 <template>
     <div class="breadLine">
         <span><a href="/">首页 > </a></span>
-        <span @click="$router.push(target.url)">{{target.tit||'其他'}} > </span>
+        <span class="breadSpan" @click="$router.push(target.url)">{{target.tit||'其他'}}  </span>
         <!-- <span @click="$router.push(`/book_info/${bookInfo.bookId}/${formatSpace( bookInfo.typeTwoNames && bookInfo.typeTwoNames[0]|| 'null')}/${formatSpace(bookInfo.bookName)}`)">{{bookInfo.bookName}}</span> -->
-        <span @click="$router.push(`/book/${bookInfo.bookId}`)">{{bookInfo.bookName}}</span>
+        <!-- <span @click="$router.push(`/book/${bookInfo.bookId}`)">{{bookInfo.bookName}}</span> -->
     </div>
 </template>
 

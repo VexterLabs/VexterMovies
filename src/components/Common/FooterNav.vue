@@ -14,7 +14,7 @@
         <router-link class="content-li" :to="{path: '/dmca'}">DMCA</router-link>
       </li> -->
       <li class="item itemCol">
-        <router-link class="content-li" :to="{path: '/download_apps'}">下载APP</router-link>
+        <router-link class="content-li" :to="{path: '/download'}">下载APP</router-link>
       </li>
     </ul>
 

@@ -212,7 +212,8 @@ export default {
         }
       });
 
-      this.$router.replace('/book_info/'+target.bookId + '/'+ formatSpace(target.typeTwoNames && target.typeTwoNames[0] || "null") +'/'+formatSpace(target.bookName));
+      // this.$router.replace('/book_info/'+target.bookId + '/'+ formatSpace(target.typeTwoNames && target.typeTwoNames[0] || "null") +'/'+formatSpace(target.bookName));
+      this.$router.replace('/book/'+target.bookId);
     }
   },
   components: {

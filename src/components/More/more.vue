@@ -1,10 +1,10 @@
 <template>
-  <div class="history">
+  <div class="history"> 
     <div class="book-cover" @click="handleGoBookInfo">
       <img v-lazy="bookInfo.cover" :alt="bookInfo.bookName" />
     </div>
     <div class="book-info">
-      <div class="book-title" @click="handleGoBookInfo">{{bookInfo.bookName}}</div>
+      <h3 class="book-title" @click="handleGoBookInfo">{{bookInfo.bookName}}</h3>
       <div class="book-star">
         <v-star :ratings="bookInfo.ratings" :count="bookInfo.commentCount">
         </v-star>
@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     handleGoBookInfo() {
-      this.$router.push(`/book_info/${this.bookInfo.bookId}/${formatSpace(this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0] || 'null')}/${formatSpace(this.bookInfo.bookName)}`);
+      this.$router.push(`/book/${this.bookInfo.bookId}`);
+      // this.$router.push(`/book_info/${this.bookInfo.bookId}/${formatSpace(this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0] || 'null')}/${formatSpace(this.bookInfo.bookName)}`);
     },
     routerLine(url,tit){    
       let target = {};

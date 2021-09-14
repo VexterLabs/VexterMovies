@@ -51,11 +51,11 @@
             <img src="../../assets/images/aboutus/icon2_group.png" alt title="Facebook Group" />
             <p>Facebook Group</p>
           </li>
-          <li @click="$router.push('/download_apps')">
+          <li @click="$router.push('/download')">
             <img src="../../assets/images/aboutus/icon2_appstore.png" alt title="iOS APP" />
             <p>iOS APP</p>
           </li>
-          <li @click="$router.push('/download_apps')">
+          <li @click="$router.push('/download')">
             <img src="../../assets/images/aboutus/icon2_xbox.png" alt title="Android APP" />
             <p>Android APP</p>
           </li>

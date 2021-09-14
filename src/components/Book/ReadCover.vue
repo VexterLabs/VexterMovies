@@ -14,9 +14,9 @@
         <div class="book-img">
             <img :src="bookInfo.cover" :alt="bookInfo.bookName">
         </div>
-        <div class="book-name">
+        <h3 class="book-name">
             {{bookInfo.bookName}}
-        </div>
+        </h3>
         <div class="author-name" v-if="bookInfo.author">
             {{bookInfo.author}} 著
         </div>

@@ -46,7 +46,8 @@ export default {
   },
   methods: {
     handleGoBookInfo() {
-      this.$router.push(`/book_info/${this.bookInfo.bookId}/${formatSpace(this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0] || 'null')}/${formatSpace(this.bookInfo.bookName)}`);
+      // this.$router.push(`/book_info/${this.bookInfo.bookId}/${formatSpace(this.bookInfo.typeTwoNames && this.bookInfo.typeTwoNames[0] || 'null')}/${formatSpace(this.bookInfo.bookName)}`);
+      this.$router.push(`/book/${this.bookInfo.bookId}`);
     },
     dealRatings(ratings) {
       if((ratings+'').length>3){
