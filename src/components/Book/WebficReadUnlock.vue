@@ -179,7 +179,7 @@ export default {
   margin-bottom: 0;
   position: relative;
   .box{
-    width: 144px;
+    width: 150px;
     float: left;
     .baseImg{
       width: 144px;
@@ -216,14 +216,14 @@ export default {
       }
     }
     .text{
-      font-size: 12px;
+      font-size: 11px;
       font-family: PingFangTC-Regular, PingFangTC;
       font-weight: 600;
       color: rgba(51, 51, 51, 0.8);
       line-height: 18px;
     }
     .copy{
-      font-size: 12px;
+      font-size: 11px;
       font-family: PingFangTC-Regular, PingFangTC;
       font-weight: 600;
       color: rgba(255, 95, 39, 1);
