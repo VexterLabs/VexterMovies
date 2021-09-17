@@ -179,7 +179,7 @@ export default {
   margin-bottom: 0;
   position: relative;
   .box{
-    width: 150px;
+    width: 155px;
     float: left;
     .baseImg{
       width: 144px;
