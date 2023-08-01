@@ -7,6 +7,7 @@ import ClientConfig from "@/client.config";
 import Link from "next/link";
 import Image from "next/image";
 import { netIpUa } from "@/server/clientLog";
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
   isApple: boolean;
@@ -23,7 +24,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
     return ClientConfig.android.link;
   });
 
-  // const HiveLog = useHiveLog();
+  const HiveLog = useHiveLog();
 
   return <div className={styles.downloadWrap}>
     <div className={styles.downloadHead}>
@@ -41,7 +42,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
     <Link href={shopLink}>
       <CopyToClipboard text={copyText} onCopy={() => {
         netIpUa(clipboard)
-        // HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: chapterId })
+        HiveLog.trackDownload('turnPage_click', { book_ID: clipboard.bid, chapter_id: clipboard.cid })
       }}>
         <div className={styles.downloadBtn}>
           <Image
