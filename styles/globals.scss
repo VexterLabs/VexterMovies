@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: PingFangSC, PingFang SC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
+  /*min-height: 100vh;*/
+  background-color: #000000;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+  cursor: pointer;
+  outline: none;
+}
+
+input {
+  outline: none;
+  border: none;
+  user-select: text;
+}
+
+input::-webkit-search-cancel-button {
+  display: none;
+}
+
+input::-webkit-input-placeholder {
+  color: #acacac;
+  font-weight: 400;
+}
+
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+.clearfix:after {
+  content: " ";
+  display: block;;
+  line-height: 0;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.adm-popover-menu-item-text {
+  border-top: none !important;
+}
+
+.adm-action-sheet-extra, .adm-action-sheet-button-item-wrapper {
+  border-bottom: none !important;
+}
+
+:root {
+  --adm-color-primary: #FF375F !important;
+}
+
+#nprogress .bar {
+  background: $theme_color;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px $theme_color, 0 0 5px $theme_color;
+}
+
+#nprogress .spinner {
+  display: none;
+}
+
+//#nprogress .spinner-icon {
+//  border-top-color: $theme_color;
+//  border-left-color: $theme_color;
+//}
+
+// browse下拉菜单组件样式
+.adm-dropdown-popup {
+  top: 1.7rem !important;
+}
+
+.adm-dropdown-popup-mask {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+//img.error {
+//  display: inline-block;
+//  transform: scale(1);
+//  content: "";
+//  color: transparent;
+//}
+//img.error::before {
+//  content: " ";
+//  position: absolute;
+//  left: 0; top: 0;
+//  width: 100%; height: 100%;
+//  background: url('/images/defaultBook.png') no-repeat center / 100% 100%;
+//}
+//img.error::after {
+//  content: attr(alt);
+//  position: absolute;
+//  left: 0; bottom: 0;
+//  width: 100%; line-height: 2;
+//  background-color: rgba(0,0,0,.5);
+//  color: white;
+//  font-size: 12px;
+//  text-align: center;
+//  white-space: nowrap;
+//  overflow: hidden;
+//  text-overflow: ellipsis;
+//}

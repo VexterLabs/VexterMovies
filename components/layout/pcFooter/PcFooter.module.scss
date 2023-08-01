@@ -1,0 +1,61 @@
+.footerWrap {
+  position: relative;
+  background-color: #1C1C1E;
+  height: 1.8rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .footerContent {
+    min-width: 14.4rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    .footerText {
+      display: grid;
+      grid-template-columns: auto auto auto auto;
+      grid-column-gap: 0.3rem;
+      justify-content: center;
+      align-items: center;
+
+      .fText, .fmail {
+        opacity: 0.4;
+        font-size: 0.16rem;
+        font-weight: 400;
+        color: #FFFFFF;
+      }
+
+      .fmail {
+        transition: all 0.3s;
+        padding: 0.1rem;
+
+        &:hover {
+          color: $theme_color;
+          opacity: 0.9;
+        }
+      }
+    }
+
+    .footerLink {
+
+      .otherBtn {
+        padding: 0.2rem;
+        font-size: 0.16rem;
+        font-weight: 400;
+        color: #FFFFFF;
+        transition: all 0.3s;
+        opacity: 0.4;
+        text-decoration: underline !important;
+
+        &:hover {
+          color: $theme_color;
+          opacity: 0.9;
+        }
+      }
+    }
+
+  }
+}
