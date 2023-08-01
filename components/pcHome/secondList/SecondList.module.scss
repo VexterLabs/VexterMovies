@@ -58,18 +58,13 @@
       left: 0;
       z-index: 1;
       opacity: 1;
-      transition: opacity 0.3s;
-      transition-delay: 0.3s;
     }
 
     .bookNameBox {
-      display: block;
       position: relative;
-      top: -1.5rem;
-      z-index: 3;
+      z-index: 2;
+      display: block;
       opacity: 0;
-      transition: all 0.3s;
-      transition-delay: 0.2s;
       padding: 0.12rem;
       background: rgba(255, 255, 255, 0.12);
       border-radius: 0 0 0.04rem 0.04rem;
@@ -87,7 +82,6 @@
         word-wrap: break-word;
         margin-bottom: 0.1rem;
       }
-
 
       .tagBox {
         font-size: 0.12rem;
@@ -112,7 +106,6 @@
       }
 
       .bookNameBox {
-        top: 0;
         opacity: 1;
       }
 

@@ -25,7 +25,6 @@
         height: 4.6rem;
       }
 
-
       .leftCardContent {
         padding: 0.2rem 0.2rem 0.28rem;
         height: 4.6rem;
@@ -90,7 +89,7 @@
       .rightCardItem {
         width: 5.28rem;
         height: 2.2rem;
-        background-color: rgba(255,255,255,0.08);
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 0.04rem;
         overflow: hidden;
         display: flex;
@@ -113,7 +112,7 @@
             .bookName {
               font-size: 0.24rem;
               font-weight: 500;
-              color: rgba(255,255,255,0.9);
+              color: rgba(255, 255, 255, 0.9);
               line-height: 0.32rem;
               text-overflow: ellipsis;
               display: -webkit-box;
@@ -122,17 +121,19 @@
               word-wrap: break-word;
               margin-bottom: 0.08rem;
             }
+
             .viewCountDisplay {
               font-size: 0.14rem;
               font-weight: 400;
-              color: rgba(255,255,255,0.9);
+              color: rgba(255, 255, 255, 0.9);
               line-height: 0.2rem;
               margin-bottom: 0.08rem;
             }
+
             .intro {
               font-size: 0.14rem;
               font-weight: 400;
-              color: rgba(255,255,255,0.4);
+              color: rgba(255, 255, 255, 0.4);
               line-height: 0.2rem;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -156,13 +157,10 @@
               background-color: rgba(255, 255, 255, 0.08);
             }
           }
-
         }
       }
-
     }
   }
-
 }
 
 

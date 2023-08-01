@@ -22,7 +22,7 @@ const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
     {dataSource.map((book) => {
       const {
         bookId,
-        typeTwoName = 'all',
+        typeTwoName,
         replacedBookName,
         bookName,
         viewCountDisplay = "0"
@@ -57,7 +57,7 @@ const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
             {bookName}
           </div>
           <div className={styles.tagBox}>
-            { (book?.tags || []).map(val => {
+            {(book?.tags || []).map(val => {
               return <div key={val} className={styles.tagItem}>{val}</div>
             })}
           </div>
