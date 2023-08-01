@@ -77,6 +77,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
       return <>
         <link rel="alternate" hrefLang={ELanguage.English} href={getUrl(ELanguage.English)}/>
         <link rel="alternate" hrefLang={ELanguage.Korean} href={getUrl(ELanguage.Korean)}/>
+        <link rel="alternate" hrefLang={ELanguage.ZhHans} href={getUrl(ELanguage.ZhHans)}/>
+        <link rel="alternate" hrefLang={ELanguage.Zh} href={getUrl(ELanguage.Zh)}/>
       </>
     }
   }
