@@ -24,8 +24,8 @@ const ClientConfig = {
 export default ClientConfig;
 
 export const LanguageDefaultBookId = {
-  [ELanguage.English]: '21000203245',
-  [ELanguage.Korean]: '21000203914',
-  [ELanguage.ZhHans]: '21000204144',
-  [ELanguage.Zh]: '21000200077',
+  [ELanguage.English]: '41000000384',
+  [ELanguage.Korean]: '41000100288',
+  [ELanguage.ZhHans]: '41000000003',
+  [ELanguage.Zh]: '41000000003',
 }

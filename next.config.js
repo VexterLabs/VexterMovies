@@ -3,8 +3,8 @@ const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
 const WebDomainObj = {
-  test: 'https://dramabox-ssr.hw.dzods.cn',
-  staging: 'https://yfbwww.dramabox.com',
+  test: 'https://drama.hw.dzods.cn',
+  staging: 'https://yfbinfo.dramaboxdb.com',
   prod: 'https://www.dramaboxdb.com'
 }
 // 网站服务api
@@ -23,7 +23,7 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 const buildId = 'dramabox-010000'; // 构建ID
 const WebDomain = WebDomainObj[environment]
