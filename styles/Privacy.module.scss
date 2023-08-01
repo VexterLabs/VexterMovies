@@ -1,0 +1,49 @@
+.privacyWrap {
+  padding: 0.4rem 0;
+
+  .privacyBox {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 0.04rem;
+    padding: 0.64rem;
+
+    .privacyTitle {
+      margin-bottom: 0.4rem;
+      font-size: 0.24rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 0.32rem;
+    }
+
+    .privacyContent {
+      font-size: 0.14rem;
+      line-height: 0.2rem;
+      white-space: pre-wrap;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.4);
+    }
+  }
+}
+
+
+.mPrivacyWrap {
+  padding: 0.32rem;
+
+  .mPrivacyTitle {
+    font-size: 0.38rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 0.53rem;
+    margin-bottom: 0.24rem;
+    text-align: center;
+  }
+
+  .mPrivacyIntro {
+    font-size: 0.28rem;
+    line-height: 0.44rem;
+    white-space: pre-wrap;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+
+  }
+}
+
