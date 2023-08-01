@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import styles from "@/components/pcBook/index.module.scss";
 import Link from "next/link";
-import useHiveLog from "@/hooks/useHiveLog";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
@@ -15,18 +14,7 @@ interface IProps {
 
 const PcBook: FC<IProps> = ({ bookInfo, firstChapterId }) => {
   const { t } = useTranslation()
-  const HiveLog = useHiveLog();
-  const {
-    replacedBookName = 'null',
-    typeTwoName = 'all'
-  } = bookInfo;
-  const toRead = () => {
-    // 书籍详情点击进入阅读
-    // HiveLog.track('BookDetails_ClickRead', {
-    //   book_ID: bookInfo.bookId,
-    //   book_name: bookInfo.bookName,
-    // })
-  }
+
   const routerToBook = `/download?${bookInfo.bookId}`;
 
   const router = useRouter();
@@ -88,7 +76,7 @@ const PcBook: FC<IProps> = ({ bookInfo, firstChapterId }) => {
           </div>
         </div>
 
-        <Link href={`/download?${bookInfo.bookId}`} className={styles.playBtn} onClick={() => toRead()}>
+        <Link href={`/download?${bookInfo.bookId}`} className={styles.playBtn}>
           <Image
             className={styles.playIcon}
             width={16}

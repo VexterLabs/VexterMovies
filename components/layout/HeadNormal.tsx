@@ -24,29 +24,28 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
   const router = useRouter();
   const { t } = useTranslation()
   const getTdk = (): { title: string; keywords: string; description: string; } => {
-    return TDK[ELanguage.English].index;
-    // const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
-    // // @ts-ignore
-    // if (!TDK[_locale]) {
-    //   return TDK[ELanguage.English].index;
-    // }
-    // if (router.pathname === '/') {
-    //   return TDK[_locale].index
-    // } else if (router.pathname.includes('/more/[position]')) {
-    //   const positionName = t(`menu.${pageProps.position}`) || ''
-    //   return TDK[_locale].more({ ...router.query, positionName })
-    // } else if (router.pathname.includes('/browse/[typeTwoId]/[typeTwoName]')) {
-    //   const  _typeTwoName = pageProps.typeTwoName === 'all' ? t(`browse.all`) : pageProps.typeTwoName;
-    //   return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
-    // } else {
-    //   for(const item in pathnameData) {
-    //     if (router.pathname.includes(pathnameData[item])) {
-    //       const tdkItem = TDK[_locale][item]
-    //       return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
-    //     }
-    //   }
-    // }
-    // return TDK[_locale].index;
+    const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
+    // @ts-ignore
+    if (!TDK[_locale]) {
+      return TDK[ELanguage.English].index;
+    }
+    if (router.pathname === '/') {
+      return TDK[_locale].index
+    } else if (router.pathname.includes('/more/[position]')) {
+      const positionName = t(`menu.${pageProps.position}`) || ''
+      return TDK[_locale].more({ ...router.query, positionName })
+    } else if (router.pathname.includes('/browse/[typeTwoId]/[typeTwoName]')) {
+      const  _typeTwoName = pageProps.typeTwoName === 'all' ? t(`browse.all`) : pageProps.typeTwoName;
+      return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
+    } else {
+      for(const item in pathnameData) {
+        if (router.pathname.includes(pathnameData[item])) {
+          const tdkItem = TDK[_locale][item]
+          return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
+        }
+      }
+    }
+    return TDK[_locale].index;
   }
   const [pageTdk, setPageTdk] = useState(() => getTdk());
 

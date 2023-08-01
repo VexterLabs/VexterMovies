@@ -10,6 +10,7 @@ import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -26,11 +27,11 @@ const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
     }
     return ClientConfig.android.link;
   });
+  const HiveLog = useHiveLog();
   const {
-    cover,
+    bookId,
     bookName,
-    ratings = 0,
-    viewCountDisplay = '',
+    chapterId,
     introduction
   } = bookInfo;
 
@@ -65,7 +66,7 @@ const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
       <div className={styles.footerBox}>
         <CopyToClipboard text={copyText} onCopy={() => {
           netIpUa(clipboard)
-          // HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: chapterId })
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: chapterId })
         }}>
           <Link className={styles.footerBtn} href={shopLink}>
             <Image
