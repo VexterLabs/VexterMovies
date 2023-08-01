@@ -1,0 +1,90 @@
+.browseBox {
+
+  :global {
+    .adm-dropdown-popup {
+      top: 0.88rem !important;
+    }
+    .adm-dropdown-item-content {
+      background: #1C1C1E !important;
+    }
+  }
+
+  .tabBox {
+    background: #000000;
+    backdrop-filter: blur(0px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0.12rem 0 0.12rem 0.32rem;
+    height: 0.8rem;
+    position: fixed;
+    top: 0.88rem;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+
+    .tabContent {
+      :global {
+
+        .adm-tabs-tab-list {
+          column-gap: 0.16rem;
+        }
+
+        .adm-tabs-tab-line {
+          display: none;
+        }
+
+        .adm-tabs-tab-wrapper {
+          padding: 0;
+        }
+
+        .adm-tabs-tab {
+          padding: 0.12rem 0.24rem;
+          background: rgba(255,255,255,0.12);
+          border-radius: 0.08rem;
+          font-size: 0.24rem;
+          font-weight: 500;
+          color: #FF375F;
+          line-height: 0.33rem;
+        }
+
+        .adm-tabs-header {
+          border-bottom: none;
+        }
+
+        .adm-tabs-tab {
+          a {
+            color: rgba(255,255,255,0.9);
+          }
+        }
+
+        .adm-tabs-tab-active {
+          a {
+            color: $theme_color;
+          }
+        }
+
+        .adm-tabs-header-mask-right {
+          //background: linear-gradient(to left, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+          background: linear-gradient(270deg, #000000 0%, rgba(0,0,0,0) 100%);
+        }
+        .adm-tabs-header-mask-left {
+          //background: linear-gradient(to left, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+          background: linear-gradient(90deg, #000000 0%, rgba(0,0,0,0) 100%);
+        }
+      }
+    }
+  }
+
+  .browseContent {
+    padding: 0.96rem 0 1.2rem;
+
+    .browseContent2 {
+      padding: 0 0.32rem;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
+  }
+}

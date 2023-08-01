@@ -1,0 +1,57 @@
+.pageContent {
+  text-align: center;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  .normalLi, .activePage, .prevNoMore, .prevBtn, .nextNoMore, .nextBtn, .omission {
+    width: 0.4rem;
+    height: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.04rem;
+    box-sizing: border-box;
+    font-size: 0.14rem;
+    cursor: pointer;
+    border-radius: 0.04rem;
+    color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.08);
+    transition: all 0.3s;
+
+    &:hover {
+      background-color: rgba(255,255,255,0.16);
+    }
+  }
+
+  .activePage {
+    background-color: $theme_color;
+  }
+
+  .prevNextIcon {
+    width: 0.14rem;
+    height: 0.14rem;
+  }
+
+  .prevBtn, .prevNoMore {
+    .prevNextIcon {
+      width: 0.14rem;
+      height: 0.14rem;
+      transform: rotate(180deg);
+    }
+  }
+
+  .omission {
+    border: none !important;
+    margin: 0;
+    background-color: rgba(255,255,255,0.08) !important;
+    cursor: default;
+  }
+
+  .prevNoMore, .nextNoMore {
+    cursor: not-allowed;
+    background-color: rgba(255,255,255,0.08) !important;
+  }
+}
