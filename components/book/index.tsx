@@ -31,7 +31,6 @@ const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
   const {
     bookId,
     bookName,
-    chapterId,
     introduction
   } = bookInfo;
 
@@ -66,7 +65,7 @@ const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
       <div className={styles.footerBox}>
         <CopyToClipboard text={copyText} onCopy={() => {
           netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: chapterId })
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
         }}>
           <Link className={styles.footerBtn} href={shopLink}>
             <Image

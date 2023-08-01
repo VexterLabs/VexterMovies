@@ -32,17 +32,23 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     if (router.pathname === '/') {
       return TDK[_locale].index
     } else if (router.pathname.includes('/more/[position]')) {
-      const positionName = t(`menu.${pageProps.position}`) || ''
+      const positionName = pageProps.position || ''
       return TDK[_locale].more({ ...router.query, positionName })
     } else if (router.pathname.includes('/browse/[typeTwoId]/[typeTwoName]')) {
       const  _typeTwoName = pageProps.typeTwoName === 'all' ? t(`browse.all`) : pageProps.typeTwoName;
       return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
     } else {
-      for(const item in pathnameData) {
-        if (router.pathname.includes(pathnameData[item])) {
-          const tdkItem = TDK[_locale][item]
-          return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
+      try {
+        for(const item in pathnameData) {
+          // @ts-ignore
+          if (router.pathname.includes(pathnameData[item]) && TDK[_locale] && TDK[_locale][item]) {
+            // @ts-ignore
+            const tdkItem = TDK[_locale][item]
+            return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
+          }
         }
+      } catch (e) {
+        return TDK[_locale].index;
       }
     }
     return TDK[_locale].index;
