@@ -3,7 +3,7 @@ const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
 const WebDomainObj = {
-  test: 'http://192.168.1.70:3000/',
+  test: 'http://192.168.1.70:3000',
   staging: 'https://yfbinfo.dramaboxdb.com',
   prod: 'https://www.dramaboxdb.com'
 }
@@ -53,11 +53,32 @@ const nextConfig = {
   // https://www.nextjs.cn/docs/upgrading
   swcMinify: true,
   images: { // 远程图片资源域名
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'reshot.hw.dzods.cn',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.dramabox.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'nas2osstest.wpzkj.cn',
+        port: '',
+        pathname: '/**',
+      },
+    ],
     domains: [
       "reshot.hw.dzods.cn",
       "res.webfic.com",
       "res.novelread.com",
-      "res.dramabox.com"
+      "res.dramabox.com",
+      "nas2osstest.wpzkj.cn"
     ],
   },
   // 环境配置

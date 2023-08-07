@@ -5,10 +5,9 @@ import PcStore from "@/components/pcDownload/store/PcStore";
 import Image from "next/image";
 
 interface IProps {
-  isApple: boolean;
 }
 
-const PcDownload: FC<IProps> = ({ isApple }) => {
+const PcDownload: FC<IProps> = () => {
   const { t } = useTranslation();
 
   return <div className={styles.downloadWrap}>
@@ -22,14 +21,14 @@ const PcDownload: FC<IProps> = ({ isApple }) => {
     <div className={styles.downloadMain}>
       <Image
         className={styles.downloadCover}
-        width={440}
-        height={440}
+        width={520}
+        height={520}
         src={'/images/download/pc-cover.png'}
         placeholder="blur"
         blurDataURL={'/images/download/pc-cover.png'}
         alt={''}
       />
-      <PcStore isApple={isApple} />
+      <PcStore />
     </div>
   </div>
 }

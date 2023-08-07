@@ -14,7 +14,7 @@ interface IProps extends SSRConfig {
 
 const DownloadApp: NextPage<IProps> = ({ isPc, isApple }) => {
   return <>
-    {isPc ? <PcDownload isApple={isApple}/> : <MDownload isApple={isApple}/>}
+    {isPc ? <PcDownload /> : <MDownload isApple={isApple}/>}
   </>
 }
 
