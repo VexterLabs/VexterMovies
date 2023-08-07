@@ -12,7 +12,7 @@ const pathData = {
   index: '/',
   more: '/more/[position]',
   browse: '/browse/[typeTwoId]/[typeTwoName]',
-  book: '/book_info/[bookId]/[typeTwoName]/[bookName]',
+  book: '/book/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',
@@ -45,7 +45,7 @@ const useLogParams = (pageProps: any): void => {
   }, { atBegin: true })
 
   useEffect(() => {
-    dispatch(setLanguage((router.locale ?? ELanguage.English) as ELanguage))
+    dispatch(setLanguage((router.locale ?? ELanguage.ZhHans) as ELanguage))
     const { bid, cid } = getIds();
     dispatch(setClipboard({ bid, cid }));
     if (isReady) {
@@ -76,7 +76,7 @@ const useLogParams = (pageProps: any): void => {
 
   const getIds = (): { bid: string; cid: string | number } => {
     let clipboardBookId, clipboardChapterId;
-    const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.English]
+    const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.ZhHans) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
     if (router.pathname === pathData.book) {
       clipboardBookId = pageProps?.bookInfo?.bookId;
     } else {

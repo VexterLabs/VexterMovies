@@ -11,8 +11,8 @@ interface IProps {
 
 const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   const { t } = useTranslation()
-  const { bookId, typeTwoName = 'all', replacedBookName = 'null', tags = [] } = bigList?.[0]
-  const routerToBookInfo = `/book_info/${bookId}/${typeTwoName}/${replacedBookName}`
+  const { bookId, tags = [] } = bigList?.[0]
+  const routerToBookInfo = `/book/${bookId}`
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
       <div className={styles.leftCard}>
@@ -47,7 +47,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             <ImageCover
               scale
               priority
-              href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`}
+              href={`/book/${item.bookId}`}
               className={styles.rightCardItemImg}
               width={165}
               height={220}
@@ -55,13 +55,13 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
               alt={item.bookName}/>
             <div className={styles.rightCardContent}>
               <div className={styles.rightCardContentTop}>
-                <Link className={styles.bookName} href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`}>
+                <Link className={styles.bookName} href={`/book/${item.bookId}`}>
                   {item.bookName}
                 </Link>
-                <Link href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`} className={styles.viewCountDisplay}>{`${item.viewCountDisplay || '0'} ${t("home.episodes")}`} </Link>
-                <Link href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`} className={styles.intro}>{item.introduction}</Link>
+                <Link href={`/book/${item.bookId}`} className={styles.viewCountDisplay}>{`${item.viewCountDisplay || '0'} ${t("home.episodes")}`} </Link>
+                <Link href={`/book/${item.bookId}`} className={styles.intro}>{item.introduction}</Link>
               </div>
-              <Link href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`} className={styles.rightCardContentBottom}>
+              <Link href={`/book/${item.bookId}`} className={styles.rightCardContentBottom}>
                 { (item?.tags || []).map(val => {
                   return <div key={val} className={styles.rightTag}>{val}</div>
                 })}
