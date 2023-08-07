@@ -17,7 +17,7 @@ import { INetBrowseReq, INetBrowseRes, INetBrowseTypeRes } from "@/typings/brows
 export const netHomeData = (language?: ELanguage): Promise<IHomeResItem[] | 'BadRequest_404' | 'BadRequest_500'> => {
   return Service.post('/webfic/home/index', undefined, {
     headers: {
-      language: language || ELanguage.English
+      language: language || ELanguage.ZhHans
     }
   })
 }
@@ -25,7 +25,7 @@ export const netHomeData = (language?: ELanguage): Promise<IHomeResItem[] | 'Bad
 export const netBrowse = async (params: INetBrowseReq, language?: ELanguage): Promise<INetBrowseRes | 'BadRequest_404' | 'BadRequest_500'> => {
   return await Service.post('/webfic/home/browse', { pageSize: 60, ...params }, {
     headers: {
-      language: language || ELanguage.English
+      language: language || ELanguage.ZhHans
     }
   })
 }
@@ -34,7 +34,7 @@ export const netBrowse = async (params: INetBrowseReq, language?: ELanguage): Pr
 export const netMoreBook = async (params: INetMoreReq, language?: ELanguage): Promise<INetMoreResult | 'BadRequest_404' | 'BadRequest_500'> => {
   return await Service.post('/webfic/home/more', { pageNum: 1, pageSize: 30, ...params }, {
     headers: {
-      language: language || ELanguage.English
+      language: language || ELanguage.ZhHans
     }
   })
 }
@@ -46,7 +46,7 @@ export const netBook = async (params: INetBookReq, language?: ELanguage): Promis
     language
   }, {
     headers: {
-      language: language || ELanguage.English
+      language: language || ELanguage.ZhHans
     }
   })
 }

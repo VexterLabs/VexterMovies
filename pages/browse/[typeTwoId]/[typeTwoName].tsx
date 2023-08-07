@@ -8,7 +8,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import MBrowse from "@/components/browse";
 import PcBrowse from "@/components/pcBrowse";
 import { IBrowseTypes } from "@/typings/browse.interface";
-import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
   isPc: boolean;
@@ -71,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       typeTwoId: Number(typeTwoId),
       isPc: ownOs(ua).isPc,
       typeTwoName,
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
     }
   }
 }

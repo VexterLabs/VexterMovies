@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
     props: {
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common']))
+      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common']))
     }
   }
 }

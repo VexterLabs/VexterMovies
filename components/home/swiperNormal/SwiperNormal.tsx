@@ -16,7 +16,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
     <Swiper.Item key={item.bookId} className={styles.content}>
       <div className={styles.swiperItem}>
         <ImageCover
-          href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`}
+          href={`/book/${item.bookId}`}
           className={styles.contentImgBox}
           src={item.cover}
           width={218}
@@ -27,14 +27,14 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
 
         <div className={styles.rightCard}>
           <div className={styles.rightCardTop}>
-            <Link className={styles.bookName} href={`/book_info/${item.bookId}/${item.typeTwoName || 'all'}/${item.replacedBookName}`}>
+            <Link className={styles.bookName} href={`/book/${item.bookId}`}>
               {item.bookName}
             </Link>
             <p className={styles.viewCountDisplay}>{item.viewCountDisplay || '0'} {t('home.episodes')}</p>
             <p className={styles.intro}>{item.introduction}</p>
           </div>
           <div className={styles.rightCardBottom}>
-            { ['Film', 'Series'].map(val => {
+            { (item.tags || []).map(val => {
               return <div key={val} className={styles.rightTag}>{val}</div>
             })}
           </div>

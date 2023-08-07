@@ -27,7 +27,7 @@ const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
         bookName,
         viewCountDisplay = "0"
       } = book;
-      const routerToBookInfo = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`
+      const routerToBookInfo = `/book/${bookId}`
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>

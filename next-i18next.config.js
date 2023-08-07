@@ -2,7 +2,7 @@ module.exports = {
   // https://www.i18next.com/overview/configuration-options#logging
   // debug: process.env.NODE_ENV === 'development',
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'zhHans',
     locales: ['zhHans', 'en', 'ko', 'zh'],
     localeDetection: false, // 是否自动区域设置检测
   },

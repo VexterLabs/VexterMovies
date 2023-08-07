@@ -12,7 +12,7 @@ const { googleCode } = ClientConfig;
 export const pathnameData = {
   browse: '/browse/[typeTwoId]/[typeTwoName]',
   more: '/more/[position]',
-  book: '/book_info/[bookId]/[typeTwoName]/[bookName]',
+  book: '/book/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',
@@ -27,7 +27,7 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
     // @ts-ignore
     if (!TDK[_locale]) {
-      return TDK[ELanguage.English].index;
+      return TDK[ELanguage.ZhHans].index;
     }
     if (router.pathname === '/') {
       return TDK[_locale].index
@@ -59,8 +59,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     setPageTdk(getTdk())
   },[router, router.locale, t]); // eslint-disable-line
 
-  const getUrl = (lan = ELanguage.English) => {
-    const _locale = lan === ELanguage.English ? '' : `/${lan}`
+  const getUrl = (lan = ELanguage.ZhHans) => {
+    const _locale = lan === ELanguage.ZhHans ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
     return process.env.WebDomain +_locale + _asPath;
   }
