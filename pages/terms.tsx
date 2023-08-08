@@ -15,7 +15,7 @@ const AgreementUser: NextPage<IProps> = ({ isPc }) => {
   const { t } = useTranslation()
   return <>
     <Head>
-      <meta key="description" name="description" content={(t('terms.termsContent') || '').slice(0, 500)}/>
+      <meta key="description" name="description" content={(t('terms.termsContent') || '').slice(0, 200)}/>
     </Head>
     { isPc ?
       <div className={styles.termsWrap}>
