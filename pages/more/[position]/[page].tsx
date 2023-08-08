@@ -10,6 +10,7 @@ import MMore from "@/components/more";
 interface IProps {
   isPc: boolean;
   moreData: IHomeResItem;
+  positionName: string; // 勿删，tdk用
   pageNo: number;
   pages: number;
 }
@@ -48,6 +49,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     props: {
       moreData: data,
       pageNo: currentPage,
+      positionName: name,
       pages,
       isPc: ownOs(ua).isPc,
       ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
