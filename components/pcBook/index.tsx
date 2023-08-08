@@ -6,13 +6,15 @@ import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
+import SecondList from "@/components/pcHome/secondList/SecondList";
 
 interface IProps {
   bookInfo: IBookItem;
   firstChapterId: string;
+  recommends: IBookItem[];
 }
 
-const PcBook: FC<IProps> = ({ bookInfo, firstChapterId }) => {
+const PcBook: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
   const { t } = useTranslation()
 
   const routerToBook = `/download?${bookInfo.bookId}`;
@@ -43,13 +45,12 @@ const PcBook: FC<IProps> = ({ bookInfo, firstChapterId }) => {
         </div>
       </div>
     </div>
-
     <div className={styles.detailBox}>
       <Image
         onError={onImgError}
         className={styles.detailBookCover}
-        width={450}
-        height={600}
+        width={272}
+        height={363}
         src={bookInfo.cover}
         placeholder="blur"
         blurDataURL={bookInfo.cover || '/images/defaultBook.png'}
@@ -88,7 +89,10 @@ const PcBook: FC<IProps> = ({ bookInfo, firstChapterId }) => {
         </Link>
       </div>
     </div>
-
+    {recommends.length > 0 ? <div className={styles.recommendBox}>
+      <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
+      <SecondList dataSource={recommends}/>
+    </div> : null }
   </>
 }
 

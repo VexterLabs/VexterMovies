@@ -14,10 +14,11 @@ interface IProps {
   firstChapterId: string;
   isApple: boolean;
   languages: ELanguage[]; // tdk需要， 勿删
+  recommends: IBookItem[];
 }
 
 const Book: NextPage<IProps> = (
-  { isPc, bookInfo, firstChapterId, isApple }
+  { isPc, bookInfo, firstChapterId, isApple, recommends }
 ) => {
 
   return <>
@@ -25,6 +26,7 @@ const Book: NextPage<IProps> = (
       <PcBook
         firstChapterId={firstChapterId}
         bookInfo={bookInfo}
+        recommends={recommends}
       /> :
       <MBook
         isApple={isApple}
@@ -48,7 +50,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (response === 'BadRequest_500') {
     return { redirect: { destination: '/500', permanent: false } }
   }
-  const { book = {}, chapter, languages = [] } = response;
+  const { book = {}, chapter, languages = [], recommends = [] } = response;
 
   return {
     props: {
@@ -57,6 +59,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
+      recommends,
       languages,
       ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
     },

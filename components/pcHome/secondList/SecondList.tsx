@@ -11,7 +11,7 @@ interface IProps {
   priority?: boolean;
 }
 
-const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
+const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
