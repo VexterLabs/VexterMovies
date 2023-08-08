@@ -22,10 +22,8 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
     {dataSource.map((book) => {
       const {
         bookId,
-        typeTwoName,
-        replacedBookName,
         bookName,
-        viewCountDisplay = "0"
+        chapterCount = 0
       } = book;
       const routerToBookInfo = `/book/${bookId}`
       return <div key={bookId} className={styles.secondListBox}>
@@ -44,8 +42,8 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
           />
         </Link>
 
-        <Link className={styles.viewCountDisplay} href={routerToBookInfo}>
-          {`${viewCountDisplay} ${t("home.episodes")}`}
+        <Link className={styles.chapterCount} href={routerToBookInfo}>
+          {`${chapterCount} ${t("home.episodes")}`}
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookName}>
