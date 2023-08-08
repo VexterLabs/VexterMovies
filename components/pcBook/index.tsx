@@ -62,8 +62,8 @@ const PcBook: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
           <Link href={routerToBook}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
           </Link>
-          <Link href={routerToBook} className={styles.viewCountDisplay}>
-            {`${bookInfo.viewCountDisplay || "0"} ${t("home.episodes")}`}
+          <Link href={routerToBook} className={styles.chapterCount}>
+            {`${bookInfo.chapterCount || 0} ${t("home.episodes")}`}
           </Link>
 
           <Link href={routerToBook} className={styles.intro}>

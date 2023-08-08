@@ -29,7 +29,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
         <Link href={routerToBookInfo} className={styles.leftCardContent}>
           <div className={styles.leftCardContentTop}>
             <h2>{bigList[0].bookName}</h2>
-            <p className={styles.viewCountDisplay}>{`${bigList[0].viewCountDisplay || "0"} ${t("home.episodes")}`}</p>
+            <p className={styles.chapterCount}>{`${bigList[0].chapterCount || 0} ${t("home.episodes")}`}</p>
             <p className={styles.intro}>{bigList[0].introduction}</p>
           </div>
 
@@ -58,7 +58,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
                 <Link className={styles.bookName} href={`/book/${item.bookId}`}>
                   {item.bookName}
                 </Link>
-                <Link href={`/book/${item.bookId}`} className={styles.viewCountDisplay}>{`${item.viewCountDisplay || '0'} ${t("home.episodes")}`} </Link>
+                <Link href={`/book/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </Link>
                 <Link href={`/book/${item.bookId}`} className={styles.intro}>{item.introduction}</Link>
               </div>
               <Link href={`/book/${item.bookId}`} className={styles.rightCardContentBottom}>
