@@ -2,6 +2,7 @@
   width: 100%;
   height: 0.8rem;
 }
+
 .navWrap {
   width: 100%;
   height: 0.8rem;
@@ -105,15 +106,19 @@
   :global {
     .adm-popover {
       top: 0.5rem;
-      width: 1.2rem;
+    }
+
+    .adm-popover-menu-list {
+      min-width: 1.2rem;
     }
 
     .adm-popover-inner {
       padding: 0.12rem 0;
       border-radius: 4px;
-      width: 1.66rem;
+      width: 1.3rem;
       background: #292929;
     }
+
     .adm-popover-arrow {
       color: #292929 !important;
     }
@@ -130,7 +135,7 @@
       justify-content: center;
       font-size: 0.14rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       transition: all .3s;
       padding: 0;
 
@@ -138,8 +143,10 @@
         color: $theme_color;
       }
     }
+
     .adm-popover-menu-item:active:not(.adm-popover-menu-item-disabled) {
       background-color: transparent;
+
       &:after {
         display: none;
       }
@@ -158,13 +165,13 @@
     .navItemTxt {
       font-size: 0.18rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255, 255, 255, 0.6);
       user-select: none;
     }
   }
 
   .languageBoxActive {
-    background-color: rgba(255,255,255,0.08);
+    background-color: rgba(255, 255, 255, 0.08);
 
     .navItemTxt {
       color: $theme_color;
