@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/components/layout/mHeader/mLanguage/MLanguage.module.scss";
 import { Popover } from "antd-mobile";
 import { LanguageActions } from "@/typings/home.interface";
@@ -11,6 +11,13 @@ import { setIsPopChange } from "@/store/modules/app.module";
 const MLanguage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const _index = LanguageActions.findIndex(val => val.key === router.locale);
+  const [language, setLanguage] = useState(_index !== -1 ? LanguageActions[_index].text : LanguageActions[0].text);
+  useEffect(() => {
+    const ind = LanguageActions.findIndex(val => val.key === router.locale);
+    setLanguage(ind !== -1 ? LanguageActions[_index].text : LanguageActions[0].text);
+  }, [router.locale, router]) // eslint-disable-line
 
   // 切换语言
   const changeLanguage = (item: Action) => {
@@ -42,7 +49,7 @@ const MLanguage = () => {
           src={'/images/home/language.png'}
           alt={'language'}
         />
-        <span>{router.locale}</span>
+        <span>{language}</span>
       </div>
     </Popover.Menu>
   </div>
