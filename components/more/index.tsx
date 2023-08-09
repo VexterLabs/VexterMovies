@@ -33,9 +33,9 @@ const MMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
       />
       <div className={styles.crumbsItem}>{moreData.name}</div>
     </div>
-    <HomeTitle title={t(moreData?.name) || ''} />
     {moreData.items && moreData.items.length > 0 ?
       <>
+        <HomeTitle title={t(moreData?.name) || ''} />
         <FirstItem dataSource={moreData.items}/>
         {pages && pages > 1 ? <MorePagination
           prevPath={`/more/${ColumnNameRoute[moreData.name]}/`}

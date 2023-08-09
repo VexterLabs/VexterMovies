@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     let fields: ISitemapField[] = [];
     (response || []).forEach(val => {
         const pages = Array.from({ length: Math.ceil(val.bookCount / 30) }, (v, i) => {
-          const _loc = `${options.loc}/more/${ColumnNameRoute?.[val.name]}/${i+1}`
+          const _loc = `${options.loc}/more/${ColumnNameRoute?.[val.name]}` + (i > 0 ? `/${i + 1}` : '')
           return { ...options, loc: _loc }
         })
         fields = fields.concat(pages);
