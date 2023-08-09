@@ -2,8 +2,9 @@ import React, { FC } from 'react'
 import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import ImageCover from "@/components/common/image/ImageCover";
+import ImageCover, { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
 
 interface IProps {
   bigList: IBookItem[];
@@ -16,16 +17,19 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
       <div className={styles.leftCard}>
-        <ImageCover
-          scale
-          priority
-          href={routerToBookInfo}
-          className={styles.leftCardImg}
-          width={345}
-          height={460}
-          src={bigList[0].cover}
-          alt={bigList[0].bookName}/>
-
+        <Link href={routerToBookInfo} className={styles.leftCardImg}>
+          <Image
+            src={bigList[0].cover}
+            className={styles.imageItem}
+            onError={onImgError}
+            placeholder="blur"
+            blurDataURL={bigList[0].cover || '/images/defaultBook.png'}
+            priority
+            width={345}
+            height={460}
+            alt={bigList[0].bookName}
+          />
+        </Link>
         <Link href={routerToBookInfo} className={styles.leftCardContent}>
           <div className={styles.leftCardContentTop}>
             <h2>{bigList[0].bookName}</h2>
@@ -44,29 +48,34 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
       <div className={styles.rightCard}>
         { [ bigList[1], bigList[2] ].map(item => {
           return <div key={item.bookId} className={styles.rightCardItem}>
-            <ImageCover
-              scale
-              priority
-              href={`/book/${item.bookId}`}
-              className={styles.rightCardItemImg}
-              width={165}
-              height={220}
-              src={item.cover}
-              alt={item.bookName}/>
-            <div className={styles.rightCardContent}>
+            <Link href={`/book/${item.bookId}`} className={styles.rightCardItemImg}>
+              <Image
+                src={item.cover}
+                className={styles.imageItem}
+                onError={onImgError}
+                placeholder="blur"
+                blurDataURL={item.cover || '/images/defaultBook.png'}
+                priority
+                width={165}
+                height={220}
+                alt={item.bookName}
+              />
+            </Link>
+
+            <Link href={`/book/${item.bookId}`} className={styles.rightCardContent}>
               <div className={styles.rightCardContentTop}>
-                <Link className={styles.bookName} href={`/book/${item.bookId}`}>
+                <h2 className={styles.bookName} href={`/book/${item.bookId}`}>
                   {item.bookName}
-                </Link>
-                <Link href={`/book/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </Link>
-                <Link href={`/book/${item.bookId}`} className={styles.intro}>{item.introduction}</Link>
+                </h2>
+                <p href={`/book/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </p>
+                <p href={`/book/${item.bookId}`} className={styles.intro}>{item.introduction}</p>
               </div>
-              <Link href={`/book/${item.bookId}`} className={styles.rightCardContentBottom}>
+              <div href={`/book/${item.bookId}`} className={styles.rightCardContentBottom}>
                 { (item?.tags || []).map(val => {
                   return <div key={val} className={styles.rightTag}>{val}</div>
                 })}
-              </Link>
-            </div>
+              </div>
+            </Link>
           </div>
         }) }
       </div>

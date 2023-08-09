@@ -16,7 +16,6 @@ const PcHomeTitle: FC<IProps> = ({ title, subName = '', href }) => {
   return <div className={styles.titleWrap}>
     <div className={styles.titleBox}>
       <h2 className={styles.titleText}>{title}</h2>
-      <div className={styles.titleSub}>{subName}</div>
     </div>
 
     {href ? <Link className={styles.moreBox} href={href}>

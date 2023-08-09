@@ -31,7 +31,6 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
 
   const activeItem = types.find(val => val.id === typeTwoId);
   const linkTypeTwoName = activeItem ? activeItem.replaceName : 'all';
-  const [visible, setVisible] = useState(false);
 
   return (<div className={styles.browseBox} id='browse_box'>
 
@@ -49,7 +48,7 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
             key={item.id}/>
         })}
       </Tabs>
-      <DropMenu visible={visible} types={types} typeTwoId={typeTwoId}/>
+      <DropMenu types={types} typeTwoId={typeTwoId}/>
     </div>
 
     {bookList.length > 0 ? <div className={styles.browseContent}>

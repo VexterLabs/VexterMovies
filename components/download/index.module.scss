@@ -1,5 +1,8 @@
 .downloadWrap {
   padding: 0.32rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   .downloadHead {
     font-size: 0.38rem;
@@ -12,7 +15,6 @@
   }
 
   .downloadCover {
-    margin: 0 auto;
     width: 4.4rem;
     height: 4.4rem;
   }

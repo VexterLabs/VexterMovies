@@ -5,9 +5,12 @@ import { LanguageActions } from "@/typings/home.interface";
 import { Action } from "antd-mobile/2x/es/components/popover";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useAppDispatch } from "@/store";
+import { setIsPopChange } from "@/store/modules/app.module";
 
 const MLanguage = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   // 切换语言
   const changeLanguage = (item: Action) => {
@@ -18,7 +21,7 @@ const MLanguage = () => {
     }
   }
 
-  return <div className={styles.language}>
+  return <div className={styles.language} onClick={() => dispatch(setIsPopChange())}>
     <Popover.Menu
       mode={'light'}
       actions={LanguageActions}

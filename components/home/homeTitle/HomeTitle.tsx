@@ -5,11 +5,10 @@ import Image from "next/image";
 
 interface IProps {
   title: string;
-  subName?: string;
   href?: string;
 }
 
-const HomeTitle: FC<IProps> = ({ title, subName = '', href }) => {
+const HomeTitle: FC<IProps> = ({ title, href }) => {
   return <div className={styles.titleWrap}>
     <div className={styles.title}>
       <p>{title}</p>
@@ -23,7 +22,6 @@ const HomeTitle: FC<IProps> = ({ title, subName = '', href }) => {
         />
       </Link> : null}
     </div>
-    <p className={styles.titleSub}>{subName}</p>
   </div>;
 }
 
