@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }): P
   // 返回的参数将会按照 key 值赋值到 Home 组件的同名入参中
   return {
     props: {
-      bigList,
+      bigList: smallData[0]?.items,
       smallData,
       isPc: ownOs(ua).isPc,
       ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),

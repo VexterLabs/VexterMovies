@@ -33,7 +33,7 @@ const MMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
       />
       <div className={styles.crumbsItem}>{moreData.name}</div>
     </div>
-    <HomeTitle title={moreData?.name || ''} subName={moreData.subName} />
+    <HomeTitle title={moreData?.name || ''} />
     {moreData.items && moreData.items.length > 0 ?
       <>
         <FirstItem dataSource={moreData.items}/>

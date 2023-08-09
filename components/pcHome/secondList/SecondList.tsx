@@ -43,7 +43,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
         </Link>
 
         <Link className={styles.chapterCount} href={routerToBookInfo}>
-          {`${chapterCount} ${t("home.episodes")}`}
+          <p>{`${chapterCount} ${t("home.episodes")}`}</p>
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookName}>

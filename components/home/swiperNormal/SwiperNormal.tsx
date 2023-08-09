@@ -23,7 +23,6 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
           height={294}
           alt={item.bookName}
         />
-        <div className={styles.contentImgMark}/>
 
         <div className={styles.rightCard}>
           <div className={styles.rightCardTop}>

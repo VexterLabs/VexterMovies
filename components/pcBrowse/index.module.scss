@@ -6,7 +6,7 @@
     min-height: 0.4rem;
     background-color: rgba(255,255,255,0.08);
     border-radius: 0.04rem;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
 
     .tabsBox {
       display: grid;
@@ -14,7 +14,6 @@
       grid-row-gap: 0.1rem;
       grid-column-gap: 0.1rem;
       align-items: center;
-
       overflow-x: auto;
 
       .tabItem, .tabItemActive {
@@ -36,7 +35,6 @@
 
         &:hover {
           color: $theme_color;
-          background-color: rgba(255,255,255,0.08);
         }
       }
 

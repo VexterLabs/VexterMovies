@@ -5,24 +5,25 @@ import Link from "next/link";
 import { IBrowseTypes } from "@/typings/browse.interface";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useAppSelector } from "@/store";
 
 interface IProps {
   types: IBrowseTypes[];
   typeTwoId: number;
-  visible: boolean;
 }
 
-const DropMenu: FC<IProps> = ({ types, typeTwoId, visible }) => {
+const DropMenu: FC<IProps> = ({ types, typeTwoId }) => {
   const { t } = useTranslation()
   const dropdownRef = useRef<DropdownRef>(null);
   const activeRef = useRef<HTMLDivElement>(null);
   const [activeKey, setActiveKey] = useState<string | null>(null);
+  const isPopChange = useAppSelector(state => state.app.isPopChange)
 
   useEffect(() => {
     if (dropdownRef.current) {
       dropdownRef.current?.close()
     }
-  }, [visible]);
+  }, [isPopChange]);
 
   useEffect(() => {
     if (activeRef.current && activeKey) {
@@ -56,7 +57,7 @@ const DropMenu: FC<IProps> = ({ types, typeTwoId, visible }) => {
       <div className={styles.menuBox}>
 
         <div className={styles.menuHead}>
-          <span>Filter</span>
+          <span>{t('browse.filter')}</span>
           <Image
             onClick={() => {
               dropdownRef.current?.close()

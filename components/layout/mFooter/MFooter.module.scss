@@ -29,6 +29,9 @@
     font-size: 0.2rem;
     font-weight: 400;
     color: rgba(255,255,255,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .logoBox {
       margin: 0.51rem auto 0;
@@ -37,7 +40,7 @@
     }
 
     .fmail {
-      padding-top: 0.19rem;
+      margin-top: 0.19rem;
       text-align: center;
       font-size: 0.16rem;
       font-weight: 400;
