@@ -22,7 +22,7 @@ const MHome: FC<IProps> = ({ bigList, smallData }) => {
 
       {smallData.map((item) => {
         return <div key={item.id} className={styles.mainContent}>
-          <HomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}_${item.id}`}/>
+          <HomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/>
           <FirstItem dataSource={item.items || []}/>
         </div>
       })}

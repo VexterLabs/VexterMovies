@@ -38,7 +38,7 @@ const MMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
       <>
         <FirstItem dataSource={moreData.items}/>
         {pages && pages > 1 ? <MorePagination
-          prevPath={`/more/${ColumnNameRoute[moreData.name]}_${moreData.id}/`}
+          prevPath={`/more/${ColumnNameRoute[moreData.name]}/`}
           page={pageNo}
           totalPage={pages}
         /> : null}

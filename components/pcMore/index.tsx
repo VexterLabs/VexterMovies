@@ -44,7 +44,7 @@ const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
       {moreData?.items && moreData.items.length > 0 ? <div className={styles.moreBookList}>
         <SecondList dataSource={moreData.items} />
         {pages && pages > 1 ? <PaginationCom
-          path={`/more/${ColumnNameRoute[moreData.name]}_${moreData.id}/`}
+          path={`/more/${ColumnNameRoute[moreData.name]}/`}
           pageNo={pageNo}
           totalPage={pages}
           isScroll={true}
