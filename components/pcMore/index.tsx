@@ -40,16 +40,20 @@ const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
       </div>
     </div>
     <div className={styles.moreContent}>
-      <PcHomeTitle title={t(moreData.name)} />
-      {moreData?.items && moreData.items.length > 0 ? <div className={styles.moreBookList}>
-        <SecondList dataSource={moreData.items} />
-        {pages && pages > 1 ? <PaginationCom
-          path={`/more/${ColumnNameRoute[moreData.name]}/`}
-          pageNo={pageNo}
-          totalPage={pages}
-          isScroll={true}
-        /> : null}
-      </div> : <PcEmpty/>}
+
+      {moreData?.items && moreData.items.length > 0 ?
+        <>
+          <PcHomeTitle title={t(moreData.name)} />
+          <div className={styles.moreBookList}>
+            <SecondList dataSource={moreData.items} />
+            {pages && pages > 1 ? <PaginationCom
+              path={`/more/${ColumnNameRoute[moreData.name]}/`}
+              pageNo={pageNo}
+              totalPage={pages}
+              isScroll={true}
+            /> : null}
+          </div>
+        </> : <PcEmpty/>}
     </div>
   </>
 }

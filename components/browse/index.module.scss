@@ -28,7 +28,8 @@
       :global {
 
         .adm-tabs-tab-list {
-          column-gap: 0.16rem;
+          column-gap: 0.16rem !important;
+          gap: 0.16rem !important;
         }
 
         .adm-tabs-tab-line {
