@@ -83,4 +83,4 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   </div>
 }
 
-export default SwiperArea
+export default SwiperArea;

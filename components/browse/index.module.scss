@@ -28,8 +28,8 @@
       :global {
 
         .adm-tabs-tab-list {
-          column-gap: 0.16rem !important;
-          gap: 0.16rem !important;
+          //column-gap: 0.16rem !important;
+          //gap: 0.16rem !important;
         }
 
         .adm-tabs-tab-line {
@@ -38,6 +38,7 @@
 
         .adm-tabs-tab-wrapper {
           padding: 0;
+          margin-right: 0.16rem;
         }
 
         .adm-tabs-tab {
@@ -79,7 +80,7 @@
   }
 
   .browseContent {
-    padding: 0.96rem 0 1.4rem;
+    padding: 0.96rem 0 1.2rem;
 
     .browseContent2 {
       padding: 0 0.32rem;
