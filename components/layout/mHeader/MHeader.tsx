@@ -4,13 +4,14 @@ import MNav from "@/components/layout/mHeader/mNav";
 import MLanguage from "@/components/layout/mHeader/mLanguage/MLanguage";
 import ClientConfig from "@/client.config";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface IProps {
 }
 
 const MHeader: FC<IProps> = () => {
   const [visible, setVisible] = useState(false);
-
+  const router = useRouter()
   const navIconClick = () => {
     if (visible) {
       setVisible(false)
@@ -20,10 +21,12 @@ const MHeader: FC<IProps> = () => {
       document.body.style.overflow = 'hidden'
     }
   }
-
+  console.log('router.pathname === \'/browse/[]\' ', router.pathname)
   return (<>
     <MNav visible={visible} cancel={() => navIconClick()}/>
-    <div className={styles.headerContent}>
+    <div
+      style={router.pathname === '/browse/[typeTwoId]/[typeTwoName]' ?  { backgroundColor: "#000000" } : {}}
+      className={styles.headerContent}>
       <Image
         onClick={() => navIconClick()}
         className={styles.navMenuIcon}
