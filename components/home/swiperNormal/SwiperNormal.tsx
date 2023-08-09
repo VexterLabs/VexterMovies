@@ -24,11 +24,11 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
           alt={item.bookName}
         />
 
-        <div className={styles.rightCard}>
+        <Link className={styles.rightCard} href={`/book/${item.bookId}`}>
           <div className={styles.rightCardTop}>
-            <Link className={styles.bookName} href={`/book/${item.bookId}`}>
+            <h2 className={styles.bookName} >
               {item.bookName}
-            </Link>
+            </h2>
             <p className={styles.chapterCount}>{item.chapterCount || 0} {t('home.episodes')}</p>
             <p className={styles.intro}>{item.introduction}</p>
           </div>
@@ -37,7 +37,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
               return <div key={val} className={styles.rightTag}>{val}</div>
             })}
           </div>
-        </div>
+        </Link>
       </div>
     </Swiper.Item>
   ))

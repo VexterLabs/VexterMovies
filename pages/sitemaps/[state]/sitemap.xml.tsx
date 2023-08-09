@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import { ISitemapField } from "next-sitemap/dist/@types/interface";
 import { netAllBook, netAllColumn, netBrowseType } from "@/server/home";
 import dayjs from "dayjs";
-import { ELanguage } from "@/typings/home.interface";
+import { ColumnNameRoute, ELanguage } from "@/typings/home.interface";
 import { ESearchType } from "@/typings/sitemap.interface";
 
 const sitemapBuilder = new SitemapBuilder()
@@ -39,7 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     let fields: ISitemapField[] = [];
     (response || []).forEach(val => {
         const pages = Array.from({ length: Math.ceil(val.bookCount / 30) }, (v, i) => {
-          const _loc = `${options.loc}/more/${val.name}/${i+1}`
+          const _loc = `${options.loc}/more/${ColumnNameRoute?.[val.name]}/${i+1}`
           return { ...options, loc: _loc }
         })
         fields = fields.concat(pages);

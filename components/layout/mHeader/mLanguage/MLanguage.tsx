@@ -28,7 +28,7 @@ const MLanguage = () => {
     }
   }
 
-  return <div className={styles.language} onClick={() => dispatch(setIsPopChange())}>
+  return <div className={styles.language} onClick={() => dispatch(setIsPopChange(false))}>
     <Popover.Menu
       mode={'light'}
       actions={LanguageActions}

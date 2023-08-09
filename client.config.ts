@@ -1,7 +1,7 @@
 import { ELanguage } from "@/typings/home.interface";
 
 const ClientConfig = {
-  name: "Drama Box",
+  name: "DramaBox",
   companyName: "STORYMATRIX TECHNOLOGY SINGAPORE PTE.LTD.",
   productName: "db",
   googleCode: "G-BXDJ8KNG7N",

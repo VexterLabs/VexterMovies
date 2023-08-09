@@ -5,7 +5,7 @@ export enum EHomeStyle {
 
 export interface IHomeResItem {
   id: number;
-  name: string;
+  name: EHomeName;
   style: EHomeStyle;
   items: IBookItem[];
   more: boolean;
@@ -50,3 +50,24 @@ export const LanguageActions: { text: string; key: ELanguage }[] = [
   { text: 'English', key: ELanguage.English },
   { text: '한국인', key: ELanguage.Korean },
 ]
+
+export enum EHomeName {
+  TopHits = '热门好剧',
+  MustSees = '必看好剧',
+  Trending = '当前热播',
+  HiddenGems = '精彩剧集',
+}
+
+export const ColumnNameRoute = {
+  [EHomeName.TopHits]: 'top-hits',
+  [EHomeName.MustSees]: 'must-sees',
+  [EHomeName.Trending]: 'trending',
+  [EHomeName.HiddenGems]: 'hidden-gems',
+}
+
+export const ColumnNameRouteReversion = {
+  'top-hits': EHomeName.TopHits,
+  'must-sees': EHomeName.MustSees,
+  'trending': EHomeName.Trending,
+  'hidden-gems': EHomeName.HiddenGems,
+}
