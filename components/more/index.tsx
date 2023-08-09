@@ -46,4 +46,4 @@ const MMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
   </div>
 }
 
-export default MMore
+export default MMore;
