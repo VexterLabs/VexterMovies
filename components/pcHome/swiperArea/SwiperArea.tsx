@@ -64,13 +64,13 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
 
             <Link href={`/book/${item.bookId}`} className={styles.rightCardContent}>
               <div className={styles.rightCardContentTop}>
-                <h2 className={styles.bookName} href={`/book/${item.bookId}`}>
+                <h2 className={styles.bookName}>
                   {item.bookName}
                 </h2>
-                <p href={`/book/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </p>
-                <p href={`/book/${item.bookId}`} className={styles.intro}>{item.introduction}</p>
+                <p className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </p>
+                <p className={styles.intro}>{item.introduction}</p>
               </div>
-              <div href={`/book/${item.bookId}`} className={styles.rightCardContentBottom}>
+              <div className={styles.rightCardContentBottom}>
                 { (item?.tags || []).map(val => {
                   return <div key={val} className={styles.rightTag}>{val}</div>
                 })}

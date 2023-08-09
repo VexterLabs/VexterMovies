@@ -14,11 +14,10 @@ const PcFooter: FC<IProps> = () => {
     <div className={styles.footerContent}>
 
       <div className={styles.footerText}>
-        <p className={styles.fText}>© {ClientConfig.name}, {t('home.allRightsReserved')}</p>
+        <p className={styles.fText}>© {ClientConfig.name}, {t('home.allRightsReserved')}&nbsp;&nbsp;{ClientConfig.companyName}</p>
         <Link className={styles.fmail} href={`mailto:${ClientConfig.email}`}>
-          {t("home.email")}:{ ClientConfig.email }
+          {t("home.email")}:&nbsp;{ ClientConfig.email }
         </Link>
-        <p className={styles.fText}>{ClientConfig.companyName}</p>
       </div>
 
       <div className={styles.footerLink}>

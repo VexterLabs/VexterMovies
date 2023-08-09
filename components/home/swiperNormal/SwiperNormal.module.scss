@@ -1,16 +1,19 @@
 .swiperBox {
-  margin-top: 0.24rem;
+  padding-top: 0.24rem;
   width: 100%;
-  overflow: hidden;
   margin-bottom: 0.48rem;
+  overflow: initial;
 
   :global {
+
+    .adm-swiper-indicator {
+      transform: translate(-50%, 16px);
+    }
     .adm-page-indicator {
       --active-dot-color: #FF375F !important;
       --dot-color: rgba(255,255,255,0.12) !important;
       --dot-border-radius: 50% !important;
       --active-dot-border-radius: 50% !important;
-      margin-bottom: -0.2rem;
     }
 
     .adm-page-indicator-dot {
@@ -66,6 +69,7 @@
     }
 
     .chapterCount {
+      display: block;
       font-size: 0.22rem;
       font-weight: 400;
       color: rgba(255,255,255,0.9);

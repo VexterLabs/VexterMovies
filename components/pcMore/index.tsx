@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 import styles from '@/components/pcMore/index.module.scss'
 import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
-import { IHomeResItem } from "@/typings/home.interface";
+import { ColumnNameRoute, IHomeResItem } from "@/typings/home.interface";
 import PaginationCom from "@/components/common/paginationCom";
 import Link from "next/link";
 import SecondList from "@/components/pcHome/secondList/SecondList";
 import { PcEmpty } from "@/components/common/empty";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 
 interface IProps {
   moreData: IHomeResItem;
@@ -15,7 +16,7 @@ interface IProps {
 }
 
 const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
-
+  const { t } = useTranslation()
   return <>
     <div className={styles.backHead}>
       <div className={styles.backBox}>
@@ -34,16 +35,16 @@ const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
             src={'/images/home/pc-more-active.png'}
             alt={''}
           />
-          <span>Back</span>
+          <span>{t("home.back")}</span>
         </Link>
       </div>
     </div>
     <div className={styles.moreContent}>
-      <PcHomeTitle title={moreData.name} subName={moreData.subName}/>
+      <PcHomeTitle title={t(moreData.name)} />
       {moreData?.items && moreData.items.length > 0 ? <div className={styles.moreBookList}>
         <SecondList dataSource={moreData.items} />
         {pages && pages > 1 ? <PaginationCom
-          path={`/more/${moreData.name}_${moreData.id}/`}
+          path={`/more/${ColumnNameRoute[moreData.name]}_${moreData.id}/`}
           pageNo={pageNo}
           totalPage={pages}
           isScroll={true}

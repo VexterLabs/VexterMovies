@@ -23,9 +23,9 @@ const PcDownload: FC<IProps> = () => {
         className={styles.downloadCover}
         width={520}
         height={520}
-        src={'/images/download/pc-cover.png'}
+        src={'/images/download/p-cover.png'}
         placeholder="blur"
-        blurDataURL={'/images/download/pc-cover.png'}
+        blurDataURL={'/images/download/p-cover.png'}
         alt={''}
       />
       <PcStore />

@@ -74,7 +74,7 @@
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 13;
+            -webkit-line-clamp: 10;
             word-wrap: break-word;
             overflow: hidden;
           }
@@ -163,6 +163,7 @@
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
               word-wrap: break-word;
+              overflow: hidden;
               margin-bottom: 0.08rem;
             }
 
@@ -184,7 +185,7 @@
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
+              -webkit-line-clamp: 2;
               word-wrap: break-word;
             }
           }

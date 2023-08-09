@@ -13,9 +13,12 @@
     "emptyDesc": "It's empty!",
     "episodes": "Episodes"
   },
+  "热门好剧": "Top Hits",
+  "必看好剧": "Must-sees",
+  "当前热播": "Trending",
+  "精彩剧集": "Hidden Gems",
   "browse": {
-    "all": "All",
-    "filter": "Filter"
+    "all": "All"
   },
   "bookInfo": {
     "more": "more",

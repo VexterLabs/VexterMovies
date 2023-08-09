@@ -46,8 +46,8 @@ const MFooter: FC<IProps> = () => {
       <Link className={styles.fmail} href={`mailto:${ClientConfig.email}`}>
         {t("home.email")}:{ ClientConfig.email }
       </Link>
-      <p className={styles.fText}>{ClientConfig.companyName}</p>
       <p className={styles.fText}>© {ClientConfig.name}, {t('home.allRightsReserved')}</p>
+      <p className={styles.fText}>{ClientConfig.companyName}</p>
     </div>
   </div>
 }

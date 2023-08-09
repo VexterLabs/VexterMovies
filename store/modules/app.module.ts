@@ -13,7 +13,7 @@ export const appSlice = createSlice<IAppStore, SliceCaseReducers<IAppStore>>({
       state.device = action.payload;
     },
 
-    setIsPopChange: (state) => {
+    setIsPopChange: (state, action) => {
       state.isPopChange = !state.isPopChange;
     },
   }

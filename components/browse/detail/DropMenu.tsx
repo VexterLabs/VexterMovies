@@ -57,7 +57,7 @@ const DropMenu: FC<IProps> = ({ types, typeTwoId }) => {
       <div className={styles.menuBox}>
 
         <div className={styles.menuHead}>
-          <span>{t('browse.filter')}</span>
+          <span>{t('home.browse')}</span>
           <Image
             onClick={() => {
               dropdownRef.current?.close()

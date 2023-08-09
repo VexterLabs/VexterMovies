@@ -1,7 +1,7 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { netMoreBook } from "@/server/home";
-import { ELanguage, IHomeResItem } from "@/typings/home.interface";
+import { ColumnNameRouteReversion, ELanguage, IHomeResItem } from "@/typings/home.interface";
 import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcMore from "@/components/pcMore";
@@ -30,7 +30,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const pathArr = (position as string).split('_')
   const id = pathArr[pathArr.length - 1] || '';
   pathArr.pop();
-  const name = pathArr.join('');
+  const _name = pathArr.join('')
+  let name = '';
+  if (Reflect.has(ColumnNameRouteReversion, _name)) {
+    name = Reflect.get(ColumnNameRouteReversion, _name)
+  }
+
   const response = await netMoreBook({
     id,
     name,
