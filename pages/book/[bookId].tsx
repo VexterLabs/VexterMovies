@@ -6,6 +6,7 @@ import MBook from "@/components/book";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { ELanguage, IBookItem } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import BookCrumbs from "@/components/book/crumbs";
 
 interface IProps {
   isPc: boolean;
@@ -22,6 +23,7 @@ const Book: NextPage<IProps> = (
 ) => {
 
   return <>
+    <BookCrumbs bookInfo={bookInfo} isPc={isPc}/>
     { isPc ?
       <PcBook
         firstChapterId={firstChapterId}

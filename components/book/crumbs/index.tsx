@@ -7,10 +7,10 @@ import { IBookItem } from "@/typings/home.interface";
 
 interface IProps {
   bookInfo: IBookItem;
+  isPc?: boolean;
 }
 
-const BookCrumbs: FC<IProps> = (
-  { bookInfo }) => {
+const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
   const { t } = useTranslation();
 
   const typeTwoId = bookInfo.typeTwoIds?.[0] || 0;
@@ -19,7 +19,7 @@ const BookCrumbs: FC<IProps> = (
     typeTwoName = bookInfo.typeTwoNames?.[0]
   }
 
-  return <div className={styles.crumbsWrap}>
+  return <div className={styles.crumbsWrap} style={isPc ? { display: 'none' } : {}}>
     <Link href="/" className={styles.crumbsItem}>
       {t('home.home')}
       <Image

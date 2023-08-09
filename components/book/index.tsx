@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react'
 import styles from "@/components/book/index.module.scss";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import BookCrumbs from "@/components/book/crumbs";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem } from "@/typings/home.interface";
@@ -39,57 +38,51 @@ const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
     setIsShowMore(true)
   }
 
-  return <>
-    <BookCrumbs bookInfo={bookInfo}/>
+  return <div className={styles.detailBox}>
+    <Image
+      onError={onImgError}
+      className={styles.bookCover}
+      width={280}
+      height={378}
+      src={bookInfo.cover}
+      placeholder="blur"
+      blurDataURL={bookInfo.cover || '/images/defaultBook.png'}
+      alt={bookInfo.bookName}
+    />
 
-    <div className={styles.detailBox}>
-      <Image
-        onError={onImgError}
-        className={styles.bookCover}
-        width={280}
-        height={378}
-        src={bookInfo.cover}
-        placeholder="blur"
-        blurDataURL={bookInfo.cover || '/images/defaultBook.png'}
-        alt={bookInfo.bookName}
-      />
+    {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
 
-      <h1 className={styles.bookName}>{bookName}</h1>
+    {bookInfo?.tags && bookInfo?.tags.length > 0 ? <div className={styles.tagBox}>
+      {(bookInfo?.tags || []).map(val => {
+        return <div key={val} className={styles.tagItem}>{val}</div>
+      })}
+    </div> : null}
 
-      <div className={styles.tagBox}>
-        {(bookInfo?.tags || []).map(val => {
-          return <div key={val} className={styles.tagItem}>{val}</div>
-        })}
-      </div>
-
-      <div className={styles.footerBox}>
-        <CopyToClipboard text={copyText} onCopy={() => {
-          netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-        }}>
-          <Link className={styles.footerBtn} href={shopLink}>
-            <Image
-              className={styles.playIcon}
-              width={48}
-              height={48}
-              src={'/images/book/play-icon2.png'}
-              alt={''}
-            />
-            <span>{t("home.play")}</span>
-          </Link>
-        </CopyToClipboard>
-      </div>
-
-      {introduction ? <div className={styles.introBox}>
-        <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
-        <p className={isShowMore ? styles.introTextMore : styles.introText}>{introduction}</p>
-        {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
-      </div> : null}
-
+    <div className={styles.footerBox}>
+      <CopyToClipboard text={copyText} onCopy={() => {
+        netIpUa(clipboard)
+        HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+      }}>
+        <Link className={styles.footerBtn} href={shopLink}>
+          <Image
+            className={styles.playIcon}
+            width={48}
+            height={48}
+            src={'/images/book/play-icon2.png'}
+            alt={''}
+          />
+          <span>{t("home.play")}</span>
+        </Link>
+      </CopyToClipboard>
     </div>
 
+    {introduction ? <div className={styles.introBox}>
+      <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
+      <p className={isShowMore ? styles.introTextMore : styles.introText}>{introduction}</p>
+      {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
+    </div> : null}
 
-  </>
+  </div>
 }
 
 export default MBook;
