@@ -2,7 +2,10 @@
   min-height: calc(100vh - 0.88rem);
   padding-bottom: 4.32rem;
   position: relative;
+  width: 100vw;
+  overflow: hidden;
 }
+
 .mainContent {
   padding: 0 0.32rem 0.48rem;
 }
