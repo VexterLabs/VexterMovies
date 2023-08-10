@@ -51,6 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // 浏览
   if (state === 'browse') {
     const response = await netBrowseType();
+    // console.log(response);
     if (response === 'BadRequest_500') return { redirect: { destination: '/500', permanent: false } }
     if (response === 'BadRequest_404') return { notFound: true }
     let fields: ISitemapField[] = [];
@@ -74,6 +75,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // 书籍详情
   if (state === 'books') {
     const response = await netAllBook({ searchType: ESearchType.ALL });
+    // console.log(response);
     const bookResponse = await netAllBook({ searchType: ESearchType.INCREASE });
     if (response === 'BadRequest_500' || bookResponse === 'BadRequest_500') return {
       redirect: {

@@ -4,8 +4,8 @@ const path = require("path");
 // 网站域名
 const WebDomainObj = {
   test: 'http://192.168.1.70:3000',
-  staging: 'https://yfbinfo.dramaboxdb.com',
-  prod: 'https://www.dramaboxdb.com'
+  staging: 'https://yfbwww.dramaboxapp.com',
+  prod: 'https://www.dramaboxapp.com'
 }
 // 网站服务api
 const BaseUrlObj = {
@@ -23,7 +23,7 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 const buildId = 'dramabox-010001'; // 构建ID
 const WebDomain = WebDomainObj[environment]

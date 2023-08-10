@@ -25,10 +25,11 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => 
       <div className={styles.tabsBox}>
         {types.map((item) => {
           const typeName = item.id === 0 ? t('browse.all') : item.name;
+          const linkHref = item.id === 0 ? '/browse' : `/browse/${item.id}`;
           if (item.id === typeTwoId) {
             return <div key={item.id} className={styles.tabItemActive}>{typeName}</div>
           }
-          return <Link href={`/browse/${item.id}`} key={item.id}
+          return <Link href={linkHref} key={item.id}
                        className={styles.tabItem}>
             {typeName}
           </Link>

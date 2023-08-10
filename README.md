@@ -8,7 +8,7 @@ http://192.168.0.60:1808/jenkins/view/HWYC-TEST_QAT/job/TEST-haiwai_dramabox_ssr
 // 测试域名
 http://192.168.1.70:3000
 // 预发布域名
-
+https://yfbwww.dramaboxapp.com
 // 线上域名
 https://www.dramabox.com/
 ```
