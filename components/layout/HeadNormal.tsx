@@ -33,7 +33,6 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
       return TDK[_locale].index
     } else if (router.pathname.includes('/more/[position]')) {
       const positionName = t(pageProps.positionName) || '';
-      console.log('t(pageProps.positionName)', t(pageProps.positionName));
       return TDK[_locale].more({ ...router.query, positionName })
     } else if (router.pathname.includes('/browse/[typeTwoId]')) {
       const  _typeTwoName = pageProps.typeTwoId === 0 ? t(`browse.all`) : pageProps.typeTwoName;

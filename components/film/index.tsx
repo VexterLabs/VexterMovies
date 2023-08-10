@@ -46,7 +46,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
       height={378}
       src={bookInfo.cover}
       placeholder="blur"
-      blurDataURL={bookInfo.cover || '/images/defaultBook.png'}
+      blurDataURL={'/images/defaultFilm.png'}
       alt={bookInfo.bookName}
     />
 

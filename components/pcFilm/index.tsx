@@ -53,7 +53,7 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
         height={363}
         src={bookInfo.cover}
         placeholder="blur"
-        blurDataURL={bookInfo.cover || '/images/defaultBook.png'}
+        blurDataURL={'/images/defaultFilm.png'}
         alt={bookInfo.bookName}
       />
 

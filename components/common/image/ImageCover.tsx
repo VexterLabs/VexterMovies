@@ -16,16 +16,16 @@ interface IProps extends ImageProps {
 }
 
 export const onImgError = (e: any) => {
-  console.log('imgError:')
+  console.log('imgError:', e.target.src)
   e.target.style.visibility = 'hidden';
-  e.target.src = '/images/defaultBook.png';
-  e.target.srcset = '/images/defaultBook.png';
+  e.target.src = '/images/defaultFilm.png';
+  e.target.srcset = '/images/defaultFilm.png';
   e.target.onload = function (){
     e.target.style.visibility = 'visible';
   }
 }
 
-const ImageCover: FC<IProps> = (props) => {
+export const ImageCover: FC<IProps> = (props) => {
 
   const imageProps = { ...props };
   if (Reflect.has(imageProps, 'onClick')) {
@@ -42,11 +42,9 @@ const ImageCover: FC<IProps> = (props) => {
     <Image
       className={styles.imageItem}
       onError={onImgError}
-      placeholder="blur"
-      blurDataURL={imageProps.src as string || '/images/defaultBook.png'}
+      placeholder={'blur'}
+      blurDataURL={'/images/defaultFilm.png'}
       {...imageProps}
     />
   </Link>
 }
-
-export default ImageCover;

@@ -20,10 +20,10 @@ const MHome: FC<IProps> = ({ bigList, smallData }) => {
     <div className={styles.homeWrap}>
       {bigList.length > 0 ? <SwiperNormal bigList={bigList}/> : null}
 
-      {smallData.map((item) => {
+      {smallData.map((item, itemIndex) => {
         return <div key={item.id} className={styles.mainContent}>
           <HomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/>
-          <FirstItem dataSource={item.items || []}/>
+          <FirstItem dataSource={item.items || []} priority={itemIndex === 0}/>
         </div>
       })}
 

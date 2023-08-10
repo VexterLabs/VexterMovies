@@ -34,7 +34,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={book.cover || '/images/defaultBook.png'}
+            blurDataURL={'/images/defaultFilm.png'}
             width={272}
             height={363}
             src={book.cover}
