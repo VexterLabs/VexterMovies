@@ -19,7 +19,6 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
       <div className={styles.leftCard}>
         <Link href={routerToBookInfo} className={styles.leftCardImg}>
           <Image
-            property
             src={bigList[0].cover}
             className={styles.imageItem}
             onError={onImgError}
