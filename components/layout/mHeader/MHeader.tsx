@@ -25,7 +25,7 @@ const MHeader: FC<IProps> = () => {
   return (<>
     <MNav visible={visible} cancel={() => navIconClick()}/>
     <div
-      style={router.pathname === '/browse/[typeTwoId]' ?  { backgroundColor: "#000000" } : {}}
+      style={router.pathname.includes('/browse') ?  { backgroundColor: "#000000" } : {}}
       className={styles.headerContent}>
       <Image
         onClick={() => navIconClick()}

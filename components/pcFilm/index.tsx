@@ -46,16 +46,18 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
       </div>
     </div>
     <div className={styles.detailBox}>
-      <Image
-        onError={onImgError}
-        className={styles.detailBookCover}
-        width={272}
-        height={363}
-        src={bookInfo.cover}
-        placeholder="blur"
-        blurDataURL={'/images/defaultFilm.png'}
-        alt={bookInfo.bookName}
-      />
+      <div className={styles.detailBookCoverBox}>
+        <Image
+          onError={onImgError}
+          className={styles.detailBookCover}
+          width={272}
+          height={363}
+          src={bookInfo.cover}
+          placeholder="blur"
+          blurDataURL={'/images/defaultFilm.png'}
+          alt={bookInfo.bookName}
+        />
+      </div>
 
       <div className={styles.detailBoxRight}>
         <div className={styles.detailBoxRightTop}>

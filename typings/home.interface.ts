@@ -24,6 +24,7 @@ export interface IBookItem {
   introduction: string;
   cover: string;
   tags: string[];
+  labels: string[];
   viewCount: number;
   lastUpdateTime: string;
   writeStatus: string; // COMPLETE

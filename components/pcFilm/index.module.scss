@@ -70,12 +70,20 @@
   align-items: flex-start;
   column-gap: 0.4rem;
 
-  .detailBookCover {
+  .detailBookCoverBox {
     width: 2.72rem;
     height: 3.63rem;
-    border-radius: 0.04rem;
     overflow: hidden;
+    border-radius: 0.04rem;
+    display: flex;
+    align-items: center;
+
+    .detailBookCover {
+      width: 100%;
+      min-height: 100%;
+    }
   }
+
 
   .detailBoxRight {
     padding: 0.4rem;
