@@ -16,7 +16,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
     <Swiper.Item key={item.bookId} className={styles.content}>
       <div className={styles.swiperItem}>
         <ImageCover
-          href={`/book/${item.bookId}`}
+          href={`/film/${item.bookId}`}
           className={styles.contentImgBox}
           src={item.cover}
           width={218}
@@ -24,7 +24,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
           alt={item.bookName}
         />
 
-        <Link className={styles.rightCard} href={`/book/${item.bookId}`}>
+        <Link className={styles.rightCard} href={`/film/${item.bookId}`}>
           <div className={styles.rightCardTop}>
             <h2 className={styles.bookName} >
               {item.bookName}

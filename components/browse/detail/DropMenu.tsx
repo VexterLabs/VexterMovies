@@ -77,7 +77,7 @@ const DropMenu: FC<IProps> = ({ types, typeTwoId }) => {
               return <div key={item.id} ref={activeRef} className={styles.menuActiveItem}
                           onClick={() => dropdownRef.current?.close()}>{typeName}</div>
             }
-            return <Link key={item.id} href={`/browse/${item.id}/${item.replaceName || item.name}`}
+            return <Link key={item.id} href={`/browse/${item.id}`}
                          className={styles.menuItem} onClick={() => dropdownRef.current?.close()}>
               {typeName}
             </Link>

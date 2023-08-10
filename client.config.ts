@@ -24,8 +24,8 @@ const ClientConfig = {
 export default ClientConfig;
 
 export const LanguageDefaultBookId = {
-  [ELanguage.English]: '41000000384',
-  [ELanguage.Korean]: '41000100288',
-  [ELanguage.ZhHans]: '41000000003',
-  [ELanguage.Zh]: '41000000003',
+  [ELanguage.ZhHans]: '41000100369', // 简体：41000100369 爱你心动为止
+  [ELanguage.Zh]: '41000100354', // 繁体：41000100354 離婚後冷爺他知錯了
+  [ELanguage.English]: '41000100599', // 英语：41000100599 Sleeping Handsome, Let's Mate!
+  [ELanguage.Korean]: '41000100396', // 韩语：41000100396 내 와이프는 쾌걸 의사
 }

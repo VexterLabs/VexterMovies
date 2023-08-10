@@ -1,12 +1,12 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { netBook } from "@/server/home";
-import PcBook from "@/components/pcBook";
-import MBook from "@/components/book";
+import PcFilm from "@/components/pcFilm";
+import MFilm from "@/components/film";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { ELanguage, IBookItem } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import BookCrumbs from "@/components/book/crumbs";
+import BookCrumbs from "@/components/film/crumbs";
 
 interface IProps {
   isPc: boolean;
@@ -25,12 +25,12 @@ const Book: NextPage<IProps> = (
   return <>
     <BookCrumbs bookInfo={bookInfo} isPc={isPc}/>
     { isPc ?
-      <PcBook
+      <PcFilm
         firstChapterId={firstChapterId}
         bookInfo={bookInfo}
         recommends={recommends}
       /> :
-      <MBook
+      <MFilm
         isApple={isApple}
         bookInfo={bookInfo}
       />

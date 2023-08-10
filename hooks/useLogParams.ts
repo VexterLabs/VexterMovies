@@ -11,8 +11,8 @@ import { debounce } from "throttle-debounce";
 const pathData = {
   index: '/',
   more: '/more/[position]',
-  browse: '/browse/[typeTwoId]/[typeTwoName]',
-  book: '/book/[bookId]',
+  browse: '/browse/[typeTwoId]',
+  book: '/film/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',
@@ -79,13 +79,15 @@ const useLogParams = (pageProps: any): void => {
     const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.ZhHans) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
     if (router.pathname === pathData.book) {
       clipboardBookId = pageProps?.bookInfo?.bookId;
+    } else if (router.pathname === pathData.download) {
+      clipboardBookId = pageProps?.bookId;
     } else {
       clipboardBookId = localeBookId
       clipboardChapterId = 0;
     }
     return {
-      cid: clipboardChapterId ?? 0,
-      bid: clipboardBookId ?? localeBookId,
+      cid: clipboardChapterId || 0,
+      bid: clipboardBookId || localeBookId,
     }
   }
 };
