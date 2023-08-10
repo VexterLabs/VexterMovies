@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   // 书籍详情
-  if (state === 'books') {
+  if (state === 'films') {
     const response = await netAllBook({ searchType: ESearchType.ALL });
     // console.log(response);
     const bookResponse = await netAllBook({ searchType: ESearchType.INCREASE });

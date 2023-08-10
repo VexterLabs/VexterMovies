@@ -19,11 +19,12 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
       <div className={styles.leftCard}>
         <Link href={routerToBookInfo} className={styles.leftCardImg}>
           <Image
+            property
             src={bigList[0].cover}
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={bigList[0].cover || '/images/defaultBook.png'}
+            blurDataURL={'/images/defaultFilm.png'}
             priority
             width={345}
             height={460}
@@ -54,7 +55,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
                 className={styles.imageItem}
                 onError={onImgError}
                 placeholder="blur"
-                blurDataURL={item.cover || '/images/defaultBook.png'}
+                blurDataURL={'/images/defaultFilm.png'}
                 priority
                 width={165}
                 height={220}

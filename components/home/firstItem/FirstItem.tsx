@@ -1,30 +1,36 @@
 import React, { FC } from 'react'
-import styles from '@/components/home/firstItem/FirstItem.module.css'
+import styles from '@/components/home/firstItem/FirstItem.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import ImageCover from "@/components/common/image/ImageCover";
+import { onImgError } from "@/components/common/image/ImageCover";
+import Image from "next/image";
 
 interface IProps {
   dataSource: IBookItem[];
+  priority?: boolean;
 }
 
-const FirstItem: FC<IProps> = ({ dataSource }) => {
+const FirstItem: FC<IProps> = ({ dataSource, priority }) => {
   return <div className={styles.firstItemWrap}>
-    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((book, bookInd) => {
-      const { bookId, cover, bookName } = book;
-      const routerToBookInfo = `/film/${bookId}`
-      return <div key={bookId} className={styles.itemBox}>
-        <ImageCover
-          priority={bookInd < 6}
-          href={routerToBookInfo}
-          className={styles.bookImage}
-          src={cover}
-          width={218}
-          height={294}
-          alt={bookName}
-        />
-        <Link href={routerToBookInfo} className={styles.bookName}>
-          {bookName}
+    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((filmItem) => {
+
+      return <div key={filmItem.bookId} className={styles.itemBox}>
+        <Link href={`/film/${filmItem.bookId}`} className={styles.bookImage}>
+          <Image
+            priority={priority}
+            className={styles.imageItem}
+            onError={onImgError}
+            placeholder="blur"
+            blurDataURL={'/images/defaultFilm.png'}
+            width={218}
+            height={294}
+            src={filmItem.cover}
+            alt={filmItem.bookName}
+          />
+        </Link>
+
+        <Link href={`/film/${filmItem.bookId}`} className={styles.bookName}>
+          {filmItem.bookName}
         </Link>
       </div>
     }) : null}
