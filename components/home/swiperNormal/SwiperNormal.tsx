@@ -39,7 +39,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
             <p className={styles.intro}>{item.introduction}</p>
           </div>
           <div className={styles.rightCardBottom}>
-            { (item.tags || []).map(val => {
+            { (item?.tags || []).map(val => {
               return <div key={val} className={styles.rightTag}>{val}</div>
             })}
           </div>

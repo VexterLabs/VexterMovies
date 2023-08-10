@@ -55,7 +55,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
             {bookName}
           </div>
           <div className={styles.tagBox}>
-            {(book?.tags || []).map(val => {
+            {(book?.tags || []).slice(0, 2).map(val => {
               return <div key={val} className={styles.tagItem}>{val}</div>
             })}
           </div>
