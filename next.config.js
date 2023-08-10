@@ -53,6 +53,7 @@ const nextConfig = {
   // https://www.nextjs.cn/docs/upgrading
   swcMinify: true,
   images: { // 远程图片资源域名
+    // https://nextjs.org/docs/messages/next-image-unconfigured-host
     remotePatterns: [
       {
         protocol: 'https',
@@ -72,14 +73,19 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'nchapter.dramaboxdb.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
-    domains: [
+/*    domains: [
       "reshot.hw.dzods.cn",
-      "res.webfic.com",
-      "res.novelread.com",
       "res.dramabox.com",
-      "nas2osstest.wpzkj.cn"
-    ],
+      "nas2osstest.wpzkj.cn",
+      "nchapter.dramaboxdb.com"
+    ],*/
   },
   // 环境配置
   env: {
