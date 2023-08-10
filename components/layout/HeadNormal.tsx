@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 const { googleCode } = ClientConfig;
 
 export const pathnameData = {
-  browse: '/browse/[typeTwoId]',
+  browse: '/browse',
   more: '/more/[position]',
   book: '/film/[bookId]',
   download: '/download',
@@ -34,7 +34,7 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     } else if (router.pathname.includes('/more/[position]')) {
       const positionName = t(pageProps.positionName) || '';
       return TDK[_locale].more({ ...router.query, positionName })
-    } else if (router.pathname.includes('/browse/[typeTwoId]')) {
+    } else if (router.pathname.includes('/browse')) {
       const  _typeTwoName = pageProps.typeTwoId === 0 ? t(`browse.all`) : pageProps.typeTwoName;
       return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
     } else {
