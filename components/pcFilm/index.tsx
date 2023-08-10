@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import styles from "@/components/pcBook/index.module.scss";
+import styles from "@/components/pcFilm/index.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -14,7 +14,7 @@ interface IProps {
   recommends: IBookItem[];
 }
 
-const PcBook: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
+const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
   const { t } = useTranslation()
 
   const routerToBook = `/download?${bookInfo.bookId}`;
@@ -96,4 +96,4 @@ const PcBook: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
   </>
 }
 
-export default PcBook;
+export default PcFilm;

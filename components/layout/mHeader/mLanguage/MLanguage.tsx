@@ -21,8 +21,8 @@ const MLanguage = () => {
 
   // 切换语言
   const changeLanguage = (item: Action) => {
-    if (router.pathname.includes('/browse/[typeTwoId]/[typeTwoName]')) {
-      router.replace('/browse/0/all', undefined, { locale: item.key as string })
+    if (router.pathname.includes('/browse/[typeTwoId]')) {
+      router.replace('/browse/0', undefined, { locale: item.key as string })
     } else {
       router.replace(router.asPath, router.asPath, { locale: item.key as string })
     }

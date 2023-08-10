@@ -21,11 +21,11 @@ const MHeader: FC<IProps> = () => {
       document.body.style.overflow = 'hidden'
     }
   }
-  console.log('router.pathname === \'/browse/[]\' ', router.pathname)
+
   return (<>
     <MNav visible={visible} cancel={() => navIconClick()}/>
     <div
-      style={router.pathname === '/browse/[typeTwoId]/[typeTwoName]' ?  { backgroundColor: "#000000" } : {}}
+      style={router.pathname === '/browse/[typeTwoId]' ?  { backgroundColor: "#000000" } : {}}
       className={styles.headerContent}>
       <Image
         onClick={() => navIconClick()}

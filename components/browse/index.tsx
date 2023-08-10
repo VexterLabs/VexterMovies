@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import styles from "@/components/browse/index.module.scss";
 import { IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
@@ -28,10 +28,6 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
       browseRef.current.scrollTop = 0
     }
   }, [router])
-
-  const activeItem = types.find(val => val.id === typeTwoId);
-  const linkTypeTwoName = activeItem ? activeItem.replaceName : 'all';
-
   return (<div className={styles.browseBox} id='browse_box'>
 
     <div className={styles.tabBox}>
@@ -42,7 +38,7 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
       >
         {types.map((item) => {
           const typeName = item.id === 0 ? t('browse.all') : item.name;
-          return <Tabs.Tab title={<Link href={`/browse/${item.id}/${item.replaceName || encodeURIComponent(item.name) || 'all'}`}>
+          return <Tabs.Tab title={<Link href={`/browse/${item.id}`}>
               {typeName}
             </Link>}
             key={item.id}/>
@@ -55,7 +51,7 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
       <div className={styles.browseContent2} ref={browseRef}>
         <FirstItem dataSource={bookList} />
         {pages && pages > 1 ? <MorePagination
-          prevPath={`/browse/${typeTwoId}/${linkTypeTwoName}/`}
+          prevPath={`/browse/${typeTwoId}/`}
           page={pageNo}
           totalPage={pages}
         /> : null}

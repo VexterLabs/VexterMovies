@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/components/book/crumbs/index.module.scss";
+import styles from "@/components/film/crumbs/index.module.scss";
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -30,7 +30,7 @@ const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
         alt={'>'}
       />
     </Link>
-    <Link className={styles.crumbsItem} href={`/browse/${typeTwoId}/${bookInfo.typeTwoName || 'all'}`}>
+    <Link className={styles.crumbsItem} href={`/browse/${typeTwoId}`}>
       {typeTwoName}
       <Image
         className={styles.crumbsIcon}

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import styles from "@/components/book/index.module.scss";
+import styles from "@/components/film/index.module.scss";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -16,7 +16,7 @@ interface IProps {
   isApple: boolean;
 }
 
-const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
+const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
@@ -85,4 +85,4 @@ const MBook: FC<IProps> = ({ bookInfo, isApple }) => {
   </div>
 }
 
-export default MBook;
+export default MFilm;
