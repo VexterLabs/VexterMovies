@@ -1,16 +1,19 @@
 .swiperBox {
-  margin-top: 0.24rem;
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 0.48rem;
+  padding-top: 0.24rem;
+  margin-bottom: 0.72rem;
+  overflow: initial;
 
   :global {
+
+    .adm-swiper-indicator {
+      transform: translate(-50%, 16px);
+    }
+
     .adm-page-indicator {
       --active-dot-color: #FF375F !important;
-      --dot-color: rgba(255,255,255,0.12) !important;
+      --dot-color: rgba(255, 255, 255, 0.12) !important;
       --dot-border-radius: 50% !important;
       --active-dot-border-radius: 50% !important;
-      margin-bottom: -0.2rem;
     }
 
     .adm-page-indicator-dot {
@@ -30,7 +33,7 @@
     height: 2.94rem;
     display: flex;
     flex-direction: row;
-    background-color: rgba(255,255,255,0.08);
+    background-color: rgba(255, 255, 255, 0.08);
     border-radius: 0.08rem;
     position: relative;
 
@@ -39,15 +42,6 @@
       width: 2.18rem;
       height: 2.94rem;
       flex-shrink: 0;
-    }
-    .contentImgMark {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: 9;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 100%);
-      width: 2.18rem;
-      height: 0.62rem;
     }
   }
 }
@@ -64,7 +58,7 @@
     .bookName {
       font-size: 0.28rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       line-height: 0.4rem;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -74,10 +68,11 @@
       margin-bottom: 0.16rem;
     }
 
-    .viewCountDisplay {
+    .chapterCount {
+      display: block;
       font-size: 0.22rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255, 255, 255, 0.9);
       line-height: 0.3rem;
       margin-bottom: 0.16rem;
     }
@@ -85,7 +80,7 @@
     .intro {
       font-size: 0.24rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255, 255, 255, 0.4);
       line-height: 0.33rem;
       overflow: hidden;
       text-overflow: ellipsis;

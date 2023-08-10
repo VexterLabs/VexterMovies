@@ -11,8 +11,8 @@ interface IProps {
 const FirstItem: FC<IProps> = ({ dataSource }) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((book, bookInd) => {
-      const { bookId, typeTwoName = 'all', replacedBookName, cover, bookName } = book;
-      const routerToBookInfo = `/book_info/${bookId}/${typeTwoName}/${replacedBookName}`
+      const { bookId, cover, bookName } = book;
+      const routerToBookInfo = `/film/${bookId}`
       return <div key={bookId} className={styles.itemBox}>
         <ImageCover
           priority={bookInd < 6}

@@ -1,4 +1,4 @@
-import { ELanguage } from "@/typings/home.interface";
+import { EHomeName, ELanguage } from "@/typings/home.interface";
 
 // 0全量，1增量，默认0
 export enum ESearchType {
@@ -20,7 +20,7 @@ export interface INetAllBookRes {
 }
 
 export interface INetAllColumnRes {
-  name: string;
+  name: EHomeName;
   bookCount: number
 }
 

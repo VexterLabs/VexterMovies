@@ -18,8 +18,6 @@ interface IProps {
 
 const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
   const { t } = useTranslation();
-  const activeItem = types.find(val => val.id === typeTwoId);
-  const linkTypeTwoName = activeItem ? activeItem.replaceName : 'all';
 
   return <div className={styles.browseWrap}>
 
@@ -27,10 +25,11 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => 
       <div className={styles.tabsBox}>
         {types.map((item) => {
           const typeName = item.id === 0 ? t('browse.all') : item.name;
+          const linkHref = item.id === 0 ? '/browse' : `/browse/${item.id}`;
           if (item.id === typeTwoId) {
             return <div key={item.id} className={styles.tabItemActive}>{typeName}</div>
           }
-          return <Link href={`/browse/${item.id}/${item.replaceName || item.name}`} key={item.id}
+          return <Link href={linkHref} key={item.id}
                        className={styles.tabItem}>
             {typeName}
           </Link>
@@ -44,7 +43,7 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => 
 
       {pages && pages > 1 ?
         <PaginationCom
-          path={`/browse/${typeTwoId}/${linkTypeTwoName}/`}
+          path={`/browse/${typeTwoId}/`}
           pageNo={pageNo}
           totalPage={pages}
           isScroll={true}/> : null}

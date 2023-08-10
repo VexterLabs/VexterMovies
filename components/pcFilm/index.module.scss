@@ -63,15 +63,16 @@
 
 
 .detailBox {
-  padding: 1.6rem 0 0.2rem;
+  padding: 1.2rem 0 0.4rem;
   position: relative;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   column-gap: 0.4rem;
 
   .detailBookCover {
-    width: 4.5rem;
-    height: 6rem;
+    width: 2.72rem;
+    height: 3.63rem;
     border-radius: 0.04rem;
     overflow: hidden;
   }
@@ -83,8 +84,8 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    background: rgba(255,255,255,0.08);
-    min-height: 4.56rem;
+    background: rgba(255, 255, 255, 0.08);
+    height: 3.63rem;
 
     .detailBoxRightTop {
       .bookName {
@@ -92,7 +93,7 @@
         width: 9rem;
         font-size: 0.24rem;
         font-weight: 500;
-        color: rgba(255,255,255,0.9);
+        color: rgba(255, 255, 255, 0.9);
         line-height: 0.32rem;
         overflow: hidden;
         white-space: nowrap;
@@ -100,24 +101,29 @@
         margin-bottom: 0.2rem;
       }
 
-      .viewCountDisplay {
+      .chapterCount {
         display: block;
         width: 9rem;
         font-size: 0.13rem;
         font-weight: 400;
-        color: rgba(255,255,255,0.9);
+        color: rgba(255, 255, 255, 0.9);
         line-height: 0.18rem;
         margin-bottom: 0.2rem;
       }
 
       .intro {
         display: block;
-        width: 9rem;
-        margin-bottom: 0.2rem;
+        margin-bottom: 0.3rem;
         font-size: 0.14rem;
         font-weight: 400;
-        color: rgba(255,255,255,0.4);
+        color: rgba(255, 255, 255, 0.4);
         line-height: 0.20rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        word-wrap: break-word;
       }
 
       .tagsContent {
@@ -154,7 +160,16 @@
         height: 0.16rem;
       }
     }
-
   }
+}
 
+.recommendBox {
+
+  .titleText {
+    font-size: 0.24rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.9);
+    line-height: 0.29rem;
+    margin-bottom: 0.28rem;
+  }
 }

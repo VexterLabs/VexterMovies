@@ -1,7 +1,7 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { netMoreBook } from "@/server/home";
-import { ELanguage, IHomeResItem } from "@/typings/home.interface";
+import { ColumnNameRouteReversion, EHomeName, ELanguage, IHomeResItem } from "@/typings/home.interface";
 import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcMore from "@/components/pcMore";
@@ -10,6 +10,7 @@ import MMore from "@/components/more";
 interface IProps {
   isPc: boolean;
   moreData: IHomeResItem;
+  positionName: string; // 勿删，tdk用
   pageNo: number;
   pages: number;
 }
@@ -26,12 +27,13 @@ const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages }) => {
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
   const { page = '1', position = '' } = query;
-  const pathArr = (position as string).split('_')
-  const id = pathArr[pathArr.length - 1] || '';
-  pathArr.pop();
-  const name = pathArr.join('');
+  let name = '';
+  if (position && Reflect.has(ColumnNameRouteReversion, position as EHomeName)) {
+    name = Reflect.get(ColumnNameRouteReversion, position as EHomeName)
+  } else {
+    return { notFound: true }
+  }
   const response = await netMoreBook({
-    id,
     name,
     pageNum: Number(page),
   }, locale as ELanguage)
@@ -48,9 +50,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     props: {
       moreData: data,
       pageNo: currentPage,
+      positionName: name,
       pages,
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
     }
   }
 }

@@ -23,8 +23,16 @@
         flex-shrink: 0;
         width: 3.45rem;
         height: 4.6rem;
-      }
+        position: relative;
+        overflow: hidden;
+        display: block;
 
+        .imageItem {
+          width: 100%;
+          height: 100%;
+          transition: all 0.5s;
+        }
+      }
 
       .leftCardContent {
         padding: 0.2rem 0.2rem 0.28rem;
@@ -47,9 +55,10 @@
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 2;
             word-wrap: break-word;
+            overflow: hidden;
           }
 
-          .viewCountDisplay {
+          .chapterCount {
             font-size: 0.14rem;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.9);
@@ -62,6 +71,12 @@
             font-weight: 400;
             color: rgba(255, 255, 255, 0.4);
             line-height: 0.2rem;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 10;
+            word-wrap: break-word;
+            overflow: hidden;
           }
         }
 
@@ -80,6 +95,25 @@
         }
       }
 
+      &:hover {
+        transition: background-color 0.5s;
+        background-color: rgba(255, 255, 255, 0.12);
+
+        .leftCardImg {
+          .imageItem {
+            transform: scale(1.1);
+          }
+        }
+
+        .leftCardContent {
+          .leftCardContentTop {
+            h2 {
+              transition: color 0.5s;
+              color: $theme_color;
+            }
+          }
+        }
+      }
     }
 
     .rightCard {
@@ -90,7 +124,7 @@
       .rightCardItem {
         width: 5.28rem;
         height: 2.2rem;
-        background-color: rgba(255,255,255,0.08);
+        background-color: rgba(255, 255, 255, 0.08);
         border-radius: 0.04rem;
         overflow: hidden;
         display: flex;
@@ -100,6 +134,15 @@
           width: 1.65rem;
           height: 2.2rem;
           flex-shrink: 0;
+          position: relative;
+          overflow: hidden;
+          display: block;
+
+          .imageItem {
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s;
+          }
         }
 
         .rightCardContent {
@@ -113,26 +156,30 @@
             .bookName {
               font-size: 0.24rem;
               font-weight: 500;
-              color: rgba(255,255,255,0.9);
+              color: rgba(255, 255, 255, 0.9);
               line-height: 0.32rem;
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
               word-wrap: break-word;
+              overflow: hidden;
               margin-bottom: 0.08rem;
             }
-            .viewCountDisplay {
+
+            .chapterCount {
               font-size: 0.14rem;
               font-weight: 400;
-              color: rgba(255,255,255,0.9);
+              color: rgba(255, 255, 255, 0.9);
               line-height: 0.2rem;
               margin-bottom: 0.08rem;
+              display: block;
             }
+
             .intro {
               font-size: 0.14rem;
               font-weight: 400;
-              color: rgba(255,255,255,0.4);
+              color: rgba(255, 255, 255, 0.4);
               line-height: 0.2rem;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -156,13 +203,32 @@
               background-color: rgba(255, 255, 255, 0.08);
             }
           }
-
         }
-      }
 
+        &:hover {
+          transition: background-color 0.5s;
+          background-color: rgba(255, 255, 255, 0.12);
+
+          .rightCardItemImg {
+
+            .imageItem {
+              transform: scale(1.1);
+            }
+          }
+
+          .rightCardContent {
+            .rightCardContentTop {
+              .bookName {
+                transition: color 0.5s;
+                color: $theme_color;
+              }
+            }
+          }
+        }
+
+      }
     }
   }
-
 }
 
 

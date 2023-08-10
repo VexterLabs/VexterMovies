@@ -11,7 +11,7 @@ interface IProps {
   priority?: boolean;
 }
 
-const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
+const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -22,12 +22,10 @@ const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
     {dataSource.map((book) => {
       const {
         bookId,
-        typeTwoName = 'all',
-        replacedBookName,
         bookName,
-        viewCountDisplay = "0"
+        chapterCount = 0
       } = book;
-      const routerToBookInfo = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`
+      const routerToBookInfo = `/film/${bookId}`
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
@@ -44,8 +42,8 @@ const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
           />
         </Link>
 
-        <Link className={styles.viewCountDisplay} href={routerToBookInfo}>
-          {`${viewCountDisplay} ${t("home.episodes")}`}
+        <Link className={styles.chapterCount} href={routerToBookInfo}>
+          <p>{`${chapterCount} ${t("home.episodes")}`}</p>
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookName}>
@@ -57,7 +55,7 @@ const SecondList: FC<IProps> = ({ dataSource, priority = false }) => {
             {bookName}
           </div>
           <div className={styles.tagBox}>
-            { (book?.tags || []).map(val => {
+            {(book?.tags || []).map(val => {
               return <div key={val} className={styles.tagItem}>{val}</div>
             })}
           </div>

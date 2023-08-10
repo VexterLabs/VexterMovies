@@ -16,7 +16,7 @@ const AgreementPrivacy: NextPage<IProps> = ({ isPc }) => {
   const { t } = useTranslation()
   return <>
     <Head>
-      <meta key="description" name="description" content={(t('privacy.privacyContent') || '').slice(0, 500)}/>
+      <meta key="description" name="description" content={(t('privacy.privacyContent') || '').slice(0, 200)}/>
     </Head>
     {isPc ? <div className={styles.privacyWrap}>
         <div className={styles.privacyBox}>
@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   return {
     props: {
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
     }
   }
 }

@@ -13,6 +13,10 @@
     "emptyDesc": "It's empty!",
     "episodes": "Episodes"
   },
+  "热门好剧": "Top Hits",
+  "必看好剧": "Must-sees",
+  "当前热播": "Trending",
+  "精彩剧集": "Hidden Gems",
   "browse": {
     "all": "All"
   },
@@ -22,13 +26,14 @@
     "previousPage": "Previous page",
     "nextPage": "Next page",
     "lastChapterTip": "Already the last chapter",
-    "firstChapterTip": "Already the first chapter"
+    "firstChapterTip": "Already the first chapter",
+    "like": "You may like"
   },
   "appPage": {
     "title": "DramaBox - movies and drama",
-    "content": "Looking for something to watch during your daily commute, lunch break, or just to unwind after a long day? Look no further than our Dramabox!\nWith our app, you can access a huge selection of high-quality content from some of the best creators out there. From indie films to award-winning TV series, we've got something for everyone. And with new content added regularly, you'll always have something fresh to watch.",
+    "content": "Looking for something to watch during your daily commute, lunch break, or just to unwind after a long day?\n Look no further than our Dramabox!\nWith our app, you can access a huge selection of high-quality content from some of the best creators out there.\n From indie films to award-winning TV series, we've got something for everyone.\n And with new content added regularly, you'll always have something fresh to watch.",
     "download": "Download",
-    "clickCopy": "Click to copy link",
+    "clickCopy": "Click to copy the link",
     "copied": "Copied, open the link in the mobile browser to download the App",
     "copyGuide": "Scan the QR code to download, \nor open the link in phone browser.",
     "slogan": "Dive into drama"

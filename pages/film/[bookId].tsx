@@ -1,11 +1,12 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { netBook } from "@/server/home";
-import PcBook from "@/components/pcBook";
-import MBook from "@/components/book";
+import PcFilm from "@/components/pcFilm";
+import MFilm from "@/components/film";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { ELanguage, IBookItem } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import BookCrumbs from "@/components/film/crumbs";
 
 interface IProps {
   isPc: boolean;
@@ -14,19 +15,22 @@ interface IProps {
   firstChapterId: string;
   isApple: boolean;
   languages: ELanguage[]; // tdk需要， 勿删
+  recommends: IBookItem[];
 }
 
 const Book: NextPage<IProps> = (
-  { isPc, bookInfo, firstChapterId, isApple }
+  { isPc, bookInfo, firstChapterId, isApple, recommends }
 ) => {
 
   return <>
+    <BookCrumbs bookInfo={bookInfo} isPc={isPc}/>
     { isPc ?
-      <PcBook
+      <PcFilm
         firstChapterId={firstChapterId}
         bookInfo={bookInfo}
+        recommends={recommends}
       /> :
-      <MBook
+      <MFilm
         isApple={isApple}
         bookInfo={bookInfo}
       />
@@ -48,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (response === 'BadRequest_500') {
     return { redirect: { destination: '/500', permanent: false } }
   }
-  const { book = {}, chapter, languages = [] } = response;
+  const { book = {}, chapter, languages = [], recommends = [] } = response;
 
   return {
     props: {
@@ -57,8 +61,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
+      recommends,
       languages,
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
     },
   }
 }

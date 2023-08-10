@@ -18,8 +18,8 @@ const Language = () => {
   // 切换语言
   const changeLanguage = (item: Action) => {
     setLanguage(item.text as string)
-    if (router.pathname.includes('/browse/[typeTwoId]/[typeTwoName]')) {
-      router.replace('/browse/0/all', undefined, { locale: item.key as string })
+    if (router.pathname.includes('/browse/[typeTwoId]')) {
+      router.replace('/browse', undefined, { locale: item.key as string })
     } else {
       router.replace(router.asPath, router.asPath, { locale: item.key as string })
     }

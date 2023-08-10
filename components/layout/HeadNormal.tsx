@@ -10,9 +10,9 @@ import { useTranslation } from "next-i18next";
 const { googleCode } = ClientConfig;
 
 export const pathnameData = {
-  browse: '/browse/[typeTwoId]/[typeTwoName]',
+  browse: '/browse/[typeTwoId]',
   more: '/more/[position]',
-  book: '/book_info/[bookId]/[typeTwoName]/[bookName]',
+  book: '/film/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',
@@ -24,29 +24,35 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
   const router = useRouter();
   const { t } = useTranslation()
   const getTdk = (): { title: string; keywords: string; description: string; } => {
-    return TDK[ELanguage.English].index;
-    // const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
-    // // @ts-ignore
-    // if (!TDK[_locale]) {
-    //   return TDK[ELanguage.English].index;
-    // }
-    // if (router.pathname === '/') {
-    //   return TDK[_locale].index
-    // } else if (router.pathname.includes('/more/[position]')) {
-    //   const positionName = t(`menu.${pageProps.position}`) || ''
-    //   return TDK[_locale].more({ ...router.query, positionName })
-    // } else if (router.pathname.includes('/browse/[typeTwoId]/[typeTwoName]')) {
-    //   const  _typeTwoName = pageProps.typeTwoName === 'all' ? t(`browse.all`) : pageProps.typeTwoName;
-    //   return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
-    // } else {
-    //   for(const item in pathnameData) {
-    //     if (router.pathname.includes(pathnameData[item])) {
-    //       const tdkItem = TDK[_locale][item]
-    //       return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
-    //     }
-    //   }
-    // }
-    // return TDK[_locale].index;
+    const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
+    // @ts-ignore
+    if (!TDK[_locale]) {
+      return TDK[ELanguage.ZhHans].index;
+    }
+    if (router.pathname === '/') {
+      return TDK[_locale].index
+    } else if (router.pathname.includes('/more/[position]')) {
+      const positionName = t(pageProps.positionName) || '';
+      console.log('t(pageProps.positionName)', t(pageProps.positionName));
+      return TDK[_locale].more({ ...router.query, positionName })
+    } else if (router.pathname.includes('/browse/[typeTwoId]')) {
+      const  _typeTwoName = pageProps.typeTwoId === 0 ? t(`browse.all`) : pageProps.typeTwoName;
+      return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
+    } else {
+      try {
+        for(const item in pathnameData) {
+          // @ts-ignore
+          if (router.pathname.includes(pathnameData[item]) && TDK[_locale] && TDK[_locale][item]) {
+            // @ts-ignore
+            const tdkItem = TDK[_locale][item]
+            return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
+          }
+        }
+      } catch (e) {
+        return TDK[_locale].index;
+      }
+    }
+    return TDK[_locale].index;
   }
   const [pageTdk, setPageTdk] = useState(() => getTdk());
 
@@ -54,8 +60,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     setPageTdk(getTdk())
   },[router, router.locale, t]); // eslint-disable-line
 
-  const getUrl = (lan = ELanguage.English) => {
-    const _locale = lan === ELanguage.English ? '' : `/${lan}`
+  const getUrl = (lan = ELanguage.ZhHans) => {
+    const _locale = lan === ELanguage.ZhHans ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
     return process.env.WebDomain +_locale + _asPath;
   }
@@ -72,6 +78,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
       return <>
         <link rel="alternate" hrefLang={ELanguage.English} href={getUrl(ELanguage.English)}/>
         <link rel="alternate" hrefLang={ELanguage.Korean} href={getUrl(ELanguage.Korean)}/>
+        <link rel="alternate" hrefLang={ELanguage.ZhHans} href={getUrl(ELanguage.ZhHans)}/>
+        <link rel="alternate" hrefLang={ELanguage.Zh} href={getUrl(ELanguage.Zh)}/>
       </>
     }
   }

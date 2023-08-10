@@ -8,15 +8,14 @@ interface IProps {
   title: string;
   href?: string;
   isMore?: boolean; // 是否显示跳转链接
-  subName?: string;
 }
 
-const PcHomeTitle: FC<IProps> = ({ title, subName = '', href }) => {
+const PcHomeTitle: FC<IProps> = ({ title, href }) => {
   const { t } = useTranslation()
+
   return <div className={styles.titleWrap}>
     <div className={styles.titleBox}>
       <h2 className={styles.titleText}>{title}</h2>
-      <div className={styles.titleSub}>{subName}</div>
     </div>
 
     {href ? <Link className={styles.moreBox} href={href}>

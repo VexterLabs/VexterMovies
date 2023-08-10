@@ -3,9 +3,9 @@ const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
 const WebDomainObj = {
-  test: 'https://dramabox-ssr.hw.dzods.cn',
-  staging: 'https://yfbwww.dramabox.com',
-  prod: 'https://www.dramaboxdb.com'
+  test: 'http://192.168.1.70:3000',
+  staging: 'https://yfbwww.dramaboxapp.com',
+  prod: 'https://www.dramaboxapp.com'
 }
 // 网站服务api
 const BaseUrlObj = {
@@ -23,9 +23,9 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox-010000'; // 构建ID
+const buildId = 'dramabox-010001'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
@@ -53,12 +53,39 @@ const nextConfig = {
   // https://www.nextjs.cn/docs/upgrading
   swcMinify: true,
   images: { // 远程图片资源域名
-    domains: [
-      "reshot.hw.dzods.cn",
-      "res.webfic.com",
-      "res.novelread.com",
-      "res.dramabox.com"
+    // https://nextjs.org/docs/messages/next-image-unconfigured-host
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'reshot.hw.dzods.cn',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.dramabox.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'nas2osstest.wpzkj.cn',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'nchapter.dramaboxdb.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
+/*    domains: [
+      "reshot.hw.dzods.cn",
+      "res.dramabox.com",
+      "nas2osstest.wpzkj.cn",
+      "nchapter.dramaboxdb.com"
+    ],*/
   },
   // 环境配置
   env: {
