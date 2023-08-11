@@ -30,6 +30,7 @@ export interface IBookItem {
   writeStatus: string; // COMPLETE
   viewCountDisplay: string;
   lastUpdateTimeDisplay: string;
+  replacedBookId?: string;
   replacedBookName: string;
   firstChapterId?: string;
   columnName: string;
