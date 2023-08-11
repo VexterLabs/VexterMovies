@@ -5,15 +5,20 @@
 
   .itemBox {
     width: 2.18rem;
-    height: 100%;
     padding-bottom: 0.32rem;
 
     .bookImage {
+      width: 2.18rem;
+      height: 2.94rem;
+      overflow: hidden;
+      border-radius: 0.08rem;
+      display: flex;
+      align-items: center;
 
       .imageItem {
-        width: 2.18rem;
-        height: 2.94rem;
-        border-radius: 0.08rem;
+        width: 100%;
+        height: auto;
+        min-height: 2.94rem;
       }
     }
 

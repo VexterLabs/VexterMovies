@@ -1,14 +1,9 @@
 .moreWrap {
-  padding: 0.8rem 0.32rem 1.2rem;
+  padding: 0 0.32rem 1.2rem;
   position: relative;
 
   .crumbsBox {
-    position: fixed;
-    top: 0.88rem;
-    left: 0;
-    z-index: 99;
     width: 100%;
-    padding: 0 0.32rem;
     height: 0.8rem;
     display: flex;
     align-items: center;

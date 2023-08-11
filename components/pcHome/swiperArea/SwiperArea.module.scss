@@ -27,9 +27,11 @@
         overflow: hidden;
         display: flex;
         align-items: center;
+        border-radius: 0.04rem;
 
         .imageItem {
           width: 100%;
+          height: auto;
           min-height: 100%;
           transition: all 0.5s;
         }
@@ -139,9 +141,11 @@
           overflow: hidden;
           display: flex;
           align-items: center;
+          border-radius: 0.04rem;
 
           .imageItem {
             width: 100%;
+            height: auto;
             min-height: 100%;
             transition: all 0.5s;
           }

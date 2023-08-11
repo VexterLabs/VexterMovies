@@ -32,7 +32,7 @@ export const netBrowse = async (params: INetBrowseReq, language?: ELanguage): Pr
 
 // 查看更多
 export const netMoreBook = async (params: INetMoreReq, language?: ELanguage): Promise<INetMoreResult | 'BadRequest_404' | 'BadRequest_500'> => {
-  return await Service.post('/webfic/home/more', { pageNum: 1, pageSize: 30, ...params }, {
+  return await Service.post('/webfic/home/more', { pageNum: 1, pageSize: 15, ...params }, {
     headers: {
       language: language || ELanguage.ZhHans
     }

@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (response === 'BadRequest_404') return { notFound: true }
     let fields: ISitemapField[] = [];
     (response || []).forEach(val => {
-      const pages = Array.from({ length: Math.ceil(val.bookCount / 30) }, (v, i) => {
+      const pages = Array.from({ length: Math.ceil(val.bookCount / 15) }, (v, i) => {
         const _loc = `${options.loc}/more/${ColumnNameRoute?.[val.name]}` + (i > 0 ? `/${i + 1}` : '')
         return { ...options, loc: _loc }
       })
@@ -56,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (response === 'BadRequest_404') return { notFound: true }
     let fields: ISitemapField[] = [];
     (response || []).forEach(val => {
-      const pages = Array.from({ length: Math.ceil(val.total / 60) }, (v, i) => {
+      const pages = Array.from({ length: Math.ceil(val.total / 15) }, (v, i) => {
         let _loc = `/browse/${val.id}`;
         if (val.simpleLanguage !== ELanguage.ZhHans) {
           _loc = '/' + val.simpleLanguage + _loc
