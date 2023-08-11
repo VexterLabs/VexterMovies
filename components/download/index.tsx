@@ -39,7 +39,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
       blurDataURL={'/images/download/cover.png'}
       alt={ClientConfig.name}
     />
-    <Link href={shopLink}>
+    <Link rel={"nofollow"} href={shopLink}>
       <CopyToClipboard text={copyText} onCopy={() => {
         netIpUa(clipboard)
         HiveLog.trackDownload('turnPage_click', { book_ID: clipboard.bid, chapter_id: clipboard.cid })
