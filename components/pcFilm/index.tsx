@@ -77,7 +77,7 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
           </div>
         </div>
 
-        <Link rel={"nofollow"} href={`/download?filmId=${bookInfo.bookId}`} className={styles.playBtn}>
+        <Link rel={"nofollow"} href={`/download?filmId=${bookInfo?.replacedBookId || bookInfo.bookId}`} className={styles.playBtn}>
           <Image
             className={styles.playIcon}
             width={16}

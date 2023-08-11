@@ -78,7 +78,7 @@ const useLogParams = (pageProps: any): void => {
     let clipboardBookId, clipboardChapterId;
     const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.ZhHans) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
     if (router.pathname === pathData.book) {
-      clipboardBookId = pageProps?.bookInfo?.bookId;
+      clipboardBookId = pageProps?.bookInfo?.replacedBookId || pageProps?.bookInfo?.bookId;
     } else if (router.pathname === pathData.download) {
       clipboardBookId = pageProps?.filmId;
     } else {
