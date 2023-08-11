@@ -7,6 +7,7 @@ import PaginationCom from "@/components/common/paginationCom";
 import { IBrowseTypes } from "@/typings/browse.interface";
 import { PcEmpty } from "@/components/common/empty";
 import SecondList from "@/components/pcHome/secondList/SecondList";
+import { Tabs } from "antd-mobile";
 
 interface IProps {
   bookList: IBookItem[];
@@ -22,6 +23,22 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => 
   return <div className={styles.browseWrap}>
 
     <div className={styles.browseHeader}>
+      {/*<div className={styles.tabBox}>*/}
+      {/*  <Tabs*/}
+      {/*    className={styles.tabContent}*/}
+      {/*    activeLineMode={'fixed'}*/}
+      {/*    activeKey={String(typeTwoId)}*/}
+      {/*  >*/}
+      {/*    {types.map((item) => {*/}
+      {/*      const typeName = item.id === 0 ? t('browse.all') : item.name;*/}
+      {/*      return <Tabs.Tab title={<Link href={`/browse/${item.id}`}>*/}
+      {/*        {typeName}*/}
+      {/*      </Link>} key={item.id}/>*/}
+      {/*    })}*/}
+      {/*  </Tabs>*/}
+      {/*</div>*/}
+
+
       <div className={styles.tabsBox}>
         {types.map((item) => {
           const typeName = item.id === 0 ? t('browse.all') : item.name;

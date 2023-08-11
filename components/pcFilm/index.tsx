@@ -17,8 +17,6 @@ interface IProps {
 const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
   const { t } = useTranslation()
 
-  const routerToBook = `/download?filmId=${bookInfo.bookId}`;
-
   const router = useRouter();
 
   return <>

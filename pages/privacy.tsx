@@ -11,7 +11,6 @@ interface IProps {
   isPc: boolean;
 }
 
-/** 小说阅读吧 */
 const AgreementPrivacy: NextPage<IProps> = ({ isPc }) => {
   const { t } = useTranslation()
   return <>

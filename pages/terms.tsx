@@ -10,7 +10,7 @@ import styles from "@/styles/Terms.module.scss";
 interface IProps {
   isPc: boolean;
 }
-/** 小说阅读吧 */
+
 const AgreementUser: NextPage<IProps> = ({ isPc }) => {
   const { t } = useTranslation()
   return <>
