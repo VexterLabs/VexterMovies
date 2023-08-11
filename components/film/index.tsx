@@ -63,7 +63,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
         netIpUa(clipboard)
         HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
       }}>
-        <Link className={styles.footerBtn} href={shopLink}>
+        <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
           <Image
             className={styles.playIcon}
             width={48}

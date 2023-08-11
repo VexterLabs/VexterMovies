@@ -80,7 +80,7 @@ const useLogParams = (pageProps: any): void => {
     if (router.pathname === pathData.book) {
       clipboardBookId = pageProps?.bookInfo?.bookId;
     } else if (router.pathname === pathData.download) {
-      clipboardBookId = pageProps?.bookId;
+      clipboardBookId = pageProps?.filmId;
     } else {
       clipboardBookId = localeBookId
       clipboardChapterId = 0;

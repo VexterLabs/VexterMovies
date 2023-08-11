@@ -20,9 +20,9 @@ const PcStore: FC<IProps> = () => {
     const bookId = state.hive.clipboard.bid;
     const locale = state.hive.language;
     if (locale === ELanguage.ZhHans) {
-      return `${process.env.WebDomain}/download?bookId=${bookId}`
+      return `${process.env.WebDomain}/download?filmId=${bookId}`
     }
-    return `${process.env.WebDomain}/${router.locale}/download?bookId=${bookId}`
+    return `${process.env.WebDomain}/${router.locale}/download?filmId=${bookId}`
   })
 
   return <div className={styles.storeBox}>

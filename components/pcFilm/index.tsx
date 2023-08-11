@@ -17,7 +17,7 @@ interface IProps {
 const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
   const { t } = useTranslation()
 
-  const routerToBook = `/download?${bookInfo.bookId}`;
+  const routerToBook = `/download?filmId=${bookInfo.bookId}`;
 
   const router = useRouter();
 
@@ -61,25 +61,25 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
 
       <div className={styles.detailBoxRight}>
         <div className={styles.detailBoxRightTop}>
-          <Link href={routerToBook}>
+          <Link href={`/film/${bookInfo.bookId}`}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
           </Link>
-          <Link href={routerToBook} className={styles.chapterCount}>
+          <p className={styles.chapterCount}>
             {`${bookInfo.chapterCount || 0} ${t("home.episodes")}`}
-          </Link>
+          </p>
 
-          <Link href={routerToBook} className={styles.intro}>
+          <p className={styles.intro}>
             {bookInfo.introduction}
-          </Link>
+          </p>
 
           <div className={styles.tagsContent}>
             { (bookInfo?.tags || []).map(val => {
-              return <Link key={val} href={routerToBook} className={styles.tagItem}>{val}</Link>
+              return <div key={val} className={styles.tagItem}>{val}</div>
             })}
           </div>
         </div>
 
-        <Link href={`/download?${bookInfo.bookId}`} className={styles.playBtn}>
+        <Link rel={"nofollow"} href={`/download?filmId=${bookInfo.bookId}`} className={styles.playBtn}>
           <Image
             className={styles.playIcon}
             width={16}
