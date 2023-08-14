@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_OPTIONS='-r dz-next-log' next start",
+    "start": "NODE_OPTIONS='-r dz-next-log' next start -p 3001",
     "lint": "next lint"
   },
   "dependencies": {
