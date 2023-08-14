@@ -10,7 +10,7 @@ http://192.168.1.70:3000
 // 预发布域名
 https://yfbwww.dramaboxapp.com
 // 线上域名
-https://www.dramabox.com
+https://www.dramaboxapp.com
 ```
 
 ## 本地调试部署
