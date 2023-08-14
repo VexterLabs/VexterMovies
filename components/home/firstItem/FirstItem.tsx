@@ -3,7 +3,7 @@ import styles from '@/components/home/firstItem/FirstItem.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface IProps {
   dataSource: IBookItem[];
@@ -21,7 +21,7 @@ const FirstItem: FC<IProps> = ({ dataSource, priority }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
+            blurDataURL={filmItem.cover}
             width={218}
             height={294}
             src={filmItem.cover}
