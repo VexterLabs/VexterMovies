@@ -3,7 +3,7 @@ import styles from '@/components/pcHome/secondList/SecondList.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 
 interface IProps {
@@ -34,7 +34,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
+            blurDataURL={book.cover}
             width={272}
             height={363}
             src={book.cover}

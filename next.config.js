@@ -25,7 +25,7 @@ const IpUaUrlObj = {
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
 const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox-010000'; // 构建ID
+const buildId = 'dramabox-010001'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
@@ -39,6 +39,7 @@ console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ �
 
 const nextConfig = {
   reactStrictMode: true,
+  cleanDistDir: true,
   // Configuring the Build ID
   generateBuildId: async () => {
     return buildId;

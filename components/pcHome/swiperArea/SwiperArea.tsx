@@ -4,7 +4,7 @@ import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface IProps {
   bigList: IBookItem[];
@@ -23,7 +23,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
+            blurDataURL={bigList[0].cover}
             priority
             width={345}
             height={460}
@@ -54,7 +54,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
                 className={styles.imageItem}
                 onError={onImgError}
                 placeholder="blur"
-                blurDataURL={'/images/defaultFilm.png'}
+                blurDataURL={item.cover}
                 priority
                 width={165}
                 height={220}
