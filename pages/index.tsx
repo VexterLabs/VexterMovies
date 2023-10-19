@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }): P
       bigList,
       smallData,
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
     }
   }
 }

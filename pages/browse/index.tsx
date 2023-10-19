@@ -71,7 +71,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       typeTwoId: Number(typeTwoId),
       isPc: ownOs(ua).isPc,
       typeTwoName,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
     }
   }
 }

@@ -27,7 +27,7 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
     // @ts-ignore
     if (!TDK[_locale]) {
-      return TDK[ELanguage.ZhHans].index;
+      return TDK[ELanguage.English].index;
     }
     if (router.pathname === '/') {
       return TDK[_locale].index
@@ -59,8 +59,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     setPageTdk(getTdk())
   },[router, router.locale, t]); // eslint-disable-line
 
-  const getUrl = (lan = ELanguage.ZhHans) => {
-    const _locale = lan === ELanguage.ZhHans ? '' : `/${lan}`
+  const getUrl = (lan = ELanguage.English) => {
+    const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
     return process.env.WebDomain +_locale + _asPath;
   }
@@ -92,6 +92,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
       <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
       {/*防止xss攻击*/}
       <meta key="httpEquiv2" httpEquiv="Content-Security-Policy"/>
+      {/*Sets whether a web application runs in full-screen mode.*/}
+      <meta key={'ios_web'} name="apple-mobile-web-app-capable" content="yes" />
       <link rel="icon" href={'/favicon.ico'}/>
       <link rel="canonical" href={getUrl(router.locale as ELanguage)}/>
       <AlternateLink />

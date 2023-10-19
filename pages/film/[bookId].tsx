@@ -63,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isApple: isIos(ua),
       recommends,
       languages,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
     },
   }
 }

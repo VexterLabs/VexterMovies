@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       ...options,
       loc: options.loc + val,
       alternateRefs: languageArr.map(lan => {
-        const _loc = lan === ELanguage.ZhHans ? val : `/${lan}${val}`
+        const _loc = lan === ELanguage.English ? val : `/${lan}${val}`
         return { href: options.loc + _loc, hreflang: lan, hrefIsAbsolute: false }
       }),
       changefreq: 'monthly',
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     (response || []).forEach(val => {
       const pages = Array.from({ length: Math.ceil(val.total / 15) }, (v, i) => {
         let _loc = `/browse/${val.id}`;
-        if (val.simpleLanguage !== ELanguage.ZhHans) {
+        if (val.simpleLanguage !== ELanguage.English) {
           _loc = '/' + val.simpleLanguage + _loc
         }
         if (i > 0) {
@@ -95,7 +95,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         loc: `${options.loc}/film/${book.bookId}`,
         alternateRefs: (book.languages || []).map(lan => {
           let _loc = `/film/${book.bookId}`;
-          if (lan !== ELanguage.ZhHans) {
+          if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
           return {
@@ -124,7 +124,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         loc: `${options.loc}/film/${book.bookId}`,
         alternateRefs: (book.languages || []).map(lan => {
           let _loc = `/film/${book.bookId}`;
-          if (lan !== ELanguage.ZhHans) {
+          if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
           return {
