@@ -6,7 +6,6 @@ import { clipboardAsync, setClipboard, setLanguage } from "@/store/modules/hive.
 import { useAppDispatch, useAppSelector } from "@/store";
 import useHiveLog from "@/hooks/useHiveLog";
 import { netIpUa } from "@/server/clientLog";
-import { debounce } from "throttle-debounce";
 
 const pathData = {
   index: '/',
@@ -37,15 +36,11 @@ const useLogParams = (pageProps: any): void => {
   }, [clipboard]); // eslint-disable-line
 
   useEffect(() => {
-    initClipboard()
+    dispatch(clipboardAsync())
   }, []) // eslint-disable-line
 
-  const initClipboard = debounce(300,() => {
-    dispatch(clipboardAsync())
-  }, { atBegin: true })
-
   useEffect(() => {
-    dispatch(setLanguage((router.locale ?? ELanguage.ZhHans) as ELanguage))
+    dispatch(setLanguage((router.locale ?? ELanguage.English) as ELanguage))
     const { bid, cid } = getIds();
     dispatch(setClipboard({ bid, cid }));
     if (isReady) {
@@ -76,7 +71,7 @@ const useLogParams = (pageProps: any): void => {
 
   const getIds = (): { bid: string; cid: string | number } => {
     let clipboardBookId, clipboardChapterId;
-    const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.ZhHans) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
+    const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
     if (router.pathname === pathData.book) {
       clipboardBookId = pageProps?.bookInfo?.replacedBookId || pageProps?.bookInfo?.bookId;
     } else if (router.pathname === pathData.download) {

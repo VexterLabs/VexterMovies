@@ -25,7 +25,7 @@ export const clipboardAsync = createAsyncThunk<IClipboard>(
     };
     const ip = await netIpUa({
       ...clipboard,
-      bid: LanguageDefaultBookId[ELanguage.ZhHans],
+      bid: LanguageDefaultBookId[ELanguage.English],
       cid: 0,
       shareCode: 0
     })
@@ -59,7 +59,7 @@ export const hiveSlice = createSlice<IHiveStore, SliceCaseReducers<IHiveStore>>(
         h5fingerPrint: "",
       },
       copyText: '',
-      language: ELanguage.ZhHans
+      language: ELanguage.English
     }
   },
   reducers: {

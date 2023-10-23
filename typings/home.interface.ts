@@ -47,9 +47,9 @@ export enum ELanguage {
 }
 
 export const LanguageActions: { text: string; key: ELanguage }[] = [
+  { text: 'English', key: ELanguage.English },
   { text: '简体中文', key: ELanguage.ZhHans },
   { text: '繁體中文', key: ELanguage.Zh },
-  { text: 'English', key: ELanguage.English },
   { text: '한국인', key: ELanguage.Korean },
 ]
 

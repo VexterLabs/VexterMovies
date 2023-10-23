@@ -53,7 +53,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       positionName: name,
       pages,
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
     }
   }
 }
