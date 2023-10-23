@@ -9,6 +9,7 @@ import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsResult } from "next/types";
 import { SSRConfig } from "next-i18next";
+import { json } from 'stream/consumers';
 
 interface IProps extends SSRConfig {
   isPc: boolean;
@@ -34,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }): P
   }
   const bigList = (homeData.find(item => item.style === EHomeStyle.big)?.items || []).slice(0, 3);
   const smallData = homeData.filter(item => item.style === EHomeStyle.small)
+  console.log('smallData',JSON.stringify(smallData[0]))
   // 返回的参数将会按照 key 值赋值到 Home 组件的同名入参中
   return {
     props: {

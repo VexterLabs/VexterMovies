@@ -21,9 +21,8 @@ interface IProps {
 const Book: NextPage<IProps> = (
   { isPc, bookInfo, firstChapterId, isApple, recommends }
 ) => {
-
   return <>
-    <BookCrumbs bookInfo={bookInfo} isPc={isPc}/>
+    <BookCrumbs bookInfo={bookInfo} isPc={false}/>
     { isPc ?
       <PcFilm
         firstChapterId={firstChapterId}

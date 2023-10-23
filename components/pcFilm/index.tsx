@@ -20,7 +20,7 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
   const router = useRouter();
 
   return <>
-    <div className={styles.backHead}>
+    <div className={styles.backHead} style={true ? {display: 'none'} : {}}>
       <div className={styles.backBox}>
         <div className={styles.backBoxLink} onClick={() => {
           router.back();
