@@ -39,6 +39,12 @@ export interface IBookItem {
   typeTwoIds: string[];
 }
 
+export interface IEpisopeItem {
+  name: string,
+  cover: string,
+  chapterCount:number,
+}
+
 export enum ELanguage {
   English = 'en',
   ZhHans = 'zhHans', // 简体中文

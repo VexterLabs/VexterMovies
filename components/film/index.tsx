@@ -10,6 +10,8 @@ import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
+import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
+import EpisopeDialog from '@/components/layout/episopeDialog/episopeNav/EpisopeNav';
 
 interface IProps {
   bookInfo: IBookItem;
@@ -38,51 +40,72 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
     setIsShowMore(true)
   }
 
-  return <div className={styles.detailBox}>
-    <Image
-      onError={onImgError}
-      className={styles.bookCover}
-      width={280}
-      height={378}
-      src={bookInfo.cover}
-      placeholder="blur"
-      blurDataURL={'/images/defaultFilm.png'}
-      alt={bookInfo.bookName}
-    />
+  return <div className={styles.filmWrap}>
+    <div className={styles.detailBox}>
+      <Image
+        onError={onImgError}
+        className={styles.bookCover}
+        width={280}
+        height={378}
+        src={bookInfo.cover}
+        placeholder="blur"
+        blurDataURL={'/images/defaultFilm.png'}
+        alt={bookInfo.bookName}
+      />
 
-    {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
+      {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
 
-    {bookInfo?.tags && bookInfo?.tags.length > 0 ? <div className={styles.tagBox}>
-      {(bookInfo?.tags || []).map(val => {
-        return <div key={val} className={styles.tagItem}>{val}</div>
-      })}
-    </div> : null}
+      {bookInfo?.tags && bookInfo?.tags.length > 0 ? <div className={styles.tagBox}>
+        {(bookInfo?.tags || []).map(val => {
+          return <div key={val} className={styles.tagItem}>{val}</div>
+        })}
+      </div> : null}
 
-    <div className={styles.footerBox}>
-      <CopyToClipboard text={copyText} onCopy={() => {
-        netIpUa(clipboard)
-        HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-      }}>
-        <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
-          <Image
-            className={styles.playIcon}
-            width={48}
-            height={48}
-            src={'/images/book/play-icon2.png'}
-            alt={''}
-          />
-          <span>{t("home.play")}</span>
-        </Link>
-      </CopyToClipboard>
+      <div className={styles.footerBox}>
+        <CopyToClipboard text={copyText} onCopy={() => {
+          netIpUa(clipboard)
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+        }}>
+          <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
+            <Image
+              className={styles.playIcon}
+              width={48}
+              height={48}
+              src={'/images/book/play-d.png'}
+              alt={''}
+            />
+            <span>{t("home.play")}</span>
+          </Link>
+        </CopyToClipboard>
+      </div>
+
+      {introduction ? <div className={styles.introBox}>
+        <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
+        <p className={isShowMore ? styles.introTextMore : styles.introText}>{introduction}</p>
+        {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
+      </div> : null}
+    </div>
+    
+    <div className={styles.episodeNav}>
+      <div className={styles.leftInfo}>
+        <p className={styles.innerPt}>Episodes List</p>
+        <p className={styles.innerPl}>(180 Episodes)</p>
+      </div>
+      <div className={styles.rightImg}>
+        <Image
+          className={styles.arrowIcon}
+          width={24}
+          height={24}
+          src={'/images/book/arrow-r-d.png'}
+          alt={''}
+        />
+      </div>
     </div>
 
-    {introduction ? <div className={styles.introBox}>
-      <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
-      <p className={isShowMore ? styles.introTextMore : styles.introText}>{introduction}</p>
-      {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
-    </div> : null}
-
+    <EpisopeNav></EpisopeNav>
+    <EpisopeDialog></EpisopeDialog>
   </div>
+  
 }
 
 export default MFilm;

@@ -23,7 +23,7 @@ const Book: NextPage<IProps> = (
   { isPc, bookInfo, firstChapterId, isApple, recommends }
 ) => {
   return <>
-    <BookCrumbs bookInfo={bookInfo} isPc={false}/>
+    <BookCrumbs bookInfo={bookInfo} isPc={isPc}/>
     { isPc ?
       <PcFilm
         firstChapterId={firstChapterId}

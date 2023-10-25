@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import styles from '@/components/pcHome/secondList/SecondList.module.scss'
+import styles from '@/components/pcLike/PcLike.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
@@ -11,13 +11,13 @@ interface IProps {
   priority?: boolean;
 }
 
+
 const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
     return null
   }
-
   return <div className={styles.secondListWrap}>
     {dataSource.map((book) => {
       const {
@@ -44,14 +44,32 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
         </Link>
 
         <Link className={styles.chapterCount} href={routerToBookInfo}>
-          <p>{`${chapterCount} ${t("home.episodes")}`}</p>
+          <Image
+            priority={priority}
+            className={styles.playIcon}
+            onError={onImgError}
+            placeholder="blur"
+            blurDataURL='/images/layout/play.png'
+            width={16}
+            height={16}
+            src='/images/layout/play.png'
+            alt='png'
+          />
+          <p className={styles.chapterText}>{`${chapterCount} ${t("home.episodes")}`}</p>
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookName}>
           {bookName}
         </Link>
+         <Link href={routerToBookInfo} className={styles.bookNameBox}>
+          <div className={styles.tagBox}>
+            {(book?.tags || []).slice(0, 2).map(val => {
+              return <div key={val} className={styles.tagItem}>{val}</div>
+            })}
+          </div>
+        </Link>
 
-        <Link href={routerToBookInfo} className={styles.bookNameBox}>
+        {/* <Link href={routerToBookInfo} className={styles.bookNameBox}>
           <div className={styles.bookNameHover}>
             {bookName}
           </div>
@@ -60,7 +78,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
               return <div key={val} className={styles.tagItem}>{val}</div>
             })}
           </div>
-        </Link>
+        </Link> */}
       </div>
     })}
   </div>
