@@ -73,3 +73,15 @@ export const ColumnNameRouteReversion = {
   'trending': EHomeName.Trending,
   'hidden-gems': EHomeName.HiddenGems,
 }
+
+export enum EnumPosition {
+  banner = 'banner',
+  popular = 'Popular',
+  trending = 'Trending',
+  ranking = 'Ranking',
+  'new-releases' = 'New Releases',
+  romance = 'Romance',
+  completed = 'Completed',
+  'editors-picks' = "Editors' Picks",
+  customInset = "inset"
+}

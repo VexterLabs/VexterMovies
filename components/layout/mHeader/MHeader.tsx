@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "@/components/layout/mHeader/MHeader.module.scss";
 import MNav from "@/components/layout/mHeader/mNav";
 import MLanguage from "@/components/layout/mHeader/mLanguage/MLanguage";
@@ -12,6 +12,17 @@ interface IProps {
 const MHeader: FC<IProps> = () => {
   const [visible, setVisible] = useState(false);
   const router = useRouter()
+
+  const [isLanguageShow, setIsLanguageShow] = useState<boolean | false>(false);
+
+  useEffect(() => {
+    try {
+      setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
+    } catch (error) {
+      
+    }
+  }, [router])
+
   const navIconClick = () => {
     if (visible) {
       setVisible(false)
@@ -44,7 +55,9 @@ const MHeader: FC<IProps> = () => {
         blurDataURL={'/images/logo2.png'}
         alt={ClientConfig.name}
       />
-      <MLanguage/>
+      {
+        !!isLanguageShow && <MLanguage/>
+      }
 
     </div>
     <div className={styles.headerOccupy}/>
