@@ -1,0 +1,57 @@
+.dialogBox {
+  height: 8.49rem;
+  width: 100%;
+  // border: 1px solid red;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #191919;
+  z-index: 99;
+  overflow-y: auto;
+  // display: flex;
+  // flex-direction: column;
+  padding: 0.24rem 0.32rem;
+  .topInfo {
+    display: flex;
+    justify-content: space-between;
+    .closeIcon {
+      width: 0.48rem;
+      height: 0.48rem;
+    }
+  }
+  .title {
+    font-size: 0.32rem;
+    line-height: 0.42rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.24rem;
+  }
+  .titleTab {
+    display: flex;
+    margin-bottom: 0.24rem;
+    .tabTop {
+      display: inline-block;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.28rem;
+      margin-right: 0.34rem;
+    }
+  }
+  .episodeList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 0.1rem;
+    grid-row-gap: 0.1rem;
+    // border: 1px solid red;
+    .episodeItem {
+      display: flex;
+      justify-content: center;
+      align-items: centers;
+      width: 1.3rem;
+      height: 1rem;
+      background-color: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.08rem;
+    }
+  }
+  
+}

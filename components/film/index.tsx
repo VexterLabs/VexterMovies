@@ -11,7 +11,7 @@ import ClientConfig from "@/client.config";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
-import EpisopeDialog from '@/components/layout/episopeDialog/episopeNav/EpisopeNav';
+import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 
 interface IProps {
   bookInfo: IBookItem;
