@@ -1,0 +1,51 @@
+.tagWrap {
+  background-color: #040404;
+  padding-bottom: 0.5rem;
+  min-height: calc(100vh - 2rem);
+  font-family: Ubuntu-Regular, Ubuntu;
+
+  .keywordBox {
+    width: 13rem;
+    margin: 0 auto;
+    padding: 0.24rem 0 0.32rem;
+
+    .title {
+      font-size: 0.28rem;
+      color: $theme_color;
+      font-weight: bold;
+      line-height: 0.32rem;
+      font-family: Ubuntu-Bold, Ubuntu;
+    }
+    .sub {
+      margin: 0.1rem 0 0.3rem;
+      font-size: 0.14rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      line-height: 0.16rem;
+      white-space: pre-wrap;
+
+      span {
+        opacity: 1;
+      }
+
+    }
+
+    .keywordConnect {
+
+      .keywordConnectTitle {
+        font-size: 0.14rem;
+        font-weight: bold;
+        color: rgba(255,255,255,0.8);
+        line-height: 0.16rem;
+        font-family: SFPro-Bold, SFPro;
+      }
+
+      .keywordConnectItem {
+        display: inline-block;
+        font-size: 0.16rem;
+        padding: 0.08rem 0.24rem 0.06rem 0;
+        color: $theme_color;
+      }
+    }
+  }
+}

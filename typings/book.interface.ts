@@ -84,3 +84,25 @@ export interface INetKeywordTagRes {
   keyword: string;
   keyStatus: 0 | 1;
 }
+
+export interface ITagBookItem extends IBook {
+  bookId: string;
+  bookName: string;
+  copyrighted: boolean;
+  cover: string;
+  introduction: string;
+  recommend: boolean;
+  tag: string;
+  simpleLanguage: ELanguage;
+  isHot: ETagBookItemIsHot;
+}
+
+export enum EAggregatePageProperties {
+  有版权书籍 = 'y',
+  推荐书籍 = "t"
+}
+
+export enum ETagBookItemIsHot {
+  yes = 1,
+  no = 0
+}
