@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
-import styles from '@/components/common/empty/index.module.scss'
 import Image from "next/image";
+import styles from '@/components/common/empty/index.module.scss'
 
 export const PcEmpty: FC = () => {
   const { t } = useTranslation();

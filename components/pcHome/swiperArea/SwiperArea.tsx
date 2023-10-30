@@ -24,7 +24,6 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             onError={onImgError}
             placeholder="blur"
             blurDataURL={bigList[0].cover}
-            priority
             width={345}
             height={460}
             alt={bigList[0].bookName}
@@ -54,8 +53,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
                 className={styles.imageItem}
                 onError={onImgError}
                 placeholder="blur"
-                blurDataURL={item.cover}
-                priority
+                blurDataURL={'/images/defaultFilm.png'}
                 width={165}
                 height={220}
                 alt={item.bookName}

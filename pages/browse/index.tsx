@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const response = await netBrowse({
     typeTwoId: Number(typeTwoId) || 0,
     pageNo: Number(page),
-    pageSize: 15
+    pageSize: 18
   }, locale as ELanguage)
   if (response === 'BadRequest_404') {
     return { notFound: true }

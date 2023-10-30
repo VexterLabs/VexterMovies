@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { Dropdown, DropdownRef } from "antd-mobile";
-import styles from "@/components/browse/detail/DropMenu.module.scss";
 import Link from "next/link";
 import { IBrowseTypes } from "@/typings/browse.interface";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useAppSelector } from "@/store";
+import styles from "@/components/browse/detail/DropMenu.module.scss";
 
 interface IProps {
   types: IBrowseTypes[];
