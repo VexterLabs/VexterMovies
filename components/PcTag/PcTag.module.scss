@@ -33,6 +33,7 @@
     .keywordConnect {
 
       .keywordConnectTitle {
+        margin-bottom: 0.08rem;
         font-size: 0.14rem;
         font-weight: bold;
         color: rgba(255,255,255,0.8);
@@ -43,7 +44,10 @@
       .keywordConnectItem {
         display: inline-block;
         font-size: 0.16rem;
-        padding: 0.08rem 0.24rem 0.06rem 0;
+        padding: 0.06rem 0.08rem;
+        margin-right: 0.16rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 16px;
         color: $theme_color;
       }
     }

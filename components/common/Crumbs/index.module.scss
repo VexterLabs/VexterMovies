@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding: 0.26rem;
+  padding: 0.26rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.14);
 
   .crumbsItem {
@@ -32,11 +32,31 @@
       width: 0.16rem;
       height: 0.16rem;
     }
-  }
 
+    .crumbsIconM {
+      width: 0.24rem;
+      height: 0.24rem;
+    }
+
+  }
+  
   .crumbsItemTxt {
     color: rgba(255,255,255,0.8);
     font-size: 0.18rem;
     opacity: 0.9;
   }
+
+  .crumbsItemM {
+    font-size: 0.24rem;
+  }
+
+  .crumbsItemTxtM {
+    font-size: 0.24rem;
+  }
+
+}
+
+.crumbsWrapM {
+  width: 100%;
+  padding: 0.26rem;
 }

@@ -9,6 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
 import { ESearchType } from "typings/sitemap.interface";
 import useHiveLog from "@/hooks/useHiveLog";
+import CrumbsTagCom from "@/components/common/Crumbs/CrumbsTagCom";
 import dataListMock from "./data.json"
 
 interface IProps {
@@ -26,6 +27,7 @@ const KeywordsPage: NextPage<IProps> = ({ isPc, currentPage, totalPage = 0, keyw
   }
 
   return <>
+    <CrumbsTagCom isShow={true} isPc={isPc} keyword=""/>
     {isPc ?
       <PcKeywords keywordList={keywordList} pageNo={currentPage} totalPage={totalPage} keywordClick={keywordClick}/>
       : <MKeywords keywordList={keywordList} pageNo={currentPage} totalPage={totalPage} keywordClick={keywordClick}/>}

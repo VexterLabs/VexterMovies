@@ -73,19 +73,19 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
               />
             </Link>
           </div>
-          <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
+          {/* <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
             <a
               className={styles.bookAuthor}
               dangerouslySetInnerHTML={{ __html: authorDom }}
               onClick={() => tagBookClick(keyword, bookId, recommend)}/>
-          </Link>
+          </Link> */}
 
-          {/* {typeTwoNames[0] ? <Link href={browseLink} locale={simpleLanguage} legacyBehavior>
+          {typeTwoNames[0] ? <Link href={browseLink} locale={simpleLanguage} legacyBehavior>
             <a className={styles.bookTypeTwoName}
                onClick={() => tagBookClick(keyword, bookId, recommend)}>
               {typeTwoNames[0]}
             </a>
-          </Link> : null} */}
+          </Link> : null}
 
           <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
             <a

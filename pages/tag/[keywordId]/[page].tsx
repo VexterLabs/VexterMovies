@@ -4,6 +4,7 @@ import { ownOs } from "@/utils/ownOs";
 import { netKeywordTag } from "@/server/home";
 import CrumbsTagCom from "@/components/common/Crumbs/CrumbsTagCom";
 import PcTag from "@/components/PcTag/PcTag";
+import MTag from "@/components/Tag/MTag";
 import { ITagBookItem, IKeywordItem } from "typings/book.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
@@ -23,9 +24,16 @@ const ConvergencePage: NextPage<IProps> = (
   { isPc, currentPage, pages = 0, keywordId, keyword, bookList, relationKeywords = [] }) => {
 
   return <>
-    <CrumbsTagCom isPc={isPc} keyword={keyword}/>
-    {
+    <CrumbsTagCom isShow={true} isPc={isPc} keyword={keyword}/>
+    {isPc ?
       <PcTag
+        relationKeywords={relationKeywords}
+        pageNo={currentPage}
+        totalPage={pages}
+        keywordId={keywordId}
+        keyword={keyword}
+        bookList={bookList}/> :
+      <MTag
         relationKeywords={relationKeywords}
         pageNo={currentPage}
         totalPage={pages}
