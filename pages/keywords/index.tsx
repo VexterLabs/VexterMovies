@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
 
   // const { data = [], currentPage = 1, pages = 1 } = res;
 
-  const data = dataListMock, currentPage = 2, pages = 1000;
+  const data = dataListMock, currentPage = 1, pages = 1000;
   
   return {
     props: {

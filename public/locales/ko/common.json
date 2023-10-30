@@ -56,6 +56,16 @@
     "relation2": "for you.\nThis includes books related to ",
     "relation3": ",\nas well as ",
     "relation4": "related content information."
+  },
+  "banner": {
+    "downloadTip": "Tip: Copy the link and open it in the mobile browser",
+    "PrivacyPolicy": "Privacy Policy",
+    "TermsOfUse": "Terms of Use",
+    "DownloadApp": "Download App",
+    "AllRightsReserved": "All rights reserved",
+    "OpenApp": "Open the Webfic App to read more wonderful content",
+    "Open": "Open",
+    "Search": "0 search results for the book you're looking for / 0 search results"
   }
 
 }

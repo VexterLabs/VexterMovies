@@ -10,6 +10,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 0.16rem;
+  margin-bottom: 0.24rem;
 }
 
 .linkItem, .pageItem {
