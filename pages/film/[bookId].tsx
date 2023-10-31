@@ -46,6 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const { bookId = '' } = query as { bookId: string;};
 
   const response = await netBook({ bookId }, locale as ELanguage);
+  console.log('response---1', JSON.stringify(response))
   if (response === 'BadRequest_404') {
     return { notFound: true }
   }

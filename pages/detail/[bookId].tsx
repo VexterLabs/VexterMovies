@@ -93,6 +93,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (response === 'BadRequest_500') {
     return { redirect: { destination: '/500', permanent: false } }
   }
+  console.log('response-detail',response)
   const { book = {} as IBookItem, chapter, languages = [], recommends = [] } = response;
 
   return {

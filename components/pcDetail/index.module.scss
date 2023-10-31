@@ -12,7 +12,6 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.16);
     width: 14.4rem;
     margin: 0 auto;
-    border: 1px solid red;
     .backBoxLink {
       display: inline-block;
       position: relative;
@@ -137,7 +136,7 @@
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 8;
         word-wrap: break-word;
       }
 

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import styles from "@/components/pcEpisope/index.module.scss";
+import styles from "@/components/pcSeries/index.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -7,6 +7,7 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IEpisopeItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 
+// 该页面是展示pc端更多剧情的，需要修改后期
 interface IProps {
   episope: IEpisopeItem[]
   // bookInfo: IBookItem;
@@ -14,7 +15,7 @@ interface IProps {
   // recommends: IBookItem[];
 }
 
-const PcEpisope: FC<IProps> = ({ episope = [] }) => {
+const PcSeries: FC<IProps> = ({ episope = [] }) => {
   const { t } = useTranslation()
   const [showMore, setMore] = useState<Boolean>(false)
   const [listData, setData] = useState(episope.slice(0,11))
@@ -72,4 +73,4 @@ const PcEpisope: FC<IProps> = ({ episope = [] }) => {
   </>
 }
 
-export default PcEpisope;
+export default PcSeries;

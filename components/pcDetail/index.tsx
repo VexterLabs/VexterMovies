@@ -7,7 +7,7 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IEpisopeItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
-import PcEpisope from '@/components/pcEpisope';
+import PcSeries from '@/components/pcSeries';
 import PcLike from '@/components/pcLike';
 
 interface IProps {
@@ -70,7 +70,8 @@ const PcDetail: FC<IProps> = ({ bookInfo, firstChapterId, recommends = [], episo
         </Link>
       </div>
     </div>
-    <PcEpisope episope={episopeList}></PcEpisope>
+    {/* pc端详情页剧集列表 */}
+    <PcSeries episope={episopeList}></PcSeries>
     {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
     <PcLike dataSource={mockRecommends}></PcLike>
     {/* {recommends.length > 0 ? <div className={styles.recommendBox}>

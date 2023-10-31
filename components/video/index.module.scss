@@ -1,0 +1,46 @@
+.videoContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 0.32rem;
+    .videoArea {
+        height: 6.4rem;
+        width: 100%;
+        margin-bottom: 0.16rem;
+        .videoPlace {
+            height: 6.4rem;
+            width: 100%;
+        }
+    }
+    .videoIntro {
+        .videoTit {
+            font-size: 0.32rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 0.42rem;
+            font-weight: 500;
+            margin-bottom: 0.18rem;
+        }
+        .videoScore {
+            display: flex;
+            align-items: center;
+            .epoImg {
+                width: 0.2rem;
+                height: 0.2rem;
+            }
+            .epoScore {
+                font-size: 0.2rem;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 0.18rem;
+                margin-left: 0.1rem;
+            }
+        }
+        .videoTag {
+            margin-bottom: 0.08rem;
+        }
+        .videoDesc {
+            color: rgba(255,255,255,0.4);
+            line-height: 0.4rem;
+            font-size: 0.28rem;
+        }
+    }
+}
