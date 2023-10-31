@@ -9,6 +9,7 @@ import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsResult } from "next/types";
 import { SSRConfig } from "next-i18next";
+import { json } from 'stream/consumers';
 
 interface IProps extends SSRConfig {
   isPc: boolean;

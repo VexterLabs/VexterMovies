@@ -8,6 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import MBrowse from "@/components/browse";
 import PcBrowse from "@/components/pcBrowse";
 import { IBrowseTypes } from "@/typings/browse.interface";
+import { useRouter } from 'next/router';
 
 interface IProps {
   isPc: boolean;
@@ -20,7 +21,8 @@ interface IProps {
 
 const Browse: NextPage<IProps> = (
   { isPc, types, bookList, pageNo, pages, typeTwoId }) => {
-
+    const router = useRouter()
+  console.log('router', router)
   return <>
     {isPc ?
       <PcBrowse
@@ -43,7 +45,7 @@ const Browse: NextPage<IProps> = (
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
   const { page = '1', typeTwoId = 0 } = query;
-
+  
   const response = await netBrowse({
     typeTwoId: Number(typeTwoId) || 0,
     pageNo: Number(page),

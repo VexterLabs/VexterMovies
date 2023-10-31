@@ -6,6 +6,7 @@ import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcMore from "@/components/pcMore";
 import MMore from "@/components/more";
+import { useRouter } from "next/router";
 
 interface IProps {
   isPc: boolean;
@@ -15,7 +16,8 @@ interface IProps {
   pages: number;
 }
 
-const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages }) => {
+const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages,positionName }) => {
+
   return <>
     {isPc ? <PcMore pageNo={pageNo} pages={pages} moreData={moreData} /> :
       <MMore pageNo={pageNo} pages={pages} moreData={moreData}/>

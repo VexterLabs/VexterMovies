@@ -1,22 +1,23 @@
 import React, { FC } from 'react'
+import styles from '@/components/pcLike/PcLike.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
-import styles from '@/components/pcHome/secondList/SecondList.module.scss'
 
 interface IProps {
   dataSource: IBookItem[];
+  priority?: boolean;
 }
 
-const SecondList: FC<IProps> = ({ dataSource = [] }) => {
+
+const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
     return null
   }
-
   return <div className={styles.secondListWrap}>
     {dataSource.map((book) => {
       const {
@@ -30,26 +31,45 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
           <Image
+            priority={priority}
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={228}
-            height={304}
+            blurDataURL={book.cover}
+            width={272}
+            height={363}
             src={book.cover}
             alt={book.bookName}
           />
         </Link>
 
         <Link className={styles.chapterCount} href={routerToBookInfo}>
-          <p>{`${chapterCount} ${t("home.episodes")}`}</p>
+          <Image
+            priority={priority}
+            className={styles.playIcon}
+            onError={onImgError}
+            placeholder="blur"
+            blurDataURL='/images/layout/play.png'
+            width={16}
+            height={16}
+            src='/images/layout/play.png'
+            alt='png'
+          />
+          <p className={styles.chapterText}>{`${chapterCount} ${t("home.episodes")}`}</p>
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookName}>
           {bookName}
         </Link>
+         <Link href={routerToBookInfo} className={styles.bookNameBox}>
+          <div className={styles.tagBox}>
+            {(book?.tags || []).slice(0, 2).map(val => {
+              return <div key={val} className={styles.tagItem}>{val}</div>
+            })}
+          </div>
+        </Link>
 
-        <Link href={routerToBookInfo} className={styles.bookNameBox}>
+        {/* <Link href={routerToBookInfo} className={styles.bookNameBox}>
           <div className={styles.bookNameHover}>
             {bookName}
           </div>
@@ -58,7 +78,7 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
               return <div key={val} className={styles.tagItem}>{val}</div>
             })}
           </div>
-        </Link>
+        </Link> */}
       </div>
     })}
   </div>
