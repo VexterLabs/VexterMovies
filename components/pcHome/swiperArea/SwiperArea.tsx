@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss'
+import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import Image from "next/legacy/image";
+import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss';
 
 interface IProps {
   bigList: IBookItem[];
@@ -23,7 +23,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={bigList[0].cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={345}
             height={460}
             alt={bigList[0].bookName}
@@ -37,7 +37,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
           </div>
 
           <div className={styles.leftCardContentBottom}>
-            { tags.map(val => {
+            {tags.map(val => {
               return <div key={val} className={styles.leftTag}>{val}</div>
             })}
           </div>
@@ -45,7 +45,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
       </div>
 
       <div className={styles.rightCard}>
-        { [ bigList[1], bigList[2] ].map(item => {
+        {[bigList[1], bigList[2]].map(item => {
           return <div key={item.bookId} className={styles.rightCardItem}>
             <Link href={`/film/${item.bookId}`} className={styles.rightCardItemImg}>
               <Image
@@ -69,13 +69,13 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
                 <p className={styles.intro}>{item.introduction}</p>
               </div>
               <div className={styles.rightCardContentBottom}>
-                { (item?.tags || []).map(val => {
+                {(item?.tags || []).map(val => {
                   return <div key={val} className={styles.rightTag}>{val}</div>
                 })}
               </div>
             </Link>
           </div>
-        }) }
+        })}
       </div>
     </div>
   </div>

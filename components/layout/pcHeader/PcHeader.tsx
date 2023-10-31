@@ -27,8 +27,8 @@ const PcHeader: FC<IProps> = () => {
           <Link href={'/'} className={styles.logoTxtBox}>
             <Image
               className={styles.logoTxt}
-              width={40}
-              height={40}
+              width={33}
+              height={33}
               src={'/images/logo.png'}
               alt={ClientConfig.name}
             />
