@@ -5,9 +5,10 @@ import PcHeader from "@/components/layout/pcHeader/PcHeader";
 import PcFooter from "@/components/layout/pcFooter/PcFooter";
 import useLogParams from "@/hooks/useLogParams";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setDevice } from "@/store/modules/app.module";
+import { setDevice, setFooterAdVisible } from "@/store/modules/app.module";
 import { EDevice } from "@/store/store.interfaces";
 import MHeader from "@/components/layout/mHeader/MHeader";
+import FooterAd from "@/components/layout/FooterAd";
 import styles from "@/components/layout/index.module.scss"
 
 interface IProps {
@@ -17,6 +18,7 @@ interface IProps {
 
 const DLayout: FC<IProps> = ({ children, pageProps }) => {
   const device = useAppSelector(state => state.app.device);
+  const footerAdVisible = useAppSelector(state => state.app.footerAdVisible);
   const dispatch = useAppDispatch();
   const [domVisible, setDomVisible] = useState(false);
 
@@ -62,9 +64,12 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   return (
     <>
       <MHeader/>
-      <main className={styles.mWrap}>
+      <main className={`styles.mWrap ${footerAdVisible ? styles.mWrapPaddingBo : ''}`}>
         {children}
       </main>
+      {
+        !!footerAdVisible && <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } />
+      }
     </>
   );
 }

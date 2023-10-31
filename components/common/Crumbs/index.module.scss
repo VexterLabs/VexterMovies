@@ -1,0 +1,62 @@
+.crumbsTagWrapBox {
+  background-color: #040404;
+  font-family: Ubuntu-Regular, Ubuntu;
+}
+
+.crumbsWrap {
+  width: 13rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.26rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+
+  .crumbsItem {
+    display: flex;
+    align-items: center;
+    margin-right: 0.08rem;
+    height: 0.28rem;
+    font-size: 0.18rem;
+    font-family: SFPro-Regular, SFPro;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    line-height: 0.28rem;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .crumbsIcon {
+      margin-left: 0.1rem;
+      width: 0.16rem;
+      height: 0.16rem;
+    }
+
+    .crumbsIconM {
+      width: 0.24rem;
+      height: 0.24rem;
+    }
+
+  }
+  
+  .crumbsItemTxt {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.18rem;
+    opacity: 0.9;
+  }
+
+  .crumbsItemM {
+    font-size: 0.24rem;
+  }
+
+  .crumbsItemTxtM {
+    font-size: 0.24rem;
+  }
+
+}
+
+.crumbsWrapM {
+  width: 100%;
+  padding: 0.26rem;
+}

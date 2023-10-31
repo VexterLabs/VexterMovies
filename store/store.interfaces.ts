@@ -15,4 +15,5 @@ export enum EDevice {
 export interface IAppStore {
   device: EDevice;
   isPopChange: boolean;
+  footerAdVisible: boolean;
 }
