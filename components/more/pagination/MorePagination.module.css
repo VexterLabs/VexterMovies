@@ -30,3 +30,8 @@
 .pageItem {
   color: rgba(255,255,255,0.2);
 }
+
+.prevNextIcon {
+  width: 0.32rem;
+  height: 0.32rem;
+}
