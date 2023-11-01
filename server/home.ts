@@ -32,6 +32,11 @@ export const netBook = (params: INetBookReq, language?: ELanguage): Promise<INet
   return poFetch('/webfic/book/detail', { ...params, language },  language || ELanguage.English);
 }
 
+// 获取书籍详情--新接口查询书籍详情
+export const netBookDetail = (params: INetBookReq, language?: ELanguage): Promise<INetBookRes | 'BadRequest_404' | 'BadRequest_500'> => {
+  return poFetch('/webfic/book/detail/v2', { ...params, language },  language || ELanguage.English);
+}
+
 // 获取所有书籍id
 export const netAllBook = (params: INetAllBookReq): Promise<INetAllBookRes[] | 'BadRequest_404' | 'BadRequest_500'> => {
   return geFetch('/webfic/website/all', params)

@@ -16,7 +16,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
   const items = bigList.map((item) => (
     <Swiper.Item key={item.bookId} className={styles.content}>
       <div className={styles.swiperItem}>
-        <Link href={`/film/${item.bookId}`} className={styles.contentImgBox}>
+        <Link href={`/detail/${item.bookId}`} className={styles.contentImgBox}>
           <Image
             priority
             className={styles.imageItem}
@@ -30,7 +30,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
           />
         </Link>
 
-        <Link className={styles.rightCard} href={`/film/${item.bookId}`}>
+        <Link className={styles.rightCard} href={`/detail/${item.bookId}`}>
           <div className={styles.rightCardTop}>
             <h2 className={styles.bookName} >
               {item.bookName}

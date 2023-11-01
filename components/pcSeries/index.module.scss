@@ -26,6 +26,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 0.15rem;
+    margin-bottom: 0.32rem;
     .listBox {
       .listItem {
         position: relative;
@@ -103,6 +104,7 @@
           position: relative;
           width: 0.88rem;
           height: 1.17rem;
+          filter: contrast(65%);
           &::after {
             position: absolute;
             top: 50%;
@@ -165,6 +167,37 @@
       justify-content: center;
       align-items: center;
       border: 1px solid rgba(255,255,255,0.2);
+    }
+  }
+  .tabItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .tabIte {
+      height: 0.4rem;
+      width: 0.72rem;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      color: rgba(255, 255, 255, .9);
+      font-weight: 500;
+      font-size: 0.14rem;
+      text-align: center;
+      line-height: 0.4rem;
+      margin-right: 0.08rem;
+      cursor: pointer;
+    }
+    .tabIteActive {
+      height: 0.4rem;
+      width: 0.72rem;
+      background: #FF375F;
+      border-radius: 4px;
+      color: rgba(255, 255, 255, .9);
+      font-weight: 500;
+      font-size: 0.14rem;
+      text-align: center;
+      line-height: 0.4rem;
+      margin-right: 0.08rem;
+      cursor: pointer;
     }
   }
 }

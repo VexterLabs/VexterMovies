@@ -2,11 +2,11 @@ import React from "react";
 import { GetServerSideProps, GetServerSidePropsResult, GetStaticPathsResult, NextPage } from "next";
 import { netBook } from "@/server/home";
 import PcFilm from "@/components/pcFilm";
-import MFilm from "@/components/film";
+import MFilm from "@/components/detail";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { ELanguage, IBookItem } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import BookCrumbs from "@/components/film/crumbs";
+import BookCrumbs from "@/components/detail/crumbs";
 import { SSRConfig } from "next-i18next";
 
 interface IProps extends SSRConfig {

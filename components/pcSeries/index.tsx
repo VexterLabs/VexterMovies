@@ -4,29 +4,87 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItem, IEpisopeItem } from "@/typings/home.interface";
+import { IBookItemDetail, IChapterList, IEpisopeTab } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 
 // 该页面是展示pc端更多剧情的，需要修改后期
 interface IProps {
-  episope: IEpisopeItem[]
-  // bookInfo: IBookItem;
-  // firstChapterId: string;
-  // recommends: IBookItem[];
+  chapterList: IChapterList[]
 }
 
-const PcSeries: FC<IProps> = ({ episope = [] }) => {
+const PcSeries: FC<IProps> = ({ chapterList = [] }) => {
   const { t } = useTranslation()
-  const [showMore, setMore] = useState<Boolean>(false)
-  const [listData, setData] = useState(episope.slice(0,11))
+  const [showMore, setMore] = useState<Boolean>(true)
+  // const [listData, setData] = useState(chapterList.length > 11 ? chapterList.slice(0,11) : chapterList)
+  const [videoList, setVideoList] = useState(chapterList)
+  const [tabArr, setTab] = useState([])
+  const [curIndx, setCurindex] = useState(0)
+
+  // 处理剧集是否展示相关属性showEposide
+  const dealVideoData = (curInd: number) => {
+    setCurindex(curInd)
+    if(videoList.length < 12) {//剧集为11集或者小于11集
+      setMore(false)//不展示showMore
+      videoList.map(item => {
+        item.showEposide = true
+      })
+      setVideoList(videoList)
+    } else {
+      // setMore(false)//展示showMore
+      // 如果showmor按钮存在
+      if(showMore) {
+        videoList.map((item, index) => {
+          if(index < 11) {
+            item.showEposide = true
+          } else {
+            item.showEposide = false
+          }
+          setVideoList(videoList)
+        })
+      } else {
+        videoList.map((item, index) => {
+          if(Math.floor(index/30) === curInd) {//30集为一显示目录
+            item.showEposide = true
+          } else {
+            item.showEposide = false
+          }
+          setVideoList(videoList)
+        })
+      }
+    }
+  }
+
+  // 处理tab数据
+  const dealTabArr = () => {
+    const len = videoList && videoList.length
+    console.log('videoList', videoList)
+    const temArr = Array.from({length: Math.ceil(len/30)},(v, i) => {
+      return {
+        id: i + 'tabIndex',
+        label: 1 + i * 30 + '-' + (i + 1) * 30
+      }
+    })
+    setTab(temArr as any)
+    console.log('tabArr', tabArr)
+  }
+
+  // 点击showMore，隐藏shouwmore按钮 + 展示tab + 完整剧集切换
   const setDataFn = () => {
-    setData(episope)
     // 判断更多框是否要出现
-    setMore(true)
+    setMore(false)
+    videoList.map((item, index) => {
+      if(Math.floor(index/30) === 0) {//30集为一显示目录
+        item.showEposide = true
+      } else {
+        item.showEposide = false
+      }
+      setVideoList(videoList)
+    })
   }
   useEffect(() => {
-    
-  })
+    dealVideoData(0)
+    dealTabArr()
+  },[])
   
   return <>
     <div className={styles.episopeBox}>
@@ -35,40 +93,48 @@ const PcSeries: FC<IProps> = ({ episope = [] }) => {
         <div className={styles.allCounts}>(180 Episopes)</div>
       </div>
       <div className={styles.listInfo}>
-        { listData.map(episopeItem => {
+        { videoList.map(item => {
           const {
             name,
             cover,
-            chapterCount
-          } = episopeItem
+            index
+          } = item
           const routerToVideoInfo = `/`
-          return <div className={styles.listBox}>
+          return <div className={styles.listBox} style={item.showEposide?{}:{display: 'none'}}>
             <Link href={routerToVideoInfo} className={styles.listLink}>
-              <div key={chapterCount} className={styles.listItem}>
+              <div key={index} className={item.unlock ? styles.listItem : styles.listItemMask}>
                 <div className={styles.imgLeft}>
                   <Image
                     className={styles.imageItem}
                     onError={onImgError}
                     placeholder="blur"
-                    blurDataURL={episopeItem.cover}
+                    blurDataURL={item.cover}
                     width={88}
                     height={117}
-                    src={episopeItem.cover}
-                    alt={episopeItem.name}
+                    src={item.cover}
+                    alt={item.name}
                   />
                 </div>
                 <div className={styles.rightIntro}>
-                  <p className={styles.title}>{episopeItem.name}</p>
-                  <p className={styles.pageNum}>{episopeItem.chapterCount}</p>
+                  <p className={styles.title}>{item.name}</p>
+                  <p className={styles.pageNum}>{item.index}</p>
                 </div>
               </div>
             </Link>
           </div>
         })}
-        <div className={styles.listItem} style={showMore && listData.length > 11 ? {display:'none'} : {}} onClick={() => setDataFn()}>
+        <div className={styles.listItem} style={showMore && videoList.length > 11 ? {} : {display:'none'}} onClick={() => setDataFn()}>
           <p className={styles.viewMore}>View More</p>
         </div>
       </div>
+      {tabArr?.length > 0 ? <div className={styles.tabItem} style={showMore ? {display:'none'} : {}}>
+        {tabArr?.length && tabArr.map((item:any,index:number) => {
+          return <div 
+            className={index==curIndx ? styles.tabIteActive : styles.tabIte}  
+            onClick={() => dealVideoData(index)}>{item.label}</div>
+        })}
+        </div> 
+      : null}
     </div>
   </>
 }

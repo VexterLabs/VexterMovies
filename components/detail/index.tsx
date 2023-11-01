@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
-import styles from "@/components/film/index.module.scss";
+import styles from "@/components/detail/index.module.scss";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItem } from "@/typings/home.interface";
+import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
@@ -12,13 +12,17 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
+import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
+import LikeItem from "@/components/detail/likeItem/LikeItem";
 
 interface IProps {
-  bookInfo: IBookItem;
+  bookInfo: IBookItemDetail;
   isApple: boolean;
+  recommends: IBookItemDetail[];
+  chapterList: IChapterList[];
 }
 
-const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
+const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [] }) => {
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
@@ -102,8 +106,14 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
       </div>
     </div>
 
+    <div className={styles.mightLike}>
+      {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
+      <LikeTitle title="You Might Like"/>
+      <LikeItem dataSource={recommends || []}/>
+    </div>
+
     <EpisopeNav></EpisopeNav>
-    <EpisopeDialog></EpisopeDialog>
+    <EpisopeDialog chapterList={chapterList}></EpisopeDialog>
   </div>
   
 }

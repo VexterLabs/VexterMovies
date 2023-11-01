@@ -39,10 +39,40 @@ export interface IBookItem {
   typeTwoIds: string[];
 }
 
-export interface IEpisopeItem {
-  name: string,
-  cover: string,
-  chapterCount:number,
+export interface IBookItemDetail {
+  bookId: string;
+  bookName: string;
+  chapterCount: number;
+  cover: string;
+  followCount: number;
+  introduction: string;
+  labels: string[];
+  language: string;
+  simpleLanguage: string;
+  tagIds: string;
+  tags: string[];
+  typeTwoIds: number[];
+  typeTwoName: string;
+  typeTwoNames: string[];
+  viewCount: number;
+  replacedBookId?: string;
+}
+
+export interface IChapterList {
+  bookId: string;
+  id: string;
+  index: number;
+  mp4: string;
+  name: string;
+  unlock: boolean;
+  cover: string;
+  showEposide?: boolean;
+}
+
+
+export interface IEpisopeTab {
+  id: string,
+  label: string,
 }
 
 export enum ELanguage {
@@ -64,6 +94,7 @@ export enum EHomeName {
   MustSees = '必看好剧',
   Trending = '当前热播',
   HiddenGems = '精彩剧集',
+  // MightLike = '为你推荐',
 }
 
 export const ColumnNameRoute = {
@@ -71,6 +102,7 @@ export const ColumnNameRoute = {
   [EHomeName.MustSees]: 'must-sees',
   [EHomeName.Trending]: 'trending',
   [EHomeName.HiddenGems]: 'hidden-gems',
+  // [EHomeName.MightLike]: 'might-like',
 }
 
 export const ColumnNameRouteReversion = {
@@ -78,4 +110,5 @@ export const ColumnNameRouteReversion = {
   'must-sees': EHomeName.MustSees,
   'trending': EHomeName.Trending,
   'hidden-gems': EHomeName.HiddenGems,
+  // 'might-like': EHomeName.MightLike,
 }

@@ -1,21 +1,22 @@
-import { ELanguage, IBookItem } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interface";
 
 export interface INetBookReq {
   bookId: string;
   language?: ELanguage;
 }
 
-export interface INetBookRes extends IBookItem{
-  book: IBookItem;
-  recommends: IBookItem[];
-  chapter: {
-    id: string;
-    name: string;
-  };
-  column: {
-    bookId: string;
-    bookName: string;
-    columnName: string;
-  };
-  languages: ELanguage[]
+export interface INetBookRes extends IBookItemDetail{
+  book: IBookItemDetail;
+  recommends: IBookItemDetail[];
+  chapterList: IChapterList[];
+  // chapter: {
+  //   id: string;
+  //   name: string;
+  // };
+  // column: {
+  //   bookId: string;
+  //   bookName: string;
+  //   columnName: string;
+  // };
+  // languages: ELanguage[]
 }
