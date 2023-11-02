@@ -58,7 +58,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
           </div>
         </div>
 
-        <Link rel={"nofollow"} href={`/download?filmId=${bookInfo?.replacedBookId || bookInfo.bookId}`} className={styles.playBtn}>
+        <Link rel={"nofollow"}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${bookInfo?.replacedBookId || bookInfo.bookId}`} className={styles.playBtn}>
           <Image
             className={styles.playIcon}
             width={16}
@@ -73,7 +73,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
     {/* pc端详情页剧集列表 */}
     <PcSeries chapterList={chapterList} chapterName={chapterName}></PcSeries>
     {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-    <div className="styles.mightLikc">
+    <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
       {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
       <PcHomeTitle title='YOU Might Like'/>
       <PcLike dataSource={recommends}></PcLike>

@@ -3,7 +3,8 @@ import styles from '@/components/pcDetail/pcLike/PcLike.module.scss'
 import { IBookItemDetail } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import ImageLegacy from "next/legacy/image";
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 
 interface IProps {
@@ -30,8 +31,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], priority = false }) => {
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
-          <Image
-            priority={priority}
+          <ImageLegacy
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
@@ -45,15 +45,12 @@ const PcLike: FC<IProps> = ({ dataSource = [], priority = false }) => {
 
         <Link className={styles.chapterCount} href={routerToBookInfo}>
           <Image
-            priority={priority}
             className={styles.playIcon}
             onError={onImgError}
-            placeholder="blur"
-            blurDataURL='/images/layout/play.png'
             width={16}
             height={16}
             src='/images/layout/play.png'
-            alt='png'
+            alt=''
           />
           <span className={styles.chapterText}>{`${chapterCount} ${t("home.episodes")}`}</span>
         </Link>

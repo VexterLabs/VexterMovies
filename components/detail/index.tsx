@@ -100,7 +100,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div> : null}
     </div>
     
-    <div className={styles.episodeNav}>
+    <div className={styles.episodeNav} onClick={() => {showEpisodeDialog()}}>
       <div className={styles.leftInfo}>
         <p className={styles.innerPt}>Episodes List</p>
         <p className={styles.innerPl}>(180 Episodes)</p>
@@ -116,7 +116,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div>
     </div>
 
-    <div className={styles.mightLike}>
+    <div className={styles.mightLike} style={recommends?.length>0 ? {} : {display:'none'}}>
       {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
       <LikeTitle title="You Might Like"/>
       <LikeItem dataSource={recommends || []}/>

@@ -8,13 +8,6 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import { Router, useRouter } from "next/router";
 
 
-enum clsSt {
-  wait = 0,
-  early = 3,
-  during = 1,
-  lateExtra = 4,
-  end = 2
-}
 
 interface IProps {
 

@@ -17,20 +17,20 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) 
   const { t } = useTranslation();
   const [tabArr, setTab] = useState([])
   // const [listArr, setList] = useState(chapterList)
-  const [videoList, setVideoList] = useState(chapterList)
+  const [videoList, setVideoList] = useState<IChapterList[]>(chapterList)
   const [isShow, setShow] = useState(false)
   // 处理剧集数据
   const dealVideoData = (curInd: number) => {
     console.log('curInd', curInd)
-    videoList.map((val,ind) => {
-      if(Math.floor(ind/30) === curInd) {
-        val.showEposide = true
-      } else {
-        val.showEposide = false
-      }
+
+    setVideoList(prevState => {
+      return prevState.map((val,ind) => { 
+        if(Math.floor(ind/30) === curInd) {
+          return {...val, showEposide: true}
+        }
+        return {...val, showEposide: false}
+      })
     })
-    const newCatArr = videoList.concat()
-    setVideoList(newCatArr)
   }
   // 处理tab数据
   const dealTabArr = () => {

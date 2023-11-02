@@ -9,8 +9,8 @@ const WebDomainObj = {
 }
 // 网站服务api
 const BaseUrlObj = {
-  // test: 'http://192.168.0.253:8080',
-  test: 'http://192.168.0.253:8080',
+  // test: 'http://192.168.0.253:8080', 
+  test: 'http://192.168.0.253:8080',// http://192.168.1.70:8080
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
 }
@@ -96,9 +96,9 @@ const nextConfig = {
     IpUaUrl,
   },
   // 参考 https://nextjs.org/docs/messages/swc-disabled
-  experimental: {
-    forceSwcTransforms: true,
-  },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
 }
 
 module.exports = nextConfig;

@@ -91,7 +91,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
     <div className={styles.episopeBox}>
       <div className={styles.topInfo}>
         <div className={styles.episopeTitle}>EpisodesList</div>
-        <div className={styles.allCounts}>(180 Episopes)</div>
+        <div className={styles.allCounts}>{chapterList&&chapterList.length} Episopes</div>
       </div>
       <div className={styles.listInfo}>
         { videoList.map(item => {
@@ -128,7 +128,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
           <p className={styles.viewMore}>View More</p>
         </div>
       </div>
-      {tabArr?.length > 0 ? <div className={styles.tabItem} style={showMore ? {display:'none'} : {}}>
+      {tabArr?.length > 0 ? <div className={styles.tabItem} style={(showMore || videoList.length < 11) ? {display:'none'} : {}}>
         {tabArr?.length && tabArr.map((item:any,index:number) => {
           return <div 
             className={index==curIndx ? styles.tabIteActive : styles.tabIte}  
