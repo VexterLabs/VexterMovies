@@ -1,0 +1,47 @@
+.keywordsWrap {
+  padding-bottom: 0.5rem;
+  min-height: calc(100vh - 2rem);
+  background-color: #040404;
+  font-family: Ubuntu-Regular, Ubuntu;
+
+  .keywordBox {
+    width: 13rem;
+    margin: 0 auto;
+    padding: 0.20rem 0 0.40rem;
+    height: 100%;
+
+    .keywordItem {
+      display: inline-block;
+      margin: 0 0.16rem 0.20rem 0;
+      padding: 0.06rem 0.08rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 0.16rem;
+      font-size: 0.16rem;
+      color: $theme_color;
+      font-weight: 400;
+      
+    }
+  }
+}
+
+.mainContentEmpty {
+  width: 100%;
+  background-color: #FFFFFF;
+  padding-top: 2rem;
+  height: calc(100vh - 2rem);
+}
+
+.emptyImg {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.3rem;
+}
+
+.pcEmptyIntro {
+  font-size: 0.18rem;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 0.6);
+  text-align: center;
+  margin: 0 auto 0.56rem;
+  line-height: 0.22rem;
+}
