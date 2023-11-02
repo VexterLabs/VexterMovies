@@ -7,17 +7,18 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItemDetail, IChapterList, ColumnNameRoute } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
-import PcSeries from '@/components/pcSeries';
-import PcLike from '@/components/pcLike';
+import PcSeries from '@/components/pcDetail/pcSeries';
+import PcLike from '@/components/pcDetail/pcLike';
 import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
 
 interface IProps {
   bookInfo: IBookItemDetail;
   recommends: IBookItemDetail[];
   chapterList: IChapterList[];
+  chapterName: string;
 }
 
-const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = []}) => {
+const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], chapterName}) => {
   const { t } = useTranslation()
 
   const router = useRouter();
@@ -70,7 +71,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = []}) =>
       </div>
     </div>
     {/* pc端详情页剧集列表 */}
-    <PcSeries chapterList={chapterList}></PcSeries>
+    <PcSeries chapterList={chapterList} chapterName={chapterName}></PcSeries>
     {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
     <div className="styles.mightLikc">
       {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}

@@ -104,7 +104,7 @@
           position: relative;
           width: 0.88rem;
           height: 1.17rem;
-          filter: contrast(65%);
+          backdrop-filter: blur(20px);
           &::after {
             position: absolute;
             top: 50%;

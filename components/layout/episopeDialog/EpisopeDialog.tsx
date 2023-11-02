@@ -8,51 +8,49 @@ import Item from 'antd-mobile/es/components/dropdown/item';
 import { IChapterList } from "@/typings/home.interface";
 
 interface IProps {
-  chapterList:IChapterList[]
+  chapterList:IChapterList[];
+  showDialog: boolean;
+  closeDialog: Function;
 }
 
-const EpisopeDialog: FC<IProps> = ({chapterList = []}) => {
+const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) => {
   const { t } = useTranslation();
-  
   const [tabArr, setTab] = useState([])
-  const [listArr, setList] = useState(chapterList)
-  const [isShow, setShow] = useState(true)
-  const show={display:"block",color:'red',fontSize:"32px"}
-  const hide={display:"none"}
+  // const [listArr, setList] = useState(chapterList)
+  const [videoList, setVideoList] = useState(chapterList)
+  const [isShow, setShow] = useState(false)
   // 处理剧集数据
-  const dealArr = (curInd: number) => {
-    chapterList.map((val,ind) => {
+  const dealVideoData = (curInd: number) => {
+    console.log('curInd', curInd)
+    videoList.map((val,ind) => {
       if(Math.floor(ind/30) === curInd) {
         val.showEposide = true
       } else {
         val.showEposide = false
       }
     })
-    setList(chapterList as any)
-  }
-  const closeDialog = () => {
-
-    setShow(false)
+    const newCatArr = videoList.concat()
+    setVideoList(newCatArr)
   }
   // 处理tab数据
   const dealTabArr = () => {
-    const leg = listArr && listArr.length
-    const temArr = Array.from({length: Math.ceil(leg/30)},(v, i) => {
+    const leg = videoList && videoList.length
+    const temTabArr = Array.from({length: Math.ceil(leg/30)},(v, i) => {
       return {
         id: i + 'tab',
         label: 1 + i * 30 + '-' + (i + 1) * 30
       }
     })
-    setTab(temArr as any)
+    setTab(temTabArr as any)
   }
   useEffect(() => {
     // 默认展示剧集的第一页
-    dealArr(0)
+    dealVideoData(0)
     dealTabArr()
   },[])
-  return <div className={styles.dialogBox} style={isShow ? {} : {display:'none'}}>
+  return <div className={styles.dialogBox} style={showDialog ? {} : {display:'none'}}>
     <div className={styles.topInfo}>
-      <div className={styles.title}>Returning to ancient times and becoming the emperor</div>
+      <div className={styles.title}>{videoList&&videoList.length>0&&videoList[0].name}</div>
       <Image
         className={styles.closeIcon}
         onClick={() => {closeDialog()}}
@@ -65,18 +63,26 @@ const EpisopeDialog: FC<IProps> = ({chapterList = []}) => {
     <div className={styles.titleTab}>
       {
         tabArr.map((item: any,ind: number) => {
-          return <span onClick={() => dealArr(ind)} className={styles.tabTop}>{item.label}</span>
+          return <div onClick={() => dealVideoData(ind)} className={styles.tabTop} key={ind}>{item.label}</div>
         })
       }
     </div>
     
     <div className={styles.episodeList}>
-      {
-        listArr.map((item:any,index:number) => {
-          return <div className={styles.episodeItem} style={item.showEposide?show:hide}>
-            <span>{item.index}</span>
-          </div>
-        })
+      {videoList?.length&&videoList.map((item:any,ind:number) => {
+        const {
+          name,
+          cover,
+          index
+        } = item
+        return <div className={styles.linkBox} key={ind} style={item.showEposide?{}:{display:"none"}}>
+          <Link href='/' className={styles.linkBox}>
+            <div className={item.unlock ? styles.episodeItem : styles.episodeItemLock}>
+              <span>{item.name}</span>
+            </div>
+          </Link>
+        </div>
+      })
       }
     </div>
   </div>

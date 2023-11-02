@@ -23,6 +23,7 @@ interface IProps {
 }
 
 const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [] }) => {
+  console.log('bookInfo', bookInfo)
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
@@ -39,9 +40,18 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
     introduction
   } = bookInfo;
 
-  const [isShowMore, setIsShowMore] = useState(false);
+  const [isShowMore, setIsShowMore] = useState(false);//查看介绍详情
+  const [showDialog, setEpiDialog] = useState(false);//展示所有剧集的弹框
   const onMore = () => {
     setIsShowMore(true)
+  }
+  // 展示剧集弹框
+  const showEpisodeDialog = () => {
+    setEpiDialog(true)
+  }
+  // 关闭剧集弹框
+  const closeEpisodeDialog = () => {
+    setEpiDialog(false)
   }
 
   return <div className={styles.filmWrap}>
@@ -112,8 +122,45 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       <LikeItem dataSource={recommends || []}/>
     </div>
 
-    <EpisopeNav></EpisopeNav>
-    <EpisopeDialog chapterList={chapterList}></EpisopeDialog>
+    <EpisopeDialog 
+      chapterList={chapterList} 
+      closeDialog={closeEpisodeDialog}
+      showDialog={showDialog}></EpisopeDialog>
+    <div className={styles.navBox}>
+      <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
+        <Image
+          className={styles.navIcon}
+          width={64}
+          height={64}
+          src={'/images/book/episode-d.png'}
+          alt={'more'}
+        />
+        {/* <span>{t('home.privacyPolicy')}</span> */}
+        <span>Episodes</span>
+      </div>
+      <Link href={'/terms'} className={styles.playIcon}>
+        <Image
+          className={styles.navIcon}
+          width={64}
+          height={64}
+          src={'/images/book/botplay-d.png'}
+          alt={'more'}
+        />
+        {/* <span>{t('home.termsOfUse')}</span> */}
+        <span className={styles.playTxt}>Play</span>
+      </Link>
+      <Link href={'/terms'} className={styles.downloadIcon}>
+        <Image
+          className={styles.navIcon}
+          width={64}
+          height={64}
+          src={'/images/book/download-d.png'}
+          alt={'more'}
+        />
+        {/* <span>{t('home.termsOfUse')}</span> */}
+        <span>Download</span>
+      </Link>
+    </div>
   </div>
   
 }

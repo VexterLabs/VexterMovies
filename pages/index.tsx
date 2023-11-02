@@ -35,7 +35,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }): P
   }
   const bigList = (homeData.find(item => item.style === EHomeStyle.big)?.items || []).slice(0, 3);
   const smallData = homeData.filter(item => item.style === EHomeStyle.small)
-  console.log('smallData', JSON.stringify(smallData))
   // 返回的参数将会按照 key 值赋值到 Home 组件的同名入参中
   return {
     props: {

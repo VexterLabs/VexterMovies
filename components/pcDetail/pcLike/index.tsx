@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import styles from '@/components/pcLike/PcLike.module.scss'
+import styles from '@/components/pcDetail/pcLike/PcLike.module.scss'
 import { IBookItemDetail } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";

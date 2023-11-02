@@ -12,9 +12,9 @@ interface IProps {
 
 const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
   return <div className={styles.firstItemWrap}>
-    {dataSource && dataSource.length > 0 ? (dataSource as IBookItemDetail[]).map((detailItem) => {
+    {dataSource && dataSource.length > 0 ? (dataSource as IBookItemDetail[]).map((detailItem, index) => {
 
-      return <div key={detailItem.bookId} className={styles.itemBox}>
+      return <div key={index} className={styles.itemBox}>
         <Link href={`/detail/${detailItem.bookId}`} className={styles.bookImage}>
           <Image
             priority={priority}

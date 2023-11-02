@@ -34,7 +34,7 @@ export const netBook = (params: INetBookReq, language?: ELanguage): Promise<INet
 
 // 获取书籍详情--新接口查询书籍详情
 export const netBookDetail = (params: INetBookReq, language?: ELanguage): Promise<INetBookRes | 'BadRequest_404' | 'BadRequest_500'> => {
-  return poFetch('/webfic/book/detail/v2', { ...params, language },  language || ELanguage.English);
+  return geFetch('/webfic/book/detail/v2', { ...params, language });
 }
 
 // 获取所有书籍id

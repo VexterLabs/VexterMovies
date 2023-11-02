@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import styles from "@/components/pcSeries/index.module.scss";
+import styles from "@/components/pcDetail/pcSeries/index.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -9,10 +9,12 @@ import { useTranslation } from "next-i18next";
 
 // 该页面是展示pc端更多剧情的，需要修改后期
 interface IProps {
-  chapterList: IChapterList[]
+  chapterList: IChapterList[];
+  chapterName: string;
 }
 
-const PcSeries: FC<IProps> = ({ chapterList = [] }) => {
+const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
+  console.log('chapterList', chapterList)
   const { t } = useTranslation()
   const [showMore, setMore] = useState<Boolean>(true)
   // const [listData, setData] = useState(chapterList.length > 11 ? chapterList.slice(0,11) : chapterList)
@@ -57,7 +59,6 @@ const PcSeries: FC<IProps> = ({ chapterList = [] }) => {
   // 处理tab数据
   const dealTabArr = () => {
     const len = videoList && videoList.length
-    console.log('videoList', videoList)
     const temArr = Array.from({length: Math.ceil(len/30)},(v, i) => {
       return {
         id: i + 'tabIndex',
@@ -116,8 +117,8 @@ const PcSeries: FC<IProps> = ({ chapterList = [] }) => {
                   />
                 </div>
                 <div className={styles.rightIntro}>
-                  <p className={styles.title}>{item.name}</p>
-                  <p className={styles.pageNum}>{item.index}</p>
+                  <p className={styles.title}>{chapterName}</p>
+                  <p className={styles.pageNum}>{item.name}</p>
                 </div>
               </div>
             </Link>

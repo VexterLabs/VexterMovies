@@ -1,7 +1,7 @@
 import { ELanguage, IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interface";
 
 export interface INetBookReq {
-  bookId: string;
+  id: string;
   language?: ELanguage;
 }
 
