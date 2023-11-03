@@ -4,21 +4,21 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItem, IEpisopeItem } from "@/typings/home.interface";
+import { IBookItemDetail, IChapterList, ColumnNameRoute } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
-import PcEpisope from '@/components/pcEpisope';
-import PcLike from '@/components/pcLike';
+import PcSeries from '@/components/pcDetail/pcSeries';
+import PcLike from '@/components/pcDetail/pcLike';
+import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
 
 interface IProps {
-  bookInfo: IBookItem;
-  firstChapterId: string;
-  recommends: IBookItem[];
-  episopeList:IEpisopeItem[];
-  mockRecommends:IBookItem[];
+  bookInfo: IBookItemDetail;
+  recommends: IBookItemDetail[];
+  chapterList: IChapterList[];
+  chapterName: string;
 }
 
-const PcDetail: FC<IProps> = ({ bookInfo, firstChapterId, recommends = [], episopeList = [], mockRecommends = []  }) => {
+const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], chapterName}) => {
   const { t } = useTranslation()
 
   const router = useRouter();
@@ -40,7 +40,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, firstChapterId, recommends = [], episo
 
       <div className={styles.detailBoxRight}>
         <div className={styles.detailBoxRightTop}>
-          <Link href={`/film/${bookInfo.bookId}`}>
+          <Link href={`/detail/${bookInfo.bookId}`}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
           </Link>
           {/* <p className={styles.chapterCount}>
@@ -70,9 +70,15 @@ const PcDetail: FC<IProps> = ({ bookInfo, firstChapterId, recommends = [], episo
         </Link>
       </div>
     </div>
-    <PcEpisope episope={episopeList}></PcEpisope>
+    {/* pc端详情页剧集列表 */}
+    <PcSeries chapterList={chapterList} chapterName={chapterName}></PcSeries>
     {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-    <PcLike dataSource={mockRecommends}></PcLike>
+    <div className="styles.mightLikc">
+      {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
+      <PcHomeTitle title='YOU Might Like'/>
+      <PcLike dataSource={recommends}></PcLike>
+    </div>
+    
     {/* {recommends.length > 0 ? <div className={styles.recommendBox}>
       <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
       <SecondList dataSource={recommends}/>

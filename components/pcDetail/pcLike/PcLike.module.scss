@@ -34,32 +34,31 @@
       z-index: 10;
       width: 100%;
       // height: 0.56rem;
+      // border: 1px solid red;
 
       top: 2.73rem;
-      left: 0;
+      left: 0.08rem;
       // padding-top: 0.3rem;
       padding-right: 0.08rem;
-      // border: 1px solid red;
-      .playIcon {
+      height: 0.25rem;
+      line-height: 0.25rem;
+      display: flex;
+      align-items: center;
+      .playIcons {
         width: 0.16rem;
         height: 0.16rem;
+        border: 1px solid pink;
       }
       .chapterText {
-        // text-align: right;
         font-size: 0.14rem;
-        font-weight: 400;
-        // height: 100%;
-        // height: 0.16rem;
         color: rgba(255, 255, 255, 0.8);
-        display: inline-block;
-        // border: 1px solid pink;
+        margin-left: 0.02rem;
       }
       
 
     }
 
     .bookName {
-      //margin-top: 0.08rem;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.9);
       font-size: 0.16rem;
@@ -81,8 +80,6 @@
       position: relative;
       z-index: 2;
       display: block;
-      // padding: 0.12rem;
-      // background-color: red;
       border-radius: 0 0 0.04rem 0.04rem;
       top: 0.45rem;
 

@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
-import styles from "@/components/film/index.module.scss";
+import styles from "@/components/detail/index.module.scss";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItem } from "@/typings/home.interface";
+import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
@@ -12,13 +12,18 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
+import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
+import LikeItem from "@/components/detail/likeItem/LikeItem";
 
 interface IProps {
-  bookInfo: IBookItem;
+  bookInfo: IBookItemDetail;
   isApple: boolean;
+  recommends: IBookItemDetail[];
+  chapterList: IChapterList[];
 }
 
-const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
+const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [] }) => {
+  console.log('bookInfo', bookInfo)
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
@@ -35,9 +40,18 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
     introduction
   } = bookInfo;
 
-  const [isShowMore, setIsShowMore] = useState(false);
+  const [isShowMore, setIsShowMore] = useState(false);//查看介绍详情
+  const [showDialog, setEpiDialog] = useState(false);//展示所有剧集的弹框
   const onMore = () => {
     setIsShowMore(true)
+  }
+  // 展示剧集弹框
+  const showEpisodeDialog = () => {
+    setEpiDialog(true)
+  }
+  // 关闭剧集弹框
+  const closeEpisodeDialog = () => {
+    setEpiDialog(false)
   }
 
   return <div className={styles.filmWrap}>
@@ -102,8 +116,51 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
       </div>
     </div>
 
-    <EpisopeNav></EpisopeNav>
-    <EpisopeDialog></EpisopeDialog>
+    <div className={styles.mightLike}>
+      {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
+      <LikeTitle title="You Might Like"/>
+      <LikeItem dataSource={recommends || []}/>
+    </div>
+
+    <EpisopeDialog 
+      chapterList={chapterList} 
+      closeDialog={closeEpisodeDialog}
+      showDialog={showDialog}></EpisopeDialog>
+    <div className={styles.navBox}>
+      <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
+        <Image
+          className={styles.navIcon}
+          width={64}
+          height={64}
+          src={'/images/book/episode-d.png'}
+          alt={'more'}
+        />
+        {/* <span>{t('home.privacyPolicy')}</span> */}
+        <span>Episodes</span>
+      </div>
+      <Link href={'/terms'} className={styles.playIcon}>
+        <Image
+          className={styles.navIcon}
+          width={64}
+          height={64}
+          src={'/images/book/botplay-d.png'}
+          alt={'more'}
+        />
+        {/* <span>{t('home.termsOfUse')}</span> */}
+        <span className={styles.playTxt}>Play</span>
+      </Link>
+      <Link href={'/terms'} className={styles.downloadIcon}>
+        <Image
+          className={styles.navIcon}
+          width={64}
+          height={64}
+          src={'/images/book/download-d.png'}
+          alt={'more'}
+        />
+        {/* <span>{t('home.termsOfUse')}</span> */}
+        <span>Download</span>
+      </Link>
+    </div>
   </div>
   
 }

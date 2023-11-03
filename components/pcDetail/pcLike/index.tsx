@@ -1,18 +1,18 @@
 import React, { FC } from 'react'
-import styles from '@/components/pcLike/PcLike.module.scss'
-import { IBookItem } from "@/typings/home.interface";
+import styles from '@/components/pcDetail/pcLike/PcLike.module.scss'
+import { IBookItemDetail } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 
 interface IProps {
-  dataSource: IBookItem[];
+  dataSource: IBookItemDetail[];
   priority?: boolean;
 }
 
 
-const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
+const PcLike: FC<IProps> = ({ dataSource = [], priority = false }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -55,7 +55,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
             src='/images/layout/play.png'
             alt='png'
           />
-          <p className={styles.chapterText}>{`${chapterCount} ${t("home.episodes")}`}</p>
+          <span className={styles.chapterText}>{`${chapterCount} ${t("home.episodes")}`}</span>
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookName}>
@@ -68,20 +68,9 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
             })}
           </div>
         </Link>
-
-        {/* <Link href={routerToBookInfo} className={styles.bookNameBox}>
-          <div className={styles.bookNameHover}>
-            {bookName}
-          </div>
-          <div className={styles.tagBox}>
-            {(book?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
-          </div>
-        </Link> */}
       </div>
     })}
   </div>
 }
 
-export default SecondList;
+export default PcLike;

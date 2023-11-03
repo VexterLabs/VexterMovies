@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/components/film/crumbs/index.module.scss";
+import styles from "@/components/pcDetail/crumbs/index.module.scss";
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -10,7 +10,7 @@ interface IProps {
   isPc?: boolean;
 }
 
-const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
+const PcCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
   const { t } = useTranslation();
 
   const typeTwoId = bookInfo.typeTwoIds?.[0] || 0;
@@ -24,8 +24,8 @@ const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
       {t('home.home')}
       <Image
         className={styles.crumbsIcon}
-        width={48}
-        height={48}
+        width={16}
+        height={16}
         src={'/images/layout/link.png'}
         alt={'>'}
       />
@@ -34,8 +34,8 @@ const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
       {typeTwoName}
       <Image
         className={styles.crumbsIcon}
-        width={48}
-        height={48}
+        width={16}
+        height={16}
         src={'/images/layout/link.png'}
         alt={'>'}
       />
@@ -44,4 +44,4 @@ const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
   </div>
 }
 
-export default BookCrumbs;
+export default PcCrumbs;

@@ -11,7 +11,7 @@ const pathData = {
   index: '/',
   more: '/more/[position]',
   browse: '/browse/[typeTwoId]',
-  book: '/film/[bookId]',
+  book: '/detail/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',

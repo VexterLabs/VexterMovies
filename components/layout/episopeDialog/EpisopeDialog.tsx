@@ -5,179 +5,52 @@ import { useTranslation } from "next-i18next";
 import ClientConfig from "@/client.config";
 import Image from "next/image";
 import Item from 'antd-mobile/es/components/dropdown/item';
+import { IChapterList } from "@/typings/home.interface";
 
 interface IProps {
-
+  chapterList:IChapterList[];
+  showDialog: boolean;
+  closeDialog: Function;
 }
 
-const EpisopeDialog: FC<IProps> = () => {
+const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) => {
   const { t } = useTranslation();
-  const dataList = [
-    {key:1,href:'/',styleShow:true},
-    {key:2,href:'/',styleShow:true},
-    {key:3,href:'/',styleShow:true},
-    {key:4,href:'/',styleShow:true},
-    {key:5,href:'/',styleShow:true},
-    {key:6,href:'/',styleShow:true},
-    {key:7,href:'/',styleShow:true},
-    {key:8,href:'/',styleShow:true},
-    {key:9,href:'/',styleShow:true},
-    {key:10,href:'/',styleShow:true},
-    {key:11,href:'/',styleShow:true},
-    {key:13,href:'/',styleShow:true},
-    {key:14,href:'/',styleShow:true},
-    {key:15,href:'/',styleShow:true},
-    {key:16,href:'/',styleShow:true},
-    {key:17,href:'/',styleShow:true},
-    {key:18,href:'/',styleShow:true},
-    {key:19,href:'/',styleShow:true},
-    {key:20,href:'/',styleShow:true},
-    {key:21,href:'/',styleShow:true},
-    {key:22,href:'/',styleShow:true},
-    {key:1,href:'/',styleShow:true},
-    {key:2,href:'/',styleShow:true},
-    {key:3,href:'/',styleShow:true},
-    {key:4,href:'/',styleShow:true},
-    {key:5,href:'/',styleShow:true},
-    {key:6,href:'/',styleShow:true},
-    {key:7,href:'/',styleShow:true},
-    {key:8,href:'/',styleShow:true},
-    {key:9,href:'/',styleShow:true},
-    {key:10,href:'/',styleShow:true},
-    {key:11,href:'/',styleShow:true},
-    {key:13,href:'/',styleShow:true},
-    {key:14,href:'/',styleShow:true},
-    {key:15,href:'/',styleShow:true},
-    {key:16,href:'/',styleShow:true},
-    {key:17,href:'/',styleShow:true},
-    {key:18,href:'/',styleShow:true},
-    {key:19,href:'/',styleShow:true},
-    {key:20,href:'/',styleShow:true},
-    {key:21,href:'/',styleShow:true},
-    {key:22,href:'/',styleShow:true},
-    {key:1,href:'/',styleShow:true},
-    {key:2,href:'/',styleShow:true},
-    {key:3,href:'/',styleShow:true},
-    {key:4,href:'/',styleShow:true},
-    {key:5,href:'/',styleShow:true},
-    {key:6,href:'/',styleShow:true},
-    {key:7,href:'/',styleShow:true},
-    {key:8,href:'/',styleShow:true},
-    {key:9,href:'/',styleShow:true},
-    {key:10,href:'/',styleShow:true},
-    {key:11,href:'/',styleShow:true},
-    {key:13,href:'/',styleShow:true},
-    {key:14,href:'/',styleShow:true},
-    {key:15,href:'/',styleShow:true},
-    {key:16,href:'/',styleShow:true},
-    {key:17,href:'/',styleShow:true},
-    {key:18,href:'/',styleShow:true},
-    {key:19,href:'/',styleShow:true},
-    {key:20,href:'/',styleShow:true},
-    {key:21,href:'/',styleShow:true},
-    {key:22,href:'/',styleShow:true},
-    {key:1,href:'/',styleShow:true},
-    {key:2,href:'/',styleShow:true},
-    {key:3,href:'/',styleShow:true},
-    {key:4,href:'/',styleShow:true},
-    {key:5,href:'/',styleShow:true},
-    {key:6,href:'/',styleShow:true},
-    {key:7,href:'/',styleShow:true},
-    {key:8,href:'/',styleShow:true},
-    {key:9,href:'/',styleShow:true},
-    {key:10,href:'/',styleShow:true},
-    {key:11,href:'/',styleShow:true},
-    {key:13,href:'/',styleShow:true},
-    {key:14,href:'/',styleShow:true},
-    {key:15,href:'/',styleShow:true},
-    {key:16,href:'/',styleShow:true},
-    {key:17,href:'/',styleShow:true},
-    {key:18,href:'/',styleShow:true},
-    {key:19,href:'/',styleShow:true},
-    {key:20,href:'/',styleShow:true},
-    {key:21,href:'/',styleShow:true},
-    {key:22,href:'/',styleShow:true},
-    {key:1,href:'/',styleShow:true},
-    {key:2,href:'/',styleShow:true},
-    {key:3,href:'/',styleShow:true},
-    {key:4,href:'/',styleShow:true},
-    {key:5,href:'/',styleShow:true},
-    {key:6,href:'/',styleShow:true},
-    {key:7,href:'/',styleShow:true},
-    {key:8,href:'/',styleShow:true},
-    {key:9,href:'/',styleShow:true},
-    {key:10,href:'/',styleShow:true},
-    {key:11,href:'/',styleShow:true},
-    {key:13,href:'/',styleShow:true},
-    {key:14,href:'/',styleShow:true},
-    {key:15,href:'/',styleShow:true},
-    {key:16,href:'/',styleShow:true},
-    {key:17,href:'/',styleShow:true},
-    {key:18,href:'/',styleShow:true},
-    {key:19,href:'/',styleShow:true},
-    {key:20,href:'/',styleShow:true},
-    {key:21,href:'/',styleShow:true},
-    {key:22,href:'/',styleShow:true},
-    {key:1,href:'/',styleShow:true},
-    {key:2,href:'/',styleShow:true},
-    {key:3,href:'/',styleShow:true},
-    {key:4,href:'/',styleShow:true},
-    {key:5,href:'/',styleShow:true},
-    {key:6,href:'/',styleShow:true},
-    {key:7,href:'/',styleShow:true},
-    {key:8,href:'/',styleShow:true},
-    {key:9,href:'/',styleShow:true},
-    {key:10,href:'/',styleShow:true},
-    {key:11,href:'/',styleShow:true},
-    {key:13,href:'/',styleShow:true},
-    {key:14,href:'/',styleShow:true},
-    {key:15,href:'/',styleShow:true},
-    {key:16,href:'/',styleShow:true},
-    {key:17,href:'/',styleShow:true},
-    {key:18,href:'/',styleShow:true},
-    {key:19,href:'/',styleShow:true},
-    {key:20,href:'/',styleShow:true},
-    {key:21,href:'/',styleShow:true},
-    {key:22,href:'/',styleShow:true},
-  ]
   const [tabArr, setTab] = useState([])
-  const [listArr, setList] = useState([])
-  const [isShow, setShow] = useState(true)
-  const show={display:"block",color:'red',fontSize:"32px"}
-  const hide={display:"none"}
+  // const [listArr, setList] = useState(chapterList)
+  const [videoList, setVideoList] = useState(chapterList)
+  const [isShow, setShow] = useState(false)
   // 处理剧集数据
-  const dealArr = (curInd: number) => {
-   dataList.map((val,ind) => {
-      if(Math.floor(ind/50) === curInd) {
-        val.styleShow = true
+  const dealVideoData = (curInd: number) => {
+    console.log('curInd', curInd)
+    videoList.map((val,ind) => {
+      if(Math.floor(ind/30) === curInd) {
+        val.showEposide = true
       } else {
-        val.styleShow = false
+        val.showEposide = false
       }
     })
-    setList(dataList as any)
-  }
-  const closeDialog = () => {
-    console.log('guanbi')
-    setShow(false)
+    const newCatArr = videoList.concat()
+    setVideoList(newCatArr)
   }
   // 处理tab数据
   const dealTabArr = () => {
-    const temArr = Array.from({length: Math.ceil(126/50)},(v, i) => {
+    const leg = videoList && videoList.length
+    const temTabArr = Array.from({length: Math.ceil(leg/30)},(v, i) => {
       return {
         id: i + 'tab',
-        label: 1 + i * 50 + '-' + (i + 1) * 50
+        label: 1 + i * 30 + '-' + (i + 1) * 30
       }
     })
-    setTab(temArr as any)
+    setTab(temTabArr as any)
   }
   useEffect(() => {
     // 默认展示剧集的第一页
-    dealArr(0)
+    dealVideoData(0)
     dealTabArr()
   },[])
-  return <div className={styles.dialogBox} style={isShow ? {} : {display:'none'}}>
+  return <div className={styles.dialogBox} style={showDialog ? {} : {display:'none'}}>
     <div className={styles.topInfo}>
-      <div className={styles.title}>Returning to ancient times and becoming the emperor</div>
+      <div className={styles.title}>{videoList&&videoList.length>0&&videoList[0].name}</div>
       <Image
         className={styles.closeIcon}
         onClick={() => {closeDialog()}}
@@ -190,18 +63,26 @@ const EpisopeDialog: FC<IProps> = () => {
     <div className={styles.titleTab}>
       {
         tabArr.map((item: any,ind: number) => {
-          return <span onClick={() => dealArr(ind)} className={styles.tabTop}>{item.label}</span>
+          return <div onClick={() => dealVideoData(ind)} className={styles.tabTop} key={ind}>{item.label}</div>
         })
       }
     </div>
     
     <div className={styles.episodeList}>
-      {
-        listArr.map((item:any,index:number) => {
-          return <div className={styles.episodeItem} style={item.styleShow?show:hide}>
-            <span>{item.key}</span>
-          </div>
-        })
+      {videoList?.length&&videoList.map((item:any,ind:number) => {
+        const {
+          name,
+          cover,
+          index
+        } = item
+        return <div className={styles.linkBox} key={ind} style={item.showEposide?{}:{display:"none"}}>
+          <Link href='/' className={styles.linkBox}>
+            <div className={item.unlock ? styles.episodeItem : styles.episodeItemLock}>
+              <span>{item.name}</span>
+            </div>
+          </Link>
+        </div>
+      })
       }
     </div>
   </div>

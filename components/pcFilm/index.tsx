@@ -59,7 +59,7 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
 
       <div className={styles.detailBoxRight}>
         <div className={styles.detailBoxRightTop}>
-          <Link href={`/film/${bookInfo.bookId}`}>
+          <Link href={`/detail/${bookInfo.bookId}`}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
           </Link>
           <p className={styles.chapterCount}>

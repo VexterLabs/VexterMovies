@@ -10,7 +10,7 @@ const WebDomainObj = {
 // 网站服务api
 const BaseUrlObj = {
   // test: 'http://192.168.0.253:8080',
-  test: 'http://192.168.1.70:8080',
+  test: 'http://192.168.0.253:8080',
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
 }
@@ -23,7 +23,7 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 const buildId = 'dramabox-020001'; // 构建ID
 const WebDomain = WebDomainObj[environment]
@@ -85,7 +85,8 @@ const nextConfig = {
       "reshot.hw.dzods.cn",
       "res.dramabox.com",
       "nas2osstest.wpzkj.cn",
-      "nchapter.dramaboxdb.com"
+      "nchapter.dramaboxdb.com",
+      'dzztstgvideo.cbread.cn'
     ],
   },
   // 环境配置

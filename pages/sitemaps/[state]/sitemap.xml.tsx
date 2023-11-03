@@ -92,9 +92,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         ...options,
         lastmod: isNewBook ? book.utime : options.lastmod,
         changefreq: isNewBook ? 'daily' : options.changefreq,
-        loc: `${options.loc}/film/${book.bookId}`,
+        loc: `${options.loc}/detail/${book.bookId}`,
         alternateRefs: (book.languages || []).map(lan => {
-          let _loc = `/film/${book.bookId}`;
+          let _loc = `/detail/${book.bookId}`;
           if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
@@ -121,9 +121,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         ...options,
         changefreq: 'daily',
         lastmod: book.utime,
-        loc: `${options.loc}/film/${book.bookId}`,
+        loc: `${options.loc}/detail/${book.bookId}`,
         alternateRefs: (book.languages || []).map(lan => {
-          let _loc = `/film/${book.bookId}`;
+          let _loc = `/detail/${book.bookId}`;
           if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }

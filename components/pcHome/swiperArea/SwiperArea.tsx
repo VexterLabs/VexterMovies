@@ -13,7 +13,7 @@ interface IProps {
 const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   const { t } = useTranslation()
   const { bookId, tags = [] } = bigList?.[0]
-  const routerToBookInfo = `/film/${bookId}`
+  const routerToBookInfo = `/detail/${bookId}`
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
       <div className={styles.leftCard}>
@@ -47,7 +47,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
       <div className={styles.rightCard}>
         {[bigList[1], bigList[2]].map(item => {
           return <div key={item.bookId} className={styles.rightCardItem}>
-            <Link href={`/film/${item.bookId}`} className={styles.rightCardItemImg}>
+            <Link href={`/detail/${item.bookId}`} className={styles.rightCardItemImg}>
               <Image
                 src={item.cover}
                 className={styles.imageItem}
@@ -60,7 +60,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
               />
             </Link>
 
-            <Link href={`/film/${item.bookId}`} className={styles.rightCardContent}>
+            <Link href={`/detail/${item.bookId}`} className={styles.rightCardContent}>
               <div className={styles.rightCardContentTop}>
                 <h2 className={styles.bookName}>
                   {item.bookName}

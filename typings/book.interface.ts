@@ -1,11 +1,26 @@
-import { ELanguage, IBookItem, EnumPosition } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IBookItemDetail, IChapterList, EnumPosition } from "@/typings/home.interface";
 import { ESearchType } from "./sitemap.interface";
 
 export interface INetBookReq {
-  bookId: string;
+  id: string;
   language?: ELanguage;
 }
 
+export interface INetBookRes extends IBookItemDetail{
+  book: IBookItemDetail;
+  recommends: IBookItemDetail[];
+  chapterList: IChapterList[];
+  // chapter: {
+  //   id: string;
+  //   name: string;
+  // };
+  // column: {
+  //   bookId: string;
+  //   bookName: string;
+  //   columnName: string;
+  // };
+  // languages: ELanguage[]
+}
 export interface IBook {
   bookId: string;
   bookName: string;
@@ -35,20 +50,20 @@ export interface IBook {
   typeTwoName: string;
 }
 
-export interface INetBookRes extends IBookItem{
-  book: IBookItem;
-  recommends: IBookItem[];
-  chapter: {
-    id: string;
-    name: string;
-  };
-  column: {
-    bookId: string;
-    bookName: string;
-    columnName: string;
-  };
-  languages: ELanguage[]
-}
+// export interface INetBookRes extends IBookItem{
+//   book: IBookItemDetail;
+//   recommends: IBookItemDetail[];
+//   chapter: {
+//     id: string;
+//     name: string;
+//   };
+//   column: {
+//     bookId: string;
+//     bookName: string;
+//     columnName: string;
+//   };
+//   languages: ELanguage[]
+// }
 
 export interface INetKeywordsReq {
   searchType: ESearchType;

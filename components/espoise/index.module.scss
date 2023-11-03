@@ -1,0 +1,14 @@
+.videoContainer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    .videoArea {
+        
+        height: 6.4rem;
+        width: 7.5rem;
+        .videoPlace {
+            height: 6.4rem;
+            width: 7.5rem;
+        }
+    }
+}

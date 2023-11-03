@@ -14,7 +14,7 @@ const FirstItem: FC<IProps> = ({ dataSource}) => {
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((filmItem) => {
 
       return <div key={filmItem.bookId} className={styles.itemBox}>
-        <Link href={`/film/${filmItem.bookId}`} className={styles.bookImage}>
+        <Link href={`/detail/${filmItem.bookId}`} className={styles.bookImage}>
           <Image
             className={styles.imageItem}
             onError={onImgError}
@@ -27,7 +27,7 @@ const FirstItem: FC<IProps> = ({ dataSource}) => {
           />
         </Link>
 
-        <Link href={`/film/${filmItem.bookId}`} className={styles.bookName}>
+        <Link href={`/detail/${filmItem.bookId}`} className={styles.bookName}>
           {filmItem.bookName}
         </Link>
       </div>

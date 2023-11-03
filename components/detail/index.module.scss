@@ -119,7 +119,7 @@
     right: 0.24rem;
     font-size: 0.28rem;
     font-weight: 400;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.8);
     line-height: 0.4rem;
     background: linear-gradient(270deg, #141414 0%, rgba(20,20,20,0) 100%);
     width: 1.2rem;
@@ -188,6 +188,37 @@
     font-size: 0.28rem;
     color: rgba(255,255,255,0.4);
     line-height: 0.4rem;
+  }
+}
+
+.navBox {
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.11rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: #000;
+  .episodesIcon, .playIcon, .downloadIcon {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    .navIcon {
+      width: 0.64rem;
+      height: 0.64rem;
+    }
+    span {
+      font-size: 0.28rem;
+      line-height: 0.32rem;
+      color: rgba(255,255,255,0.8);
+      padding-top: 0.04rem;
+    }
+    .playTxt {
+      color: #FF375F;
+    }
   }
 }
 

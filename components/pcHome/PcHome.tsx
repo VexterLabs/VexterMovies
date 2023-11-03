@@ -13,7 +13,6 @@ interface IProps {
 
 const PcHome: FC<IProps> = ({ bigList, smallData }) => {
   const { t } = useTranslation()
-  console.log('smalldata', smallData)
   return (
     <>
       {bigList.length > 0 ? <SwiperArea bigList={bigList}/> : null}

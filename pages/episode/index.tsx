@@ -5,9 +5,11 @@ import { netBrowse } from "@/server/home";
 import { ELanguage, IBookItem } from "@/typings/home.interface";
 import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import MBrowse from "@/components/browse";
-import PcBrowse from "@/components/pcBrowse";
+import PcEpisode from '@/components/pcEpisode';
+import MEspoise from '@/components/espoise'
 import { IBrowseTypes } from "@/typings/browse.interface";
+import { useRouter } from 'next/router';
+import DetailPCrumbs from '@/components/pcEpisode/crumbs';
 
 interface IProps {
   isPc: boolean;
@@ -20,21 +22,13 @@ interface IProps {
 
 const Browse: NextPage<IProps> = (
   { isPc, types, bookList, pageNo, pages, typeTwoId }) => {
+  const router = useRouter()
   return <>
+    {/* <DetailPCrumbs  isPc={!isPc}></DetailPCrumbs> */}
     {isPc ?
-      <PcBrowse
-        pageNo={pageNo}
-        types={types}
-        bookList={bookList}
-        pages={pages}
-        typeTwoId={typeTwoId}
+      <PcEpisode
       /> :
-      <MBrowse
-        pageNo={pageNo}
-        types={types}
-        bookList={bookList}
-        pages={pages}
-        typeTwoId={typeTwoId}
+      <MEspoise
       />}
   </>
 }
@@ -46,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const response = await netBrowse({
     typeTwoId: Number(typeTwoId) || 0,
     pageNo: Number(page),
-    pageSize: 18
+    pageSize: 15
   }, locale as ELanguage)
   if (response === 'BadRequest_404') {
     return { notFound: true }
