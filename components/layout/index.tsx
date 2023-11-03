@@ -39,16 +39,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
     const clientWidth = window.innerWidth || document.documentElement.clientWidth;
     const { isPc } = ownOs(window.navigator.userAgent);
     dispatch(setDevice(isPc ? EDevice.pc : EDevice.mobile));
-    if (isPc) {
-      /**pc端补偿google cls标准, 禁用以下*/
-      if (document.documentElement.style?.fontSize === '52px') {
-        if (clientWidth <= 1366){
-          document.documentElement.style.fontSize = 100 * (1366 / 1800) + 'px';
-        } else {
-          document.documentElement.style.fontSize = 100 * (clientWidth / 1920) + 'px';
-        }
-      }
-    } else {
+    if (!isPc) {
       document.documentElement.style.fontSize = 100 * (clientWidth / 750) + 'px';
     }
   }
@@ -56,11 +47,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   const setRemScriptListen = () => {
     const clientWidth = window.innerWidth || document.documentElement.clientWidth
     const { isPc } = ownOs(window.navigator.userAgent)
-    if (isPc) {
-      if (clientWidth >= 1366 && clientWidth <= 1800) {
-        document.documentElement.style.fontSize = 100 * (clientWidth / 1700) + 'px';
-      }
-    } else {
+    if (!isPc) {
       document.documentElement.style.fontSize = 100 * (clientWidth / 750) + 'px';
     }
   }

@@ -21,7 +21,7 @@ const PcHome: FC<IProps> = ({ bigList, smallData }) => {
           if (item?.items && item.items.length > 0) {
             return <div key={item.id}>
               <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/>
-              <SecondList dataSource={(item.items || []).slice(0, 5)}/>
+              <SecondList dataSource={(item.items || []).slice(0, 6)}/>
             </div>
           }
           return null;
