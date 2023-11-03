@@ -40,22 +40,22 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const ua = req?.headers['user-agent'] || ''
   const { page = '1' } = query as { page: string; };
 
-  // const res = await netKeywords({
-  //   pageNum: Number(page),
-  //   pageSize: 300,
-  //   searchType: ESearchType.ALL
-  // })
+  const res = await netKeywords({
+    pageNum: Number(page),
+    pageSize: 300,
+    searchType: ESearchType.ALL
+  })
 
-  // if (res === 'BadRequest_500') {
-  //   return { redirect: { destination: '/500', permanent: false } }
-  // }
-  // if (res === 'BadRequest_404' || !res) {
-  //   return { notFound: true }
-  // }
+  if (res === 'BadRequest_500') {
+    return { redirect: { destination: '/500', permanent: false } }
+  }
+  if (res === 'BadRequest_404' || !res) {
+    return { notFound: true }
+  }
 
-  // const { data = [], currentPage = 1, pages = 1 } = res;
+  const { data = [], currentPage = 1, pages = 1 } = res;
 
-  const data = dataListMock, currentPage = 1, pages = 1000;
+  // const data = dataListMock, currentPage = 1, pages = 1000;
   
   return {
     props: {
