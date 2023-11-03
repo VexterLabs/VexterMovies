@@ -17,10 +17,11 @@ interface IProps {
   chapterList: IChapterList[];
   chapterName: string;
   isApple: boolean;
+  currentPage: number;
 }
 
 const Espoise: NextPage<IProps> = (
-  { isPc, bookInfo, isApple, recommends, chapterList, chapterName }) => {
+  { isPc, bookInfo, isApple, recommends, chapterList, chapterName,currentPage }) => {
   const router = useRouter()
   return <>
     {/* <DetailPCrumbs  isPc={!isPc}></DetailPCrumbs> */}
@@ -30,6 +31,7 @@ const Espoise: NextPage<IProps> = (
         recommends={recommends}
         chapterList={chapterList}
         chapterName={chapterName}
+        currentPage={currentPage}
       /> :
       <MEspoise
       />}
@@ -37,9 +39,9 @@ const Espoise: NextPage<IProps> = (
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
-  console.log('response-11111111111110')
   const ua = req?.headers['user-agent'] || ''
-  const { id = '' } = query as { id: string;};
+  const { id = '',chapterId = '' } = query as { id: string,chapterId: string};
+  console.log('query--cur', query)
   const response = await netBookDetail({ id }, locale as ELanguage);
    console.log('response-110' ,response)
   if (response === 'BadRequest_404') {
@@ -50,6 +52,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
   const { book = {} as IBookItemDetail, recommends = [], chapterList = [] } = response; // chapter, languages = []
   const chapterName = book.bookName
+  const currentPage = 0
   return {
     props: {
       id,
@@ -59,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isApple: isIos(ua),
       recommends,
       chapterList,
+      currentPage,
       ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
     },
   }

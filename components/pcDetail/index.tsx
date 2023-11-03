@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styles from "@/components/pcDetail/index.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,7 +9,7 @@ import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
 import PcSeries from '@/components/pcDetail/pcSeries';
 import PcLike from '@/components/pcDetail/pcLike';
-import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
+import UsualTitle from "@/components/layout/usualTitle/UsualTitle";
 
 interface IProps {
   bookInfo: IBookItemDetail;
@@ -20,6 +20,7 @@ interface IProps {
 
 const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], chapterName}) => {
   const { t } = useTranslation()
+  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
 
   const router = useRouter();
   
@@ -58,7 +59,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
           </div>
         </div>
 
-        <Link rel={"nofollow"}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${bookInfo?.replacedBookId || bookInfo.bookId}`} className={styles.playBtn}>
+        <Link  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`} className={styles.playBtn}>
           <Image
             className={styles.playIcon}
             width={16}
@@ -71,11 +72,11 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
       </div>
     </div>
     {/* pc端详情页剧集列表 */}
-    <PcSeries chapterList={chapterList} chapterName={chapterName}></PcSeries>
+    <PcSeries chapterList={chapterList} chapterName={chapterName} bookInfo={bookInfo}></PcSeries>
     {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
     <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
       {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-      <PcHomeTitle title='YOU Might Like'/>
+      <UsualTitle title='YOU Might Like'/>
       <PcLike dataSource={recommends}></PcLike>
     </div>
     

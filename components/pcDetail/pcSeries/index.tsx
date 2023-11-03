@@ -11,10 +11,11 @@ import { useTranslation } from "next-i18next";
 interface IProps {
   chapterList: IChapterList[];
   chapterName: string;
+  bookInfo:IBookItemDetail;
 }
 
-const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
-  console.log('chapterList', chapterList)
+const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
+  // console.log('chapterList', chapterList)
   const { t } = useTranslation()
   const [showMore, setMore] = useState<Boolean>(true)
   // const [listData, setData] = useState(chapterList.length > 11 ? chapterList.slice(0,11) : chapterList)
@@ -66,7 +67,6 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
       }
     })
     setTab(temArr as any)
-    console.log('tabArr', tabArr)
   }
 
   // 点击showMore，隐藏shouwmore按钮 + 展示tab + 完整剧集切换
@@ -100,8 +100,8 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
             cover,
             index
           } = item
-          const routerToVideoInfo = `/`
-          return <div className={styles.listBox} style={item.showEposide?{}:{display: 'none'}}>
+          const routerToVideoInfo = `/episode/${bookInfo.bookId}/${item.id}`
+          return <div className={styles.listBox} style={item.showEposide?{}:{display: 'none'}} key={item.id}>
             <Link href={routerToVideoInfo} className={styles.listLink}>
               <div key={index} className={item.unlock ? styles.listItem : styles.listItemMask}>
                 <div className={styles.imgLeft}>

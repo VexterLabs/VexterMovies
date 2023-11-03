@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from "react";
+import React, {FC, useEffect, useState, } from "react";
 import Player,{ Events } from 'xgplayer'
 import styles from "@/components/pcEpisode/index.module.scss"
 import 'xgplayer/dist/index.min.css';
@@ -9,134 +9,211 @@ import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
 import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
+import PcVideo from "@/components/pcVideo"
+import PcLike from '@/components/pcDetail/pcLike';
+import UsualTitle from "@/components/layout/usualTitle/UsualTitle"
+import { set } from "nprogress";
 
 interface IProps {
     bookInfo: IBookItemDetail;
     recommends: IBookItemDetail[];
     chapterList: IChapterList[];
     chapterName: string;
+    currentPage: number;
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
-const VideoPlayer:  FC<IProps> = (bookInfo, recommends = [],chapterList = [] ) => {
-    console.log('chapterList', chapterList)
-    const [url, setUrl] = useState('')
+const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1} ) => {
+    const queryObj = useRouter()
     const router = useRouter()
+    const { id } = queryObj.query
+    const chapterId = queryObj.query.chapterId as string
+    const [curUrl, setUrl] = useState('')
+    const [currentEpi, setCurEpisode] = useState(0)
+    const [relateComputeEpi, setComputedEpi] = useState(chapterList)//相关剧集，点击第三集，相关剧集展示 4 5 6 7 8...集
+    const [playerInstace, setIns] = useState<any>()
+    const [curClickInd, setClickIndex] = useState(0)
+    const [preChapter, setPreChapter] = useState()
+    // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
+    const curChapterData = chapterList.find(item => item.id === chapterId ) //&& item.unlock === true
+    currentPage = curChapterData?.index as number
+    let preChapterData:any //后面再改
+    if(curChapterData) {
+      preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index )//&& item.unlock === true
+    }
+    console.log('--001')
     useEffect(() => {
-      console.log('url', url)
-      let playIns: any;
-      setTimeout(() => {
-        playIns = new Player({
-          id: "playVideo",
-          autoplay: true,
-          autoplayMuted: true,
-          url: 'http://vjs.zencdn.net/v/oceans.mp4',
-          width:'100%',
-          height:'100%',
-          videoFillMode: "fillHeight",
-          playsinline: true,
-          ignores:['playbackRate'],
-          cssFullscreen:false
-        })
-        // 播放
-        playIns.on(Events.PLAY, () => {
-          // TODO
-          console.log('-------------------------------')
-        })
-        // EVENTS.ENDED 结束播放,播放完后
-        playIns.on(Events.ENDED, () => {
-          // TODO
-          router.replace('/',undefined)
-          console.log('播放---end')
-        })
-        playIns.on(Events.AUTOPLAY_PREVENTED, () => {
-          console.log('autoplay was prevented!!')
-        })
-        
-        playIns.on(Events.AUTOPLAY_STARTED, () => {
-          console.log('autoplay success!!')
-        })
-      }, 0);
-  
+      const curId = chapterList.find(item => item.id === chapterId)
+      const ind = curId?.index
+      const curIUrl = curId?.mp4
+      setCurEpisode(ind as number)
+      dealReaEpi(ind as number)
+      setUrl(curIUrl as string)
     },[])
-    const episopeList = [
-      {name:'神雕神雕侠侣神雕侠侣侠侣神雕神雕侠侣神雕侠侣侠侣神雕神雕侠侣神雕侠侣侠侣神雕神雕侠侣神雕侠侣侠侣神雕神雕侠侣神雕侠侣侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣神雕侠侣神雕侠侣神雕侠侣神雕侠侣神雕侠侣神雕侠侣',chapterCount:2, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣神雕侠侣',chapterCount:3, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣神雕侠侣神雕侠侣',chapterCount:4, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣神雕侠侣神雕侠侣神雕侠侣神雕侠侣神雕侠侣',chapterCount:5, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:6, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:7, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:8, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:9, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:10, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:11, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-      {name:'神雕侠侣',chapterCount:1, cover: 'https://nchapter.dramaboxdb.com/data/cppartner/4x1/41x0/410x0/41000100504/41000100504.jpg?t=1692683073562&image_process=resize,h_300'},
-    ]
+    let playIns: any;
+    // 播放器设置
+    useEffect(() => { 
+      // 查找当前视频中下一个有MP4
+      console.log('视频组件', curChapterData)
+      playIns = new Player({
+        id: "playVideo",
+        autoplay: true,
+        autoplayMuted: true,
+        url: curChapterData?.mp4,
+        width:'100%',
+        height:'100%',
+        videoFillMode: "fillHeight",
+        playsinline: true,
+        ignores:['playbackRate'],
+        cssFullscreen:false
+      })
+      setIns(playIns)//保存播放器实例
+      // 播放
+      playIns.on(Events.PLAY, () => {})
+      // EVENTS.ENDED 结束播放,播放完后
+      playIns.on(Events.ENDED, () => {
+        dealReaEpi(preChapterData?.index)
+        if(preChapterData) {
+          router.replace(`/episode/${id}/${preChapterData.id}`,undefined)
+        }
+        playIns.playNext({
+          url: preChapterData?.mp4,
+        })
+      })
+    },[curChapterData])
+    // 切换短剧
+    const switchVideo = (url: any) => {
+      playerInstace&&playerInstace.switchURL(url?.mp4)
+    }
+    // 点击右侧全部剧集，选择播放剧集
+    const chooseEpisode = (item: any) => {
+      const curInd = item.index
+      dealReaEpi(curInd)
+      setCurEpisode(curInd)
+      setClickIndex(item.index)//保存当前用户点击的index，防止用户重复点击用
+      // if(curClickInd === item.index) {
+      //   return
+      // }
+      if(item.unlock === false) {//当前剧集已锁
+        return
+      }
+      switchVideo(item)
+    }
+    // 计算点击剧集后应该展示的相关剧集目录
+    const dealReaEpi = (index:number) => {
+      let newArr = [] as any
+      if(chapterList && chapterList.length > 18) {
+        newArr = chapterList.slice(index+1)
+        let len = newArr.length
+        if(len < 18) {
+          let rangLen = 18 - len
+          newArr = newArr.concat(chapterList.slice(0,rangLen))
+        } else if(len > 18) {
+          newArr = newArr.slice(0,18)
+        } else {
+          newArr = chapterList
+        }
+      } else {
+        newArr = chapterList
+      }
+      setComputedEpi(newArr)
+      console.log('newArr', newArr)
+    }
     return <>
       <div className={styles.videoBox}>
         <div className={styles.leftVideo}>
           <div className={styles.videoContainer}>
             <div id="playVideo"></div>
+            {/* <PcVideo videoUrl={videoUrl} chapterList={chapterList}></PcVideo> */}
           </div>
           <div className={styles.videoInfo}>
-            <p className={styles.videoTitle}>Returning to ancient times and becoming the emperor-Episodes 1</p>
+            <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
             <p className={styles.videoStar}>
               <Image 
                 className={styles.imageStar}
-                src = '/images/book/play-icon.png'
+                src = '/images/book/star-d.png'
                 width={24}
                 height={24}
                 alt="star"
               />
-              <span className={styles.videoScore}>22.4K</span>
+              <span className={styles.videoScore}>{bookInfo.chapterCount}K</span>
             </p>
-            <p className={styles.videoDesc}>In the desert sands of Saqqara, the latest hotspot of Egyptian archaeology, two of the world’s most famous Egyptologists seek to unearth ancient treasures. The…</p>
+            <p className={styles.videoDesc}>{bookInfo.introduction}</p>
+          </div>
+          <div className={styles.tagBox}>
+            {(bookInfo?.tags || []).slice(0, 2).map(val => {
+              return <div key={val} className={styles.tagItem}>{val}</div>
+            })}
           </div>
         </div>
+        {/* 视频右侧所有剧集 */}
         <div className={styles.eposipeAll}>
           <div className={styles.eposipeTop}>
             <p className={styles.eposipeTit}>Episodes</p>
-            <p className={styles.eposipeCur}>(1/180)</p>
+            <p className={styles.eposipeCur}>({currentPage + 1}/{bookInfo.chapterCount})</p>
           </div>
           <div className={styles.allEpo}>
             {
               chapterList.map((item,ind) => {
-                return <Link href={`/`} className={styles.linkItem}>
-                  <Image
-                    className={styles.EpoItem}
-                    onError={onImgError}
-                    placeholder="blur"
-                    blurDataURL={item.cover}
-                    width={88}
-                    height={117}
-                    src={item.cover}
-                    alt='photo'
-                  />
-                  <span className={styles.linkText}>{item.name}</span>
+                return <div className={item.unlock ? styles.listItem : styles.listItemMask} key={item.id} onClick={() => {chooseEpisode(item)}}>
+                  <Link href={`/episode/${id}/${item.id}`} shallow>
+                    <div className={styles.imgItem}>
+                      <Image
+                        className={styles.EpoItem}
+                        onError={onImgError}
+                        placeholder="blur"
+                        blurDataURL={item.cover}
+                        width={88}
+                        height={117}
+                        src={item.cover}
+                        alt='photo'
+                      />
+                    </div>
+                    <span className={styles.linkText}>{item.name}</span>
                   </Link>
+                </div>
               })
             }
           </div>
-          
-          
         </div>
       </div>
+      {/* 相关剧集 */}
+      <div className={styles.relatedEpisode}>
+        <div className={styles.relatedTitle}>Related Episodes</div>
+        <div className={styles.relatedEpo}>
+          {
+            relateComputeEpi.map((item,ind) => {
+              return <div className={styles.listBox} key={item.id} onClick={() => {chooseEpisode(item)}}>
+              <Link href={`/episode/${id}/${item.id}`} shallow className={styles.listLink}>
+                <div className={item.unlock ? styles.listItem : styles.listItemMask}>
+                  <div className={styles.imgLeft}>
+                    <Image
+                      className={styles.imageItem}
+                      onError={onImgError}
+                      placeholder="blur"
+                      blurDataURL={item.cover}
+                      width={88}
+                      height={117}
+                      src={item.cover}
+                      alt={item.name}
+                    />
+                  </div>
+                  <div className={styles.rightIntro}>
+                    <p className={styles.title}>{bookInfo.bookName}</p>
+                    <p className={styles.pageNum}>{item.name}</p>
+                  </div>
+                </div>
+              </Link>
+          </div>
+            })
+          }
+        </div>
+      </div>
+      <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
+        <UsualTitle title='YOU Might Like'/>
+        <PcLike dataSource={recommends}></PcLike>
+    </div>
     </>
   }
   
-  export default VideoPlayer
+  export default PcEpisode
