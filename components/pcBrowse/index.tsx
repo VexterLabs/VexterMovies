@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import styles from "@/components/pcBrowse/index.module.scss";
 import Link from "next/link";
 import { IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
@@ -7,7 +6,7 @@ import PaginationCom from "@/components/common/paginationCom";
 import { IBrowseTypes } from "@/typings/browse.interface";
 import { PcEmpty } from "@/components/common/empty";
 import SecondList from "@/components/pcHome/secondList/SecondList";
-import { Tabs } from "antd-mobile";
+import styles from "@/components/pcBrowse/index.module.scss";
 
 interface IProps {
   bookList: IBookItem[];
@@ -37,7 +36,6 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => 
         {/*    })}*/}
         {/*  </Tabs>*/}
         {/*</div>*/}
-
 
         <div className={styles.tabsBox}>
           {types.map((item) => {

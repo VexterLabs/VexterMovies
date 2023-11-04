@@ -10,8 +10,9 @@ import { ELanguage } from "typings/home.interface";
 import { ESearchType } from "typings/sitemap.interface";
 import useHiveLog from "@/hooks/useHiveLog";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
+import { SSRConfig } from "next-i18next";
 
-interface IProps {
+interface IProps extends SSRConfig {
   keywordList: IKeywordItem[]
   isPc: boolean;
   currentPage: number;
