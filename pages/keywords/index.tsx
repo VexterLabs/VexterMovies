@@ -3,7 +3,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { ownOs } from "@/utils/ownOs";
 import { netKeywords } from "@/server/home";
 import PcKeywords from "@/components/PcKeywords/PcKeywords";
-import MKeywords from "@/components/Keywords/MKeywords";
+import MKeywords from "@/components/keywords/MKeywords";
 import { IKeywordItem } from "typings/book.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";

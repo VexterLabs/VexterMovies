@@ -59,9 +59,13 @@ const MTag: FC<IProps> = (
       {relationKeywords.length > 0 ? <>
         <p className={styles.keywordConnectTitle}>{t('tag.relevant')}：</p>
         {relationKeywords.map(val => {
-          return <Link key={val.id} href={`/tag/${val.id}`} replace legacyBehavior>
-            <a className={styles.keywordConnectItem}>{val.name}</a>
-          </Link>
+          return <Link 
+                  key={val.id} 
+                  href={`/tag/${val.id}`} 
+                  replace
+                  className={styles.keywordConnectItem}>
+                    {val.name}
+                </Link>
         })}
       </> : null}
     </div>
