@@ -41,7 +41,6 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
         bookId,
         bookName,
         introduction,
-        labels = [],
         replacedBookName,
         typeTwoName,
         typeTwoNames = [],
@@ -51,9 +50,8 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
       } = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
+      const linkUrl = `/film/${bookId}`;
       const recommend = isHot === ETagBookItemIsHot.yes
-      const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId} className={styles.listItem}>
@@ -83,21 +81,22 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
             onClick={() => tagBookClick(keyword, bookId, recommend)}
           />
 
-          {labels.length > 0 ? <div className={styles.bookLabelBox}>
-            {labels.map(label => {
-              if (!label) return null;
-              return <Link
-                key={label}
-                href={browseLink}
-                locale={simpleLanguage}
-                className={styles.bookLabel}
-                onClick={() => tagBookClick(keyword, bookId, recommend)}
-              >
-                {printKeyword(label, keyword)}
-              </Link>
-
-            })}
-          </div> : null}
+          { 
+            !!(typeTwoNames && typeTwoNames.length) && <div className={styles.bookLabelBox}>
+              {
+                typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                  <Link 
+                    key={bookId + '_browse_' + typeTwoNamesIdx}
+                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`} 
+                    locale={simpleLanguage} 
+                    className={styles.bookLabel}
+                    onClick={() => tagBookClick(keyword, bookId, recommend)}>
+                      {typeTwoNamesItem}
+                  </Link>
+                ))
+              }
+            </div>
+          }
 
           <Link
             href={linkUrl}
@@ -109,7 +108,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
 
         {
           firstChapterId ? <Link
-            href={`/book/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`}
+            href={`/episode/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`}
             locale={simpleLanguage}
             className={styles.readBtn}
             onClick={() => tagBookClick(keyword, bookId, recommend)}>
@@ -120,7 +119,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
               src={'/images/book/bookinfo_play.png'}
               alt={ClientConfig.name}
             />
-            {t('bookInfo.Play')}
+            {t('home.play')}
           </Link> : null
         }
       </div>
