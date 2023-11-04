@@ -52,10 +52,12 @@ export default KeywordsPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
-  const { page = '1' } = query as { page: string; };
-
+  const { page } = query as { page: string; };
+  if (page === '1') {
+    return { redirect: { destination: '/keywords', permanent: false } }
+  }
   const res = await netKeywords({
-    pageNum: Number(page),
+    pageNum: Number(page) || 1,
     pageSize: 300,
     searchType: ESearchType.ALL
   })
@@ -66,7 +68,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (res === 'BadRequest_404' || !res) {
     return { notFound: true }
   }
-
   const { data = [], currentPage = 1, pages = 1 } = res;
 
   return {

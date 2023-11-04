@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import styles from '@/components/more/pagination/MorePagination.module.css'
 import Link from "next/link";
 import { Toast } from "antd-mobile";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import styles from '@/components/more/pagination/MorePagination.module.css';
 
 interface IProps {
   prevPath: string;
