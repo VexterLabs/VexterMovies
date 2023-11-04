@@ -8,23 +8,27 @@ import { IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interfa
 import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
-import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
 import LikeItem from "@/components/detail/likeItem/LikeItem";
-import { onCopyText } from "@/utils/copy";
+import { useRouter } from 'next/router';
+
 
 interface IProps {
-  bookInfo: IBookItem;
+  bookInfo: IBookItemDetail;
   isApple: boolean;
-  recommends: IBookItem[];
+  recommends: IBookItemDetail[];
   chapterList: IChapterList[];
+  chapterName: string;
 }
 
-const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [] }) => {
-  console.log('bookInfo', bookInfo)
+const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [], chapterName }) => {
   const { t } = useTranslation();
+  const router = useRouter()
+  const chapterId = router.query.chapterId as string
+  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id || chapterId)//设置剧集的首剧集id
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
   const shopLink = useAppSelector(state => {
@@ -76,12 +80,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div> : null}
 
       <div className={styles.footerBox}>
-        <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink} onClick={() => {
-          onCopyText(copyText, () => {
-            netIpUa(clipboard)
-            HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-          })
-        }}>
+        <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`}>
           <Image
             className={styles.playIcon}
             width={48}
@@ -99,11 +98,11 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
         {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
       </div> : null}
     </div>
-
-    <div className={styles.episodeNav}>
+    
+    <div className={styles.episodeNav} onClick={() => {showEpisodeDialog()}}>
       <div className={styles.leftInfo}>
         <p className={styles.innerPt}>Episodes List</p>
-        <p className={styles.innerPl}>(180 Episodes)</p>
+        <p className={styles.innerPl}>({chapterList&&chapterList.length} Episodes)</p>
       </div>
       <div className={styles.rightImg}>
         <Image
@@ -116,14 +115,16 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div>
     </div>
 
-    <div>
+    <div className={styles.mightLike} style={recommends?.length>0 ? {} : {display:'none'}}>
       {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
       <LikeTitle title="You Might Like"/>
       <LikeItem dataSource={recommends || []}/>
     </div>
 
-    <EpisopeDialog
-      chapterList={chapterList}
+    <EpisopeDialog 
+      bookInfo={bookInfo}
+      chapterName={chapterName}
+      chapterList={chapterList} 
       closeDialog={closeEpisodeDialog}
       showDialog={showDialog}></EpisopeDialog>
     <div className={styles.navBox}>
@@ -138,7 +139,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
         {/* <span>{t('home.privacyPolicy')}</span> */}
         <span>Episodes</span>
       </div>
-      <Link href={'/terms'} className={styles.playIcon}>
+      <Link href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`} className={styles.playIcon}>
         <Image
           className={styles.navIcon}
           width={64}
@@ -149,17 +150,22 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
         {/* <span>{t('home.termsOfUse')}</span> */}
         <span className={styles.playTxt}>Play</span>
       </Link>
-      <Link href={'/terms'} className={styles.downloadIcon}>
-        <Image
-          className={styles.navIcon}
-          width={64}
-          height={64}
-          src={'/images/book/download-d.png'}
-          alt={'more'}
-        />
-        {/* <span>{t('home.termsOfUse')}</span> */}
-        <span>Download</span>
-      </Link>
+      <CopyToClipboard text={copyText} onCopy={() => {
+          netIpUa(clipboard)
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+        }}>
+        <Link href={shopLink} className={styles.downloadIcon}>
+          <Image
+            className={styles.navIcon}
+            width={64}
+            height={64}
+            src={'/images/book/download-d.png'}
+            alt={'more'}
+          />
+          {/* <span>{t('home.termsOfUse')}</span> */}
+          <span>Download</span>
+        </Link>
+      </CopyToClipboard>
     </div>
   </div>
 

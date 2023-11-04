@@ -1,0 +1,359 @@
+
+.videoBox {
+    display: flex;
+    .leftVideo {
+      width: 11.24rem;
+      .videoContainer {
+        height: 7.08rem;
+        width: 11.24rem;
+        background: rgba(255,255,255,0.1);
+        border-radius: 0.08rem;
+        position: relative;
+        .downloads {
+          position: absolute;
+          height: 6.36rem;
+          width: 3.98rem;
+          // border: 1px solid blue;
+          top: 46%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 99;
+          background: rgba(255,255,255,0.1);
+          backdrop-filter: blur(10px);
+          .errBg {
+            width: 3.98rem;
+            height: 100%;
+            // filter: opacity(0.5);
+            filter: brightness(0.4);
+          }
+          .downInfo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            // left: 0;
+            // top: 0;
+            // width: 2rem;
+            // height: 3rem;
+            // border: 1px solid red;
+            .downTip {
+              font-size: 0.2rem;
+              line-height: 0.24rem;
+              color: #fff;
+              width: 3.37rem;
+              white-space: nowrap;
+              margin-bottom: 0.24rem;
+              margin-left: -0.39rem;
+            }
+            .btnDown {
+              background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
+              border-radius: 0.24rem;
+              height:0.48rem;
+              padding: 0.16rem 0.24rem;
+              text-align: center;
+              color: #fff;
+              width: 3.37rem;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .videoInfo {
+        // border: 1px solid blue;
+        margin-bottom: 0.12rem;
+        width: 11.24rem;
+        .videoTitle {
+          margin-top: 0.24rem;
+          font-size: 0.28rem;
+          line-height: 0.32rem;
+          color: rgba(255,255,255,0.9);
+          font-weight: 500;
+          margin-bottom: 0.12rem;
+        }
+        .videoStar {
+          display: flex;
+          // border: 1px solid red;
+          align-items: center;
+          margin-bottom: 0.12rem;
+          .videoScore{
+            font-size: 0.18rem;
+            line-height: 0.2rem;
+            color: rgba(255,255,255,0.8);
+          }
+        }
+        .videoDesc {
+          font-sie: 0.14rem;
+          line-height: 0.2rem;
+          color: rgba(255,255,255,0.6);
+        }
+      }
+      .tagBox {
+        font-size: 0.12rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+        grid-gap: 0.08rem;
+        display: flex;
+        margin-bottom: 0.48rem;
+        .tagItem {
+          border-radius: 0.12rem;
+          padding: 0.04rem 0.1rem;
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+    .eposipeAll {
+      width: 3.04rem;
+      height: 8.68rem;
+      overflow-y: scroll;
+      border-radius: 0.08rem;
+      // border: 1px solid yellow;
+      padding: 0.08rem 0.12rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      .eposipeTop {
+        display: flex;
+        align-items: center;
+        .eposipeTit {
+          font-size: 0.2rem;
+          font-weight: 500;
+          line-height: 0.24rem;
+          color: rgba(255,255,255,0.9);
+        }
+        .eposipeCur {
+          line-height: 0.2rem;
+          color: rgba(255,255,255,0.4);
+          font-size: 0.14rem;
+          margin-left: 0.08rem;
+        }
+      }
+      .allEpo {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 0.08rem;
+        // padding-bottom: 0.08rem;
+        padding-top: 0.08rem;
+        .listItemMask {
+          height: 1.45rem;
+          width: 0.88rem;
+          // border: 1px solid orange;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 0.03rem;
+          margin-bottom: 0.08rem;
+          .imgItem {
+            position: relative;
+            width: 0.88rem;
+            height: 1.17rem;
+            border-radius: 0.03rem;
+            
+            &::after {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              content: '';
+              overflow: hidden;
+              display: block;
+              background: url('/images/book/lock-video.png') no-repeat;
+              background-size: contain;
+              width: 0.24rem;
+              height: 0.24rem;
+            }
+            .EpoItem {
+              width: 0.88rem;
+              height: 1.17rem;
+              border-radius: 0.03rem;
+            }
+
+          }
+          .linkText {
+            font-weight: 500;
+            line-height: 0.2rem;
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding-top: 0.08rem;
+          }
+        }
+        .listItem {
+          height: 1.45rem;
+          width: 0.88rem;
+          // border: 1px solid orange;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-radius: 0.03rem;
+          margin-bottom: 0.08rem;
+          .imgItem {
+            position: relative;
+            width: 0.88rem;
+            height: 1.17rem;
+            border-radius: 0.03rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .EpoItem {
+              width: 0.88rem;
+              height: 1.17rem;
+              border-radius: 0.03rem;
+            }
+
+          }
+          .linkText {
+            font-weight: 500;
+            line-height: 0.2rem;
+            width: 100%;
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding-top: 0.08rem;
+          }
+        }
+      }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  .relatedEpisode {
+    margin-bottom: 0.24rem;
+    .relatedEpo {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-column-gap: 0.08rem;
+      padding-bottom: 0.08rem;
+      padding-top: 0.08rem;
+      .listBox {
+        .listItem {
+          position: relative;
+          height: 1.25rem;
+          width: 2.28rem;
+          display: flex;
+          border-radius: 0.08rem;
+          padding: 0.04rem;
+          margin-bottom: 0.08rem;
+          border: 1px solid rgba(255,255,255,0.2);
+          .imgLeft {
+            .imageItem {
+              width: 0.88rem;
+              height: 1.17rem;
+              border-radius: 0.03rem;
+              transition: all 0.5s;
+            }
+          }
+          .rightIntro {
+            display: flex;
+            flex-direction: column;
+            width: 120rem;
+            justify-content: space-between;
+            padding: 0.16rem 0.08rem;
+            .title {
+              font-size: 0.14rem;
+              line-height: 0.2rem;
+              color: rgba(255,255,255,0.8);
+              font-weight: 500;
+              height: 0.4rem;
+              width: 1.2rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              word-wrap: break-word;
+            }
+            .pageNum {
+              color: rgba(255,255,255,0.4);
+              line-height: 0.16rem;
+              font-size: 0.14rem;
+            }
+          }
+          &:hover {
+            .imgLeft {
+              border-radius: 0.04rem 0.04rem 0 0;
+      
+              .imageItem {
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
+        .listItemMask {
+          position: relative;
+          height: 1.25rem;
+          width: 2.28rem;
+          display: flex;
+          border-radius: 0.08rem;
+          padding: 0.04rem;
+          margin-bottom: 0.08rem;
+          border: 1px solid rgba(255,255,255,0.2);
+          &::after {
+            position: absolute;
+            content: '';
+            display: inline-block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+          }
+          .imgLeft {
+            position: relative;
+            width: 0.88rem;
+            height: 1.17rem;
+            backdrop-filter: blur(20px);
+            &::after {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              content: '';
+              overflow: hidden;
+              display: block;
+              background: url('/images/book/lock-video.png') no-repeat;
+              background-size: contain;
+              width: 0.24rem;
+              height: 0.24rem;
+            }
+            .imageItem {
+              width: 0.88rem;
+              height: 1.17rem;
+              border-radius: 0.03rem;
+              transition: all 0.5s;
+            }
+          }
+          .rightIntro {
+            display: flex;
+            flex-direction: column;
+            width: 120rem;
+            justify-content: space-between;
+            padding: 0.16rem 0.08rem;
+            .title {
+              font-size: 0.14rem;
+              line-height: 0.2rem;
+              color: rgba(255,255,255,0.8);
+              font-weight: 500;
+              height: 0.4rem;
+              width: 1.2rem;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              word-wrap: break-word;
+            }
+            .pageNum {
+              color: rgba(255,255,255,0.4);
+              line-height: 0.16rem;
+              font-size: 0.14rem;
+            }
+          }
+        }
+      }
+    }
+    .relatedTitle {
+      font-size: 0.28rem;
+      line-height: 0.32rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: bold;
+      margin-bottom: 0.24rem;
+    }
+  }

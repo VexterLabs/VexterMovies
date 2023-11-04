@@ -37,6 +37,7 @@ const Book: NextPage<IProps> = (
         chapterName={chapterName}
       /> :
       <MDetail
+        chapterName={chapterName}
         isApple={isApple}
         bookInfo={bookInfo}
         recommends={recommends}
@@ -50,12 +51,9 @@ export default Book;
 
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
-  console.log('query', query)
   const ua = req?.headers['user-agent'] || ''
   const { id = '' } = query as { id: string;};
   const response = await netBookDetail({ id }, locale as ELanguage);
-  console.log('v22222', response)
-
   if (response === 'BadRequest_404') {
     return { notFound: true }
   }

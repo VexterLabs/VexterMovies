@@ -10,10 +10,10 @@ import { useTranslation } from "next-i18next";
 interface IProps {
   chapterList: IChapterList[];
   chapterName: string;
+  bookInfo:IBookItemDetail;
 }
 
-const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
-  console.log('chapterList', chapterList)
+const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
   const { t } = useTranslation()
   const [showMore, setMore] = useState<Boolean>(true)
   // const [listData, setData] = useState(chapterList.length > 11 ? chapterList.slice(0,11) : chapterList)
@@ -65,7 +65,6 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
       }
     })
     setTab(temArr as any)
-    console.log('tabArr', tabArr)
   }
 
   // 点击showMore，隐藏shouwmore按钮 + 展示tab + 完整剧集切换
@@ -90,7 +89,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
     <div className={styles.episopeBox}>
       <div className={styles.topInfo}>
         <div className={styles.episopeTitle}>EpisodesList</div>
-        <div className={styles.allCounts}>(180 Episopes)</div>
+        <div className={styles.allCounts}>{chapterList&&chapterList.length} Episopes</div>
       </div>
       <div className={styles.listInfo}>
         { videoList.map(item => {
@@ -99,9 +98,9 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
             cover,
             index
           } = item
-          const routerToVideoInfo = `/`
-          return <div key={item.id} className={styles.listBox} style={item.showEposide?{}:{display: 'none'}}>
-            <Link href={routerToVideoInfo}>
+          const routerToVideoInfo = `/episode/${bookInfo.bookId}/${item.id}`
+          return <div className={styles.listBox} style={item.showEposide?{}:{display: 'none'}} key={item.id}>
+            <Link href={routerToVideoInfo} className={styles.listLink}>
               <div key={index} className={item.unlock ? styles.listItem : styles.listItemMask}>
                 <div className={styles.imgLeft}>
                   <Image
@@ -127,7 +126,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
           <p className={styles.viewMore}>View More</p>
         </div>
       </div>
-      {tabArr?.length > 0 ? <div className={styles.tabItem} style={showMore ? {display:'none'} : {}}>
+      {tabArr?.length > 0 ? <div className={styles.tabItem} style={(showMore || videoList.length < 11) ? {display:'none'} : {}}>
         {tabArr?.length && tabArr.map((item:any,index:number) => {
           return <div
             key={item.id}

@@ -12,7 +12,7 @@ const { googleCode } = ClientConfig;
 export const pathnameData = {
   browse: '/browse',
   more: '/more/[position]',
-  book: '/detail/[bookId]',
+  book: '/film/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',

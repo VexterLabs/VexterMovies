@@ -6,16 +6,16 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 
 interface IProps {
-  dataSource: IBookItem[];
+  dataSource: IBookItemDetail[];
   priority?: boolean;
 }
 
 const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
   return <div className={styles.firstItemWrap}>
-    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
+    {dataSource && dataSource.length > 0 ? (dataSource as IBookItemDetail[]).map((detailItem, index) => {
 
       return <div key={index} className={styles.itemBox}>
-        <Link href={`/detail/${detailItem.bookId}`} className={styles.bookImage}>
+        <Link href={`/film/${detailItem.bookId}`} className={styles.bookImage}>
           <Image
             priority={priority}
             className={styles.imageItem}
@@ -29,10 +29,10 @@ const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
           />
         </Link>
 
-        <Link href={`/detail/${detailItem.bookId}`} className={styles.bookName}>
+        <Link href={`/film/${detailItem.bookId}`} className={styles.bookName}>
           {detailItem.bookName}
         </Link>
-        <Link href={`/detail/${detailItem.bookId}`} className={styles.bookTags}>
+        <Link href={`/film/${detailItem.bookId}`} className={styles.bookTags}>
           <div className={styles.tagBox}>
             {(detailItem?.tags || []).slice(0, 2).map(val => {
               return <div key={val} className={styles.tagItem}>{val}</div>
