@@ -13,10 +13,10 @@ import { SSRConfig } from "next-i18next";
 interface IProps extends SSRConfig {
   isPc: boolean;
   id: string;
-  bookInfo: IBookItemDetail;
+  bookInfo: IBookItem;
   isApple: boolean;
   // languages: ELanguage[]; // tdk需要， 勿删 PcCrumbs
-  recommends: IBookItemDetail[];
+  recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
 }
@@ -55,14 +55,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const { id = '' } = query as { id: string;};
   const response = await netBookDetail({ id }, locale as ELanguage);
   console.log('v22222', response)
-   
+
   if (response === 'BadRequest_404') {
     return { notFound: true }
   }
   if (response === 'BadRequest_500') {
     return { redirect: { destination: '/500', permanent: false } }
   }
-  const { book = {} as IBookItemDetail, recommends = [], chapterList = [] } = response; // chapter, languages = []
+  const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
   const chapterName = book.bookName
   return {
     props: {

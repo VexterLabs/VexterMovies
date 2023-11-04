@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import styles from '@/components/Tag/tagBookList/MTagBookList.module.scss'
-import ImageCommon from "@/components/common/ImageCommon";
 import Link from "next/link";
 import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "typings/book.interface";
 import { printKeyword } from "@/components/PcTag/tagBookList/TagBookList";
 import { ELanguage } from "typings/home.interface";
 import useHiveLog from "@/hooks/useHiveLog";
+import { ImageCover } from "@/components/common/image/ImageCover";
 
 interface IProps {
   dataSource: ITagBookItem[];
@@ -22,66 +22,59 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword}) => {
       AggregatePage_Properties: recommend ? EAggregatePageProperties.推荐书籍 : EAggregatePageProperties.有版权书籍,
     })
   };
-  return <div className={styles.bookListWrap}>
+  return <div className={styles.listBox}>
     {dataSource && dataSource.length > 0 ? dataSource.map((book, bookInd) => {
-      let { bookId, bookName, introduction, cover, author, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
+      const { bookId, bookName, introduction, cover, labels, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/detail/${bookId}`;
-      const authorDom = printKeyword(author + (tag ? `/${tag}` : ''), keyword)
+      const linkUrl = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
       const recommend = isHot === ETagBookItemIsHot.yes
-      const browseLink = `/browse/${typeTwoIds[0] || 0}/`;
+      const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`;
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
-      return <div key={bookId + bookInd} className={styles.imageItem1Wrap}>
-        <Link 
-          href={linkUrl} 
-          locale={simpleLanguage} 
-          className={styles.bookImageBox} 
-          onClick={() => tagBookClick(keyword, bookId, recommend)}
-        >
-          <ImageCommon w={130} h={172} className={styles.bookImage} source={cover} alt={bookName}/>
-          {/* {recommend ? <div className={styles.bookStatus}>HOT</div> : null} */}
-        </Link>
-        <div className={styles.bookInfo}>
-          <Link 
-            href={linkUrl} 
-            locale={simpleLanguage} 
-            onClick={() => tagBookClick(keyword, bookId, recommend)}
-            >
-              <h2 className={styles.bookName} dangerouslySetInnerHTML={{__html: bookNameDom}}/>
-          </Link>
-          <div className={styles.bookLine2}>
-            {/* <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-              <a
-                className={styles.author}
-                dangerouslySetInnerHTML={{ __html: authorDom }}
-                onClick={() => tagBookClick(keyword, bookId, recommend)}/>
-            </Link> */}
-      
-            { 
-              !!(typeTwoNames && typeTwoNames.length) && typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
-                  <Link 
-                    key={bookId + '_browse_' + typeTwoNamesIdx }
-                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`} 
-                    locale={simpleLanguage} 
-                    className={styles.bookTypeTwoName}
-                    onClick={() => tagBookClick(keyword, bookId, recommend)}
-                  >
-                      {typeTwoNamesItem}
-                  </Link>
-              ))
-            }
-          </div>
 
-          <Link 
-            href={linkUrl} 
-            locale={simpleLanguage} 
+      return <div key={bookId + bookInd} className={styles.listItem}>
+        <ImageCover
+          onClick={() => tagBookClick(keyword, bookId, recommend)}
+          locale={simpleLanguage}
+          href={linkUrl}
+          className={styles.bookImage}
+          src={cover}
+          width={165}
+          height={220}
+          alt={bookName}
+        />
+
+        <div className={styles.bookInfo}>
+          <Link
+            href={linkUrl}
+            locale={simpleLanguage}
+            onClick={() => tagBookClick(keyword, bookId, recommend)}
+            className={styles.bookName}
+            dangerouslySetInnerHTML={{__html: bookNameDom}}
+          />
+
+          { labels.length > 0 ? <div className={styles.bookLabels}>
+            {labels.map(val => {
+              if (!val) return null;
+              return  <Link
+                key={val}
+                className={styles.bookLabel}
+                onClick={() => tagBookClick(keyword, bookId, recommend)}
+                href={browseLink}
+                locale={simpleLanguage}>
+                {val}
+              </Link>
+            })}
+          </div> : null }
+
+          <Link
             className={styles.intro}
             dangerouslySetInnerHTML={{__html: introDom}}
             onClick={() => tagBookClick(keyword, bookId, recommend)}
-          >
-          </Link>
+            href={linkUrl}
+            locale={simpleLanguage} />
         </div>
+
       </div>
     }) : null}
   </div>

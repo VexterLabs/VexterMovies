@@ -10,6 +10,7 @@ body {
   font-family: PingFangSC, PingFang SC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif !important;
   /*min-height: 100vh;*/
+  //background-color: #000000;
   background-color: #040404;
 }
 
@@ -80,11 +81,6 @@ input[type=search]::-webkit-search-decoration {
   display: none;
 }
 
-//#nprogress .spinner-icon {
-//  border-top-color: $theme_color;
-//  border-left-color: $theme_color;
-//}
-
 // browse下拉菜单组件样式
 .adm-dropdown-popup {
   top: 1.7rem !important;
@@ -93,30 +89,3 @@ input[type=search]::-webkit-search-decoration {
 .adm-dropdown-popup-mask {
   background: rgba(0, 0, 0, 0.2) !important;
 }
-
-//img.error {
-//  display: inline-block;
-//  transform: scale(1);
-//  content: "";
-//  color: transparent;
-//}
-//img.error::before {
-//  content: " ";
-//  position: absolute;
-//  left: 0; top: 0;
-//  width: 100%; height: 100%;
-//  background: url('/images/defaultFilm.png') no-repeat center / 100% 100%;
-//}
-//img.error::after {
-//  content: attr(alt);
-//  position: absolute;
-//  left: 0; bottom: 0;
-//  width: 100%; line-height: 2;
-//  background-color: rgba(0,0,0,.5);
-//  color: white;
-//  font-size: 12px;
-//  text-align: center;
-//  white-space: nowrap;
-//  overflow: hidden;
-//  text-overflow: ellipsis;
-//}

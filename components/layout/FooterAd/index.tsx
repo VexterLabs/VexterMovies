@@ -3,12 +3,12 @@ import styles from './index.module.scss'
 import ImageCommon from "@/components/common/ImageCommon";
 import Link from "next/link";
 import ClientConfig from "@/client.config";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { netIpUa } from "@/server/clientLog";
 import { useTranslation } from "next-i18next";
 import { useAppSelector } from "@/store";
 import { isIos } from "@/utils/ownOs";
 import useHiveLog from "@/hooks/useHiveLog";
+import { onCopyText } from "@/utils/copy";
 
 const androidLink = ClientConfig.android.link;
 
@@ -35,15 +35,13 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
       <div className={styles.intro}>{t('banner.OpenApp')}</div>
     </div>
 
-    <Link href={isIos(clipboard.ua) ? iosLink : androidLink} legacyBehavior>
-      <a rel={'nofollow'}>
-        <CopyToClipboard text={copyText} onCopy={() => {
-          HiveLog.trackDownload('BannerDownloadButton_Click');
-          netIpUa(clipboard)
-        }}>
-          <div className={styles.openBtn}>{t('banner.Open')}</div>
-        </CopyToClipboard>
-      </a>
+    <Link href={isIos(clipboard.ua) ? iosLink : androidLink} rel={'nofollow'} onClick={() => {
+      onCopyText(copyText, () => {
+        HiveLog.trackDownload('BannerDownloadButton_Click');
+        netIpUa(clipboard)
+      })
+    }}>
+      <div className={styles.openBtn}>{t('banner.Open')}</div>
     </Link>
   </div>
 }

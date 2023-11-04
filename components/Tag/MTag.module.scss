@@ -1,49 +1,19 @@
-.moreBox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  background: linear-gradient(140deg, #FF7E42 0%, #FF3E64 100%);
-  font-size: 0.34rem;
-  font-weight: 600;
-  padding: 0.24rem 0.32rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 0.88rem;
-
-  .moreBack {
-    .backIcon {
-      width: 0.32rem;
-      height: 0.32rem;
-    }
-  }
-
-  .moreBoxTitle {
-    font-size: 0.36rem;
-    font-weight: 600;
-    color: #FFFFFF;
-    flex: 1;
-    text-align: center;
-    padding-right: 0.42rem;
-    padding-left: 0.2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family: Roboto-Medium, Roboto;
-  }
-}
-
 .tagWrap {
-  padding: 0.16rem 0.04rem 0;
-  font-family: Roboto-Regular, Roboto;
+  padding: 0 0.32rem 0;
+
+  .tagHeader {
+    display: flex;
+    align-items: center;
+    height: 0.80rem;
+    position: sticky;
+    top: 0.87rem;
+  }
 
   .keywordBox {
-    padding: 0 0.32rem;
+    padding-top: 0.16rem;
 
     .title {
       height: 0.48rem;
-      font-family: SFPro-Medium, SFPro;
       color: #FF375F;
       font-size: 0.36rem;
       font-weight: bold;
@@ -57,31 +27,32 @@
       font-weight: 400;
       color: rgba(255,255,255,0.6);
       white-space: pre-wrap;
-      font-family: SFPro-Regular, SFPro;
+
+      span {
+        color: $theme_color;
+      }
     }
   }
 
   .keywordConnect {
-    padding: 0 0.32rem;
 
     .keywordConnectTitle {
       margin-bottom: 0.16rem;
       font-size: 0.32rem;
       color: rgba(255,255,255,0.8);
       line-height: 0.4rem;
-      font-family: SFPro-Regular, SFPro;
     }
 
     .keywordConnectItem {
+      height: 0.44rem;
+      border-radius: 0.22rem;
+      line-height: 0.44rem;
       display: inline-block;
       font-size: 0.32rem;
-      line-height: 0.36rem;
       margin: 0 0.24rem 0.24rem 0;
-      padding: 0.04rem 0.16rem;
+      padding: 0 0.16rem;
       background: rgba(255,255,255,0.1);
-      border-radius: 0.22rem;
       color: $theme_color;
-      font-family: Roboto-Regular, Roboto;
     }
   }
 

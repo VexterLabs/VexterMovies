@@ -9,9 +9,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
 import { ESearchType } from "typings/sitemap.interface";
 import useHiveLog from "@/hooks/useHiveLog";
-import CrumbsTagCom from "@/components/common/Crumbs/CrumbsTagCom";
+import { IBreadcrumb } from "@/components/common/breadcrumb";
+import { SSRConfig } from "next-i18next";
 
-interface IProps {
+interface IProps extends SSRConfig {
   keywordList: IKeywordItem[]
   isPc: boolean;
   currentPage: number;
@@ -25,11 +26,26 @@ const KeywordsPage: NextPage<IProps> = ({ isPc, currentPage, totalPage = 0, keyw
     HiveLog.track('ListPage_click', { key_word: keyword })
   }
 
+  const breadData: IBreadcrumb[] = [
+    { title: 'Home', link: "/" },
+    { title: 'Keywords' },
+  ]
+
   return <>
-    <CrumbsTagCom isShow={true} isPc={isPc} keyword=""/>
     {isPc ?
-      <PcKeywords keywordList={keywordList} pageNo={currentPage} totalPage={totalPage} keywordClick={keywordClick}/>
-      : <MKeywords keywordList={keywordList} pageNo={currentPage} totalPage={totalPage} keywordClick={keywordClick}/>}
+      <PcKeywords
+        breadData={breadData}
+        keywordList={keywordList}
+        pageNo={currentPage}
+        totalPage={totalPage}
+        keywordClick={keywordClick}/>
+      :
+      <MKeywords
+        breadData={breadData}
+        keywordList={keywordList}
+        pageNo={currentPage}
+        totalPage={totalPage}
+        keywordClick={keywordClick}/>}
   </>
 }
 
@@ -37,10 +53,12 @@ export default KeywordsPage;
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
-  const { page = '1' } = query as { page: string; };
-
+  const { page } = query as { page: string; };
+  if (page === '1') {
+    return { redirect: { destination: '/keywords', permanent: false } }
+  }
   const res = await netKeywords({
-    pageNum: Number(page),
+    pageNum: Number(page) || 1,
     pageSize: 300,
     searchType: ESearchType.ALL
   })
@@ -51,7 +69,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (res === 'BadRequest_404' || !res) {
     return { notFound: true }
   }
-
   const { data = [], currentPage = 1, pages = 1 } = res;
 
   return {

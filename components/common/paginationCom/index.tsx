@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
-import styles from '@/components/common/paginationCom/index.module.scss'
 import Link from "next/link";
 import Image from "next/image";
+import styles from '@/components/common/paginationCom/index.module.scss';
 
 /** 参考文献https://www.jianshu.com/p/ec9aca4764cf*/
 
@@ -12,10 +12,19 @@ interface IProps {
   showLength?: number; // 最大长度
   groupCount?: number; // 页码分组，显示6个页码，其余用省略号显示
   isScroll?: boolean; // 是否滚动到顶部
+  query?: string;
 }
 
 const PaginationCom: FC<IProps> = (
-  { path, totalPage, pageNo, showLength = 6, groupCount = 5, isScroll = false }
+  {
+    path,
+    totalPage,
+    pageNo,
+    showLength = 6,
+    groupCount = 5,
+    isScroll = false,
+    query =  ''
+  }
 ) => {
   const [currentPage, setCurrentPage] = useState(1); //当前页码
   const [startPage, setStartPage] = useState(1);  // 分组开始页码
@@ -32,7 +41,7 @@ const PaginationCom: FC<IProps> = (
     const pageLength = groupCount + startPage > totalPage ? totalPage : groupCount + startPage;
     return (<>
       {currentPage === 1 ? <div className={styles.activePage}>1</div> :
-        <Link scroll={isScroll} href={path + 1} className={styles.normalLi}>1</Link>}
+        <Link scroll={isScroll} href={path + query} className={styles.normalLi}>1</Link>}
       {/*前面省略号(当当前页码比分组的页码大时显示省略号)*/}
       {currentPage >= groupCount && <div className={styles.omission}>…</div>}
       {/*非第一页和最后一页显示*/}
@@ -40,7 +49,7 @@ const PaginationCom: FC<IProps> = (
         if (i < startPage) return null;
         if (i <= totalPage - 1 && i > 1) {
           return currentPage === i ? <div className={styles.activePage} key={i}>{i}</div> :
-            <Link key={i} scroll={isScroll} href={path + i} className={styles.normalLi}>{i}</Link>
+            <Link key={i} scroll={isScroll} href={path + i + query} className={styles.normalLi}>{i}</Link>
         }
         return null;
       })}
@@ -48,7 +57,7 @@ const PaginationCom: FC<IProps> = (
       {totalPage - startPage >= groupCount + 1 && <div className={styles.omission}>…</div>}
       {/*最后一页*/}
       {currentPage === totalPage ? <div className={styles.activePage}>{totalPage}</div> :
-        <Link scroll={isScroll} href={path + totalPage} className={styles.normalLi}>{totalPage}</Link>}
+        <Link scroll={isScroll} href={path + totalPage + query} className={styles.normalLi}>{totalPage}</Link>}
     </>)
   }
 
@@ -64,7 +73,7 @@ const PaginationCom: FC<IProps> = (
             alt={'prev'}
           />
         </div> :
-        <Link scroll={isScroll} href={path + (currentPage - 1)} className={styles.prevBtn}>
+        <Link scroll={isScroll} href={path + (currentPage === 2 ? '' : (currentPage - 1)) + query} className={styles.prevBtn}>
           <Image
             className={styles.prevNextIcon}
             width={14}
@@ -80,7 +89,7 @@ const PaginationCom: FC<IProps> = (
           if (currentPage === i + 1) {
             return <div key={i + 1} className={styles.activePage}>{i + 1}</div>;
           }
-          return <Link key={i + 1} scroll={isScroll} href={path + (i + 1)} className={styles.normalLi}>
+          return <Link key={i + 1} scroll={isScroll} href={path + (i === 0 ? '' : (i + 1)) + query} className={styles.normalLi}>
             {i + 1}
           </Link>
         }) :
@@ -95,7 +104,7 @@ const PaginationCom: FC<IProps> = (
             alt={'next'}
           />
         </div> :
-        <Link scroll={isScroll} href={path + `${currentPage + 1}`} className={styles.nextBtn}>
+        <Link scroll={isScroll} href={path + `${currentPage + 1}` + query} className={styles.nextBtn}>
           <Image
             className={styles.prevNextIcon}
             width={14}

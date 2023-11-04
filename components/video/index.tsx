@@ -5,7 +5,7 @@ import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 
 enum clsSt {
@@ -61,7 +61,7 @@ const MVideo:  FC<IProps> = () => {
       playIns.on(Events.AUTOPLAY_PREVENTED, () => {
         console.log('autoplay was prevented!!')
       })
-      
+
       playIns.on(Events.AUTOPLAY_STARTED, () => {
         console.log('autoplay success!!')
       })
@@ -96,7 +96,7 @@ const MVideo:  FC<IProps> = () => {
         </div>
       </div>
     </div>
-    
+
   </>
 }
 

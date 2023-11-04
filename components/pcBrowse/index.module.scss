@@ -1,5 +1,12 @@
 .browseWrap {
   padding: 0.4rem 0 0.6rem;
+  background-color: #000000;
+  min-height: calc(100vh - 2.6rem);
+
+  .container {
+    width: 14.4rem;
+    margin: 0 auto;
+  }
 
   .browseHeader {
     width: 100%;
@@ -117,7 +124,6 @@
   }
 
   .browseContent {
-    min-height: 7rem;
     position: relative;
     z-index: 9;
     display: flex;

@@ -7,19 +7,19 @@ export interface INetBookReq {
 }
 
 export interface INetBookRes extends IBookItemDetail{
-  book: IBookItemDetail;
-  recommends: IBookItemDetail[];
+  book: IBookItem;
+  recommends: IBookItem[];
   chapterList: IChapterList[];
-  // chapter: {
-  //   id: string;
-  //   name: string;
-  // };
+  chapter: {
+    id: string;
+    name: string;
+  };
   // column: {
   //   bookId: string;
   //   bookName: string;
   //   columnName: string;
   // };
-  // languages: ELanguage[]
+  languages: ELanguage[]
 }
 export interface IBook {
   bookId: string;
@@ -48,6 +48,7 @@ export interface IBook {
   typeTwoNames: string[];
   typeTwoIds: number[];
   typeTwoName: string;
+  labels: string[];
 }
 
 // export interface INetBookRes extends IBookItem{

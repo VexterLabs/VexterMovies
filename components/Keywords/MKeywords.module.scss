@@ -1,40 +1,18 @@
-.moreBox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  background: linear-gradient(140deg, #FF7E42 0%, #FF3E64 100%);
-  font-size: 0.34rem;
-  font-weight: 600;
-  padding: 0.24rem 0.32rem;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 0.88rem;
-
-  .moreBack {
-    .backIcon {
-      width: 0.32rem;
-      height: 0.32rem;
-    }
-  }
-
-  .moreBoxTitle {
-    font-size: 0.36rem;
-    font-weight: 600;
-    color: #FFFFFF;
-    flex: 1;
-    text-align: center;
-    padding-right: 0.32rem;
-  }
-}
-
 .keywordsWrap {
-  padding: 0.16rem 0.32rem 0;
-  font-family: Roboto-Regular, Roboto;
+  padding: 0 0.32rem;
+  background-color: #000000;
+
+  .keywordsHeader {
+    display: flex;
+    align-items: center;
+    height: 0.80rem;
+    position: sticky;
+    top: 0.87rem;
+  }
 
   .keywordBox {
-    min-height: calc(100vh - 2.1rem);
+    padding-top: 0.16rem;
+    min-height: calc(100vh - 4.2rem);
 
     .keywordItem {
       display: inline-block;

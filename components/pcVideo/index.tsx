@@ -5,7 +5,7 @@ import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 
 enum clsSt {
@@ -57,7 +57,7 @@ const VideoPlayer:  FC<IProps> = () => {
       playIns.on(Events.AUTOPLAY_PREVENTED, () => {
         console.log('autoplay was prevented!!')
       })
-      
+
       playIns.on(Events.AUTOPLAY_STARTED, () => {
         console.log('autoplay success!!')
       })
@@ -101,8 +101,7 @@ const VideoPlayer:  FC<IProps> = () => {
         <div className={styles.videoInfo}>
           <p className={styles.videoTitle}>Returning to ancient times and becoming the emperor-Episodes 1</p>
           <p className={styles.videoStar}>
-            <Image 
-              className={styles.imageStar}
+            <Image
               src = '/images/book/play-icon.png'
               width={24}
               height={24}
@@ -121,7 +120,7 @@ const VideoPlayer:  FC<IProps> = () => {
         <div className={styles.allEpo}>
           {
             episopeList.map((item,ind) => {
-              return <Link href={`/`} className={styles.linkItem}>
+              return <Link key={ind} href={`/`} className={styles.linkItem}>
                 <Image
                   className={styles.EpoItem}
                   onError={onImgError}
@@ -137,8 +136,8 @@ const VideoPlayer:  FC<IProps> = () => {
             })
           }
         </div>
-        
-        
+
+
       </div>
     </div>
   </>

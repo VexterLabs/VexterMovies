@@ -10,7 +10,8 @@ import { setDevice, setFooterAdVisible } from "@/store/modules/app.module";
 import { EDevice } from "@/store/store.interfaces";
 import MHeader from "@/components/layout/mHeader/MHeader";
 import FooterAd from "@/components/layout/FooterAd";
-import styles from "@/components/layout/index.module.scss"
+import classNames from "classnames";
+import styles from "@/components/layout/index.module.scss";
 
 interface IProps {
   children: React.ReactNode;
@@ -61,9 +62,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   if ((Reflect.has(pageProps, 'isPc') && Reflect.get(pageProps, 'isPc')) || (device === EDevice.pc && domVisible)) {
     return <>
       <PcHeader />
-      <main className={styles.pcWrap}>
-        {children}
-      </main>
+      {children}
       <PcFooter />
     </>
   }
@@ -71,7 +70,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   return (
     <>
       <MHeader/>
-      <main className={`styles.mWrap ${footerAdShow && footerAdVisible ? styles.mWrapPaddingBo : ''}`}>
+      <main className={classNames(styles.mWrap, footerAdVisible && styles.mWrapPaddingBo)}>
         {children}
       </main>
       {

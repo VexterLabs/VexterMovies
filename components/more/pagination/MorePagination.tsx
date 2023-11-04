@@ -1,9 +1,9 @@
 import React, { FC } from "react";
-import styles from '@/components/more/pagination/MorePagination.module.css'
 import Link from "next/link";
 import { Toast } from "antd-mobile";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import styles from '@/components/more/pagination/MorePagination.module.css';
 
 interface IProps {
   prevPath: string;
@@ -18,7 +18,7 @@ const MorePagination: FC<IProps> = ({ prevPath, totalPage, page, query = '' }) =
   const nextPage = Number(page) + 1;
 
   return <div className={styles.paginationWrap} style={query ? { padding: '0.24rem 0' } : {}}>
-    {prevPage && prevPage > 0 ? <Link href={prevPath + prevPage + query} replace scroll className={styles.linkItem}>
+    {prevPage && prevPage > 0 ? <Link href={prevPath + (prevPage === 1 ? '' : prevPage) + query} replace scroll className={styles.linkItem}>
         <Image
           className={styles.prevNextIcon}
           width={32}

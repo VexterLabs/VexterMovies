@@ -6,7 +6,6 @@ import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcMore from "@/components/pcMore";
 import MMore from "@/components/more";
-import { useRouter } from "next/router";
 
 interface IProps {
   isPc: boolean;
@@ -16,7 +15,7 @@ interface IProps {
   pages: number;
 }
 
-const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages,positionName }) => {
+const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages }) => {
 
   return <>
     {isPc ? <PcMore pageNo={pageNo} pages={pages} moreData={moreData} /> :
@@ -28,7 +27,11 @@ const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages,positionName }) 
 // 导出异步获取数据方法
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
-  const { page = '1', position = '' } = query;
+  const { page, position = '' } = query;
+  if (page === "1") {
+    return { redirect: { destination: `/more/${position}`, permanent: false } }
+  }
+
   let name = '';
   if (position && Reflect.has(ColumnNameRouteReversion, position as EHomeName)) {
     name = Reflect.get(ColumnNameRouteReversion, position as EHomeName)
@@ -37,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
   const response = await netMoreBook({
     name,
-    pageNum: Number(page),
+    pageNum: Number(page) || 1,
     pageSize: 18
   }, locale as ELanguage)
 

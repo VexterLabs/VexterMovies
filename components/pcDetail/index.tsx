@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItemDetail, IChapterList, ColumnNameRoute } from "@/typings/home.interface";
+import { IBookItemDetail, IChapterList, ColumnNameRoute, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
 import PcSeries from '@/components/pcDetail/pcSeries';
@@ -12,8 +12,8 @@ import PcLike from '@/components/pcDetail/pcLike';
 import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
 
 interface IProps {
-  bookInfo: IBookItemDetail;
-  recommends: IBookItemDetail[];
+  bookInfo: IBookItem;
+  recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
 }
@@ -22,7 +22,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
   const { t } = useTranslation()
 
   const router = useRouter();
-  
+
   return <>
     <div className={styles.detailBox}>
       <div className={styles.detailBookCoverBox}>
@@ -78,7 +78,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
       <PcHomeTitle title='YOU Might Like'/>
       <PcLike dataSource={recommends}></PcLike>
     </div>
-    
+
     {/* {recommends.length > 0 ? <div className={styles.recommendBox}>
       <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
       <SecondList dataSource={recommends}/>
