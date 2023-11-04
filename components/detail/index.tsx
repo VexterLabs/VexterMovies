@@ -20,11 +20,13 @@ interface IProps {
   isApple: boolean;
   recommends: IBookItemDetail[];
   chapterList: IChapterList[];
+  chapterName: string;
 }
 
-const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [] }) => {
+const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [], chapterName }) => {
   console.log('bookInfo', bookInfo)
   const { t } = useTranslation();
+  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
   const shopLink = useAppSelector(state => {
@@ -80,7 +82,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
           netIpUa(clipboard)
           HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
         }}>
-          <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
+          <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`}>
             <Image
               className={styles.playIcon}
               width={48}
@@ -103,7 +105,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
     <div className={styles.episodeNav} onClick={() => {showEpisodeDialog()}}>
       <div className={styles.leftInfo}>
         <p className={styles.innerPt}>Episodes List</p>
-        <p className={styles.innerPl}>(180 Episodes)</p>
+        <p className={styles.innerPl}>({chapterList&&chapterList.length} Episodes)</p>
       </div>
       <div className={styles.rightImg}>
         <Image
@@ -123,6 +125,8 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
     </div>
 
     <EpisopeDialog 
+      bookInfo={bookInfo}
+      chapterName={chapterName}
       chapterList={chapterList} 
       closeDialog={closeEpisodeDialog}
       showDialog={showDialog}></EpisopeDialog>
@@ -138,7 +142,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
         {/* <span>{t('home.privacyPolicy')}</span> */}
         <span>Episodes</span>
       </div>
-      <Link href={'/terms'} className={styles.playIcon}>
+      <Link href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`} className={styles.playIcon}>
         <Image
           className={styles.navIcon}
           width={64}

@@ -37,6 +37,7 @@ const Book: NextPage<IProps> = (
         chapterName={chapterName}
       /> :
       <MDetail
+        chapterName={chapterName}
         isApple={isApple}
         bookInfo={bookInfo}
         recommends={recommends}

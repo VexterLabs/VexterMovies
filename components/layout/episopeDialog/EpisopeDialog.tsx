@@ -5,20 +5,25 @@ import { useTranslation } from "next-i18next";
 import ClientConfig from "@/client.config";
 import Image from "next/image";
 import Item from 'antd-mobile/es/components/dropdown/item';
-import { IChapterList } from "@/typings/home.interface";
+import { IChapterList, IBookItemDetail } from "@/typings/home.interface";
+import { useRouter } from "next/router";
 
 interface IProps {
   chapterList:IChapterList[];
   showDialog: boolean;
   closeDialog: Function;
+  chapterName: string;
+  bookInfo: IBookItemDetail;
 }
 
-const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) => {
+const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, chapterName, bookInfo}) => {
   const { t } = useTranslation();
   const [tabArr, setTab] = useState([])
   // const [listArr, setList] = useState(chapterList)
   const [videoList, setVideoList] = useState<IChapterList[]>(chapterList)
   const [isShow, setShow] = useState(false)
+  const router = useRouter()
+  const { id } = router.query
   // 处理剧集数据
   const dealVideoData = (curInd: number) => {
     console.log('curInd', curInd)
@@ -50,7 +55,7 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) 
   },[])
   return <div className={styles.dialogBox} style={showDialog ? {} : {display:'none'}}>
     <div className={styles.topInfo}>
-      <div className={styles.title}>{videoList&&videoList.length>0&&videoList[0].name}</div>
+      <div className={styles.title}>{chapterName}</div>
       <Image
         className={styles.closeIcon}
         onClick={() => {closeDialog()}}
@@ -69,16 +74,16 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) 
     </div>
     
     <div className={styles.episodeList}>
-      {videoList?.length&&videoList.map((item:any,ind:number) => {
+      {videoList?.length&&videoList.map((item,ind) => {
         const {
           name,
           cover,
           index
         } = item
-        return <div className={styles.linkBox} key={ind} style={item.showEposide?{}:{display:"none"}}>
-          <Link href='/' className={styles.linkBox}>
-            <div className={item.unlock ? styles.episodeItem : styles.episodeItemLock}>
-              <span>{item.name}</span>
+        return <div className={styles.linkBox} key={ind} style={item.showEposide?{}:{display:"none"}} >
+          <Link  href={`/episode/${bookInfo.bookId}/${item.id}`} className={styles.linkBox}>
+            <div className={item.unlock ? styles.episodeItem : styles.episodeItemLock} onClick={() => {closeDialog()}}>
+              <span>{item.index + 1}</span>
             </div>
           </Link>
         </div>

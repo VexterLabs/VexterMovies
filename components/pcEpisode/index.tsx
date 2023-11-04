@@ -24,16 +24,15 @@ interface IProps {
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
 const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1} ) => {
-    const queryObj = useRouter()
     const router = useRouter()
-    const { id } = queryObj.query
-    const chapterId = queryObj.query.chapterId as string
-    const [curUrl, setUrl] = useState('')
+    const { id } = router.query
+    const chapterId = router.query.chapterId as string
     const [currentEpi, setCurEpisode] = useState(0)
     const [relateComputeEpi, setComputedEpi] = useState(chapterList)//相关剧集，点击第三集，相关剧集展示 4 5 6 7 8...集
     const [playerInstace, setIns] = useState<any>()
     const [curClickInd, setClickIndex] = useState(0)
-    const [preChapter, setPreChapter] = useState()
+    const [recordCurEpi, setrecordCurEpi] = useState<object>()
+    const [errorBgsrc, setErrorBg] = useState('')
     // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
     const curChapterData = chapterList.find(item => item.id === chapterId ) //&& item.unlock === true
     currentPage = curChapterData?.index as number
@@ -48,8 +47,11 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       const curIUrl = curId?.mp4
       setCurEpisode(ind as number)
       dealReaEpi(ind as number)
-      setUrl(curIUrl as string)
-    },[])
+      const cover = curId?.cover
+      if(curId?.unlock === false) {
+        setErrorBg(cover as string)
+      }
+    },[chapterList])
     let playIns: any;
     // 播放器设置
     useEffect(() => { 
@@ -65,7 +67,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
         videoFillMode: "fillHeight",
         playsinline: true,
         ignores:['playbackRate'],
-        cssFullscreen:false
+        cssFullscreen:false,
       })
       setIns(playIns)//保存播放器实例
       // 播放
@@ -94,6 +96,12 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       // if(curClickInd === item.index) {
       //   return
       // }
+      if(item.unlock === false) {
+        setErrorBg(item.cover)
+      } else {
+        setErrorBg('')
+      }
+      console.log('errorBgsrc', errorBgsrc)
       if(item.unlock === false) {//当前剧集已锁
         return
       }
@@ -124,6 +132,21 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
         <div className={styles.leftVideo}>
           <div className={styles.videoContainer}>
             <div id="playVideo"></div>
+            <div className={styles.downloads} style={errorBgsrc ? {} : {display:'none'}}>
+              {
+                errorBgsrc?  <Image
+                className={styles.errBg}
+                width={398}
+                height={708}
+                src={errorBgsrc}
+                alt='photo'/>:
+                null
+              }
+              <div className={styles.downInfo}>
+                <p  className={styles.downTip}>This episode needs t0 be downloaded to watch</p>
+                <div className={styles.btnDown}>Download the App to continue watching</div>
+              </div>
+            </div>
             {/* <PcVideo videoUrl={videoUrl} chapterList={chapterList}></PcVideo> */}
           </div>
           <div className={styles.videoInfo}>
@@ -164,12 +187,12 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
                         placeholder="blur"
                         blurDataURL={item.cover}
                         width={88}
-                        height={117}
+                        height={89}
                         src={item.cover}
                         alt='photo'
                       />
                     </div>
-                    <span className={styles.linkText}>{item.name}</span>
+                    <p className={styles.linkText}>{item.name}</p>
                   </Link>
                 </div>
               })

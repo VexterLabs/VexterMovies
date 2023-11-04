@@ -34,6 +34,11 @@ const Espoise: NextPage<IProps> = (
         currentPage={currentPage}
       /> :
       <MEspoise
+        bookInfo={bookInfo}
+        recommends={recommends}
+        chapterList={chapterList}
+        chapterName={chapterName}
+        currentPage={currentPage}
       />}
   </>
 }
@@ -53,6 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const { book = {} as IBookItemDetail, recommends = [], chapterList = [] } = response; // chapter, languages = []
   const chapterName = book.bookName
   const currentPage = 0
+  console.log('response-mmmmmm',response)
   return {
     props: {
       id,
