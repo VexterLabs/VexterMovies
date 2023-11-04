@@ -5,6 +5,10 @@ import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
+import { useAppSelector } from "@/store";
+import ClientConfig from "@/client.config";
+import useHiveLog from "@/hooks/useHiveLog";
+import { netIpUa } from "@/server/clientLog";
 import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
 import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
@@ -12,6 +16,8 @@ import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
 import LikeItem from "@/components/detail/likeItem/LikeItem";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 interface IProps {
     bookInfo: IBookItemDetail;
@@ -19,10 +25,11 @@ interface IProps {
     chapterList: IChapterList[];
     chapterName: string;
     currentPage: number;
+    isApple: boolean;
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
-const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1, chapterName} ) => {
+const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1, chapterName, isApple} ) => {
     const router = useRouter()
     const { id } = router.query
     const chapterId = router.query.chapterId as string
@@ -32,6 +39,20 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     const [recordCurEpi, setrecordCurEpi] = useState<object>()
     const [showDialog, setEpiDialog] = useState(false);//展示所有剧集的弹框
     const [errorBgsrc, setErrorBg] = useState('')
+    const clipboard = useAppSelector(state => state.hive.clipboard)
+    const copyText = useAppSelector(state => state.hive.copyText);
+    const shopLink = useAppSelector(state => {
+      if (isApple) {
+        return ClientConfig.ios.deeplink + state.hive.copyText;
+      }
+      return ClientConfig.android.link;
+    });
+    const HiveLog = useHiveLog();
+    const {
+      bookId,
+      bookName,
+      introduction
+    } = bookInfo;
     // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
     const curChapterData = chapterList.find(item => item.id === chapterId ) //&& item.unlock === true
     currentPage = curChapterData?.index as number
@@ -229,7 +250,11 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
             {/* <span>{t('home.termsOfUse')}</span> */}
             <span className={styles.playTxt}>Play</span>
           </Link>
-          <Link href={'/terms'} className={styles.downloadIcon}>
+          <CopyToClipboard text={copyText} onCopy={() => {
+            netIpUa(clipboard)
+            HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+          }}>
+          <Link href={shopLink} className={styles.downloadIcon}>
             <Image
               className={styles.navIcon}
               width={64}
@@ -240,6 +265,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
             {/* <span>{t('home.termsOfUse')}</span> */}
             <span>Download</span>
           </Link>
+        </CopyToClipboard>
         </div>
       </div>
       <EpisopeDialog 

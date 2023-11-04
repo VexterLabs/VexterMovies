@@ -39,6 +39,7 @@ const Espoise: NextPage<IProps> = (
         chapterList={chapterList}
         chapterName={chapterName}
         currentPage={currentPage}
+        isApple={isApple}
       />}
   </>
 }
@@ -46,9 +47,7 @@ const Espoise: NextPage<IProps> = (
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
   const { id = '',chapterId = '' } = query as { id: string,chapterId: string};
-  console.log('query--cur', query)
   const response = await netBookDetail({ id }, locale as ELanguage);
-   console.log('response-110' ,response)
   if (response === 'BadRequest_404') {
     return { notFound: true }
   }
@@ -58,7 +57,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const { book = {} as IBookItemDetail, recommends = [], chapterList = [] } = response; // chapter, languages = []
   const chapterName = book.bookName
   const currentPage = 0
-  console.log('response-mmmmmm',response)
   return {
     props: {
       id,

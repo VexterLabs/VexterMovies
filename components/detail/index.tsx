@@ -13,6 +13,8 @@ import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
 import LikeItem from "@/components/detail/likeItem/LikeItem";
+import { useRouter } from 'next/router';
+
 
 interface IProps {
   bookInfo: IBookItemDetail;
@@ -24,7 +26,9 @@ interface IProps {
 
 const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [], chapterName }) => {
   const { t } = useTranslation();
-  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
+  const router = useRouter()
+  const chapterId = router.query.chapterId as string
+  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id || chapterId)//设置剧集的首剧集id
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
   const shopLink = useAppSelector(state => {
@@ -76,21 +80,16 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div> : null}
 
       <div className={styles.footerBox}>
-        <CopyToClipboard text={copyText} onCopy={() => {
-          netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-        }}>
-          <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
-            <Image
-              className={styles.playIcon}
-              width={48}
-              height={48}
-              src={'/images/book/play-d.png'}
-              alt={''}
-            />
-            <span>{t("home.play")}</span>
-          </Link>
-        </CopyToClipboard>
+        <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`}>
+          <Image
+            className={styles.playIcon}
+            width={48}
+            height={48}
+            src={'/images/book/play-d.png'}
+            alt={''}
+          />
+          <span>{t("home.play")}</span>
+        </Link>
       </div>
 
       {introduction ? <div className={styles.introBox}>
@@ -151,17 +150,22 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
         {/* <span>{t('home.termsOfUse')}</span> */}
         <span className={styles.playTxt}>Play</span>
       </Link>
-      <Link href={'/terms'} className={styles.downloadIcon}>
-        <Image
-          className={styles.navIcon}
-          width={64}
-          height={64}
-          src={'/images/book/download-d.png'}
-          alt={'more'}
-        />
-        {/* <span>{t('home.termsOfUse')}</span> */}
-        <span>Download</span>
-      </Link>
+      <CopyToClipboard text={copyText} onCopy={() => {
+          netIpUa(clipboard)
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+        }}>
+        <Link href={shopLink} className={styles.downloadIcon}>
+          <Image
+            className={styles.navIcon}
+            width={64}
+            height={64}
+            src={'/images/book/download-d.png'}
+            alt={'more'}
+          />
+          {/* <span>{t('home.termsOfUse')}</span> */}
+          <span>Download</span>
+        </Link>
+      </CopyToClipboard>
     </div>
   </div>
 

@@ -22,8 +22,10 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
   const [isShow, setShow] = useState(false)
   const router = useRouter()
   const { id } = router.query
+  const [curIndex, setCurIndex] = useState<number>(0)
   // 处理剧集数据
   const dealVideoData = (curInd: number) => {
+    setCurIndex(curInd)
     setVideoList(prevState => {
       return prevState.map((val,ind) => { 
         if(Math.floor(ind/30) === curInd) {
@@ -64,7 +66,7 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
     <div className={styles.titleTab}>
       {
         tabArr.map((item: any,ind: number) => {
-          return <div onClick={() => dealVideoData(ind)} className={styles.tabTop} key={ind}>{item.label}</div>
+          return <div onClick={() => dealVideoData(ind)} className={curIndex === ind ? styles.tabTopActive : styles.tabTop} key={ind}>{item.label}</div>
         })
       }
     </div>
