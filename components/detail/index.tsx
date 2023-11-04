@@ -8,13 +8,11 @@ import { IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interfa
 import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
-import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
 import LikeItem from "@/components/detail/likeItem/LikeItem";
-import { onCopyText } from "@/utils/copy";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 interface IProps {
   bookInfo: IBookItemDetail;
@@ -78,23 +76,21 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div> : null}
 
       <div className={styles.footerBox}>
-        {/* <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink} onClick={() => {
-          onCopyText(copyText, () => {
-            netIpUa(clipboard)
-            HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-          })
+        <CopyToClipboard text={copyText} onCopy={() => {
+          netIpUa(clipboard)
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
         }}>
-        </Link> */}
-        <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`}>
-          <Image
-            className={styles.playIcon}
-            width={48}
-            height={48}
-            src={'/images/book/play-d.png'}
-            alt={''}
-          />
-          <span>{t("home.play")}</span>
-        </Link>
+          <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
+            <Image
+              className={styles.playIcon}
+              width={48}
+              height={48}
+              src={'/images/book/play-d.png'}
+              alt={''}
+            />
+            <span>{t("home.play")}</span>
+          </Link>
+        </CopyToClipboard>
       </div>
 
       {introduction ? <div className={styles.introBox}>
