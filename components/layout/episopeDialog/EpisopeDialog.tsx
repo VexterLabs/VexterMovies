@@ -2,9 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import styles from '@/components/layout/episopeDialog/EpisopeDialog.module.scss'
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import ClientConfig from "@/client.config";
 import Image from "next/image";
-import Item from 'antd-mobile/es/components/dropdown/item';
 import { IChapterList, IBookItemDetail } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 
@@ -26,8 +24,6 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
   const { id } = router.query
   // 处理剧集数据
   const dealVideoData = (curInd: number) => {
-    console.log('curInd', curInd)
-
     setVideoList(prevState => {
       return prevState.map((val,ind) => { 
         if(Math.floor(ind/30) === curInd) {
@@ -72,7 +68,7 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
         })
       }
     </div>
-    
+
     <div className={styles.episodeList}>
       {videoList?.length&&videoList.map((item,ind) => {
         const {

@@ -4,16 +4,17 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
+import { IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeNav from "@/components/layout/episopeNav/EpisopeNav"
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
 import LikeItem from "@/components/detail/likeItem/LikeItem";
+import { onCopyText } from "@/utils/copy";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 interface IProps {
   bookInfo: IBookItemDetail;
@@ -24,7 +25,6 @@ interface IProps {
 }
 
 const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [], chapterName }) => {
-  console.log('bookInfo', bookInfo)
   const { t } = useTranslation();
   const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
   const clipboard = useAppSelector(state => state.hive.clipboard)
@@ -78,21 +78,23 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </div> : null}
 
       <div className={styles.footerBox}>
-        <CopyToClipboard text={copyText} onCopy={() => {
-          netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+        {/* <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink} onClick={() => {
+          onCopyText(copyText, () => {
+            netIpUa(clipboard)
+            HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+          })
         }}>
-          <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`}>
-            <Image
-              className={styles.playIcon}
-              width={48}
-              height={48}
-              src={'/images/book/play-d.png'}
-              alt={''}
-            />
-            <span>{t("home.play")}</span>
-          </Link>
-        </CopyToClipboard>
+        </Link> */}
+        <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`}>
+          <Image
+            className={styles.playIcon}
+            width={48}
+            height={48}
+            src={'/images/book/play-d.png'}
+            alt={''}
+          />
+          <span>{t("home.play")}</span>
+        </Link>
       </div>
 
       {introduction ? <div className={styles.introBox}>
@@ -166,7 +168,7 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple, recommends = [], chapterList = [
       </Link>
     </div>
   </div>
-  
+
 }
 
 export default MFilm;

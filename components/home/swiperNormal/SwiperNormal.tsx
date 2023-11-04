@@ -16,13 +16,12 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
   const items = bigList.map((item) => (
     <Swiper.Item key={item.bookId} className={styles.content}>
       <div className={styles.swiperItem}>
-        <Link href={`/detail/${item.bookId}`} className={styles.contentImgBox}>
+        <Link href={`/film/${item.bookId}`} className={styles.contentImgBox}>
           <Image
-            priority
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={item.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={218}
             height={294}
             src={item.cover}
@@ -30,7 +29,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
           />
         </Link>
 
-        <Link className={styles.rightCard} href={`/detail/${item.bookId}`}>
+        <Link className={styles.rightCard} href={`/film/${item.bookId}`}>
           <div className={styles.rightCardTop}>
             <h2 className={styles.bookName} >
               {item.bookName}

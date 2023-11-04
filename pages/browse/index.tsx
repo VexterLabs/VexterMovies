@@ -41,12 +41,14 @@ const Browse: NextPage<IProps> = (
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
-  const { page = '1', typeTwoId = 0 } = query;
-  
+  const { page, typeTwoId = 0 } = query;
+  if (page === "1") {
+    return { redirect: { destination: `/browse/${typeTwoId}`, permanent: false } }
+  }
   const response = await netBrowse({
     typeTwoId: Number(typeTwoId) || 0,
-    pageNo: Number(page),
-    pageSize: 15
+    pageNo: Number(page) || 1,
+    pageSize: 18
   }, locale as ELanguage)
   if (response === 'BadRequest_404') {
     return { notFound: true }

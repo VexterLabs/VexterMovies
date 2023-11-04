@@ -9,7 +9,6 @@ import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
 import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
-import PcVideo from "@/components/pcVideo"
 import PcLike from '@/components/pcDetail/pcLike';
 import UsualTitle from "@/components/layout/usualTitle/UsualTitle"
 import { set } from "nprogress";
@@ -40,7 +39,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     if(curChapterData) {
       preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index )//&& item.unlock === true
     }
-    console.log('--001')
     useEffect(() => {
       const curId = chapterList.find(item => item.id === chapterId)
       const ind = curId?.index
@@ -55,8 +53,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     let playIns: any;
     // 播放器设置
     useEffect(() => { 
-      // 查找当前视频中下一个有MP4
-      console.log('视频组件', curChapterData)
       playIns = new Player({
         id: "playVideo",
         autoplay: true,
@@ -101,7 +97,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       } else {
         setErrorBg('')
       }
-      console.log('errorBgsrc', errorBgsrc)
       if(item.unlock === false) {//当前剧集已锁
         return
       }
@@ -125,7 +120,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
         newArr = chapterList
       }
       setComputedEpi(newArr)
-      console.log('newArr', newArr)
     }
     return <>
       <div className={styles.videoBox}>
@@ -147,7 +141,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
                 <div className={styles.btnDown}>Download the App to continue watching</div>
               </div>
             </div>
-            {/* <PcVideo videoUrl={videoUrl} chapterList={chapterList}></PcVideo> */}
           </div>
           <div className={styles.videoInfo}>
             <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>

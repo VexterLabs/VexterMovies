@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import styles from "@/components/pcDetail/pcSeries/index.module.scss";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItemDetail, IChapterList, IEpisopeTab } from "@/typings/home.interface";
@@ -15,7 +14,6 @@ interface IProps {
 }
 
 const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
-  // console.log('chapterList', chapterList)
   const { t } = useTranslation()
   const [showMore, setMore] = useState<Boolean>(true)
   // const [listData, setData] = useState(chapterList.length > 11 ? chapterList.slice(0,11) : chapterList)
@@ -86,7 +84,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
     dealVideoData(0)
     dealTabArr()
   },[])
-  
+
   return <>
     <div className={styles.episopeBox}>
       <div className={styles.topInfo}>
@@ -130,11 +128,12 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
       </div>
       {tabArr?.length > 0 ? <div className={styles.tabItem} style={(showMore || videoList.length < 11) ? {display:'none'} : {}}>
         {tabArr?.length && tabArr.map((item:any,index:number) => {
-          return <div 
-            className={index==curIndx ? styles.tabIteActive : styles.tabIte}  
+          return <div
+            key={item.id}
+            className={index==curIndx ? styles.tabIteActive : styles.tabIte}
             onClick={() => dealVideoData(index)}>{item.label}</div>
         })}
-        </div> 
+        </div>
       : null}
     </div>
   </>

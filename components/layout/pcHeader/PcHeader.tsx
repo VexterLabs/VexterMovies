@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styles from '@/components/layout/pcHeader/PcHeader.module.scss'
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -20,6 +20,12 @@ const PcHeader: FC<IProps> = () => {
     { id: 'App', label: t('home.app'), link: '/download' },
   ]
 
+  const [isLanguageShow, setIsLanguageShow] = useState<boolean | false>(false);
+
+  useEffect(() => {
+    if(router && router.pathname) setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
+  }, [router])
+
   return <>
     <div className={styles.navWrap}>
       <div className={styles.navContent}>
@@ -27,8 +33,8 @@ const PcHeader: FC<IProps> = () => {
           <Link href={'/'} className={styles.logoTxtBox}>
             <Image
               className={styles.logoTxt}
-              width={40}
-              height={40}
+              width={33}
+              height={33}
               src={'/images/logo.png'}
               alt={ClientConfig.name}
             />
@@ -42,7 +48,9 @@ const PcHeader: FC<IProps> = () => {
             }) }
           </div>
         </div>
-        { (router.pathname.includes('/tag/[keywordId]') || router.pathname.includes('/keywords')) ? null :  <Language/>}
+        {  
+          !!isLanguageShow && <Language/>
+        }
       </div>
     </div>
     <div className={styles.navOccupy}/>

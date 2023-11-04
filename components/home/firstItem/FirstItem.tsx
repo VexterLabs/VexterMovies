@@ -7,21 +7,19 @@ import Image from "next/legacy/image";
 
 interface IProps {
   dataSource: IBookItem[];
-  priority?: boolean;
 }
 
-const FirstItem: FC<IProps> = ({ dataSource, priority }) => {
+const FirstItem: FC<IProps> = ({ dataSource}) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((filmItem) => {
 
       return <div key={filmItem.bookId} className={styles.itemBox}>
-        <Link href={`/detail/${filmItem.bookId}`} className={styles.bookImage}>
+        <Link href={`/film/${filmItem.bookId}`} className={styles.bookImage}>
           <Image
-            priority={priority}
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={filmItem.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={218}
             height={294}
             src={filmItem.cover}
@@ -29,7 +27,7 @@ const FirstItem: FC<IProps> = ({ dataSource, priority }) => {
           />
         </Link>
 
-        <Link href={`/detail/${filmItem.bookId}`} className={styles.bookName}>
+        <Link href={`/film/${filmItem.bookId}`} className={styles.bookName}>
           {filmItem.bookName}
         </Link>
       </div>

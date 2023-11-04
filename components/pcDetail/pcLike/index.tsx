@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styles from '@/components/pcDetail/pcLike/PcLike.module.scss'
-import { IBookItemDetail } from "@/typings/home.interface";
+import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import ImageLegacy from "next/legacy/image";
@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 
 interface IProps {
-  dataSource: IBookItemDetail[];
+  dataSource: IBookItem[];
   priority?: boolean;
 }
 
@@ -27,7 +27,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], priority = false }) => {
         chapterCount = 0
       } = book;
       // const routerToBookInfo = `/film/${bookId}`
-      const routerToBookInfo = `/detail/${bookId}`
+      const routerToBookInfo = `/film/${bookId}`
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>

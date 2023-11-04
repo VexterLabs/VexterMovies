@@ -17,7 +17,7 @@ interface IProps {
 
 const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
   const { t } = useTranslation()
-  return <>
+  return <main className={styles.moreWrap}>
     <div className={styles.backHead}>
       <div className={styles.backBox}>
         <Link href={'/'} className={styles.backBoxLink}>
@@ -55,7 +55,7 @@ const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
           </div>
         </> : <PcEmpty/>}
     </div>
-  </>
+  </main>
 }
 
 export default PcMore

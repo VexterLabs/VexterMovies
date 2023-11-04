@@ -25,7 +25,6 @@ interface IProps {
 const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1, chapterName} ) => {
     const router = useRouter()
     const { id } = router.query
-    console.log('--mmmm', recommends)
     const chapterId = router.query.chapterId as string
     const [currentEpi, setCurEpisode] = useState(0)
     const [playerInstace, setIns] = useState<any>()
@@ -40,7 +39,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     if(curChapterData) {
       preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index )//&& item.unlock === true
     }
-    console.log('--001')
     const closeEpisodeDialog = () => {
       setEpiDialog(false)
     }
@@ -63,7 +61,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     // 播放器设置
     useEffect(() => { 
       // 查找当前视频中下一个有MP4
-      console.log('移动端视频组件', curChapterData)
       playIns = new Player({
         id: "mPlay",
         autoplay: true,
@@ -108,7 +105,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       } else {
         setErrorBg('')
       }
-      console.log('errorBgsrc', errorBgsrc)
       if(item.unlock === false) {//当前剧集已锁
         return
       }
@@ -131,7 +127,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       } else {
         newArr = chapterList
       }
-      console.log('newArr', newArr)
     }
     return <>
       <div className={styles.mEpibox}>
@@ -162,8 +157,6 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
               <Image
                 className={styles.epoImg}
                 onError={onImgError}
-                placeholder="blur"
-                blurDataURL='/images/book/star-d.png'
                 width={20}
                 height={20}
                 src='/images/book/star-d.png'
@@ -189,7 +182,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
             <div className={styles.epilistBox}>
               {
                 chapterList&&chapterList.slice(0,9).map((chapterItem,chapterIndex) => {
-                  return <div className={styles.epiOuter}>
+                  return <div className={styles.epiOuter} key={chapterItem.id}>
                     <Link href={`/episode/${id}/${chapterItem.id}`} shallow>
                       <div className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {chooseEpisode(chapterItem)}}>
                         <p>{chapterItem.name}</p>
@@ -212,6 +205,41 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
           {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
           <LikeTitle title="You Might Like"/>
           <LikeItem dataSource={recommends || []}/>
+        </div>
+        <div className={styles.navBox}>
+          <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
+            <Image
+              className={styles.navIcon}
+              width={64}
+              height={64}
+              src={'/images/book/episode-d.png'}
+              alt={'more'}
+            />
+            {/* <span>{t('home.privacyPolicy')}</span> */}
+            <span>Episodes</span>
+          </div>
+          <Link href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${curChapterData?.id}`} className={styles.playIcon}>
+            <Image
+              className={styles.navIcon}
+              width={64}
+              height={64}
+              src={'/images/book/botplay-d.png'}
+              alt={'more'}
+            />
+            {/* <span>{t('home.termsOfUse')}</span> */}
+            <span className={styles.playTxt}>Play</span>
+          </Link>
+          <Link href={'/terms'} className={styles.downloadIcon}>
+            <Image
+              className={styles.navIcon}
+              width={64}
+              height={64}
+              src={'/images/book/download-d.png'}
+              alt={'more'}
+            />
+            {/* <span>{t('home.termsOfUse')}</span> */}
+            <span>Download</span>
+          </Link>
         </div>
       </div>
       <EpisopeDialog 

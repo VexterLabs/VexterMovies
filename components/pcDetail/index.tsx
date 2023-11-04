@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItemDetail, IChapterList, ColumnNameRoute } from "@/typings/home.interface";
+import { IBookItemDetail, IChapterList, ColumnNameRoute, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
 import PcSeries from '@/components/pcDetail/pcSeries';
@@ -12,8 +12,8 @@ import PcLike from '@/components/pcDetail/pcLike';
 import UsualTitle from "@/components/layout/usualTitle/UsualTitle";
 
 interface IProps {
-  bookInfo: IBookItemDetail;
-  recommends: IBookItemDetail[];
+  bookInfo: IBookItem;
+  recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
 }
@@ -23,7 +23,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
   const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
 
   const router = useRouter();
-  
+
   return <>
     <div className={styles.detailBox}>
       <div className={styles.detailBookCoverBox}>
@@ -41,7 +41,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
 
       <div className={styles.detailBoxRight}>
         <div className={styles.detailBoxRightTop}>
-          <Link href={`/detail/${bookInfo.bookId}`}>
+          <Link href={`/film/${bookInfo.bookId}`}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
           </Link>
           {/* <p className={styles.chapterCount}>
@@ -79,7 +79,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
       <UsualTitle title='YOU Might Like'/>
       <PcLike dataSource={recommends}></PcLike>
     </div>
-    
+
     {/* {recommends.length > 0 ? <div className={styles.recommendBox}>
       <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
       <SecondList dataSource={recommends}/>

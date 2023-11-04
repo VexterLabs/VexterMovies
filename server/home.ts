@@ -3,6 +3,10 @@ import { INetMoreReq, INetMoreResult } from "@/typings/more.interface";
 import {
   INetBookReq,
   INetBookRes,
+  INetKeywordsReq,
+  INetKeywordsRes,
+  INetKeywordTagReq,
+  INetKeywordTagRes,
 } from "@/typings/book.interface";
 import {
   INetAllBookReq,
@@ -24,7 +28,7 @@ export const netBrowse = (params: INetBrowseReq, language?: ELanguage): Promise<
 
 // 查看更多
 export const netMoreBook = (params: INetMoreReq, language?: ELanguage): Promise<INetMoreResult | 'BadRequest_404' | 'BadRequest_500'> => {
-  return poFetch('/webfic/home/more', { pageNum: 1, pageSize: 15, ...params },  language || ELanguage.English)
+  return poFetch('/webfic/home/more', { pageNum: 1, pageSize: 18, ...params },  language || ELanguage.English)
 }
 
 // 获取书籍详情
@@ -55,4 +59,14 @@ export const netIncrementBook = (pageNo = 1, pageSize = 10): Promise<INetIncreme
 // 全部浏览类目
 export const netBrowseType = (): Promise<INetBrowseTypeRes[] | 'BadRequest_404' | 'BadRequest_500'> => {
   return geFetch('/webfic/website/type/list')
+}
+
+// 关键词列表
+export const netKeywords = async (params: INetKeywordsReq): Promise<INetKeywordsRes | 'BadRequest_404' | 'BadRequest_500'> => {
+  return await poFetch('/webfic/keyword/list', { pageSize: 10, ...params })
+}
+
+// 关键词聚合页
+export const netKeywordTag = async (params: INetKeywordTagReq): Promise<INetKeywordTagRes | 'BadRequest_404' | 'BadRequest_500'> => {
+  return await poFetch('/webfic/keyword/info', { pageSize: 10, ...params })
 }
