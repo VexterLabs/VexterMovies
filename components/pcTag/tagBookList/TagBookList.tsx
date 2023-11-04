@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import Link from "next/link";
-import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "typings/book.interface";
+import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "@/typings/book.interface";
 import { useTranslation } from "next-i18next";
-import { ELanguage } from "typings/home.interface";
+import { ELanguage } from "@/typings/home.interface";
 import useHiveLog from "@/hooks/useHiveLog";
 import Image from "next/image";
 import ClientConfig from "@/client.config";
 import { onImgError } from "@/components/common/image/ImageCover";
-import styles from '@/components/PcTag/tagBookList/TagBookList.module.scss';
+import styles from '@/components/pcTag/tagBookList/TagBookList.module.scss';
 
 interface IProps {
   dataSource: ITagBookItem[];
@@ -120,7 +120,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
               src={'/images/book/bookinfo_play.png'}
               alt={ClientConfig.name}
             />
-            {t('bookInfo.Play')}
+            {t('home.play')}
           </Link> : null
         }
       </div>

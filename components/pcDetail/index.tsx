@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItemDetail, IChapterList, ColumnNameRoute, IBookItem } from "@/typings/home.interface";
+import { IChapterList, ColumnNameRoute, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import SecondList from "@/components/pcHome/secondList/SecondList";
 import PcSeries from '@/components/pcDetail/pcSeries';

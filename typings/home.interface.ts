@@ -13,30 +13,32 @@ export interface IHomeResItem {
 }
 
 export interface IBookItem {
+  bookId: string;
+  bookName: string;
+  cover: string;
+  viewCount: number;
+  followCount?: number;
+  introduction: string;
+  chapterCount: number;
+  tags: string[];
+  typeTwoNames: string[];
+  typeTwoName: string;
+  typeTwoIds: string[];
+  language: string;
+  simpleLanguage?: ELanguage;
+
   name: string;
   actionType: string;
   action: string;
-  chapterCount: number;
   ratings: number;
-  bookId: string;
-  bookName: string;
   author: string;
-  introduction: string;
-  cover: string;
-  tags: string[];
-  labels: string[];
-  viewCount: number;
   lastUpdateTime: string;
-  writeStatus: string; // COMPLETE
   viewCountDisplay: string;
   lastUpdateTimeDisplay: string;
   replacedBookId?: string;
   replacedBookName: string;
   firstChapterId?: string;
   columnName: string;
-  typeTwoNames: string[];
-  typeTwoName: string;
-  typeTwoIds: string[];
 }
 
 export interface IBookItemDetail {
