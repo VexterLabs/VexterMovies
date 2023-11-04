@@ -37,7 +37,6 @@
       .bookLabels {
         margin-top: 0.16rem;
         max-width: 5.05rem;
-        height: 0.36rem;
         display: flex;
         align-items: center;
         flex-direction: row;
@@ -46,8 +45,8 @@
         gap: 0.12rem;
 
         .bookLabel {
+          display: inline-block;
           max-width: 3rem;
-          height: 0.36rem;
           padding: 0.05rem 0.12rem;
           font-size: 0.22rem;
           font-weight: 400;
@@ -57,7 +56,6 @@
           white-space: nowrap;
           background: rgba(255,255,255,0.1);
           border-radius: 0.18rem;
-          backdrop-filter: blur(20px);
         }
       }
 

@@ -24,12 +24,11 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword}) => {
   };
   return <div className={styles.listBox}>
     {dataSource && dataSource.length > 0 ? dataSource.map((book, bookInd) => {
-      const { bookId, bookName, introduction, cover, labels, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
+      const { bookId, bookName, introduction, cover, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
+      const linkUrl = `/film/${bookId}`;
       const recommend = isHot === ETagBookItemIsHot.yes
-      const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`;
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId + bookInd} className={styles.listItem}>
@@ -53,19 +52,22 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword}) => {
             dangerouslySetInnerHTML={{__html: bookNameDom}}
           />
 
-          { labels.length > 0 ? <div className={styles.bookLabels}>
-            {labels.map(val => {
-              if (!val) return null;
-              return  <Link
-                key={val}
-                className={styles.bookLabel}
-                onClick={() => tagBookClick(keyword, bookId, recommend)}
-                href={browseLink}
-                locale={simpleLanguage}>
-                {val}
-              </Link>
-            })}
-          </div> : null }
+          { 
+            !!(typeTwoNames && typeTwoNames.length) && <div className={styles.bookLabels}>
+              {
+                typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                  <Link 
+                    key={bookId + '_browse_' + typeTwoNamesIdx}
+                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`} 
+                    locale={simpleLanguage} 
+                    className={styles.bookLabel}
+                    onClick={() => tagBookClick(keyword, bookId, recommend)}>
+                      {typeTwoNamesItem}
+                  </Link>
+                ))
+              }
+            </div>
+          }
 
           <Link
             className={styles.intro}
