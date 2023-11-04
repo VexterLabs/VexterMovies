@@ -2,9 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import styles from '@/components/layout/episopeDialog/EpisopeDialog.module.scss'
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import ClientConfig from "@/client.config";
 import Image from "next/image";
-import Item from 'antd-mobile/es/components/dropdown/item';
 import { IChapterList } from "@/typings/home.interface";
 
 interface IProps {
@@ -67,7 +65,7 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) 
         })
       }
     </div>
-    
+
     <div className={styles.episodeList}>
       {videoList?.length&&videoList.map((item:any,ind:number) => {
         const {
@@ -75,8 +73,8 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog}) 
           cover,
           index
         } = item
-        return <div className={styles.linkBox} key={ind} style={item.showEposide?{}:{display:"none"}}>
-          <Link href='/' className={styles.linkBox}>
+        return <div key={ind} style={item.showEposide?{}:{display:"none"}}>
+          <Link href='/'>
             <div className={item.unlock ? styles.episodeItem : styles.episodeItemLock}>
               <span>{item.name}</span>
             </div>

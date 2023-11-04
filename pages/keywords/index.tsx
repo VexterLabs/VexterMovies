@@ -9,8 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
 import { ESearchType } from "typings/sitemap.interface";
 import useHiveLog from "@/hooks/useHiveLog";
-import CrumbsTagCom from "@/components/common/Crumbs/CrumbsTagCom";
-import dataListMock from "./data.json"
+import { IBreadcrumb } from "@/components/common/breadcrumb";
 
 interface IProps {
   keywordList: IKeywordItem[]
@@ -26,11 +25,26 @@ const KeywordsPage: NextPage<IProps> = ({ isPc, currentPage, totalPage = 0, keyw
     HiveLog.track('ListPage_click', { key_word: keyword })
   }
 
+  const breadData: IBreadcrumb[] = [
+    { title: 'Home', link: "/" },
+    { title: 'Keywords' },
+  ]
+
   return <>
-    <CrumbsTagCom isShow={true} isPc={isPc} keyword=""/>
     {isPc ?
-      <PcKeywords keywordList={keywordList} pageNo={currentPage} totalPage={totalPage} keywordClick={keywordClick}/>
-      : <MKeywords keywordList={keywordList} pageNo={currentPage} totalPage={totalPage} keywordClick={keywordClick}/>}
+      <PcKeywords
+        breadData={breadData}
+        keywordList={keywordList}
+        pageNo={currentPage}
+        totalPage={totalPage}
+        keywordClick={keywordClick}/>
+      :
+      <MKeywords
+        breadData={breadData}
+        keywordList={keywordList}
+        pageNo={currentPage}
+        totalPage={totalPage}
+        keywordClick={keywordClick}/>}
   </>
 }
 
@@ -55,8 +69,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
 
   const { data = [], currentPage = 1, pages = 1 } = res;
 
-  // const data = dataListMock, currentPage = 1, pages = 1000;
-  
   return {
     props: {
       keywordList: data,

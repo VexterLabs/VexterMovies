@@ -6,13 +6,13 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 
 interface IProps {
-  dataSource: IBookItemDetail[];
+  dataSource: IBookItem[];
   priority?: boolean;
 }
 
 const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
   return <div className={styles.firstItemWrap}>
-    {dataSource && dataSource.length > 0 ? (dataSource as IBookItemDetail[]).map((detailItem, index) => {
+    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
 
       return <div key={index} className={styles.itemBox}>
         <Link href={`/detail/${detailItem.bookId}`} className={styles.bookImage}>

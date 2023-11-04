@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import styles from "@/components/pcDetail/pcSeries/index.module.scss";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItemDetail, IChapterList, IEpisopeTab } from "@/typings/home.interface";
@@ -86,7 +85,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
     dealVideoData(0)
     dealTabArr()
   },[])
-  
+
   return <>
     <div className={styles.episopeBox}>
       <div className={styles.topInfo}>
@@ -101,8 +100,8 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
             index
           } = item
           const routerToVideoInfo = `/`
-          return <div className={styles.listBox} style={item.showEposide?{}:{display: 'none'}}>
-            <Link href={routerToVideoInfo} className={styles.listLink}>
+          return <div key={item.id} className={styles.listBox} style={item.showEposide?{}:{display: 'none'}}>
+            <Link href={routerToVideoInfo}>
               <div key={index} className={item.unlock ? styles.listItem : styles.listItemMask}>
                 <div className={styles.imgLeft}>
                   <Image
@@ -130,11 +129,12 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName}) => {
       </div>
       {tabArr?.length > 0 ? <div className={styles.tabItem} style={showMore ? {display:'none'} : {}}>
         {tabArr?.length && tabArr.map((item:any,index:number) => {
-          return <div 
-            className={index==curIndx ? styles.tabIteActive : styles.tabIte}  
+          return <div
+            key={item.id}
+            className={index==curIndx ? styles.tabIteActive : styles.tabIte}
             onClick={() => dealVideoData(index)}>{item.label}</div>
         })}
-        </div> 
+        </div>
       : null}
     </div>
   </>

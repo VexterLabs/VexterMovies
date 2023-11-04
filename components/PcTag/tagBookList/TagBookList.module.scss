@@ -1,6 +1,7 @@
 .moreBookWrap {
-  width: 13rem;
+  width: 14.4rem;
   margin: 0 auto 0.32rem;
+  background: #000000;
 }
 
 .imageItemMoreWrap {
@@ -24,21 +25,6 @@
     height: 2rem;
     border-radius: 0.04rem;
     overflow: hidden;
-  }
-
-  .bookHot {
-    position: absolute;
-    top: 0.04rem;
-    left: 0.04rem;
-    z-index: 9;
-    padding: 0.04rem;
-    background-color: #FF4242;
-    border-radius: 0.04rem;
-    font-size: 0.16rem;
-    font-weight: bold;
-    color: #FFFFFF;
-    line-height: 0.16rem;
-    font-family: Ubuntu-Bold, Ubuntu;
   }
 }
 
@@ -69,35 +55,34 @@
   }
 }
 
-.bookAuthor {
-  font-size: 0.14rem;
-  font-weight: 400;
-  line-height: 0.2rem;
-  color: rgba(255,255,255,0.6);
-  display: flex;
-  align-items: center;
-  flex-direction: row;
+.bookLabelBox {
+  height: 0.24rem;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin: 0.12rem 0;
-  font-family: Ubuntu-Regular, Ubuntu;
-  // font-style: italic;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 0.12rem;
+  gap: 0.08rem;
+
+  .bookLabel {
+    height: 0.24rem;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 0.12rem;
+    padding: 0.04rem 0.1rem;
+    font-size: 0.12rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    max-width: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
-.bookTypeTwoName {
-  display: block;
-  margin: 0.16rem 0;
-  font-size: 0.14rem;
-  font-weight: 400;
-  color: $theme_color;
-  line-height: 0.2rem;
-  margin-bottom: 0.08rem;
-  font-family: Ubuntu-Regular, Ubuntu;
-}
 
 .intro {
-  height: 0.40rem;
+  margin-top: 0.12rem;
+  max-height: 0.40rem;
   color: rgba(255,255,255,0.6);
   font-size: 0.14rem;
   overflow: hidden;
@@ -107,13 +92,12 @@
   -webkit-line-clamp: 2;
   word-wrap: break-word;
   line-height: 0.20rem;
-  font-family: SFPro-Regular, SFPro;
 }
 
 .playBtnBox {
   width: 1.80rem;
   height: 0.48rem;
-  
+
   .readBtn {
     display: flex;
     justify-content: center;

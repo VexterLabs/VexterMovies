@@ -14,7 +14,7 @@ const ImageCommon: FC<IProps> = (
   { className , source, onClick, alt = '', w, h}
 ) => {
 
-  const imgError = (e) => {
+  const imgError = (e: any) => {
     e.target.style.visibility = 'hidden';
     e.target.src = '/images/defaultFilm.png';
     e.target.onload = function (){
@@ -25,14 +25,6 @@ const ImageCommon: FC<IProps> = (
   const getSource = () => {
     if(!source) {
       return '/images/defaultFilm.png';
-    }
-    if (w && h) {
-      const bl = 0.7;
-      const width = Math.ceil(w * bl);
-      const height = Math.ceil(h * bl);
-      const urlArr = source.split('?');
-      urlArr[0] += `&w=${width}&h=${height}`;
-      return urlArr.join('?')
     }
     return source;
   }

@@ -18,7 +18,7 @@ const MorePagination: FC<IProps> = ({ prevPath, totalPage, page, query = '' }) =
   const nextPage = Number(page) + 1;
 
   return <div className={styles.paginationWrap} style={query ? { padding: '0.24rem 0' } : {}}>
-    {prevPage && prevPage > 0 ? <Link href={prevPath + prevPage + query} replace scroll className={styles.linkItem}>
+    {prevPage && prevPage > 0 ? <Link href={prevPath + (prevPage === 1 ? '' : prevPage) + query} replace scroll className={styles.linkItem}>
         <Image
           className={styles.prevNextIcon}
           width={32}

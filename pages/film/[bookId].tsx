@@ -4,7 +4,7 @@ import { netBook } from "@/server/home";
 import PcFilm from "@/components/pcFilm";
 import MFilm from "@/components/detail";
 import { isIos, ownOs } from "@/utils/ownOs";
-import { ELanguage, IBookItem } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import BookCrumbs from "@/components/detail/crumbs";
 import { SSRConfig } from "next-i18next";
@@ -33,7 +33,7 @@ const Book: NextPage<IProps> = (
       <MFilm
         isApple={isApple}
         bookInfo={bookInfo}
-      />
+        chapterList={[] as IChapterList[]} recommends={ [] as IBookItem[]}/>
     }
   </>
 }
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const ua = req?.headers['user-agent'] || ''
   const { bookId = '' } = query as { bookId: string;};
 
-  const response = await netBook({ bookId }, locale as ELanguage);
+  const response = await netBook({ id: bookId }, locale as ELanguage);
   console.log('response---1', JSON.stringify(response))
   if (response === 'BadRequest_404') {
     return { notFound: true }

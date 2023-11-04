@@ -1,6 +1,4 @@
-import React, { FC } from 'react'
-import styles from '@/components/PcTag/tagBookList/TagBookList.module.scss'
-import ImageCommon from "@/components/common/ImageCommon";
+import React, { FC } from 'react';
 import Link from "next/link";
 import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "typings/book.interface";
 import { useTranslation } from "next-i18next";
@@ -8,6 +6,8 @@ import { ELanguage } from "typings/home.interface";
 import useHiveLog from "@/hooks/useHiveLog";
 import Image from "next/image";
 import ClientConfig from "@/client.config";
+import { onImgError } from "@/components/common/image/ImageCover";
+import styles from '@/components/PcTag/tagBookList/TagBookList.module.scss';
 
 interface IProps {
   dataSource: ITagBookItem[];
@@ -23,16 +23,7 @@ export const printKeyword = (content: string, keyword: string) => {
   return content.replace(regS, res) || content
 }
 
-export const printKeywordBookName = (content: string, keyword: string) => {
-  if (!keyword) return content;
-  const _keyword = `<span style="color: #FF5F27">${keyword.split('').join('<span style="color: #333333">*</span>')}</span>`
-  const contentArr = content.split(keyword).map(val => {
-    return val.split('').join('*')
-  })
-  return contentArr.join(`*${_keyword}*`) || content
-}
-
-const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
+const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
   // 聚合页书籍列表点击
@@ -44,59 +35,84 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
     })
   };
   return <div className={styles.moreBookWrap}>
-    { dataSource.map((book, bookInd) => {
-      const { bookId, bookName, introduction, cover, author, tag,  replacedBookName, typeTwoName, typeTwoNames = [], typeTwoIds = [], firstChapterId, isHot } = book;
+    {dataSource.map((book, bookInd) => {
+
+      const {
+        bookId,
+        bookName,
+        introduction,
+        labels = [],
+        replacedBookName,
+        typeTwoName,
+        typeTwoNames = [],
+        typeTwoIds = [],
+        firstChapterId,
+        isHot
+      } = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
       const linkUrl = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
-      const authorDom = printKeyword(`${t('others.by')}: ${author} ${tag ? `/${tag}` : ''}`, keyword)
       const recommend = isHot === ETagBookItemIsHot.yes
       const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId + bookInd} className={styles.imageItemMoreWrap}>
-        <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-          <a className={styles.bookImageBox}
-             onClick={() => tagBookClick(keyword, bookId, recommend)}>
-            <ImageCommon w={150} h={200} className={styles.bookImage} source={cover} alt={bookName}/>
-            { recommend ? <div className={styles.bookHot}>HOT</div> : null }
-          </a>
+        <Link
+          href={linkUrl}
+          locale={simpleLanguage}
+          className={styles.bookImageBox}
+          onClick={() => tagBookClick(keyword, bookId, recommend)}>
+          <Image
+            className={styles.bookImage}
+            onError={onImgError}
+            placeholder="blur"
+            blurDataURL={'/images/defaultFilm.png'}
+            width={150}
+            height={200}
+            src={book.cover}
+            alt={book.bookName}
+          />
         </Link>
 
         <div className={styles.bookInfo}>
           <div className={styles.bookNameBox}>
-            <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-              <a
-                className={styles.bookName}
-                dangerouslySetInnerHTML={{ __html: bookNameDom }}
-                onClick={() => tagBookClick(keyword, bookId, recommend)}
-              />
-            </Link>
+            <Link
+              href={linkUrl}
+              locale={simpleLanguage}
+              className={styles.bookName}
+              dangerouslySetInnerHTML={{ __html: bookNameDom }}
+              onClick={() => tagBookClick(keyword, bookId, recommend)}
+            />
           </div>
-          {/* <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-            <a
-              className={styles.bookAuthor}
-              dangerouslySetInnerHTML={{ __html: authorDom }}
-              onClick={() => tagBookClick(keyword, bookId, recommend)}/>
-          </Link> */}
 
-          {typeTwoNames[0] ? <Link href={browseLink} locale={simpleLanguage} legacyBehavior>
-            <a className={styles.bookTypeTwoName}
-               onClick={() => tagBookClick(keyword, bookId, recommend)}>
-              {typeTwoNames[0]}
-            </a>
-          </Link> : null}
+          {labels.length > 0 ? <div className={styles.bookLabelBox}>
+            {labels.map(label => {
+              if (!label) return null;
+              return <Link
+                key={label}
+                href={browseLink}
+                locale={simpleLanguage}
+                className={styles.bookLabel}
+                onClick={() => tagBookClick(keyword, bookId, recommend)}
+              >
+                {printKeyword(label, keyword)}
+              </Link>
 
-          <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-            <a
-              className={styles.intro}
-              dangerouslySetInnerHTML={{__html: introDom}}
-              onClick={() => tagBookClick(keyword, bookId, recommend)}/>
-          </Link>
-        </div>
+            })}
+          </div> : null}
 
-        {firstChapterId ? <div className={styles.playBtnBox}>
-          <Link href={`/book/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`} locale={simpleLanguage} legacyBehavior>
+          <Link
+            href={linkUrl}
+            locale={simpleLanguage}
+            className={styles.intro}
+            dangerouslySetInnerHTML={{ __html: introDom }}
+            onClick={() => tagBookClick(keyword, bookId, recommend)}/>
+      </div>
+
+      {
+        firstChapterId ? <div className={styles.playBtnBox}>
+          <Link href={`/book/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`} locale={simpleLanguage}
+                legacyBehavior>
             <a
               className={styles.readBtn}
               onClick={() => tagBookClick(keyword, bookId, recommend)}>
@@ -110,8 +126,9 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
               {t('bookInfo.Play')}
             </a>
           </Link>
-        </div> : null}
-      </div>
+        </div> : null
+      }
+    </div>
     })}
   </div>
 }

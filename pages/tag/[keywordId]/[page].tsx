@@ -8,7 +8,6 @@ import MTag from "@/components/Tag/MTag";
 import { ITagBookItem, IKeywordItem } from "typings/book.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
-import dataMock from "./data.js"
 
 interface IProps {
   bookList: ITagBookItem[];
@@ -63,10 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   // const response = dataMock;
   const { books = [], relationKeywords = [], keyword = '', pages = 1, currentPage = 1, keyStatus } = response;
 
-  if (keyStatus === 0) {
-    return { notFound: true }
-  }
-
+  console.log(response);
   return {
     props: {
       bookList: books,

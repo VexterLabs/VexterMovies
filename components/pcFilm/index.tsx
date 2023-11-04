@@ -19,7 +19,7 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
 
   const router = useRouter();
 
-  return <>
+  return <main className={styles.filmWrap}>
     <div className={styles.backHead} style={true ? {display: 'none'} : {}}>
       <div className={styles.backBox}>
         <div className={styles.backBoxLink} onClick={() => {
@@ -93,7 +93,7 @@ const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
       <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
       <SecondList dataSource={recommends}/>
     </div> : null }
-  </>
+  </main>
 }
 
 export default PcFilm;

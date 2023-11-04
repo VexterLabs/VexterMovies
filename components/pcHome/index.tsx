@@ -5,6 +5,7 @@ import SwiperArea from "@/components/pcHome/swiperArea/SwiperArea";
 import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
 import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
+import styles from '@/components/pcHome/index.module.scss';
 
 interface IProps {
   bigList: IBookItem[];
@@ -12,9 +13,10 @@ interface IProps {
 }
 
 const PcHome: FC<IProps> = ({ bigList, smallData }) => {
+
   const { t } = useTranslation()
-  return (
-    <>
+  return <main className={styles.homeWrap}>
+    <div className={styles.container}>
       {bigList.length > 0 ? <SwiperArea bigList={bigList}/> : null}
       {
         smallData.length > 0 && smallData.map((item, index) => {
@@ -28,8 +30,8 @@ const PcHome: FC<IProps> = ({ bigList, smallData }) => {
         })
       }
       {bigList.length === 0 && smallData.length === 0 ? <PcEmpty/> : null}
-    </>
-  )
+    </div>
+  </main>
 }
 
 export default PcHome

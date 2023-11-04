@@ -20,52 +20,53 @@ interface IProps {
 const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
   const { t } = useTranslation();
 
-  return <div className={styles.browseWrap}>
+  return <main className={styles.browseWrap}>
+    <div className={styles.container}>
+      <div className={styles.browseHeader}>
+        {/*<div className={styles.tabBox}>*/}
+        {/*  <Tabs*/}
+        {/*    className={styles.tabContent}*/}
+        {/*    activeLineMode={'fixed'}*/}
+        {/*    activeKey={String(typeTwoId)}*/}
+        {/*  >*/}
+        {/*    {types.map((item) => {*/}
+        {/*      const typeName = item.id === 0 ? t('browse.all') : item.name;*/}
+        {/*      return <Tabs.Tab title={<Link href={`/browse/${item.id}`}>*/}
+        {/*        {typeName}*/}
+        {/*      </Link>} key={item.id}/>*/}
+        {/*    })}*/}
+        {/*  </Tabs>*/}
+        {/*</div>*/}
 
-    <div className={styles.browseHeader}>
-      {/*<div className={styles.tabBox}>*/}
-      {/*  <Tabs*/}
-      {/*    className={styles.tabContent}*/}
-      {/*    activeLineMode={'fixed'}*/}
-      {/*    activeKey={String(typeTwoId)}*/}
-      {/*  >*/}
-      {/*    {types.map((item) => {*/}
-      {/*      const typeName = item.id === 0 ? t('browse.all') : item.name;*/}
-      {/*      return <Tabs.Tab title={<Link href={`/browse/${item.id}`}>*/}
-      {/*        {typeName}*/}
-      {/*      </Link>} key={item.id}/>*/}
-      {/*    })}*/}
-      {/*  </Tabs>*/}
-      {/*</div>*/}
 
+        <div className={styles.tabsBox}>
+          {types.map((item) => {
+            const typeName = item.id === 0 ? t('browse.all') : item.name;
+            const linkHref = item.id === 0 ? '/browse' : `/browse/${item.id}`;
+            if (item.id === typeTwoId) {
+              return <div key={item.id} className={styles.tabItemActive}>{typeName}</div>
+            }
+            return <Link href={linkHref} key={item.id}
+                         className={styles.tabItem}>
+              {typeName}
+            </Link>
+          })}
+        </div>
+      </div>
 
-      <div className={styles.tabsBox}>
-        {types.map((item) => {
-          const typeName = item.id === 0 ? t('browse.all') : item.name;
-          const linkHref = item.id === 0 ? '/browse' : `/browse/${item.id}`;
-          if (item.id === typeTwoId) {
-            return <div key={item.id} className={styles.tabItemActive}>{typeName}</div>
-          }
-          return <Link href={linkHref} key={item.id}
-                       className={styles.tabItem}>
-            {typeName}
-          </Link>
-        })}
+      <div className={styles.browseContent}>
+        {bookList.length === 0 ? <PcEmpty/> :
+          <SecondList dataSource={bookList}/>}
+
+        {pages && pages > 1 ?
+          <PaginationCom
+            path={`/browse/${typeTwoId}/`}
+            pageNo={pageNo}
+            totalPage={pages}
+            isScroll={true}/> : null}
       </div>
     </div>
-
-    <div className={styles.browseContent}>
-      {bookList.length === 0 ? <PcEmpty/> :
-        <SecondList dataSource={bookList}/>}
-
-      {pages && pages > 1 ?
-        <PaginationCom
-          path={`/browse/${typeTwoId}/`}
-          pageNo={pageNo}
-          totalPage={pages}
-          isScroll={true}/> : null}
-    </div>
-  </div>
+  </main>
 }
 
 export default PcBrowse;
