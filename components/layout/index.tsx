@@ -39,7 +39,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   },[]) // eslint-disable-line
 
   useEffect(() => {
-      if(router && router.pathname) setFooterAdShow(!!(['/detail/[id]', '/episode/[chapterId]/[bookId]'].indexOf(router.pathname) === -1))
+      if(router && router.pathname) setFooterAdShow(!!(['/film/[id]', '/episode/[id]/[chapterId]'].indexOf(router.pathname) === -1))
   }, [router])
 
   // 设置rem字体大小并判断设备 初始化
@@ -70,7 +70,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   return (
     <>
       <MHeader/>
-      <main className={classNames(styles.mWrap, footerAdVisible && styles.mWrapPaddingBo)}>
+      <main className={classNames(styles.mWrap, footerAdShow && footerAdVisible && styles.mWrapPaddingBo)}>
         {children}
       </main>
       {

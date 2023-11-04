@@ -108,7 +108,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
 
         {
           firstChapterId ? <Link
-            href={`/episode/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`}
+            href={`/episode/${bookId}/${firstChapterId}`}
             locale={simpleLanguage}
             className={styles.readBtn}
             onClick={() => tagBookClick(keyword, bookId, recommend)}>
