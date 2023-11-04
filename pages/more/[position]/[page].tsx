@@ -38,6 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const response = await netMoreBook({
     name,
     pageNum: Number(page),
+    pageSize: 18
   }, locale as ELanguage)
 
   if (response === 'BadRequest_404') {

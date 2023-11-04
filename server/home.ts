@@ -28,7 +28,7 @@ export const netBrowse = (params: INetBrowseReq, language?: ELanguage): Promise<
 
 // 查看更多
 export const netMoreBook = (params: INetMoreReq, language?: ELanguage): Promise<INetMoreResult | 'BadRequest_404' | 'BadRequest_500'> => {
-  return poFetch('/webfic/home/more', { pageNum: 1, pageSize: 15, ...params },  language || ELanguage.English)
+  return poFetch('/webfic/home/more', { pageNum: 1, pageSize: 18, ...params },  language || ELanguage.English)
 }
 
 // 获取书籍详情

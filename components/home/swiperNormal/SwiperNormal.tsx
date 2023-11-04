@@ -18,11 +18,10 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
       <div className={styles.swiperItem}>
         <Link href={`/detail/${item.bookId}`} className={styles.contentImgBox}>
           <Image
-            priority
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={item.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={218}
             height={294}
             src={item.cover}
