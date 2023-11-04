@@ -16,11 +16,7 @@ const MHeader: FC<IProps> = () => {
   const [isLanguageShow, setIsLanguageShow] = useState<boolean | false>(false);
 
   useEffect(() => {
-    try {
-      setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
-    } catch (error) {
-      
-    }
+    if(router && router.pathname) setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
   }, [router])
 
   const navIconClick = () => {

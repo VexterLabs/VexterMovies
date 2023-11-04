@@ -3,14 +3,13 @@ import { GetServerSideProps, NextPage } from "next";
 import { ownOs } from "@/utils/ownOs";
 import { netKeywords } from "@/server/home";
 import PcKeywords from "@/components/PcKeywords/PcKeywords";
-import MKeywords from "@/components/Keywords/MKeywords";
+import MKeywords from "@/components/keywords/MKeywords";
 import { IKeywordItem } from "typings/book.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
 import { ESearchType } from "typings/sitemap.interface";
 import useHiveLog from "@/hooks/useHiveLog";
 import CrumbsTagCom from "@/components/common/Crumbs/CrumbsTagCom";
-import dataListMock from "./data.json"
 
 interface IProps {
   keywordList: IKeywordItem[]
@@ -55,8 +54,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
 
   const { data = [], currentPage = 1, pages = 1 } = res;
 
-  // const data = dataListMock, currentPage = 1, pages = 1000;
-  
   return {
     props: {
       keywordList: data,

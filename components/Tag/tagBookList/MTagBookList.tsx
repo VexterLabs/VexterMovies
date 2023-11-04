@@ -24,29 +24,31 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword}) => {
   };
   return <div className={styles.bookListWrap}>
     {dataSource && dataSource.length > 0 ? dataSource.map((book, bookInd) => {
-      const { bookId, bookName, introduction, cover, author, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
+      let { bookId, bookName, introduction, cover, author, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/detail/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
+      const linkUrl = `/detail/${bookId}`;
       const authorDom = printKeyword(author + (tag ? `/${tag}` : ''), keyword)
       const recommend = isHot === ETagBookItemIsHot.yes
-      const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`;
+      const browseLink = `/browse/${typeTwoIds[0] || 0}/`;
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
-
       return <div key={bookId + bookInd} className={styles.imageItem1Wrap}>
-        <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-          <a
-            className={styles.bookImageBox}
-            onClick={() => tagBookClick(keyword, bookId, recommend)}>
-            <ImageCommon w={130} h={172} className={styles.bookImage} source={cover} alt={bookName}/>
-            {recommend ? <div className={styles.bookStatus}>HOT</div> : null}
-          </a>
+        <Link 
+          href={linkUrl} 
+          locale={simpleLanguage} 
+          className={styles.bookImageBox} 
+          onClick={() => tagBookClick(keyword, bookId, recommend)}
+        >
+          <ImageCommon w={130} h={172} className={styles.bookImage} source={cover} alt={bookName}/>
+          {/* {recommend ? <div className={styles.bookStatus}>HOT</div> : null} */}
         </Link>
         <div className={styles.bookInfo}>
-          <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-            <a onClick={() => tagBookClick(keyword, bookId, recommend)}>
+          <Link 
+            href={linkUrl} 
+            locale={simpleLanguage} 
+            onClick={() => tagBookClick(keyword, bookId, recommend)}
+            >
               <h2 className={styles.bookName} dangerouslySetInnerHTML={{__html: bookNameDom}}/>
-            </a>
           </Link>
           <div className={styles.bookLine2}>
             {/* <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
@@ -55,23 +57,29 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword}) => {
                 dangerouslySetInnerHTML={{ __html: authorDom }}
                 onClick={() => tagBookClick(keyword, bookId, recommend)}/>
             </Link> */}
-            {typeTwoNames[0] ? <>
-              {/* <div className={styles.authorLine}></div> */}
-              <Link href={browseLink} locale={simpleLanguage} legacyBehavior>
-                <a
-                  className={styles.bookTypeTwoName}
-                  onClick={() => tagBookClick(keyword, bookId, recommend)}>
-                  {typeTwoNames[0]}
-                </a>
-              </Link>
-            </> : null}
+      
+            { 
+              !!(typeTwoNames && typeTwoNames.length) && typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                  <Link 
+                    key={bookId + '_browse_' + typeTwoNamesIdx }
+                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`} 
+                    locale={simpleLanguage} 
+                    className={styles.bookTypeTwoName}
+                    onClick={() => tagBookClick(keyword, bookId, recommend)}
+                  >
+                      {typeTwoNamesItem}
+                  </Link>
+              ))
+            }
           </div>
 
-          <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-            <a
-              className={styles.intro}
-              dangerouslySetInnerHTML={{__html: introDom}}
-              onClick={() => tagBookClick(keyword, bookId, recommend)}/>
+          <Link 
+            href={linkUrl} 
+            locale={simpleLanguage} 
+            className={styles.intro}
+            dangerouslySetInnerHTML={{__html: introDom}}
+            onClick={() => tagBookClick(keyword, bookId, recommend)}
+          >
           </Link>
         </div>
       </div>

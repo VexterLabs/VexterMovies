@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { addListen, removeListen } from "@/utils/rem";
 import { ownOs } from "@/utils/ownOs";
 import PcHeader from "@/components/layout/pcHeader/PcHeader";
@@ -17,6 +18,8 @@ interface IProps {
 }
 
 const DLayout: FC<IProps> = ({ children, pageProps }) => {
+  const router = useRouter();
+  const [footerAdShow, setFooterAdShow] = useState<boolean | false>(false);
   const device = useAppSelector(state => state.app.device);
   const footerAdVisible = useAppSelector(state => state.app.footerAdVisible);
   const dispatch = useAppDispatch();
@@ -33,6 +36,10 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
       removeListen(setRemScriptListen)
     }
   },[]) // eslint-disable-line
+
+  useEffect(() => {
+      if(router && router.pathname) setFooterAdShow(!!(['/detail/[id]', '/episode/[chapterId]/[bookId]'].indexOf(router.pathname) === -1))
+  }, [router])
 
   // 设置rem字体大小并判断设备 初始化
   const setRemScript = () => {
@@ -64,11 +71,11 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   return (
     <>
       <MHeader/>
-      <main className={`styles.mWrap ${footerAdVisible ? styles.mWrapPaddingBo : ''}`}>
+      <main className={`styles.mWrap ${footerAdShow && footerAdVisible ? styles.mWrapPaddingBo : ''}`}>
         {children}
       </main>
       {
-        !!footerAdVisible && <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } />
+        !!(footerAdShow && footerAdVisible) && <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } />
       }
     </>
   );

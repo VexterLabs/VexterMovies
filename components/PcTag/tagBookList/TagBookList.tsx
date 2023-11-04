@@ -56,22 +56,24 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId + bookInd} className={styles.imageItemMoreWrap}>
-        <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-          <a className={styles.bookImageBox}
-             onClick={() => tagBookClick(keyword, bookId, recommend)}>
+        <Link 
+          href={linkUrl} 
+          locale={simpleLanguage}
+          className={styles.bookImageBox}
+          onClick={() => tagBookClick(keyword, bookId, recommend)}>
             <ImageCommon w={150} h={200} className={styles.bookImage} source={cover} alt={bookName}/>
-            { recommend ? <div className={styles.bookHot}>HOT</div> : null }
-          </a>
+            {/* { recommend ? <div className={styles.bookHot}>HOT</div> : null } */}
         </Link>
 
         <div className={styles.bookInfo}>
           <div className={styles.bookNameBox}>
-            <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-              <a
+            <Link 
+                href={linkUrl} 
+                locale={simpleLanguage} 
                 className={styles.bookName}
                 dangerouslySetInnerHTML={{ __html: bookNameDom }}
                 onClick={() => tagBookClick(keyword, bookId, recommend)}
-              />
+              >
             </Link>
           </div>
           {/* <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
@@ -81,26 +83,34 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
               onClick={() => tagBookClick(keyword, bookId, recommend)}/>
           </Link> */}
 
-          {typeTwoNames[0] ? <Link href={browseLink} locale={simpleLanguage} legacyBehavior>
-            <a className={styles.bookTypeTwoName}
-               onClick={() => tagBookClick(keyword, bookId, recommend)}>
-              {typeTwoNames[0]}
-            </a>
-          </Link> : null}
+          { 
+            !!(typeTwoNames && typeTwoNames.length) && typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                <Link 
+                  key={bookId + '_browse_' + typeTwoNamesIdx}
+                  href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`} 
+                  locale={simpleLanguage} 
+                  className={styles.bookTypeTwoName}
+                  onClick={() => tagBookClick(keyword, bookId, recommend)}>
+                    {typeTwoNamesItem}
+                </Link>
+            ))
+          }
 
-          <Link href={linkUrl} locale={simpleLanguage} legacyBehavior>
-            <a
-              className={styles.intro}
-              dangerouslySetInnerHTML={{__html: introDom}}
-              onClick={() => tagBookClick(keyword, bookId, recommend)}/>
+          <Link 
+            href={linkUrl} 
+            locale={simpleLanguage}
+            className={styles.intro}
+            dangerouslySetInnerHTML={{__html: introDom}}
+            onClick={() => tagBookClick(keyword, bookId, recommend)}>
           </Link>
         </div>
 
         {firstChapterId ? <div className={styles.playBtnBox}>
-          <Link href={`/episode/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`} locale={simpleLanguage} legacyBehavior>
-            <a
-              className={styles.readBtn}
-              onClick={() => tagBookClick(keyword, bookId, recommend)}>
+          <Link 
+            href={`/episode/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`} 
+            locale={simpleLanguage} 
+            className={styles.readBtn}
+            onClick={() => tagBookClick(keyword, bookId, recommend)}>
               <Image
                 className={styles.playBtnImage}
                 width={28}
@@ -109,7 +119,6 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
                 alt={ClientConfig.name}
               />
               {t('home.play')}
-            </a>
           </Link>
         </div> : null}
       </div>

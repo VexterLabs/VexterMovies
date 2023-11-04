@@ -23,9 +23,12 @@ const PcKeywords: FC<IProps> = ({ pageNo, totalPage, keywordList, keywordClick }
   return <div className={styles.keywordsWrap}>
     <div className={styles.keywordBox}>
       {keywordList.map(val => {
-        return <Link key={val.id} href={`/tag/${val.id}`} legacyBehavior>
-          <a onClick={() => keywordClick(val.name)} className={styles.keywordItem}>{val.name}</a>
-        </Link>
+        return  <Link 
+                  key={val.id} 
+                  href={`/tag/${val.id}`} 
+                  onClick={() => keywordClick(val.name)} className={styles.keywordItem}>
+                    {val.name}
+                </Link>
       })}
     </div>
     {totalPage && totalPage > 1 ? <PaginationCom

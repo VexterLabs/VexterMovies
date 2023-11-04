@@ -25,12 +25,17 @@ const MKeywords: FC<IProps> = ({ pageNo, totalPage, keywordList, keywordClick })
       <h1 className={styles.moreBoxTitle}>Keyword Summary</h1>
     </div> */}
     { keywordList.length === 0 ?
-      <MEmpty message={'No keywords'}/> :
+      <MEmpty/> :
       <div className={styles.keywordBox}>
         {keywordList.map(val => {
-          return <Link key={val.id} href={`/tag/${val.id}`} legacyBehavior>
-            <a onClick={() => keywordClick(val.name)} className={styles.keywordItem}>{val.name}</a>
-          </Link>
+          return <Link 
+                  key={val.id} 
+                  href={`/tag/${val.id}`} 
+                  onClick={() => keywordClick(val.name)} 
+                  className={styles.keywordItem}
+                >
+                  {val.name}
+                </Link>
         })}
       </div>
     }

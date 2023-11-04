@@ -23,11 +23,7 @@ const PcHeader: FC<IProps> = () => {
   const [isLanguageShow, setIsLanguageShow] = useState<boolean | false>(false);
 
   useEffect(() => {
-    try {
-      setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
-    } catch (error) {
-      
-    }
+    if(router && router.pathname) setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
   }, [router])
 
   return <>
@@ -52,7 +48,6 @@ const PcHeader: FC<IProps> = () => {
             }) }
           </div>
         </div>
-        {/* { (router.pathname.includes('/tag/[keywordId]') || router.pathname.includes('/keywords')) ? null :  <Language/>} */}
         {  
           !!isLanguageShow && <Language/>
         }
