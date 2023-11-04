@@ -35,29 +35,9 @@ export interface IBookItem {
   lastUpdateTime: string;
   viewCountDisplay: string;
   lastUpdateTimeDisplay: string;
-  replacedBookId?: string;
   replacedBookName: string;
   firstChapterId?: string;
   columnName: string;
-}
-
-export interface IBookItemDetail {
-  bookId: string;
-  bookName: string;
-  chapterCount: number;
-  cover: string;
-  followCount: number;
-  introduction: string;
-  labels: string[];
-  language: string;
-  simpleLanguage: string;
-  tagIds: string;
-  tags: string[];
-  typeTwoIds: number[];
-  typeTwoName: string;
-  typeTwoNames: string[];
-  viewCount: number;
-  replacedBookId?: string;
 }
 
 export interface IChapterList {
@@ -71,11 +51,6 @@ export interface IChapterList {
   showEposide?: boolean;
 }
 
-
-export interface IEpisopeTab {
-  id: string,
-  label: string,
-}
 
 export enum ELanguage {
   English = 'en',

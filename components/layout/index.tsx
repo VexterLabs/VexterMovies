@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { addListen, removeListen } from "@/utils/rem";
 import { ownOs } from "@/utils/ownOs";
 import PcHeader from "@/components/layout/pcHeader/PcHeader";
@@ -11,6 +10,7 @@ import { EDevice } from "@/store/store.interfaces";
 import MHeader from "@/components/layout/mHeader/MHeader";
 import FooterAd from "@/components/layout/FooterAd";
 import classNames from "classnames";
+import { useRouter } from "next/router";
 import styles from "@/components/layout/index.module.scss";
 
 interface IProps {
@@ -39,7 +39,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   },[]) // eslint-disable-line
 
   useEffect(() => {
-      if(router && router.pathname) setFooterAdShow(!!(['/detail/[id]', '/episode/[chapterId]/[bookId]'].indexOf(router.pathname) === -1))
+    setFooterAdShow(router.pathname !== '/film/[bookId]' && router.pathname !== '/episode/[bookId]/[chapterId]')
   }, [router])
 
   // 设置rem字体大小并判断设备 初始化
@@ -72,10 +72,9 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
       <MHeader/>
       <main className={classNames(styles.mWrap, footerAdVisible && styles.mWrapPaddingBo)}>
         {children}
+        {footerAdVisible && footerAdShow ? <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } /> : null}
       </main>
-      {
-        !!(footerAdShow && footerAdVisible) && <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } />
-      }
+
     </>
   );
 }

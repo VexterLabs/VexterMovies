@@ -1,6 +1,4 @@
-import React, { FC } from 'react'
-import styles from './index.module.scss'
-import ImageCommon from "@/components/common/ImageCommon";
+import React, { FC } from 'react';
 import Link from "next/link";
 import ClientConfig from "@/client.config";
 import { netIpUa } from "@/server/clientLog";
@@ -9,6 +7,8 @@ import { useAppSelector } from "@/store";
 import { isIos } from "@/utils/ownOs";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
+import Image from "next/image";
+import styles from './index.module.scss';
 
 const androidLink = ClientConfig.android.link;
 
@@ -28,10 +28,21 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
   const iosLink = ClientConfig.ios.deeplink + copyText;
    return <div className={styles.adWrap}>
     <div className={styles.adLeft}>
-      <ImageCommon
+      <Image
+        onClick={() => fAdClose()}
         className={styles.adClose}
-        source={ '/images/ad/close_footer_ad.png'} onClick={() => fAdClose()}/>
-      <ImageCommon className={styles.logo} source={'/images/logo.png'}/>
+        width={48}
+        height={48}
+        src={'/images/ad/close_footer_ad.png'}
+        alt={ClientConfig.name}
+      />
+      <Image
+        className={styles.logo}
+        width={88}
+        height={88}
+        src={'/images/logo.png'}
+        alt={ClientConfig.name}
+      />
       <div className={styles.intro}>{t('banner.OpenApp')}</div>
     </div>
 

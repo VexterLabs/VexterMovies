@@ -88,7 +88,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       pages,
       keywordId,
       keyword: keyword.trim(),
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }
 }

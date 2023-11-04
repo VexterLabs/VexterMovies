@@ -1,4 +1,4 @@
-import { ELanguage, IBookItem, IBookItemDetail, IChapterList, EnumPosition } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IChapterList, EnumPosition } from "@/typings/home.interface";
 import { ESearchType } from "./sitemap.interface";
 
 export interface INetBookReq {
@@ -6,7 +6,7 @@ export interface INetBookReq {
   language?: ELanguage;
 }
 
-export interface INetBookRes extends IBookItemDetail{
+export interface INetBookRes extends IBookItem{
   book: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];

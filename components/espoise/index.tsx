@@ -11,25 +11,37 @@ import useHiveLog from "@/hooks/useHiveLog";
 import { netIpUa } from "@/server/clientLog";
 import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
-import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
 import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
 import LikeItem from "@/components/detail/likeItem/LikeItem";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { onCopyText } from "@/utils/copy";
+import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 
 
 interface IProps {
-    bookInfo: IBookItemDetail;
-    recommends: IBookItemDetail[];
+    bookInfo: IBookItem;
+    recommends: IBookItem[];
     chapterList: IChapterList[];
     chapterName: string;
     currentPage: number;
     isApple: boolean;
+  breadData: IBreadcrumb[];
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
-const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1, chapterName, isApple} ) => {
+const PcEpisode:  FC<IProps> = (
+  {
+    bookInfo,
+    recommends = [],
+    chapterList = [],
+    currentPage = 1,
+    chapterName,
+    isApple,
+    breadData
+  }
+) => {
     const router = useRouter()
     const { id } = router.query
     const chapterId = router.query.chapterId as string
@@ -80,7 +92,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     },[chapterList])
     let playIns: any;
     // 播放器设置
-    useEffect(() => { 
+    useEffect(() => {
       // 查找当前视频中下一个有MP4
       playIns = new Player({
         id: "mPlay",
@@ -150,6 +162,9 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       }
     }
     return <>
+      <div className={styles.episodeHeader}>
+        <Breadcrumb data={breadData} isWap={true}/>
+      </div>
       <div className={styles.mEpibox}>
         <div className={styles.videoContainer}>
           <div className={styles.videoArea}>
@@ -219,7 +234,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
                   </div>
                 </div> : null
               }
-              
+
             </div>
         </div>
         <div className={styles.mightLike} style={recommends?.length>0 ? {} : {display:'none'}}>
@@ -239,7 +254,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
             {/* <span>{t('home.privacyPolicy')}</span> */}
             <span>Episodes</span>
           </div>
-          <Link href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${curChapterData?.id}`} className={styles.playIcon}>
+          <Link href={`/episode/${bookInfo.bookId}/${curChapterData?.id}`} className={styles.playIcon}>
             <Image
               className={styles.navIcon}
               width={64}
@@ -250,11 +265,12 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
             {/* <span>{t('home.termsOfUse')}</span> */}
             <span className={styles.playTxt}>Play</span>
           </Link>
-          <CopyToClipboard text={copyText} onCopy={() => {
-            netIpUa(clipboard)
-            HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+          <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
+            onCopyText(copyText, () => {
+              netIpUa(clipboard)
+              HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+            })
           }}>
-          <Link href={shopLink} className={styles.downloadIcon}>
             <Image
               className={styles.navIcon}
               width={64}
@@ -265,16 +281,15 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
             {/* <span>{t('home.termsOfUse')}</span> */}
             <span>Download</span>
           </Link>
-        </CopyToClipboard>
         </div>
       </div>
-      <EpisopeDialog 
+      <EpisopeDialog
         bookInfo={bookInfo}
-        chapterList={chapterList} 
+        chapterList={chapterList}
         closeDialog={closeEpisodeDialog}
         chapterName={chapterName}
         showDialog={showDialog}></EpisopeDialog>
     </>
   }
-  
+
   export default PcEpisode
