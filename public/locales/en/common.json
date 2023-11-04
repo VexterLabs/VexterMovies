@@ -27,8 +27,7 @@
     "nextPage": "Next page",
     "lastChapterTip": "Already the last chapter",
     "firstChapterTip": "Already the first chapter",
-    "like": "You may like",
-    "Play": "Play"
+    "like": "You may like"
   },
   "appPage": {
     "title": "DramaBox - movies and drama",
@@ -58,13 +57,7 @@
     "relation4": "related content information."
   },
   "banner": {
-    "downloadTip": "Tip: Copy the link and open it in the mobile browser",
-    "PrivacyPolicy": "Privacy Policy",
-    "TermsOfUse": "Terms of Use",
-    "DownloadApp": "Download App",
-    "AllRightsReserved": "All rights reserved",
     "OpenApp": "Open the Webfic App to read more wonderful content",
-    "Open": "Open",
-    "Search": "0 search results for the book you're looking for / 0 search results"
+    "Open": "Open"
   }
 }

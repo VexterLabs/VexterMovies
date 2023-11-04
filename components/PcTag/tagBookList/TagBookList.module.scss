@@ -86,14 +86,15 @@
 }
 
 .bookTypeTwoName {
-  display: block;
-  margin: 0.16rem 0;
-  font-size: 0.14rem;
+  display: inline-block;
+  margin: 0.12rem 0;
+  padding: 0.04rem 0.10rem;
+  font-size: 0.12rem;
+  font-family: SFPro-Regular, SFPro;
   font-weight: 400;
-  color: $theme_color;
-  line-height: 0.2rem;
-  margin-bottom: 0.08rem;
-  font-family: Ubuntu-Regular, Ubuntu;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.1);
+  border-radius: 0.12rem;
 }
 
 .intro {

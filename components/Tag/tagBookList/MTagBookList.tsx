@@ -27,7 +27,7 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword}) => {
       const { bookId, bookName, introduction, cover, author, tag, typeTwoName = 'all', replacedBookName, typeTwoNames = [], typeTwoIds = [], isHot} = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
+      const linkUrl = `/detail/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
       const authorDom = printKeyword(author + (tag ? `/${tag}` : ''), keyword)
       const recommend = isHot === ETagBookItemIsHot.yes
       const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`;

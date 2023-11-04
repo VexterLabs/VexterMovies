@@ -18,7 +18,7 @@ export const printKeyword = (content: string, keyword: string) => {
   if (!keyword || !content) return content;
   const index = content.indexOf(keyword);
   const c = index > -1 ? content.substr(index, keyword.length) : '';
-  const res = `<span style="color: #FF5F27">${c}</span>`
+  const res = `<span style="color: #FF375F">${c}</span>`
   const regS = new RegExp(keyword, 'gi')
   return content.replace(regS, res) || content
 }
@@ -48,10 +48,11 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
       const { bookId, bookName, introduction, cover, author, tag,  replacedBookName, typeTwoName, typeTwoNames = [], typeTwoIds = [], firstChapterId, isHot } = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/book_info/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
-      const authorDom = printKeyword(`${t('others.by')}: ${author} ${tag ? `/${tag}` : ''}`, keyword)
+      // const linkUrl = `/detail/${bookId}/${typeTwoName || 'all'}/${replacedBookName || 'null'}`;
+      const linkUrl = `/detail/${bookId}`;
+      // const authorDom = printKeyword(`${t('others.by')}: ${author} ${tag ? `/${tag}` : ''}`, keyword)
       const recommend = isHot === ETagBookItemIsHot.yes
-      const browseLink = `/browse/${typeTwoIds[0] || 0}/${typeTwoName || 'all'}`
+      const browseLink = `/browse/${typeTwoIds[0] || 0}`
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId + bookInd} className={styles.imageItemMoreWrap}>
@@ -96,7 +97,7 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
         </div>
 
         {firstChapterId ? <div className={styles.playBtnBox}>
-          <Link href={`/book/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`} locale={simpleLanguage} legacyBehavior>
+          <Link href={`/episode/${replacedBookName}_${bookId}/Chapter-1_${firstChapterId}`} locale={simpleLanguage} legacyBehavior>
             <a
               className={styles.readBtn}
               onClick={() => tagBookClick(keyword, bookId, recommend)}>
@@ -107,7 +108,7 @@ const TagBookList: FC<IProps> = ({dataSource, keyword}) => {
                 src={'/images/book/bookinfo_play.png'}
                 alt={ClientConfig.name}
               />
-              {t('bookInfo.Play')}
+              {t('home.play')}
             </a>
           </Link>
         </div> : null}

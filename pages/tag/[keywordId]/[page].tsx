@@ -62,7 +62,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
   // const response = dataMock;
   const { books = [], relationKeywords = [], keyword = '', pages = 1, currentPage = 1, keyStatus } = response;
-
+console.log('response', response)
   if (keyStatus === 0) {
     return { notFound: true }
   }

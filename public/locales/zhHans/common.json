@@ -27,8 +27,7 @@
     "nextPage": "下一页",
     "lastChapterTip": "当前已在最后一页",
     "firstChapterTip": "当前已在第一页",
-    "like": "你也许也喜欢",
-    "Play": "Play"
+    "like": "你也许也喜欢"
   },
   "appPage": {
     "title": "DramaBox - 追剧，电视，精彩故事",
@@ -58,13 +57,7 @@
     "relation4": "related content information."
   },
   "banner": {
-    "downloadTip": "Tip: Copy the link and open it in the mobile browser",
-    "PrivacyPolicy": "Privacy Policy",
-    "TermsOfUse": "Terms of Use",
-    "DownloadApp": "Download App",
-    "AllRightsReserved": "All rights reserved",
     "OpenApp": "Open the Webfic App to read more wonderful content",
-    "Open": "Open",
-    "Search": "0 search results for the book you're looking for / 0 search results"
+    "Open": "Open"
   }
 }

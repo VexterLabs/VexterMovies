@@ -27,8 +27,7 @@
     "nextPage": "다음 페이지",
     "lastChapterTip": "이미 마지막 장입니다",
     "firstChapterTip": "이미 첫 번째 장입니다",
-    "like": "당신이 좋아할 만한",
-    "Play": "Play"
+    "like": "당신이 좋아할 만한"
   },
   "appPage": {
     "title": "DramaBox - 환상적인 이야기와 단편",
@@ -58,14 +57,8 @@
     "relation4": "related content information."
   },
   "banner": {
-    "downloadTip": "Tip: Copy the link and open it in the mobile browser",
-    "PrivacyPolicy": "Privacy Policy",
-    "TermsOfUse": "Terms of Use",
-    "DownloadApp": "Download App",
-    "AllRightsReserved": "All rights reserved",
     "OpenApp": "Open the Webfic App to read more wonderful content",
-    "Open": "Open",
-    "Search": "0 search results for the book you're looking for / 0 search results"
+    "Open": "Open"
   }
 
 }
