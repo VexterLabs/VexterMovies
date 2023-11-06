@@ -2,7 +2,7 @@ import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { ownOs } from "@/utils/ownOs";
 import { netKeywords } from "@/server/home";
-import PcKeywords from "@/components/PcKeywords/PcKeywords";
+import PcKeywords from "@/components/pcKeywords/PcKeywords";
 import MKeywords from "@/components/keywords/MKeywords";
 import { IKeywordItem } from "typings/book.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
