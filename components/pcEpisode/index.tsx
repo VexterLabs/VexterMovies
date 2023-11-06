@@ -4,7 +4,7 @@ import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
-import PcLike from '@/components/pcDetail/pcLike';
+import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
@@ -30,7 +30,7 @@ const PcEpisode: FC<IProps> = (
 
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
-  const playerInstance = useRef<Player>(null);
+  const playerInstance = useRef<Player>({ } as Player);
   const episodeIndex = useRef(current);
   const [errorBgsrc, setErrorBg] = useState('')
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集

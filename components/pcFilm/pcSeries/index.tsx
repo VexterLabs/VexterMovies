@@ -5,7 +5,7 @@ import ImageLegacy from "next/legacy/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import classNames from "classnames";
-import styles from "@/components/pcDetail/pcSeries/index.module.scss";
+import styles from "@/components/pcFilm/pcSeries/index.module.scss";
 
 // 该页面是展示pc端更多剧情的，需要修改后期
 interface IProps {
@@ -53,7 +53,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
           </Link>
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
             <p className={styles.title}>{item.name}</p>
-            <p className={styles.pageNum}>EP.{item.index + 1}</p>
+            <p className={styles.pageNum}>EP.{item.index}</p>
           </Link>
         </div>
       })}

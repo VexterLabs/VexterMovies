@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState, } from "react";
 import Player,{ Events, Util } from 'xgplayer'
-import styles from "@/components/espoise/index.module.scss"
+import styles from "@/components/episode/index.module.scss"
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
@@ -16,6 +16,7 @@ import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
+import { useTranslation } from "next-i18next";
 
 
 interface IProps {
@@ -125,7 +126,7 @@ const WapEpisode:  FC<IProps> = (
           },
         },
         autoplay: true,
-        autoplayMuted: true,
+        autoplayMuted: false,
         url: curChapterData?.mp4,
         width:'100%',
         height:'100%',
@@ -210,7 +211,7 @@ const WapEpisode:  FC<IProps> = (
               <div className={styles.downInfo}>
                 <p className={styles.downTip}>This episode needs t0 be downloaded to watch</p>
                 <div className={styles.btnDown}>
-                  <div className={styles.btnDowns}>Download the App</div>
+                  <div>Download the App</div>
                 </div>
               </div>
             </div>
@@ -261,7 +262,7 @@ const WapEpisode:  FC<IProps> = (
               {
                 chapterList&&chapterList.length>9 ? <div className={styles.epiOuter}>
                   <div className={styles.epiItem} onClick={() => {showEpisodeDialog()}}>
-                    <p>{t('bookInfo.more')}</p>
+                    <p>{t('home.more')}</p>
                   </div>
                 </div> : null
               }

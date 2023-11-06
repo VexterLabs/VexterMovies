@@ -5,7 +5,7 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import ImageLegacy from "next/legacy/image";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import styles from '@/components/pcDetail/pcLike/PcLike.module.scss';
+import styles from '@/components/pcFilm/pcLike/PcLike.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];

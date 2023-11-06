@@ -4,10 +4,10 @@ import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IChapterList, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
-import PcSeries from '@/components/pcDetail/pcSeries';
-import PcLike from '@/components/pcDetail/pcLike';
+import PcSeries from '@/components/pcFilm/pcSeries';
+import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import styles from "@/components/pcDetail/index.module.scss";
+import styles from "@/components/pcFilm/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
