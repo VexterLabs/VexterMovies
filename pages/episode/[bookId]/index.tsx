@@ -28,7 +28,7 @@ const Espoise: NextPage<IProps> = (
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
-    { title: chapterName },
+    { title: currentPage },
   ]
 
   return <>
