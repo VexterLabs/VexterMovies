@@ -8,6 +8,7 @@
 .mEpibox {
     display: flex;
     flex-direction: column;
+    padding-bottom: 1.11rem;
     .videoContainer {
         display: flex;
         flex-direction: column;
@@ -72,12 +73,11 @@
                 color: rgba(255, 255, 255, 0.8);
                 line-height: 0.42rem;
                 font-weight: 500;
-                margin-bottom: 0.18rem;
+                margin-bottom: 0.08rem;
             }
             .videoScore {
                 display: flex;
                 align-items: center;
-                margin-bottom: 0.16rem;
                 .epoImg {
                     width: 0.4rem;
                     height: 0.4rem;
@@ -92,7 +92,7 @@
             .videoTag {
                 margin-bottom: 0.08rem;
                 display: flex;
-
+                margin-top: 0.16rem;
                 .tagItem {
                     color: rgba(255,255,255,0.6);
                     font-size: 0.22rem;

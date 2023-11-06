@@ -19,7 +19,6 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import MCrumbs from '@/components/espoise/crumbs/index'
 
 
 interface IProps {
@@ -61,7 +60,9 @@ const PcEpisode:  FC<IProps> = (
       }
       return ClientConfig.android.link;
     });
+    const { t } = useTranslation();
     const HiveLog = useHiveLog();
+    
     const {
       bookId,
       bookName,
@@ -70,6 +71,12 @@ const PcEpisode:  FC<IProps> = (
     // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
     const curChapterData = chapterList.find(item => item.id === chapterId ) //&& item.unlock === true
     currentPage = curChapterData?.index as number
+    const breadDatas: IBreadcrumb[] = [
+      { title: t('home.home'), link: "/" },
+      { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+      { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+      { title: currentPage + 1},
+    ]
     let preChapterData:any //后面再改
     if(curChapterData) {
       preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index )//&& item.unlock === true
@@ -115,7 +122,7 @@ const PcEpisode:  FC<IProps> = (
       playIns.on(Events.ENDED, () => {
         dealReaEpi(preChapterData?.index)
         if(preChapterData) {
-          router.replace(`/episode/${id}/${preChapterData.id}`,undefined)
+          router.replace(`/episode/${bookInfo.bookId}/${preChapterData.id}`,undefined)
         }
         playIns.playNext({
           url: preChapterData?.mp4,
@@ -165,10 +172,9 @@ const PcEpisode:  FC<IProps> = (
     }
     return <>
       <div className={styles.episodeHeader}>
-        <Breadcrumb data={breadData} isWap={true}/>
+        <Breadcrumb data={breadDatas} isWap={true}/>
       </div>
       <div className={styles.mEpibox}>
-        {/* <MCrumbs bookInfo={bookInfo} currentPage={currentPage}></MCrumbs> */}
         <div className={styles.videoContainer}>
           <div className={styles.videoArea}>
             <div id='mPlay' className={styles.videoPlace}></div>
@@ -203,11 +209,14 @@ const PcEpisode:  FC<IProps> = (
               />
               <p className={styles.epoScore}>{bookInfo.chapterCount}k</p>
             </div>
-            <div className={styles.videoTag}>
-              {(bookInfo?.tags || []).slice(0, 2).map((val,ind) => {
-                return <div key={ind} className={styles.tagItem}>{val}</div>
-              })}
-            </div>
+            {
+              bookInfo?.tags && bookInfo.tags.length > 0 ? 
+                <div className={styles.videoTag}>
+                {(bookInfo?.tags || []).slice(0, 5).map((val,ind) => {
+                  return <div key={ind} className={styles.tagItem}>{val}</div>
+                })}
+              </div> : null
+            }
             <div className={styles.videoDesc}>
               <p>{bookInfo.introduction}</p>
             </div>
@@ -222,7 +231,7 @@ const PcEpisode:  FC<IProps> = (
               {
                 chapterList&&chapterList.slice(0,9).map((chapterItem,chapterIndex) => {
                   return <div className={styles.epiOuter} key={chapterItem.id}>
-                    <Link href={`/episode/${id}/${chapterItem.id}`} shallow>
+                    <Link href={`/episode/${bookInfo.bookId}/${chapterItem.id}`} shallow>
                       <div className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {chooseEpisode(chapterItem)}}>
                         <p>{chapterItem.name}</p>
                       </div>
