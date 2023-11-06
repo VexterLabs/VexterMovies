@@ -10,7 +10,7 @@ export const netHiveLog = (logData: ILogParams) => {
 }
 
 // IPUA
-export async function netIpUa(clipboard: IClipboard) {
+export async function netIpUa(clipboard: IClipboard): Promise<string> {
   const params = {
     clipboard: JSON.stringify(clipboard),
     ua: clipboard.ua,
