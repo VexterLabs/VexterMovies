@@ -1,18 +1,15 @@
 import React, {FC, useEffect, useState, } from "react";
-import Player,{ Events } from 'xgplayer'
-import styles from "@/components/pcEpisode/index.module.scss"
+import Player,{ Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import PcLike from '@/components/pcDetail/pcLike';
-import UsualTitle from "@/components/layout/usualTitle/UsualTitle"
-import { set } from "nprogress";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import styles from "@/components/pcEpisode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -32,6 +29,7 @@ const PcEpisode:  FC<IProps> = (
     currentPage = 1,
     breadData,
   } ) => {
+  const { t } = useTranslation()
     const router = useRouter()
     const { id } = router.query
     const chapterId = router.query.chapterId as string
@@ -236,10 +234,7 @@ const PcEpisode:  FC<IProps> = (
           }
         </div>
       </div>
-      <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
-        <UsualTitle title='YOU Might Like'/>
-        <PcLike dataSource={recommends}></PcLike>
-    </div>
+      <PcLike dataSource={recommends}/>
     </main>
   }
 

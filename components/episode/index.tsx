@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState, } from "react";
 import Player,{ Events } from 'xgplayer'
-import styles from "@/components/espoise/index.module.scss"
+import styles from "@/components/episode/index.module.scss"
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
