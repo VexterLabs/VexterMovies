@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import styles from '@/components/detail/likeTitle/LikeTitle.module.scss'
+import styles from '@/components/film/likeTitle/LikeTitle.module.scss'
 import Link from "next/link";
 import Image from "next/image";
 

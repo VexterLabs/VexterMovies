@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import styles from '@/components/pcDetail/pcLike/PcLike.module.scss'
 import { IBookItem } from "@/typings/home.interface";
+import styles from '@/components/pcFilm/pcLike/PcLike.module.scss'
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import ImageLegacy from "next/legacy/image";
