@@ -57,7 +57,7 @@ export const ImageCover: FC<IProps> = (props) => {
       onError={onImgError}
       {...imageProps}
       placeholder="blur"
-      blurDataURL={'/images/defaultBook.png'}
+      blurDataURL={'/images/defaultFilm.png'}
       alt={alt}
     />
   </Link>
