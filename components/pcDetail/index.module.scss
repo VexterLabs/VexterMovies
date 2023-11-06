@@ -118,7 +118,6 @@
       font-weight: 500;
       color: #FFFFFF;
       background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
-      border-radius: 0.02rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,13 +137,4 @@
   }
 }
 
-.recommendBox {
 
-  .titleText {
-    font-size: 0.28rem;
-    font-weight: bold;
-    color: rgba(255,255,255,0.9);
-    line-height: 0.28rem;
-    margin-bottom: 0.24rem;
-  }
-}

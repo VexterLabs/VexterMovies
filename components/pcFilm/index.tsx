@@ -1,30 +1,31 @@
-import React, { FC, useState } from 'react'
-import styles from "@/components/pcFilm/index.module.scss";
+import React, { FC } from 'react';
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItemDetail, IChapterList, ColumnNameRoute, IBookItem } from "@/typings/home.interface";
+import { IChapterList, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import PcSeries from '@/components/pcFilm/pcSeries';
 import PcLike from '@/components/pcFilm/pcLike';
-import UsualTitle from "@/components/layout/usualTitle/UsualTitle";
+import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import styles from "@/components/pcFilm/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
+  breadData: IBreadcrumb[];
 }
 
-const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], chapterName}) => {
+const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], chapterName, breadData}) => {
   const { t } = useTranslation()
-  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
 
-  const router = useRouter();
+  return <main className={styles.detailWrap}>
+    <div className={styles.detailHeader}>
+      <Breadcrumb data={breadData} />
+    </div>
 
-  return <>
-    <main className={styles.filmWrap}>
+    <div className={styles.container}>
       <div className={styles.detailBox}>
         <div className={styles.detailBookCoverBox}>
           <Image
@@ -34,19 +35,14 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
             height={420}
             src={bookInfo.cover}
             placeholder="blur"
-            blurDataURL={bookInfo.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             alt={bookInfo.bookName}
           />
         </div>
 
         <div className={styles.detailBoxRight}>
           <div className={styles.detailBoxRightTop}>
-            <Link href={`/film/${bookInfo.bookId}`}>
-              <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
-            </Link>
-            {/* <p className={styles.chapterCount}>
-              {`${bookInfo.chapterCount || 0} ${t("home.episodes")}`}
-            </p> */}
+            <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
 
             <p className={styles.intro}>
               {bookInfo.introduction}
@@ -59,7 +55,8 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
             </div>
           </div>
 
-          <Link  href={`/episode/${bookInfo?.replacedBookId || bookInfo.bookId}/${chapterFirstId}`} className={styles.playBtn}>
+          {chapterList?.[0]?.id ? <Link href={`/episode/${bookInfo.bookId}/${chapterList?.[0]?.id}`}
+                                        className={styles.playBtn}>
             <Image
               className={styles.playIcon}
               width={16}
@@ -68,18 +65,14 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
               alt={''}
             />
             <span>{t("home.play")}</span>
-          </Link>
+          </Link> : null}
         </div>
       </div>
-       {/* pc端详情页剧集列表 */}
-      <PcSeries chapterList={chapterList} chapterName={chapterName} bookInfo={bookInfo}></PcSeries>
-      <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
-        {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-        <UsualTitle title='YOU Might Like'/>
-        <PcLike dataSource={recommends}></PcLike>
-      </div>
-    </main>
-  </>
+      <PcSeries chapterList={chapterList} bookInfo={bookInfo}/>
+      <PcLike dataSource={recommends}/>
+    </div>
+
+  </main>
 }
 
 export default PcDetail;

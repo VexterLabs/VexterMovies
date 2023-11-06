@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styles from '@/components/film/likeItem/LikeItem.module.scss'
-import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
+import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";

@@ -1,136 +1,118 @@
-.secondListWrap {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-column-gap: 0.09rem;
-  padding-bottom: 0.1rem;
-  // border: 1px solid red;
-  .secondListBox {
-    width: 2.28rem;
-    height: 3.89rem;
-    position: relative;
-    // border: 1px solid blue;
-    .bookImage {
+.recommendBox {
+  padding-bottom: 0.4rem;
+
+  .titleText {
+    font-size: 0.28rem;
+    font-weight: bold;
+    color: rgba(255,255,255,0.9);
+    line-height: 0.28rem;
+    margin-bottom: 0.24rem;
+  }
+
+  .listBox {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0.1rem;
+
+    .listItem {
       width: 2.28rem;
-      height: 3.04rem;
-      border-radius: 0.04rem;
-      overflow: hidden;
       position: relative;
-      z-index: 9;
-      display: flex;
-      align-items: center;
+      margin-right: 0.09rem;
 
-      .imageItem {
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        transition: all 0.5s;
-        // border: 1px solid red;
+      &:last-child {
+        margin-right: 0;
       }
-    }
 
-    .chapterCount {
-      // background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
-      position: absolute;
-      z-index: 10;
-      width: 100%;
-      // height: 0.56rem;
-      // border: 1px solid red;
+      .coverBox {
+        width: 2.28rem;
+        height: 3.04rem;
+        border-radius: 0.08rem;
+        overflow: hidden;
+        position: relative;
 
-      top: 2.73rem;
-      left: 0.08rem;
-      // padding-top: 0.3rem;
-      padding-right: 0.08rem;
-      height: 0.25rem;
-      line-height: 0.25rem;
-      display: flex;
-      align-items: center;
-      .playIcons {
-        width: 0.16rem;
-        height: 0.16rem;
-        border: 1px solid pink;
+        .bookImage {
+          display: block;
+          width: 100%;
+          height: 100%;
+
+          .imageItem {
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s;
+          }
+        }
+
+        .chapterCount {
+          position: absolute;
+          z-index: 10;
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          padding: 0.24rem 0.08rem 0;
+          height: 0.48rem;
+          display: flex;
+          align-items: center;
+          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 100%);
+
+          .playIcon {
+            width: 0.16rem;
+            height: 0.16rem;
+          }
+
+          .chapterText {
+            font-size: 0.14rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 0.02rem;
+          }
+        }
       }
-      .chapterText {
-        font-size: 0.14rem;
-        color: rgba(255, 255, 255, 0.8);
-        margin-left: 0.02rem;
-      }
-      
 
-    }
-
-    .bookName {
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.16rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      word-wrap: break-word;
-      line-height: 0.22rem;
-      position: absolute;
-      top: 3.21rem;
-      left: 0;
-      z-index: 1;
-      opacity: 1;
-    }
-
-    .bookNameBox {
-      position: relative;
-      z-index: 2;
-      display: block;
-      border-radius: 0 0 0.04rem 0.04rem;
-      top: 0.45rem;
-
-      .bookNameHover {
-        font-size: 0.16rem;
-        font-weight: 500;
-        color: #FF375F;
-        line-height: 0.22rem;
+      .bookName {
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         word-wrap: break-word;
-        margin-bottom: 0.1rem;
+        font-size: 0.18rem;
+        font-weight: 500;
+        color: rgba(255,255,255,0.8);
+        line-height: 0.24rem;
+        max-height: 0.48rem;
+        margin-top: 0.12rem;
       }
 
       .tagBox {
+        margin-top: 0.08rem;
         font-size: 0.12rem;
         font-weight: 400;
         color: rgba(255, 255, 255, 0.4);
         grid-gap: 0.08rem;
         display: flex;
+        flex-wrap: wrap;
+        height: 0.24rem;
+        overflow: hidden;
 
         .tagItem {
-          border-radius: 0.03rem;
-          padding: 0.04rem 0.1rem;
+          border-radius: 0.12rem;
+          padding: 0 0.1rem;
           background-color: rgba(255, 255, 255, 0.08);
+          max-width: 2rem;
+          height: 0.24rem;
+          line-height: 0.24rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
 
-    }
-
-    &:hover {
-      // .bookName {
-      //   //display: none;
-      //   opacity: 0;
-      // }
-
-      // .bookNameBox {
-      //   opacity: 1;
-      // }
-
-      .bookImage {
-        border-radius: 0.04rem 0.04rem 0 0;
-
-        .imageItem {
-          transform: scale(1.1);
+      &:hover {
+        .bookImage {
+          .imageItem {
+            transform: scale(1.1);
+          }
         }
       }
     }
-
   }
 }

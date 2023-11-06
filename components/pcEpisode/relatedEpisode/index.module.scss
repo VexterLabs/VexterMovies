@@ -1,27 +1,15 @@
-.episodeListBox {
-  display: flex;
-  flex-direction: column;
+.relatedEpisode {
   position: relative;
-  // margin-bottom: 0.52rem;
-  .topInfo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.28rem;
-    height: 0.32rem;
+  margin-bottom: 0.24rem;
 
-    .episodeTitle {
-      font-size: 0.28rem;
-      font-weight: bold;
-      color: rgba(255, 255, 255, .9);
-      line-height: 0.32rem;
-    }
-    .allCounts {
-      color: rgba(255,255,255,0.4);
-      font-size: 0.16rem;
-      line-height: 0.22rem;
-      margin-left: 0.18rem;
-    }
+  .relatedTitle {
+    font-size: 0.28rem;
+    line-height: 0.32rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+    margin-bottom: 0.24rem;
   }
+
   .listInfo {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -105,52 +93,6 @@
           }
         }
       }
-    }
-    .viewMore {
-      color: rgba(255,255,255,0.4);
-      font-weight: 500;
-      font-size: 0.16rem;
-      height: 100%;
-      width: 100%;
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-
-      .moreIcon {
-        margin-left: 0.04rem;
-        width: 0.16rem;
-        height: 0.16rem;
-      }
-    }
-  }
-  .tabBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .tabItem {
-      height: 0.4rem;
-      width: 0.72rem;
-      background-color: rgba(255,255,255,0.08);
-      border-radius: 4px;
-      color: rgba(255, 255, 255, .9);
-      font-weight: 500;
-      font-size: 0.14rem;
-      text-align: center;
-      line-height: 0.4rem;
-      margin-right: 0.08rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: $theme_color;
-      }
-    }
-
-    .tabItemActive {
-      background-color: $theme_color;
     }
   }
 }

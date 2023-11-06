@@ -4,12 +4,10 @@ import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IChapterList, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
-import SecondList from "@/components/pcHome/secondList/SecondList";
-import PcSeries from '@/components/pcDetail/pcSeries';
-import PcLike from '@/components/pcDetail/pcLike';
-import UsualTitle from "@/components/layout/usualTitle/UsualTitle";
+import PcSeries from '@/components/pcFilm/pcSeries';
+import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import styles from "@/components/pcDetail/index.module.scss";
+import styles from "@/components/pcFilm/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -44,9 +42,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
 
         <div className={styles.detailBoxRight}>
           <div className={styles.detailBoxRightTop}>
-            <Link href={`/film/${bookInfo.bookId}`}>
-              <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
-            </Link>
+            <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
 
             <p className={styles.intro}>
               {bookInfo.introduction}
@@ -72,15 +68,8 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
           </Link> : null}
         </div>
       </div>
-      {/* pc端详情页剧集列表 */}
-      <PcSeries chapterList={chapterList} chapterName={chapterName} bookInfo={bookInfo}/>
-      {/* <PcHomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-
-      <div className={styles.recommendBox} style={recommends?.length>0 ? {} : {display:'none'}}>
-        <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
-        <PcLike dataSource={recommends}/>
-      </div>
-
+      <PcSeries chapterList={chapterList} bookInfo={bookInfo}/>
+      <PcLike dataSource={recommends}/>
     </div>
 
   </main>

@@ -8,8 +8,6 @@ import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { SSRConfig, useTranslation } from "next-i18next";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
-import BookCrumbs from "@/components/film/crumbs";
-import PcCrumbs from "@/components/pcFilm/crumbs";
 
 interface IProps extends SSRConfig {
   isPc: boolean;

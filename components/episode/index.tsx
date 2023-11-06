@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState, } from "react";
 import Player,{ Events, Util } from 'xgplayer'
-import styles from "@/components/espoise/index.module.scss"
+import styles from "@/components/episode/index.module.scss"
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
@@ -9,8 +9,6 @@ import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
 import { netIpUa } from "@/server/clientLog";
-import { PcEmpty } from "@/components/common/empty";
-import { useTranslation } from "next-i18next";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
@@ -18,6 +16,7 @@ import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
+import { useTranslation } from "next-i18next";
 
 
 interface IProps {
@@ -31,7 +30,7 @@ interface IProps {
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
-const PcEpisode:  FC<IProps> = (
+const WapEpisode:  FC<IProps> = (
   {
     bookInfo,
     recommends = [],
@@ -61,7 +60,7 @@ const PcEpisode:  FC<IProps> = (
     });
     const { t } = useTranslation();
     const HiveLog = useHiveLog();
-    
+
     const {
       bookId,
       bookName,
@@ -127,7 +126,7 @@ const PcEpisode:  FC<IProps> = (
           },
         },
         autoplay: true,
-        autoplayMuted: true,
+        autoplayMuted: false,
         url: curChapterData?.mp4,
         width:'100%',
         height:'100%',
@@ -212,7 +211,7 @@ const PcEpisode:  FC<IProps> = (
               <div className={styles.downInfo}>
                 <p className={styles.downTip}>This episode needs t0 be downloaded to watch</p>
                 <div className={styles.btnDown}>
-                  <div className={styles.btnDowns}>Download the App</div>
+                  <div>Download the App</div>
                 </div>
               </div>
             </div>
@@ -231,7 +230,7 @@ const PcEpisode:  FC<IProps> = (
               <p className={styles.epoScore}>{bookInfo.chapterCount}K</p>
             </div>
             {
-              bookInfo?.tags && bookInfo.tags.length > 0 ? 
+              bookInfo?.tags && bookInfo.tags.length > 0 ?
                 <div className={styles.videoTag}>
                 {(bookInfo?.tags || []).slice(0, 5).map((val,ind) => {
                   return <div key={ind} className={styles.tagItem}>{val}</div>
@@ -263,7 +262,7 @@ const PcEpisode:  FC<IProps> = (
               {
                 chapterList&&chapterList.length>9 ? <div className={styles.epiOuter}>
                   <div className={styles.epiItem} onClick={() => {showEpisodeDialog()}}>
-                    <p>{t('bookInfo.more')}</p>
+                    <p>{t('home.more')}</p>
                   </div>
                 </div> : null
               }
@@ -325,4 +324,4 @@ const PcEpisode:  FC<IProps> = (
     </>
   }
 
-  export default PcEpisode
+  export default WapEpisode

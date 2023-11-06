@@ -41,7 +41,6 @@ export interface IBookItem {
 }
 
 export interface IChapterList {
-  bookId: string;
   id: string;
   index: number;
   mp4: string;

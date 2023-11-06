@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/store";
 import { setDevice, setFooterAdVisible } from "@/store/modules/app.module";
 import { EDevice } from "@/store/store.interfaces";
 import MHeader from "@/components/layout/mHeader/MHeader";
-import FooterAd from "@/components/layout/footerAd";
+import FooterAd from "@/components/layout/FooterAd";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import styles from "@/components/layout/index.module.scss";

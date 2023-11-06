@@ -3,10 +3,10 @@ import styles from "@/components/film/crumbs/index.module.scss";
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
+import { IBookItem } from "@/typings/home.interface";
 
 interface IProps {
-  bookInfo: IBookItemDetail | IBookItem;
+  bookInfo: IBookItem;
   isPc?: boolean;
 }
 
