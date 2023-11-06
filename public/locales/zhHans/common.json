@@ -51,13 +51,13 @@
   },
   "tag": {
     "relevant": "Relevant popular keywords",
-    "relation1": "Webfic has found related content about ",
+    "relation1": "DramaBox has found related content about ",
     "relation2": "for you.\nThis includes books related to ",
     "relation3": ",\nas well as ",
     "relation4": "related content information."
   },
   "banner": {
-    "OpenApp": "Open the Webfic App to read more wonderful content",
-    "Open": "Open"
+    "OpenApp": "更多精彩内容，尽在DramaBox",
+    "Open": "打开"
   }
 }
