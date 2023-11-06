@@ -21,58 +21,69 @@
     display: flex;
     .leftVideo {
       width: 11.24rem;
+      height: 7.08rem;
+
       .videoContainer {
         height: 7.08rem;
         width: 11.24rem;
         background: rgba(255,255,255,0.1);
         border-radius: 0.08rem;
+        overflow: hidden;
         position: relative;
+
         .downloads {
           position: absolute;
-          height: 6.36rem;
-          width: 3.98rem;
-          // border: 1px solid blue;
-          top: 46%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          z-index: 99;
-          background: rgba(255,255,255,0.1);
-          backdrop-filter: blur(10px);
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          z-index: 9;
+          text-align: center;
+
           .errBg {
             width: 3.98rem;
             height: 100%;
-            // filter: opacity(0.5);
-            filter: brightness(0.4);
           }
-          .downInfo {
+
+          .downloadMark {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            // left: 0;
-            // top: 0;
-            // width: 2rem;
-            // height: 3rem;
-            // border: 1px solid red;
-            .downTip {
-              font-size: 0.2rem;
-              line-height: 0.24rem;
-              color: #fff;
-              width: 3.37rem;
-              white-space: nowrap;
-              margin-bottom: 0.24rem;
-              margin-left: -0.39rem;
-            }
-            .btnDown {
-              background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
-              border-radius: 0.24rem;
-              height:0.48rem;
-              padding: 0.16rem 0.24rem;
-              text-align: center;
-              color: #fff;
-              width: 3.37rem;
-              cursor: pointer;
-            }
+            top: 0;
+            left: 0;
+            z-index: 9;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0,0,0,0.6);
+          }
+        }
+        .downInfo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 9999;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+
+          .downTip {
+            font-size: 0.2rem;
+            color: #FFFFFF;
+            white-space: nowrap;
+            margin-bottom: 0.24rem;
+          }
+
+          .btnDown {
+            background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
+            border-radius: 0.24rem;
+            height: 0.48rem;
+            line-height: 0.48rem;
+            cursor: pointer;
+            padding: 0 0.24rem;
+            font-size: 0.18rem;
+            font-weight: 500;
+            color: #FFFFFF;
           }
         }
       }
@@ -93,6 +104,12 @@
           // border: 1px solid red;
           align-items: center;
           margin-bottom: 0.12rem;
+
+          .imageStar {
+            width: 0.24rem;
+            height: 0.24rem;
+          }
+
           .videoScore{
             font-size: 0.18rem;
             line-height: 0.2rem;
@@ -100,9 +117,52 @@
           }
         }
         .videoDesc {
-          font-sie: 0.14rem;
-          line-height: 0.2rem;
           color: rgba(255,255,255,0.6);
+          width: 11rem;
+          display: block;
+          font-size: 0.14rem;
+          font-weight: 400;
+          line-height: 0.20rem;
+          margin-bottom: 0.2rem;
+          position: relative;
+          word-break: break-word;
+
+
+          a {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 9;
+            text-align: right;
+            width: 0.9rem;
+            height: 0.24rem;
+            font-size: 0.14rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.8);
+          }
+
+          .extend, .retract {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 0.9rem;
+            background: linear-gradient(270deg, #000000 0%, rgba(20,20,20,0) 100%);
+            color: rgba(255,255,255,0.8);
+
+            .moreIcon {
+              margin-left: 0.02rem;
+              width: 0.16rem;
+              height: 0.16rem;
+            }
+
+          }
+
+          .retract {
+            .moreIcon {
+              margin-left: 0;
+              transform: rotate(180deg);
+            }
+          }
         }
       }
       .tagBox {
@@ -119,118 +179,7 @@
         }
       }
     }
-    .eposipeAll {
-      width: 3.04rem;
-      height: 8.68rem;
-      overflow-y: scroll;
-      border-radius: 0.08rem;
-      // border: 1px solid yellow;
-      padding: 0.08rem 0.12rem;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-      .eposipeTop {
-        display: flex;
-        align-items: center;
-        .eposipeTit {
-          font-size: 0.2rem;
-          font-weight: 500;
-          line-height: 0.24rem;
-          color: rgba(255,255,255,0.9);
-        }
-        .eposipeCur {
-          line-height: 0.2rem;
-          color: rgba(255,255,255,0.4);
-          font-size: 0.14rem;
-          margin-left: 0.08rem;
-        }
-      }
-      .allEpo {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 0.08rem;
-        // padding-bottom: 0.08rem;
-        padding-top: 0.08rem;
-        .listItemMask {
-          height: 1.45rem;
-          width: 0.88rem;
-          // border: 1px solid orange;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          border-radius: 0.03rem;
-          margin-bottom: 0.08rem;
-          .imgItem {
-            position: relative;
-            width: 0.88rem;
-            height: 1.17rem;
-            border-radius: 0.03rem;
 
-            &::after {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              content: '';
-              overflow: hidden;
-              display: block;
-              background: url('/images/book/lock-video.png') no-repeat;
-              background-size: contain;
-              width: 0.24rem;
-              height: 0.24rem;
-            }
-            .EpoItem {
-              width: 0.88rem;
-              height: 1.17rem;
-              border-radius: 0.03rem;
-            }
-
-          }
-          .linkText {
-            font-weight: 500;
-            line-height: 0.2rem;
-            color: rgba(255,255,255,0.8);
-            text-align: center;
-            padding-top: 0.08rem;
-          }
-        }
-        .listItem {
-          height: 1.45rem;
-          width: 0.88rem;
-          // border: 1px solid orange;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          border-radius: 0.03rem;
-          margin-bottom: 0.08rem;
-          .imgItem {
-            position: relative;
-            width: 0.88rem;
-            height: 1.17rem;
-            border-radius: 0.03rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .EpoItem {
-              width: 0.88rem;
-              height: 1.17rem;
-              border-radius: 0.03rem;
-            }
-
-          }
-          .linkText {
-            font-weight: 500;
-            line-height: 0.2rem;
-            width: 100%;
-            color: rgba(255,255,255,0.8);
-            text-align: center;
-            padding-top: 0.08rem;
-          }
-        }
-      }
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
   }
   .relatedEpisode {
     margin-bottom: 0.24rem;

@@ -15,20 +15,20 @@ interface IProps {
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
   isApple: boolean;
-  currentPage: number;
+  current: number;
 }
 
 const Episode: NextPage<IProps> = (
-  { isPc, bookInfo, isApple, recommends, chapterList, chapterName,currentPage }) => {
+  { isPc, bookInfo, isApple, recommends, chapterList, current }) => {
   const { t } = useTranslation();
+
 
   const breadData: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
-    { title: chapterName },
+    { title: chapterList?.[current]?.name },
   ]
 
   return <>
@@ -38,16 +38,15 @@ const Episode: NextPage<IProps> = (
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        chapterName={chapterName}
-        currentPage={currentPage}
+        current={current}
       /> :
       <WapEpisode
         breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        chapterName={chapterName}
-        currentPage={currentPage}
+        chapterName={''}
+        currentPage={current}
         isApple={isApple}
       />}
   </>
@@ -69,18 +68,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     return { redirect: { destination: '/500', permanent: false } }
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
-  const chapterName = book.bookName
-  const currentPage = 0
+  const current = chapterList.findIndex(val => val.id === chapterId) || 0;
   return {
     props: {
       bookId,
-      chapterName,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
       recommends,
       chapterList,
-      currentPage,
+      current,
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },
   }
