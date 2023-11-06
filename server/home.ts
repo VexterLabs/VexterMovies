@@ -1,7 +1,6 @@
 import { ELanguage, IHomeResItem } from "@/typings/home.interface";
 import { INetMoreReq, INetMoreResult } from "@/typings/more.interface";
 import {
-  INetBookReq,
   INetBookRes,
   INetKeywordsReq,
   INetKeywordsRes,
@@ -32,13 +31,13 @@ export const netMoreBook = (params: INetMoreReq, language?: ELanguage): Promise<
 }
 
 // 获取书籍详情
-export const netBook = (params: INetBookReq, language?: ELanguage): Promise<INetBookRes | 'BadRequest_404' | 'BadRequest_500'> => {
-  return poFetch('/webfic/book/detail', { ...params, language },  language || ELanguage.English);
+export const netBook = (bookId: string, language?: ELanguage): Promise<INetBookRes | 'BadRequest_404' | 'BadRequest_500'> => {
+  return poFetch('/webfic/book/detail', { id: bookId, language },  language || ELanguage.English);
 }
 
 // 获取书籍详情--新接口查询书籍详情
-export const netBookDetail = (params: INetBookReq, language?: ELanguage): Promise<INetBookRes | 'BadRequest_404' | 'BadRequest_500'> => {
-  return geFetch('/webfic/book/detail/v2', { ...params, language });
+export const netBookDetail = (bookId: string, language?: ELanguage): Promise<INetBookRes | 'BadRequest_404' | 'BadRequest_500'> => {
+  return geFetch('/webfic/book/detail/v2', { id: bookId, language });
 }
 
 // 获取所有书籍id

@@ -3,7 +3,7 @@ import styles from '@/components/layout/episopeDialog/EpisopeDialog.module.scss'
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { IChapterList, IBookItemDetail } from "@/typings/home.interface";
+import { IChapterList, IBookItem } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 
 interface IProps {
@@ -11,7 +11,7 @@ interface IProps {
   showDialog: boolean;
   closeDialog: Function;
   chapterName: string;
-  bookInfo: IBookItemDetail;
+  bookInfo: IBookItem;
 }
 
 const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, chapterName, bookInfo}) => {
@@ -27,7 +27,7 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
   const dealVideoData = (curInd: number) => {
     setCurIndex(curInd)
     setVideoList(prevState => {
-      return prevState.map((val,ind) => { 
+      return prevState.map((val,ind) => {
         if(Math.floor(ind/30) === curInd) {
           return {...val, showEposide: true}
         }

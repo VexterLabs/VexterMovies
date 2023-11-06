@@ -60,7 +60,7 @@ export default Custom500;
 export const getStaticProps: GetStaticProps = async ({ locale }) =>{
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common']))
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common']))
     },
   };
 }

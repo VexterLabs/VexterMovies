@@ -1,18 +1,18 @@
 import React, { FC } from 'react'
 import styles from '@/components/detail/likeItem/LikeItem.module.scss'
-import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
+import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 
 interface IProps {
-  dataSource: IBookItemDetail[];
+  dataSource: IBookItem[];
   priority?: boolean;
 }
 
 const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
   return <div className={styles.firstItemWrap}>
-    {dataSource && dataSource.length > 0 ? (dataSource as IBookItemDetail[]).map((detailItem, index) => {
+    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
 
       return <div key={index} className={styles.itemBox}>
         <Link href={`/film/${detailItem.bookId}`} className={styles.bookImage}>
@@ -21,7 +21,7 @@ const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={detailItem.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={218}
             height={294}
             src={detailItem.cover}

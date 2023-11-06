@@ -40,7 +40,7 @@ const useLogParams = (pageProps: any): void => {
   }, []) // eslint-disable-line
 
   useEffect(() => {
-    dispatch(setLanguage((router.locale ?? ELanguage.English) as ELanguage))
+    dispatch(setLanguage((router.locale || ELanguage.English) as ELanguage))
     const { bid, cid } = getIds();
     dispatch(setClipboard({ bid, cid }));
     if (isReady) {
@@ -71,9 +71,9 @@ const useLogParams = (pageProps: any): void => {
 
   const getIds = (): { bid: string; cid: string | number } => {
     let clipboardBookId, clipboardChapterId;
-    const localeBookId = LanguageDefaultBookId?.[(router.locale ?? ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
+    const localeBookId = LanguageDefaultBookId?.[(router.locale || ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
     if (router.pathname === pathData.book) {
-      clipboardBookId = pageProps?.bookInfo?.replacedBookId || pageProps?.bookInfo?.bookId;
+      clipboardBookId = pageProps?.bookInfo?.bookId;
     } else if (router.pathname === pathData.download) {
       clipboardBookId = pageProps?.filmId;
     } else {

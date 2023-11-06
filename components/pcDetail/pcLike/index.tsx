@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import styles from '@/components/pcDetail/pcLike/PcLike.module.scss'
-import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
+import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import ImageLegacy from "next/legacy/image";
@@ -35,7 +35,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], priority = false }) => {
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={book.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={272}
             height={363}
             src={book.cover}

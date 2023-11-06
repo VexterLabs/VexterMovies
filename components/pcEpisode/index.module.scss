@@ -1,3 +1,21 @@
+.episodeWrap {
+  width: 14.4rem;
+  margin: 0 auto;
+  background-color: #000000;
+
+  .episodeHeader {
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    height: 0.80rem;
+    padding: 0 0.12rem;
+    //position: sticky;
+    //top: 0.8rem;
+    //z-index: 1;
+  }
+
+}
+
 
 .videoBox {
     display: flex;
@@ -146,7 +164,7 @@
             width: 0.88rem;
             height: 1.17rem;
             border-radius: 0.03rem;
-            
+
             &::after {
               position: absolute;
               top: 50%;
@@ -269,7 +287,7 @@
           &:hover {
             .imgLeft {
               border-radius: 0.04rem 0.04rem 0 0;
-      
+
               .imageItem {
                 transform: scale(1.1);
               }

@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import MTagBookList from "@/components/Tag/tagBookList/MTagBookList";
+import MTagBookList from "@/components/tag/tagBookList/MTagBookList";
 import MorePagination from "@/components/more/pagination/MorePagination";
 import { IKeywordItem, ITagBookItem } from "typings/book.interface";
 import { useTranslation } from "next-i18next";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import { MEmpty } from "@/components/common/empty";
-import styles from "@/components/Tag/MTag.module.scss";
+import styles from "@/components/tag/index.module.scss";
 
 interface IProps {
   breadData: IBreadcrumb[];
@@ -59,9 +59,9 @@ const MTag: FC<IProps> = (
       {relationKeywords.length > 0 ? <>
         <p className={styles.keywordConnectTitle}>{t('tag.relevant')}：</p>
         {relationKeywords.map(val => {
-          return <Link 
-                  key={val.id} 
-                  href={`/tag/${val.id}`} 
+          return <Link
+                  key={val.id}
+                  href={`/tag/${val.id}`}
                   replace
                   className={styles.keywordConnectItem}>
                     {val.name}

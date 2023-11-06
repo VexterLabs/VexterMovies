@@ -8,6 +8,7 @@ import { ELanguage } from "@/typings/home.interface";
 import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice";
 import { IClipboard } from "@/typings/hive.interfaces";
 import { netIpUa } from "@/server/clientLog";
+import { ipReg } from "@/utils/other";
 
 export const clipboardAsync = createAsyncThunk<IClipboard>(
   'hive/getClipboard',
@@ -23,17 +24,17 @@ export const clipboardAsync = createAsyncThunk<IClipboard>(
       ua,
       url: window.location.href,
     };
-    const ip = await netIpUa({
-      ...clipboard,
+
+
+    const ip = await netIpUa(Object.assign(clipboard, {
       bid: LanguageDefaultBookId[ELanguage.English],
       cid: 0,
       shareCode: 0
-    })
-
-    return {
-      ...clipboard,
-      ip
-    } as IClipboard;
+    }))
+    if (ipReg.test(ip)) {
+      clipboard.ip = ip
+    }
+    return clipboard as IClipboard;
   }
 )
 

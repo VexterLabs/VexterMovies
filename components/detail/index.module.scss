@@ -1,6 +1,18 @@
 .filmWrap {
   padding-bottom: 1.11rem;
   height: 100%;
+
+  .filmHeader {
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    height: 0.80rem;
+    //position: sticky;
+    //top: 0.87rem;
+    //z-index: 99;
+    padding: 0 0.32rem;
+  }
+
 }
 .detailBox {
   padding: 0.48rem 0.32rem 0.24rem 0.32rem;

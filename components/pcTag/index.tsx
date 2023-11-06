@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import styles from "@/components/PcTag/PcTag.module.scss";
 import PaginationCom from "@/components/common/paginationCom";
 import Link from "next/link";
-import TagBookList from "@/components/PcTag/tagBookList/TagBookList";
-import { ITagBookItem, IKeywordItem } from "typings/book.interface";
+import TagBookList from "@/components/pcTag/tagBookList/TagBookList";
+import { ITagBookItem, IKeywordItem } from "@/typings/book.interface";
 import { useTranslation } from "next-i18next";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import { PcEmpty } from "@/components/common/empty";
+import styles from "@/components/pcTag/index.module.scss";
 
 interface IProps {
   bookList: ITagBookItem[];

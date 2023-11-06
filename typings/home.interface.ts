@@ -13,49 +13,31 @@ export interface IHomeResItem {
 }
 
 export interface IBookItem {
-  name: string;
-  actionType: string;
-  action: string;
-  chapterCount: number;
-  ratings: number;
   bookId: string;
   bookName: string;
-  author: string;
-  introduction: string;
   cover: string;
-  tags: string[];
-  labels: string[];
   viewCount: number;
-  lastUpdateTime: string;
-  writeStatus: string; // COMPLETE
-  viewCountDisplay: string;
-  lastUpdateTimeDisplay: string;
-  replacedBookId?: string;
-  replacedBookName: string;
-  firstChapterId?: string;
-  columnName: string;
+  followCount?: number;
+  introduction: string;
+  chapterCount: number;
+  tags: string[];
   typeTwoNames: string[];
   typeTwoName: string;
   typeTwoIds: string[];
-}
-
-export interface IBookItemDetail {
-  bookId: string;
-  bookName: string;
-  chapterCount: number;
-  cover: string;
-  followCount: number;
-  introduction: string;
-  labels: string[];
   language: string;
-  simpleLanguage: string;
-  tagIds: string;
-  tags: string[];
-  typeTwoIds: number[];
-  typeTwoName: string;
-  typeTwoNames: string[];
-  viewCount: number;
-  replacedBookId?: string;
+  simpleLanguage?: ELanguage;
+
+  name: string;
+  actionType: string;
+  action: string;
+  ratings: number;
+  author: string;
+  lastUpdateTime: string;
+  viewCountDisplay: string;
+  lastUpdateTimeDisplay: string;
+  replacedBookName: string;
+  firstChapterId?: string;
+  columnName: string;
 }
 
 export interface IChapterList {
@@ -69,11 +51,6 @@ export interface IChapterList {
   showEposide?: boolean;
 }
 
-
-export interface IEpisopeTab {
-  id: string,
-  label: string,
-}
 
 export enum ELanguage {
   English = 'en',
