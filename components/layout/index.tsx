@@ -70,7 +70,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   return (
     <>
       <MHeader/>
-      <main className={classNames(styles.mWrap, footerAdVisible && styles.mWrapPaddingBo)}>
+      <main className={classNames(styles.mWrap, footerAdShow && footerAdVisible && styles.mWrapPaddingBo)}>
         {children}
         {footerAdVisible && footerAdShow ? <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } /> : null}
       </main>
