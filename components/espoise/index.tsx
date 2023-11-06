@@ -18,9 +18,6 @@ import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import MyPlayIcon from '@/public/images/book/pause.png'
-import Myfullscreen from '@/public/images/book/fullscreen.png'
 
 
 interface IProps {
