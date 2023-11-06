@@ -5,7 +5,7 @@ import styles from "@/components/common/breadcrumb/index.module.scss";
 import classNames from "classnames";
 
 export interface IBreadcrumb {
-  title: string;
+  title: string | number;
   link?: string;
 }
 

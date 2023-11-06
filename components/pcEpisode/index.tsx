@@ -41,9 +41,16 @@ const PcEpisode:  FC<IProps> = (
     const [curClickInd, setClickIndex] = useState(0)
     const [recordCurEpi, setrecordCurEpi] = useState<object>()
     const [errorBgsrc, setErrorBg] = useState('')
+    const { t } = useTranslation();
     // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
     const curChapterData = chapterList.find(item => item.id === chapterId ) //&& item.unlock === true
     currentPage = curChapterData?.index as number
+    const breadDatas: IBreadcrumb[] = [
+      { title: t('home.home'), link: "/" },
+      { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+      { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+      { title: currentPage + 1},
+    ]
     let preChapterData:any //后面再改
     if(curChapterData) {
       preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index )//&& item.unlock === true
@@ -132,7 +139,7 @@ const PcEpisode:  FC<IProps> = (
     }
     return <main className={styles.episodeWrap}>
       <div className={styles.episodeHeader}>
-        <Breadcrumb data={breadData} />
+        <Breadcrumb data={breadDatas} />
       </div>
 
       <div className={styles.videoBox}>
@@ -185,7 +192,7 @@ const PcEpisode:  FC<IProps> = (
               {
                 chapterList.map((item,ind) => {
                   return <div className={item.unlock ? styles.listItem : styles.listItemMask} key={item.id} onClick={() => {chooseEpisode(item)}}>
-                    <Link href={`/episode/${id}/${item.id}`} shallow>
+                    <Link href={`/episode/${bookInfo.bookId}/${item.id}`} shallow>
                       <div className={styles.imgItem}>
                         <Image
                           className={styles.EpoItem}
@@ -211,7 +218,7 @@ const PcEpisode:  FC<IProps> = (
             {
               relateComputeEpi.map((item,ind) => {
                 return <div className={styles.listBox} key={item.id} onClick={() => {chooseEpisode(item)}}>
-                <Link href={`/episode/${id}/${item.id}`} shallow className={styles.listLink}>
+                <Link href={`/episode/${bookInfo.bookId}/${item.id}`} shallow className={styles.listLink}>
                   <div className={item.unlock ? styles.listItem : styles.listItemMask}>
                     <div className={styles.imgLeft}>
                       <Image
