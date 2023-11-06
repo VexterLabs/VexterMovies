@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState, } from "react";
-import Player,{ Events } from 'xgplayer'
+import Player,{ Events, Util } from 'xgplayer'
 import styles from "@/components/espoise/index.module.scss"
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
@@ -19,6 +19,8 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import MyPlayIcon from '@/public/images/book/pause.png'
+import Myfullscreen from '@/public/images/book/fullscreen.png'
 
 
 interface IProps {
@@ -105,6 +107,28 @@ const PcEpisode:  FC<IProps> = (
       // 查找当前视频中下一个有MP4
       playIns = new Player({
         id: "mPlay",
+        icons: {
+          play: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/play.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          pause: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/pause.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          fullscreen: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/fullscreen.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          volumeMuted: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/muted.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          volumeLarge: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/voice.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+        },
         autoplay: true,
         autoplayMuted: true,
         url: curChapterData?.mp4,
@@ -207,7 +231,7 @@ const PcEpisode:  FC<IProps> = (
                 src='/images/book/start-m.png'
                 alt='photo'
               />
-              <p className={styles.epoScore}>{bookInfo.chapterCount}k</p>
+              <p className={styles.epoScore}>{bookInfo.chapterCount}K</p>
             </div>
             {
               bookInfo?.tags && bookInfo.tags.length > 0 ? 

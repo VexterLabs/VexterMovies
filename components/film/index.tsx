@@ -118,9 +118,9 @@ const MFilm: FC<IProps> = (
       </div>
     </div>
 
-    <div style={recommends?.length>0 ? {} : {display:'none'}}>
+    <div style={recommends?.length>0 ? {} : {display:'none'}} className={styles.likeBox}>
       {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-      <LikeTitle title="You Might Like"/>
+      <LikeTitle title={t('bookInfo.like')}/>
       <LikeItem dataSource={recommends || []}/>
     </div>
 

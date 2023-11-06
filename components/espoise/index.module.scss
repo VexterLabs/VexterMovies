@@ -19,6 +19,7 @@
             width: 100%;
             margin-bottom: 0.16rem;
             position: relative;
+            padding: 0 0.05rem;
             .videoPlace {
                 height: 6.4rem;
                 width: 100%;
@@ -212,4 +213,7 @@
           }
         }
     }
+}
+.customclass {
+    border: 1px solid red;
 }
