@@ -27,7 +27,13 @@
     "nextPage": "Next page",
     "lastChapterTip": "Already the last chapter",
     "firstChapterTip": "Already the first chapter",
-    "like": "You may like"
+    "like": "You may like",
+    "relatedEpisodes": "Related Episodes",
+    "episodesDownload": "Downloading is necessary to watch this episode",
+    "episodes": "episodes",
+    "recLike": "Recommended for you",
+    "totalEpisodes": "Total Episodes",
+    "episodeList": "Episode List"
   },
   "appPage": {
     "title": "DramaBox - movies and drama",

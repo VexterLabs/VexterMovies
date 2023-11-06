@@ -104,8 +104,8 @@ const MFilm: FC<IProps> = (
 
     <div className={styles.episodeNav} onClick={() => {showEpisodeDialog()}}>
       <div className={styles.leftInfo}>
-        <p className={styles.innerPt}>Episodes List</p>
-        <p className={styles.innerPl}>({chapterList&&chapterList.length} Episodes)</p>
+        <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
+        <p className={styles.innerPl}>({chapterList&&chapterList.length} {t('bookInfo.episodes')})</p>
       </div>
       <div className={styles.rightImg}>
         <Image
@@ -120,7 +120,7 @@ const MFilm: FC<IProps> = (
 
     <div style={recommends?.length>0 ? {} : {display:'none'}} className={styles.likeBox}>
       {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-      <LikeTitle title={t('bookInfo.like')}/>
+      <LikeTitle title={t('bookInfo.recLike')}/>
       <LikeItem dataSource={recommends || []}/>
     </div>
 
@@ -140,7 +140,7 @@ const MFilm: FC<IProps> = (
           alt={'more'}
         />
         {/* <span>{t('home.privacyPolicy')}</span> */}
-        <span>Episodes</span>
+        <span>{t('bookInfo.episodes')}</span>
       </div>
       <Link href={`/episode/${bookInfo.bookId}/${chapterFirstId}`} className={styles.playIcon}>
         <Image
@@ -151,7 +151,7 @@ const MFilm: FC<IProps> = (
           alt={'more'}
         />
         {/* <span>{t('home.termsOfUse')}</span> */}
-        <span className={styles.playTxt}>Play</span>
+        <span className={styles.playTxt}>{t('home.play')}</span>
       </Link>
       <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
         onCopyText(copyText, () => {
@@ -167,7 +167,7 @@ const MFilm: FC<IProps> = (
           alt={'more'}
         />
         {/* <span>{t('home.termsOfUse')}</span> */}
-        <span>Download</span>
+        <span>{t('appPage.download')}</span>
       </Link>
     </div>
   </div>

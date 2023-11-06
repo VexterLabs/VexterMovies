@@ -248,8 +248,8 @@ const PcEpisode:  FC<IProps> = (
         </div>
         <div  className={styles.epiList}>
             <div className={styles.titleList}>
-              <p className={styles.titleLeft}>Episodes List</p>
-              <p className={styles.titleRight}>({chapterList&&chapterList.length} Episodes)</p>
+              <p className={styles.titleLeft}>{t('bookInfo.episodeList')}</p>
+              <p className={styles.titleRight}>({chapterList&&chapterList.length} {t('bookInfo.episodes')})</p>
             </div>
             <div className={styles.epilistBox}>
               {
@@ -257,7 +257,7 @@ const PcEpisode:  FC<IProps> = (
                   return <div className={styles.epiOuter} key={chapterItem.id}>
                     <Link href={`/episode/${bookInfo.bookId}/${chapterItem.id}`} shallow>
                       <div className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {chooseEpisode(chapterItem)}}>
-                        <p>{chapterItem.name}</p>
+                        <p>{chapterItem.index + 1}</p>
                       </div>
                     </Link>
                   </div>
@@ -266,7 +266,7 @@ const PcEpisode:  FC<IProps> = (
               {
                 chapterList&&chapterList.length>9 ? <div className={styles.epiOuter}>
                   <div className={styles.epiItem} onClick={() => {showEpisodeDialog()}}>
-                    <p>More</p>
+                    <p>{t('bookInfo.more')}</p>
                   </div>
                 </div> : null
               }
@@ -275,7 +275,7 @@ const PcEpisode:  FC<IProps> = (
         </div>
         <div className={styles.mightLike} style={recommends?.length>0 ? {} : {display:'none'}}>
           {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-          <LikeTitle title="You Might Like"/>
+          <LikeTitle title={t('bookInfo.recLike')}/>
           <LikeItem dataSource={recommends || []}/>
         </div>
         <div className={styles.navBox}>
@@ -288,7 +288,7 @@ const PcEpisode:  FC<IProps> = (
               alt={'more'}
             />
             {/* <span>{t('home.privacyPolicy')}</span> */}
-            <span>Episodes</span>
+            <span>{t('bookInfo.episodes')}</span>
           </div>
           <Link href={`/episode/${bookInfo.bookId}/${curChapterData?.id}`} className={styles.playIcon}>
             <Image
@@ -299,7 +299,7 @@ const PcEpisode:  FC<IProps> = (
               alt={'more'}
             />
             {/* <span>{t('home.termsOfUse')}</span> */}
-            <span className={styles.playTxt}>Play</span>
+            <span className={styles.playTxt}>{t('home.play')}</span>
           </Link>
           <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
             onCopyText(copyText, () => {
@@ -315,7 +315,7 @@ const PcEpisode:  FC<IProps> = (
               alt={'more'}
             />
             {/* <span>{t('home.termsOfUse')}</span> */}
-            <span>Download</span>
+            <span>{t('appPage.download')}</span>
           </Link>
         </div>
       </div>
