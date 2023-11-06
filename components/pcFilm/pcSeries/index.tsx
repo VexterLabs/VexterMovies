@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import styles from "@/components/pcDetail/pcSeries/index.module.scss";
+import styles from "@/components/pcFilm/pcSeries/index.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";

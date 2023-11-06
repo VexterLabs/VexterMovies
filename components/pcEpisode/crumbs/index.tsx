@@ -1,16 +1,17 @@
 import Link from "next/link";
-import styles from "@/components/pcDetail/crumbs/index.module.scss";
+import styles from "@/components/pcEpisode/crumbs/index.module.scss";
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { IBookItem } from "@/typings/home.interface";
+import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
 
 interface IProps {
-  bookInfo: IBookItem;
+  bookInfo: IBookItemDetail;
   isPc?: boolean;
+  currentPage: number;
 }
 
-const PcCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
+const PcCrumbs: FC<IProps> = ({ bookInfo, isPc, currentPage }) => {
   const { t } = useTranslation();
 
   const typeTwoId = bookInfo.typeTwoIds?.[0] || 0;
@@ -40,7 +41,18 @@ const PcCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
         alt={'>'}
       />
     </Link>
-    <div className={styles.crumbsItemTxt}>{bookInfo.bookName}</div>
+    <Link className={styles.crumbsItem} href={`/film/${bookInfo.bookId}`}>
+      {bookInfo.bookName}
+      <Image
+        className={styles.crumbsIcon}
+        width={16}
+        height={16}
+        src={'/images/layout/link.png'}
+        alt={'>'}
+      />
+    </Link>
+    {/* <div className={styles.crumbsItemTxt}>{bookInfo.bookName}</div> */}
+    <div className={styles.crumbsItemTxt}>{currentPage + 1}</div>
   </div>
 }
 

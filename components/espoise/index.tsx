@@ -14,9 +14,10 @@ import { useTranslation } from "next-i18next";
 import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
-import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
-import LikeItem from "@/components/detail/likeItem/LikeItem";
+import LikeTitle from "@/components/film/likeTitle/LikeTitle";
+import LikeItem from "@/components/film/likeItem/LikeItem";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import MCrumbs from '@/components/espoise/crumbs/index'
 
 
 interface IProps {
@@ -151,6 +152,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     }
     return <>
       <div className={styles.mEpibox}>
+        <MCrumbs bookInfo={bookInfo} currentPage={currentPage}></MCrumbs>
         <div className={styles.videoContainer}>
           <div className={styles.videoArea}>
             <div id='mPlay' className={styles.videoPlace}></div>
@@ -178,9 +180,9 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
               <Image
                 className={styles.epoImg}
                 onError={onImgError}
-                width={20}
-                height={20}
-                src='/images/book/star-d.png'
+                width={40}
+                height={40}
+                src='/images/book/start-m.png'
                 alt='photo'
               />
               <p className={styles.epoScore}>{bookInfo.chapterCount}k</p>

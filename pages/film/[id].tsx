@@ -1,13 +1,13 @@
 import React from "react";
 import { GetServerSideProps, GetServerSidePropsResult, GetStaticPathsResult, NextPage } from "next";
 import { netBook, netBookDetail } from "@/server/home";
-import PcDetail from "@/components/pcDetail";
-import MDetail from "@/components/detail";
+import PcDetail from "@/components/pcFilm";
+import MDetail from "@/components/film";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { ELanguage, IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import BookCrumbs from "@/components/detail/crumbs";
-import PcCrumbs from "@/components/pcDetail/crumbs";
+import BookCrumbs from "@/components/film/crumbs";
+import PcCrumbs from "@/components/pcFilm/crumbs";
 import { SSRConfig } from "next-i18next";
 
 interface IProps extends SSRConfig {

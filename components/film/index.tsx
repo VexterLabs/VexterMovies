@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import styles from "@/components/detail/index.module.scss";
+import styles from "@/components/film/index.module.scss";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -11,8 +11,8 @@ import ClientConfig from "@/client.config";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
-import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
-import LikeItem from "@/components/detail/likeItem/LikeItem";
+import LikeTitle from "@/components/film/likeTitle/LikeTitle";
+import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useRouter } from 'next/router';
 
 

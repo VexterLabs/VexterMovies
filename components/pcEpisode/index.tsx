@@ -9,9 +9,10 @@ import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
 import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
-import PcLike from '@/components/pcDetail/pcLike';
+import PcLike from '@/components/pcFilm/pcLike';
 import UsualTitle from "@/components/layout/usualTitle/UsualTitle"
 import { set } from "nprogress";
+import PcCumbls from "@/components/pcEpisode/crumbs"
 
 interface IProps {
     bookInfo: IBookItemDetail;
@@ -121,115 +122,116 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       }
       setComputedEpi(newArr)
     }
-    return <>
+    return<main className={styles.episodeWrap}>
+      <PcCumbls bookInfo={bookInfo} currentPage={currentPage}></PcCumbls>
       <div className={styles.videoBox}>
-        <div className={styles.leftVideo}>
-          <div className={styles.videoContainer}>
-            <div id="playVideo"></div>
-            <div className={styles.downloads} style={errorBgsrc ? {} : {display:'none'}}>
-              {
-                errorBgsrc?  <Image
-                className={styles.errBg}
-                width={398}
-                height={708}
-                src={errorBgsrc}
-                alt='photo'/>:
-                null
-              }
-              <div className={styles.downInfo}>
-                <p  className={styles.downTip}>This episode needs t0 be downloaded to watch</p>
-                <div className={styles.btnDown}>Download the App to continue watching</div>
+          <div className={styles.leftVideo}>
+            <div className={styles.videoContainer}>
+              <div id="playVideo"></div>
+              <div className={styles.downloads} style={errorBgsrc ? {} : {display:'none'}}>
+                {
+                  errorBgsrc?  <Image
+                  className={styles.errBg}
+                  width={398}
+                  height={708}
+                  src={errorBgsrc}
+                  alt='photo'/>:
+                  null
+                }
+                <div className={styles.downInfo}>
+                  <p  className={styles.downTip}>This episode needs t0 be downloaded to watch</p>
+                  <div className={styles.btnDown}>Download the App to continue watching</div>
+                </div>
               </div>
             </div>
+            <div className={styles.videoInfo}>
+              <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
+              <p className={styles.videoStar}>
+                <Image 
+                  className={styles.imageStar}
+                  src = '/images/book/star-d.png'
+                  width={24}
+                  height={24}
+                  alt="star"
+                />
+                <span className={styles.videoScore}>{bookInfo.chapterCount}K</span>
+              </p>
+              <p className={styles.videoDesc}>{bookInfo.introduction}</p>
+            </div>
+            <div className={styles.tagBox}>
+              {(bookInfo?.tags || []).slice(0, 2).map(val => {
+                return <div key={val} className={styles.tagItem}>{val}</div>
+              })}
+            </div>
           </div>
-          <div className={styles.videoInfo}>
-            <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
-            <p className={styles.videoStar}>
-              <Image 
-                className={styles.imageStar}
-                src = '/images/book/star-d.png'
-                width={24}
-                height={24}
-                alt="star"
-              />
-              <span className={styles.videoScore}>{bookInfo.chapterCount}K</span>
-            </p>
-            <p className={styles.videoDesc}>{bookInfo.introduction}</p>
-          </div>
-          <div className={styles.tagBox}>
-            {(bookInfo?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
+          {/* 视频右侧所有剧集 */}
+          <div className={styles.eposipeAll}>
+            <div className={styles.eposipeTop}>
+              <p className={styles.eposipeTit}>Episodes</p>
+              <p className={styles.eposipeCur}>({currentPage + 1}/{bookInfo.chapterCount})</p>
+            </div>
+            <div className={styles.allEpo}>
+              {
+                chapterList.map((item,ind) => {
+                  return <div className={item.unlock ? styles.listItem : styles.listItemMask} key={item.id} onClick={() => {chooseEpisode(item)}}>
+                    <Link href={`/episode/${id}/${item.id}`} shallow>
+                      <div className={styles.imgItem}>
+                        <Image
+                          className={styles.EpoItem}
+                          onError={onImgError}
+                          placeholder="blur"
+                          blurDataURL={item.cover}
+                          width={88}
+                          height={89}
+                          src={item.cover}
+                          alt='photo'
+                        />
+                      </div>
+                      <p className={styles.linkText}>{item.name}</p>
+                    </Link>
+                  </div>
+                })
+              }
+            </div>
           </div>
         </div>
-        {/* 视频右侧所有剧集 */}
-        <div className={styles.eposipeAll}>
-          <div className={styles.eposipeTop}>
-            <p className={styles.eposipeTit}>Episodes</p>
-            <p className={styles.eposipeCur}>({currentPage + 1}/{bookInfo.chapterCount})</p>
-          </div>
-          <div className={styles.allEpo}>
+        {/* 相关剧集 */}
+        <div className={styles.relatedEpisode}>
+          <div className={styles.relatedTitle}>Related Episodes</div>
+          <div className={styles.relatedEpo}>
             {
-              chapterList.map((item,ind) => {
-                return <div className={item.unlock ? styles.listItem : styles.listItemMask} key={item.id} onClick={() => {chooseEpisode(item)}}>
-                  <Link href={`/episode/${id}/${item.id}`} shallow>
-                    <div className={styles.imgItem}>
+              relateComputeEpi.map((item,ind) => {
+                return <div className={styles.listBox} key={item.id} onClick={() => {chooseEpisode(item)}}>
+                <Link href={`/episode/${id}/${item.id}`} shallow className={styles.listLink}>
+                  <div className={item.unlock ? styles.listItem : styles.listItemMask}>
+                    <div className={styles.imgLeft}>
                       <Image
-                        className={styles.EpoItem}
+                        className={styles.imageItem}
                         onError={onImgError}
                         placeholder="blur"
                         blurDataURL={item.cover}
                         width={88}
-                        height={89}
+                        height={117}
                         src={item.cover}
-                        alt='photo'
+                        alt={item.name}
                       />
                     </div>
-                    <p className={styles.linkText}>{item.name}</p>
-                  </Link>
-                </div>
+                    <div className={styles.rightIntro}>
+                      <p className={styles.title}>{bookInfo.bookName}</p>
+                      <p className={styles.pageNum}>{item.name}</p>
+                    </div>
+                  </div>
+                </Link>
+            </div>
               })
             }
           </div>
         </div>
+        <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
+          <UsualTitle title='YOU Might Like'/>
+          <PcLike dataSource={recommends}></PcLike>
       </div>
-      {/* 相关剧集 */}
-      <div className={styles.relatedEpisode}>
-        <div className={styles.relatedTitle}>Related Episodes</div>
-        <div className={styles.relatedEpo}>
-          {
-            relateComputeEpi.map((item,ind) => {
-              return <div className={styles.listBox} key={item.id} onClick={() => {chooseEpisode(item)}}>
-              <Link href={`/episode/${id}/${item.id}`} shallow className={styles.listLink}>
-                <div className={item.unlock ? styles.listItem : styles.listItemMask}>
-                  <div className={styles.imgLeft}>
-                    <Image
-                      className={styles.imageItem}
-                      onError={onImgError}
-                      placeholder="blur"
-                      blurDataURL={item.cover}
-                      width={88}
-                      height={117}
-                      src={item.cover}
-                      alt={item.name}
-                    />
-                  </div>
-                  <div className={styles.rightIntro}>
-                    <p className={styles.title}>{bookInfo.bookName}</p>
-                    <p className={styles.pageNum}>{item.name}</p>
-                  </div>
-                </div>
-              </Link>
-          </div>
-            })
-          }
-        </div>
-      </div>
-      <div className="styles.mightLikc" style={recommends?.length>0 ? {} : {display:'none'}}>
-        <UsualTitle title='YOU Might Like'/>
-        <PcLike dataSource={recommends}></PcLike>
-    </div>
-    </>
+     </main>
   }
   
   export default PcEpisode

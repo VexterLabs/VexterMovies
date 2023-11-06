@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import styles from '@/components/detail/likeItem/LikeItem.module.scss'
+import styles from '@/components/film/likeItem/LikeItem.module.scss'
 import { IBookItem, IBookItemDetail } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";

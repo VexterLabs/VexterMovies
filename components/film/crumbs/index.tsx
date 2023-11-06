@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/components/detail/crumbs/index.module.scss";
+import styles from "@/components/film/crumbs/index.module.scss";
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";

@@ -1,11 +1,10 @@
 .crumbsWrap {
   height: 0.8rem;
   width: 100%;
-  padding: 0 0.32rem;
+  padding: 0 0.12rem;
   display: flex;
   align-items: center;
   flex-direction: row;
-  border-bottom: 1px solid rgba(255,255,255,0.16);
   .crumbsItem {
     font-size: 0.18rem;
     display: flex;
@@ -13,7 +12,7 @@
     margin-right: 0.08rem;
     font-weight: 400;
     color: rgba(255,255,255,0.8);
-    line-height: 0.33rem;
+    line-height: 0.28rem;
 
     .crumbsIcon {
       margin-left: 0.08rem;
