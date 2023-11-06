@@ -41,7 +41,6 @@ const Episode: NextPage<IProps> = (
         current={current}
       /> :
       <WapEpisode
-        breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
@@ -58,7 +57,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (!bookId) {
     return { notFound: true };
   }
-
   const response = await netBookDetail(bookId, locale as ELanguage);
 
   if (response === 'BadRequest_404') {

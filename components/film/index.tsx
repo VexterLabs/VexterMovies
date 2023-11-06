@@ -9,7 +9,7 @@ import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
-import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
+import EpisopeDialog from '@/components/episode/episopeDialog/EpisopeDialog';
 import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
@@ -118,7 +118,7 @@ const MFilm: FC<IProps> = (
       </div>
     </div>
 
-    <div style={recommends?.length>0 ? {} : {display:'none'}} className={styles.likeBox}>
+    <div style={recommends?.length>0 ? {} : {display:'none'}}>
       {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
       <LikeTitle title={t('bookInfo.recLike')}/>
       <LikeItem dataSource={recommends || []}/>
