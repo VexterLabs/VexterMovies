@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from 'react'
+import styles from "@/components/film/index.module.scss";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -9,11 +10,11 @@ import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
-import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
-import LikeItem from "@/components/detail/likeItem/LikeItem";
 import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import styles from "@/components/detail/index.module.scss";
+import LikeTitle from "@/components/film/likeTitle/LikeTitle";
+import LikeItem from "@/components/film/likeItem/LikeItem";
+
 
 interface IProps {
   breadData: IBreadcrumb[];

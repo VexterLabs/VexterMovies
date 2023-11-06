@@ -11,6 +11,7 @@
     .videoContainer {
         display: flex;
         flex-direction: column;
+        border: 1px solid reds;
         // padding: 0.25rem 0.32rem;
         .videoArea {
             height: 6.4rem;
@@ -78,16 +79,14 @@
                 align-items: center;
                 margin-bottom: 0.16rem;
                 .epoImg {
-                    width: 0.2rem;
-                    height: 0.2rem;
-                    border: 1px solid red;
+                    width: 0.4rem;
+                    height: 0.4rem;
                 }
                 .epoScore {
                     font-size: 0.2rem;
                     font-weight: 500;
                     color: rgba(255, 255, 255, 0.8);
                     line-height: 0.18rem;
-                    margin-left: 0.1rem;
                 }
             }
             .videoTag {
