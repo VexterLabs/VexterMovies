@@ -1,42 +1,48 @@
 import React from "react";
-import { GetServerSideProps, GetServerSidePropsResult, GetStaticPathsResult, NextPage } from "next";
-import { netBook, netBookDetail } from "@/server/home";
+import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
+import { netBookDetail } from "@/server/home";
 import PcDetail from "@/components/pcDetail";
 import MDetail from "@/components/detail";
 import { isIos, ownOs } from "@/utils/ownOs";
-import { ELanguage, IBookItem, IBookItemDetail, IChapterList } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import BookCrumbs from "@/components/detail/crumbs";
-import PcCrumbs from "@/components/pcDetail/crumbs";
-import { SSRConfig } from "next-i18next";
+import { SSRConfig, useTranslation } from "next-i18next";
+import { IBreadcrumb } from "@/components/common/breadcrumb";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
-  id: string;
+  bookId: string;
   bookInfo: IBookItem;
   isApple: boolean;
-  // languages: ELanguage[]; // tdk需要， 勿删 PcCrumbs
+  languages: ELanguage[]; // tdk需要， 勿删
   recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
 }
 
-const Book: NextPage<IProps> = (
+const Film: NextPage<IProps> = (
   { isPc, bookInfo, isApple, recommends, chapterList, chapterName }
 ) => {
+
+  const { t } = useTranslation();
+
+  const breadData: IBreadcrumb[] = [
+    { title: t('home.home'), link: "/" },
+    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+    { title: bookInfo.bookName },
+  ]
+
   return <>
     { isPc ?
-      <PcCrumbs bookInfo={bookInfo} isPc={!isPc}/>:
-      <BookCrumbs bookInfo={bookInfo} isPc={isPc}/>
-    }
-    { isPc ?
       <PcDetail
+        breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
         chapterName={chapterName}
       /> :
       <MDetail
+        breadData={breadData}
         chapterName={chapterName}
         isApple={isApple}
         bookInfo={bookInfo}
@@ -47,31 +53,35 @@ const Book: NextPage<IProps> = (
   </>
 }
 
-export default Book;
+export default Film;
 
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
-  const { id = '' } = query as { id: string;};
-  const response = await netBookDetail({ id }, locale as ELanguage);
+  const { bookId } = query as { bookId: string;};
+  if (!bookId) {
+    return { notFound: true }
+  }
+  const response = await netBookDetail(bookId, locale as ELanguage);
   if (response === 'BadRequest_404') {
     return { notFound: true }
   }
   if (response === 'BadRequest_500') {
     return { redirect: { destination: '/500', permanent: false } }
   }
-  const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
+  const { book = {} as IBookItem, recommends = [], chapterList = [], languages = [] } = response;
   const chapterName = book.bookName
   return {
     props: {
-      id,
+      bookId,
       chapterName,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
       recommends,
       chapterList,
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      languages,
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },
   }
 }

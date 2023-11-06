@@ -7,22 +7,31 @@ import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
-import { IBookItemDetail, IChapterList } from "@/typings/home.interface";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import PcLike from '@/components/pcDetail/pcLike';
 import UsualTitle from "@/components/layout/usualTitle/UsualTitle"
 import { set } from "nprogress";
+import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 
 interface IProps {
-    bookInfo: IBookItemDetail;
-    recommends: IBookItemDetail[];
-    chapterList: IChapterList[];
-    chapterName: string;
-    currentPage: number;
+  bookInfo: IBookItem;
+  recommends: IBookItem[];
+  chapterList: IChapterList[];
+  chapterName: string;
+  currentPage: number;
+  breadData: IBreadcrumb[];
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
-const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], currentPage = 1} ) => {
+const PcEpisode:  FC<IProps> = (
+  {
+    bookInfo,
+    recommends = [],
+    chapterList = [],
+    currentPage = 1,
+    breadData,
+  } ) => {
     const router = useRouter()
     const { id } = router.query
     const chapterId = router.query.chapterId as string
@@ -52,11 +61,11 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
     },[chapterList])
     let playIns: any;
     // 播放器设置
-    useEffect(() => { 
+    useEffect(() => {
       playIns = new Player({
         id: "playVideo",
         autoplay: true,
-        autoplayMuted: true,
+        autoplayMuted: false,
         url: curChapterData?.mp4,
         width:'100%',
         height:'100%',
@@ -121,7 +130,11 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
       }
       setComputedEpi(newArr)
     }
-    return <>
+    return <main className={styles.episodeWrap}>
+      <div className={styles.episodeHeader}>
+        <Breadcrumb data={breadData} />
+      </div>
+
       <div className={styles.videoBox}>
         <div className={styles.leftVideo}>
           <div className={styles.videoContainer}>
@@ -145,7 +158,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
           <div className={styles.videoInfo}>
             <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
             <p className={styles.videoStar}>
-              <Image 
+              <Image
                 className={styles.imageStar}
                 src = '/images/book/star-d.png'
                 width={24}
@@ -178,7 +191,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
                         className={styles.EpoItem}
                         onError={onImgError}
                         placeholder="blur"
-                        blurDataURL={item.cover}
+                        blurDataURL={'/images/defaultFilm.png'}
                         width={88}
                         height={89}
                         src={item.cover}
@@ -200,26 +213,24 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
           {
             relateComputeEpi.map((item,ind) => {
               return <div className={styles.listBox} key={item.id} onClick={() => {chooseEpisode(item)}}>
-              <Link href={`/episode/${id}/${item.id}`} shallow className={styles.listLink}>
                 <div className={item.unlock ? styles.listItem : styles.listItemMask}>
-                  <div className={styles.imgLeft}>
+                  <Link href={`/episode/${id}/${item.id}`} className={styles.imgLeft} shallow replace>
                     <Image
                       className={styles.imageItem}
                       onError={onImgError}
                       placeholder="blur"
-                      blurDataURL={item.cover}
+                      blurDataURL={'/images/defaultFilm.png'}
                       width={88}
                       height={117}
                       src={item.cover}
                       alt={item.name}
                     />
-                  </div>
-                  <div className={styles.rightIntro}>
+                  </Link>
+                  <Link href={`/episode/${id}/${item.id}`} className={styles.rightIntro} shallow replace>
                     <p className={styles.title}>{bookInfo.bookName}</p>
                     <p className={styles.pageNum}>{item.name}</p>
-                  </div>
+                  </Link>
                 </div>
-              </Link>
           </div>
             })
           }
@@ -229,7 +240,7 @@ const PcEpisode:  FC<IProps> = ( {bookInfo, recommends = [], chapterList = [], c
         <UsualTitle title='YOU Might Like'/>
         <PcLike dataSource={recommends}></PcLike>
     </div>
-    </>
+    </main>
   }
-  
+
   export default PcEpisode

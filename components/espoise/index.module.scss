@@ -1,4 +1,10 @@
-
+.episodeHeader {
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  height: 0.80rem;
+  padding: 0 0.32rem;
+}
 .mEpibox {
     display: flex;
     flex-direction: column;
@@ -87,7 +93,7 @@
             .videoTag {
                 margin-bottom: 0.08rem;
                 display: flex;
-                
+
                 .tagItem {
                     color: rgba(255,255,255,0.6);
                     font-size: 0.22rem;
@@ -97,7 +103,7 @@
                     background: rgba(255,255,255,0.1);
                     backdrop-filter: blur(20px);
                     border-radius: 0.18rem;
-                    
+
                 }
             }
             .videoDesc {
@@ -115,7 +121,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 0.16rem;
-            
+
             .titleLeft {
                 font-size: 0.32rem;
                 line-height: 0.38rem;

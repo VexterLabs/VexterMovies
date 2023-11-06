@@ -14,21 +14,23 @@
     transition: all 0.3s;
 
     a {
-      max-width: 3.5rem;
       color: rgba(255,255,255,0.8);
+      max-width: 3.5rem;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $theme_color;
+        font-weight: 400;
+      }
     }
 
-    &:hover {
-      color: $theme_color;
-      font-weight: 400;
-    }
 
     .lastTxt {
       color: rgba(255,255,255,0.8);
-      font-weight: 500;
+      font-weight: 400;
       max-width: 3.5rem;
       overflow: hidden;
       text-overflow: ellipsis;

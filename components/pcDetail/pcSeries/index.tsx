@@ -3,14 +3,14 @@ import styles from "@/components/pcDetail/pcSeries/index.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItemDetail, IChapterList, IEpisopeTab } from "@/typings/home.interface";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 
 // 该页面是展示pc端更多剧情的，需要修改后期
 interface IProps {
   chapterList: IChapterList[];
   chapterName: string;
-  bookInfo:IBookItemDetail;
+  bookInfo:IBookItem;
 }
 
 const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
@@ -100,26 +100,24 @@ const PcSeries: FC<IProps> = ({ chapterList = [], chapterName, bookInfo}) => {
           } = item
           const routerToVideoInfo = `/episode/${bookInfo.bookId}/${item.id}`
           return <div className={styles.listBox} style={item.showEposide?{}:{display: 'none'}} key={item.id}>
-            <Link href={routerToVideoInfo} className={styles.listLink}>
-              <div key={index} className={item.unlock ? styles.listItem : styles.listItemMask}>
-                <div className={styles.imgLeft}>
-                  <Image
-                    className={styles.imageItem}
-                    onError={onImgError}
-                    placeholder="blur"
-                    blurDataURL={item.cover}
-                    width={88}
-                    height={117}
-                    src={item.cover}
-                    alt={item.name}
-                  />
-                </div>
-                <div className={styles.rightIntro}>
-                  <p className={styles.title}>{chapterName}</p>
-                  <p className={styles.pageNum}>{item.name}</p>
-                </div>
-              </div>
-            </Link>
+            <div key={index} className={item.unlock ? styles.listItem : styles.listItemMask}>
+              <Link href={routerToVideoInfo} className={styles.imgLeft}>
+                <Image
+                  className={styles.imageItem}
+                  onError={onImgError}
+                  placeholder="blur"
+                  blurDataURL={'/images/defaultFilm.png'}
+                  width={88}
+                  height={117}
+                  src={item.cover}
+                  alt={item.name}
+                />
+              </Link>
+              <Link href={routerToVideoInfo} className={styles.rightIntro}>
+                <p className={styles.title}>{chapterName}</p>
+                <p className={styles.pageNum}>{item.name}</p>
+              </Link>
+            </div>
           </div>
         })}
         <div className={styles.listItem} style={showMore && videoList.length > 11 ? {} : {display:'none'}} onClick={() => setDataFn()}>

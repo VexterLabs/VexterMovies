@@ -2,8 +2,8 @@ import React from "react";
 import { GetServerSideProps, NextPage } from "next";
 import { ownOs } from "@/utils/ownOs";
 import { netKeywordTag } from "@/server/home";
-import PcTag from "@/components/PcTag/PcTag";
-import MTag from "@/components/Tag/MTag";
+import PcTag from "@/components/pcTag";
+import MTag from "@/components/tag";
 import { ITagBookItem, IKeywordItem } from "typings/book.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
@@ -88,7 +88,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       pages,
       keywordId,
       keyword: keyword.trim(),
-      ...(await serverSideTranslations(locale ?? ELanguage.English, ['common'])),
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }
 }

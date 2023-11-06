@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
-import styles from '@/components/Tag/tagBookList/MTagBookList.module.scss'
+import styles from '@/components/tag/tagBookList/MTagBookList.module.scss'
 import Link from "next/link";
-import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "typings/book.interface";
-import { printKeyword } from "@/components/PcTag/tagBookList/TagBookList";
-import { ELanguage } from "typings/home.interface";
+import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "@/typings/book.interface";
+import { printKeyword } from "@/components/pcTag/tagBookList/TagBookList";
+import { ELanguage } from "@/typings/home.interface";
 import useHiveLog from "@/hooks/useHiveLog";
 import { ImageCover } from "@/components/common/image/ImageCover";
 
