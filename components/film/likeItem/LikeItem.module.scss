@@ -5,7 +5,8 @@
   padding: 0 0.32rem;
   .itemBox {
     width: 2.18rem;
-    padding-bottom: 0.32rem;
+    // padding-bottom: 0.32rem;
+    margin-bottom: 0.16rem;
     .bookImage {
       width: 2.24rem;
       height: 2.98rem;
@@ -13,7 +14,7 @@
       border-radius: 0.08rem;
       display: flex;
       align-items: center;
-
+      
       .imageItem {
         width: 100%;
         height: auto;
@@ -29,8 +30,11 @@
       font-size: 0.28rem;
       font-weight: 400;
       overflow: hidden;
-      white-space: nowrap;
       text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-wrap: break-word;
       line-height: 0.32rem;
     }
     .bookTags {
@@ -47,6 +51,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          margin-top: 0.08rem;
         }
         
       }

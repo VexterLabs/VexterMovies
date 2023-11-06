@@ -41,7 +41,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     word-wrap: break-word;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.32rem;
   }
 
   .tagBox {
@@ -70,7 +70,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // margin-bottom: 0.48rem;
+    margin-bottom: 0.52rem;
 
     .footerBtn {
       min-width: 2.92rem;
@@ -85,7 +85,6 @@
       justify-content: center;
       flex-direction: row;
       color: rgba(255,255,255,0.9);
-
       .playIcon {
         width: 0.48rem;
         height: 0.48rem;
@@ -160,6 +159,7 @@
   position: relative;
   justify-content: space-between;
   padding: 0 0.32rem;
+  margin-bottom: 0.24rem;
   .leftInfo {
     display: flex;
   }
@@ -202,6 +202,7 @@
     line-height: 0.4rem;
   }
 }
+
 
 .navBox {
   position: fixed;

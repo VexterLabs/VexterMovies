@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState, } from "react";
-import Player,{ Events } from 'xgplayer'
-import styles from "@/components/episode/index.module.scss"
+import Player,{ Events, Util } from 'xgplayer'
+import styles from "@/components/espoise/index.module.scss"
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
@@ -12,10 +12,10 @@ import { netIpUa } from "@/server/clientLog";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
-import LikeTitle from "@/components/detail/likeTitle/LikeTitle";
-import LikeItem from "@/components/detail/likeItem/LikeItem";
 import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import LikeTitle from "@/components/film/likeTitle/LikeTitle";
+import LikeItem from "@/components/film/likeItem/LikeItem";
 
 
 interface IProps {
@@ -57,7 +57,9 @@ const WapEpisode:  FC<IProps> = (
       }
       return ClientConfig.android.link;
     });
+    const { t } = useTranslation();
     const HiveLog = useHiveLog();
+
     const {
       bookId,
       bookName,
@@ -66,6 +68,12 @@ const WapEpisode:  FC<IProps> = (
     // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
     const curChapterData = chapterList.find(item => item.id === chapterId ) //&& item.unlock === true
     currentPage = curChapterData?.index as number
+    const breadDatas: IBreadcrumb[] = [
+      { title: t('home.home'), link: "/" },
+      { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+      { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+      { title: currentPage + 1},
+    ]
     let preChapterData:any //后面再改
     if(curChapterData) {
       preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index )//&& item.unlock === true
@@ -94,6 +102,28 @@ const WapEpisode:  FC<IProps> = (
       // 查找当前视频中下一个有MP4
       playIns = new Player({
         id: "mPlay",
+        icons: {
+          play: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/play.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          pause: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/pause.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          fullscreen: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/fullscreen.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          volumeMuted: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/muted.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+          volumeLarge: () => {
+            const dom = Util.createDom('div', '<img src="/images/book/voice.png" style="width:0.32rem;height:0.32rem"/>', {}, 'customclass')
+            return dom
+          },
+        },
         autoplay: true,
         autoplayMuted: true,
         url: curChapterData?.mp4,
@@ -111,7 +141,7 @@ const WapEpisode:  FC<IProps> = (
       playIns.on(Events.ENDED, () => {
         dealReaEpi(preChapterData?.index)
         if(preChapterData) {
-          router.replace(`/episode/${id}/${preChapterData.id}`,undefined)
+          router.replace(`/episode/${bookInfo.bookId}/${preChapterData.id}`,undefined)
         }
         playIns.playNext({
           url: preChapterData?.mp4,
@@ -161,7 +191,7 @@ const WapEpisode:  FC<IProps> = (
     }
     return <>
       <div className={styles.episodeHeader}>
-        <Breadcrumb data={breadData} isWap={true}/>
+        <Breadcrumb data={breadDatas} isWap={true}/>
       </div>
       <div className={styles.mEpibox}>
         <div className={styles.videoContainer}>
@@ -191,18 +221,21 @@ const WapEpisode:  FC<IProps> = (
               <Image
                 className={styles.epoImg}
                 onError={onImgError}
-                width={20}
-                height={20}
-                src='/images/book/star-d.png'
+                width={40}
+                height={40}
+                src='/images/book/start-m.png'
                 alt='photo'
               />
-              <p className={styles.epoScore}>{bookInfo.chapterCount}k</p>
+              <p className={styles.epoScore}>{bookInfo.chapterCount}K</p>
             </div>
-            <div className={styles.videoTag}>
-              {(bookInfo?.tags || []).slice(0, 2).map((val,ind) => {
-                return <div key={ind} className={styles.tagItem}>{val}</div>
-              })}
-            </div>
+            {
+              bookInfo?.tags && bookInfo.tags.length > 0 ?
+                <div className={styles.videoTag}>
+                {(bookInfo?.tags || []).slice(0, 5).map((val,ind) => {
+                  return <div key={ind} className={styles.tagItem}>{val}</div>
+                })}
+              </div> : null
+            }
             <div className={styles.videoDesc}>
               <p>{bookInfo.introduction}</p>
             </div>
@@ -210,16 +243,16 @@ const WapEpisode:  FC<IProps> = (
         </div>
         <div  className={styles.epiList}>
             <div className={styles.titleList}>
-              <p className={styles.titleLeft}>Episodes List</p>
-              <p className={styles.titleRight}>({chapterList&&chapterList.length} Episodes)</p>
+              <p className={styles.titleLeft}>{t('bookInfo.episodeList')}</p>
+              <p className={styles.titleRight}>({chapterList&&chapterList.length} {t('bookInfo.episodes')})</p>
             </div>
             <div className={styles.epilistBox}>
               {
                 chapterList&&chapterList.slice(0,9).map((chapterItem,chapterIndex) => {
                   return <div className={styles.epiOuter} key={chapterItem.id}>
-                    <Link href={`/episode/${id}/${chapterItem.id}`} shallow>
+                    <Link href={`/episode/${bookInfo.bookId}/${chapterItem.id}`} shallow>
                       <div className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {chooseEpisode(chapterItem)}}>
-                        <p>{chapterItem.name}</p>
+                        <p>{chapterItem.index + 1}</p>
                       </div>
                     </Link>
                   </div>
@@ -228,7 +261,7 @@ const WapEpisode:  FC<IProps> = (
               {
                 chapterList&&chapterList.length>9 ? <div className={styles.epiOuter}>
                   <div className={styles.epiItem} onClick={() => {showEpisodeDialog()}}>
-                    <p>More</p>
+                    <p>{t('bookInfo.more')}</p>
                   </div>
                 </div> : null
               }
@@ -237,7 +270,7 @@ const WapEpisode:  FC<IProps> = (
         </div>
         <div className={styles.mightLike} style={recommends?.length>0 ? {} : {display:'none'}}>
           {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
-          <LikeTitle title="You Might Like"/>
+          <LikeTitle title={t('bookInfo.recLike')}/>
           <LikeItem dataSource={recommends || []}/>
         </div>
         <div className={styles.navBox}>
@@ -250,7 +283,7 @@ const WapEpisode:  FC<IProps> = (
               alt={'more'}
             />
             {/* <span>{t('home.privacyPolicy')}</span> */}
-            <span>Episodes</span>
+            <span>{t('bookInfo.episodes')}</span>
           </div>
           <Link href={`/episode/${bookInfo.bookId}/${curChapterData?.id}`} className={styles.playIcon}>
             <Image
@@ -261,7 +294,7 @@ const WapEpisode:  FC<IProps> = (
               alt={'more'}
             />
             {/* <span>{t('home.termsOfUse')}</span> */}
-            <span className={styles.playTxt}>Play</span>
+            <span className={styles.playTxt}>{t('home.play')}</span>
           </Link>
           <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
             onCopyText(copyText, () => {
@@ -277,7 +310,7 @@ const WapEpisode:  FC<IProps> = (
               alt={'more'}
             />
             {/* <span>{t('home.termsOfUse')}</span> */}
-            <span>Download</span>
+            <span>{t('appPage.download')}</span>
           </Link>
         </div>
       </div>

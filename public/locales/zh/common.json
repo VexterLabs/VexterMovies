@@ -27,7 +27,13 @@
     "nextPage": "下一頁",
     "lastChapterTip": "當前已在最後一頁",
     "firstChapterTip": "當前已在第一頁",
-    "like": "你也許也喜歡"
+    "like": "你也許也喜歡",
+    "relatedEpisodes": "相關劇集",
+    "episodesDownload": "本集需要下載才能觀看",
+    "episodes": "集",
+    "recLike": "猜你喜歡",
+    "totalEpisodes": "劇集數",
+    "episodeList": "劇集列表"
   },
   "appPage": {
     "title": "DramaBox-追劇，電視，精彩故事",
@@ -51,13 +57,13 @@
   },
   "tag": {
     "relevant": "Relevant popular keywords",
-    "relation1": "Webfic has found related content about ",
+    "relation1": "DramaBox has found related content about ",
     "relation2": "for you.\nThis includes books related to ",
     "relation3": ",\nas well as ",
     "relation4": "related content information."
   },
   "banner": {
-    "OpenApp": "Open the Webfic App to read more wonderful content",
-    "Open": "Open"
+    "OpenApp": "更多精彩內容，盡在DramaBox",
+    "Open": "打開"
   }
 }

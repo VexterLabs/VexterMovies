@@ -27,7 +27,13 @@
     "nextPage": "다음 페이지",
     "lastChapterTip": "이미 마지막 장입니다",
     "firstChapterTip": "이미 첫 번째 장입니다",
-    "like": "당신이 좋아할 만한"
+    "like": "당신이 좋아할 만한",
+    "relatedEpisodes": "관련 드라마",
+    "episodesDownload": "이 에피소드는 다운로드 받아야만 볼 수 있다",
+    "episodes": "회",
+    "recLike": "취향 추측",
+    "totalEpisodes": "회차수",
+    "episodeList": "에피소드 목록"
   },
   "appPage": {
     "title": "DramaBox - 환상적인 이야기와 단편",
@@ -51,14 +57,14 @@
   },
   "tag": {
     "relevant": "Relevant popular keywords",
-    "relation1": "Webfic has found related content about ",
+    "relation1": "DramaBox has found related content about ",
     "relation2": "for you.\nThis includes books related to ",
     "relation3": ",\nas well as ",
     "relation4": "related content information."
   },
   "banner": {
-    "OpenApp": "Open the Webfic App to read more wonderful content",
-    "Open": "Open"
+    "OpenApp": "DramaBox 앱을 열고 더 많은 하이라이트 보기",
+    "Open": "열기"
   }
 
 }
