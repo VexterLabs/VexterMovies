@@ -9,8 +9,6 @@ import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
 import { netIpUa } from "@/server/clientLog";
-import { PcEmpty } from "@/components/common/empty";
-import { useTranslation } from "next-i18next";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/layout/episopeDialog/EpisopeDialog';
@@ -31,7 +29,7 @@ interface IProps {
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
-const PcEpisode:  FC<IProps> = (
+const WapEpisode:  FC<IProps> = (
   {
     bookInfo,
     recommends = [],
@@ -292,4 +290,4 @@ const PcEpisode:  FC<IProps> = (
     </>
   }
 
-  export default PcEpisode
+  export default WapEpisode

@@ -5,7 +5,7 @@ import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
-import MEspoise from '@/components/espoise'
+import WapEpisode from '@/components/espoise'
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import { useTranslation } from "next-i18next";
 
@@ -20,7 +20,7 @@ interface IProps {
   currentPage: number;
 }
 
-const Espoise: NextPage<IProps> = (
+const Episode: NextPage<IProps> = (
   { isPc, bookInfo, isApple, recommends, chapterList, chapterName,currentPage }) => {
   const { t } = useTranslation();
 
@@ -41,7 +41,7 @@ const Espoise: NextPage<IProps> = (
         chapterName={chapterName}
         currentPage={currentPage}
       /> :
-      <MEspoise
+      <WapEpisode
         breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
@@ -86,4 +86,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
 }
 
-export default Espoise;
+export default Episode;

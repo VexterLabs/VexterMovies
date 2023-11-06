@@ -1,5 +1,5 @@
-import EspoisePage, { getServerSideProps as getServerSideProps2} from './index'
+import EpisodePage, { getServerSideProps as getServerSideProps2} from './index'
 
-export default EspoisePage;
+export default EpisodePage;
 
 export const getServerSideProps = getServerSideProps2;
