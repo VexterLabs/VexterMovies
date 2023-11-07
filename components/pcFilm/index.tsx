@@ -48,11 +48,16 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
               {bookInfo.introduction}
             </p>
 
-            <div className={styles.tagsContent}>
-              { (bookInfo?.tags || []).map(val => {
-                return <div key={val} className={styles.tagItem}>{val}</div>
-              })}
-            </div>
+            {
+              bookInfo?.tags && bookInfo?.tags.length > 0 ?
+                <div className={styles.tagsContent}>
+                { (bookInfo.tags).map(val => {
+                  return <Link href={`/browse/${bookInfo?.typeTwoIds[0] || 0}/`}>
+                   <div key={val} className={styles.tagItem}>{val}</div>
+                  </Link>
+                })}
+              </div> : null
+            }
           </div>
 
           {chapterList?.[0]?.id ? <Link href={`/episode/${bookInfo.bookId}/${chapterList?.[0]?.id}`}
