@@ -176,7 +176,7 @@ const WapEpisode:  FC<IProps> = (
               bookInfo?.typeTwoList && bookInfo.typeTwoList.length > 0 ?
                 <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val,ind) => {
-                  return <Link key={ind} href={`/browse/${val.id}`} className={styles.tagItem}>{val}</Link>
+                  return <Link key={ind} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
                 })}
               </div> : null
             }

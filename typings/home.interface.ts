@@ -47,6 +47,8 @@ export interface IChapterList {
   name: string;
   unlock: boolean;
   cover: string;
+  new: boolean;
+  utime: string;
   showEposide?: boolean;
 }
 
