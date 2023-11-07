@@ -17,6 +17,7 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
+import { Ellipsis } from "antd-mobile";
 
 
 interface IProps {
@@ -179,9 +180,32 @@ const WapEpisode:  FC<IProps> = (
                 })}
               </div> : null
             }
-            <div className={styles.videoDesc}>
-              <p>{bookInfo.introduction}</p>
-            </div>
+            <Ellipsis
+              rows={2}
+              className={styles.introText}
+              direction='end'
+              expandText={
+                <span className={styles.expand}>
+                  {t("home.more")}
+                  <Image
+                    className={styles.moreIcon}
+                    width={24}
+                    height={24}
+                    src={'/images/episode/wap-more.png'}
+                    alt={''}
+                  />
+                </span>
+              }
+              collapseText={<span className={styles.retract}>
+                <Image
+                  className={styles.moreIcon}
+                  width={24}
+                  height={24}
+                  src={'/images/episode/wap-more.png'}
+                  alt={''}
+                />
+              </span>}
+              content={bookInfo.introduction} />
           </div>
         </div>
         <div  className={styles.epiList}>

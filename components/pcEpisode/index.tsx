@@ -10,6 +10,7 @@ import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
 import { Ellipsis } from "antd-mobile";
 import styles from "@/components/pcEpisode/index.module.scss";
+import { useTranslation } from "next-i18next";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -28,6 +29,7 @@ const PcEpisode: FC<IProps> = (
     breadData,
   }) => {
 
+  const { t } = useTranslation();
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({ } as Player);
@@ -136,7 +138,8 @@ const PcEpisode: FC<IProps> = (
             rows={1}
             className={styles.videoDesc}
             expandText={
-              <span className={styles.extend}>More
+              <span className={styles.extend}>
+                {t('home.more')}
                  <Image
                    className={styles.moreIcon}
                    width={16}

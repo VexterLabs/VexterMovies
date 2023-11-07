@@ -3,13 +3,13 @@ const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
 const WebDomainObj = {
-  test: 'http://192.168.1.70:3000',
+  test: 'http://192.168.1.71:3000',
   staging: 'https://yfbwww.dramaboxapp.com',
   prod: 'https://www.dramaboxapp.com'
 }
 // 网站服务api
 const BaseUrlObj = {
-  // test: 'http://192.168.0.253:8080', 
+  // test: 'http://192.168.0.253:8080',
   test: 'http://192.168.0.253:8080',// http://192.168.1.70:8080
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
