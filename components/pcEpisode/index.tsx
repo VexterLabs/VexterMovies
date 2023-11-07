@@ -11,7 +11,6 @@ import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
 import { Ellipsis } from "antd-mobile";
 import styles from "@/components/pcEpisode/index.module.scss";
-import { useTranslation } from "next-i18next";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -36,7 +35,6 @@ const PcEpisode: FC<IProps> = (
   const playerInstance = useRef<Player>({ } as Player);
   const episodeIndex = useRef(current);
   const [errorBgsrc, setErrorBg] = useState('')
-  const { t } = useTranslation();
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
