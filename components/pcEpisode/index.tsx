@@ -36,15 +36,23 @@ const PcEpisode: FC<IProps> = (
   const playerInstance = useRef<Player>({ } as Player);
   const episodeIndex = useRef(current);
   const [errorBgsrc, setErrorBg] = useState('')
-  // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
-
+  const breadDatas: IBreadcrumb[] = [
+    { title: t('home.home'), link: "/" },
+    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+    { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+    { title: chapterList?.[currentPage]?.name },
+  ]
+  // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
     const curId = chapterList.find((item, index) => index === currentPage)
     const cover = curId?.cover
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
+
   }, [chapterList]);
+
+
 
   // 播放器设置
   useEffect(() => {
@@ -100,7 +108,7 @@ const PcEpisode: FC<IProps> = (
 
   return <main className={styles.episodeWrap}>
     <div className={styles.episodeHeader}>
-      <Breadcrumb data={breadData}/>
+      <Breadcrumb data={breadDatas}/>
     </div>
 
     <div className={styles.videoBox}>
