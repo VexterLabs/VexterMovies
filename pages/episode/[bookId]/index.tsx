@@ -22,15 +22,7 @@ interface IProps {
 
 const Episode: NextPage<IProps> = (
   { isPc, bookInfo, isApple, recommends, chapterList, current }) => {
-  const { t } = useTranslation();
 
-
-  const breadData: IBreadcrumb[] = [
-    { title: t('home.home'), link: "/" },
-    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
-    { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
-    { title: chapterList?.[current]?.name },
-  ]
   const HiveLog = useHiveLog();
   const onBookClick = (book: IBookItem) => {
     HiveLog.track("ReadRecommend_click", {
@@ -50,7 +42,6 @@ const Episode: NextPage<IProps> = (
       <PcEpisode
         onChannel={onChannel}
         onBookClick={onBookClick}
-        breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}

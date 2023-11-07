@@ -18,7 +18,7 @@ interface IProps {
   onChannel: (name: string) => void;
 }
 
-const PcDetail: FC<IProps> = (
+const PcFilm: FC<IProps> = (
   {
     bookInfo,
     recommends = [],
@@ -88,4 +88,4 @@ const PcDetail: FC<IProps> = (
   </main>
 }
 
-export default PcDetail;
+export default PcFilm;

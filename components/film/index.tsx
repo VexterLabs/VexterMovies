@@ -1,22 +1,17 @@
-import React, { FC, useState } from 'react'
-import styles from "@/components/film/index.module.scss";
+import React, { FC, useState } from 'react';
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
-import { netIpUa } from "@/server/clientLog";
-import { useAppSelector } from "@/store";
-import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
 import EpisopeDialog from '@/components/episode/episopeDialog/EpisopeDialog';
-import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
-
+import styles from "@/components/film/index.module.scss";
 
 interface IProps {
   breadData: IBreadcrumb[];
@@ -41,21 +36,7 @@ const MFilm: FC<IProps> = (
     onChannel
   }) => {
   const { t } = useTranslation();
-  const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
-  const clipboard = useAppSelector(state => state.hive.clipboard)
-  const copyText = useAppSelector(state => state.hive.copyText);
-  const shopLink = useAppSelector(state => {
-    if (isApple) {
-      return ClientConfig.ios.deeplink + state.hive.copyText;
-    }
-    return ClientConfig.android.link;
-  });
   const HiveLog = useHiveLog();
-  const {
-    bookId,
-    bookName,
-    introduction
-  } = bookInfo;
 
   const [showDialog, setEpiDialog] = useState(false);//展示所有剧集的弹框
 
@@ -85,7 +66,7 @@ const MFilm: FC<IProps> = (
         alt={bookInfo.bookName}
       />
 
-      {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
+      {bookInfo.bookName ? <h1 className={styles.bookName}>{bookInfo.bookName}</h1> : null}
 
       {bookInfo?.typeTwoList && bookInfo?.typeTwoList.length > 0 ? <div className={styles.tagBox}>
         {(bookInfo?.typeTwoList || []).map(val => {
@@ -98,7 +79,7 @@ const MFilm: FC<IProps> = (
       </div> : null}
 
       <div className={styles.footerBox}>
-        <Link rel={"nofollow"} className={styles.footerBtn}  href={`/episode/${bookInfo.bookId}/${chapterFirstId}`}>
+        <Link rel={"nofollow"} className={styles.footerBtn} href={`/episode/${bookInfo.bookId}`}>
           <Image
             className={styles.playIcon}
             width={48}
@@ -110,7 +91,7 @@ const MFilm: FC<IProps> = (
         </Link>
       </div>
 
-      {introduction ? <div className={styles.introBox}>
+      {bookInfo.introduction ? <div className={styles.introBox}>
         <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
 
         <Ellipsis
@@ -136,14 +117,16 @@ const MFilm: FC<IProps> = (
               alt={''}
             />
           </span>}
-          content={introduction} />
+          content={bookInfo.introduction}/>
       </div> : null}
     </div>
 
-    <div className={styles.episodeNav} onClick={() => {showEpisodeDialog()}}>
+    <div className={styles.episodeNav} onClick={() => {
+      showEpisodeDialog()
+    }}>
       <div className={styles.leftInfo}>
         <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
-        <p className={styles.innerPl}>({chapterList&&chapterList.length} {t('bookInfo.episodes')})</p>
+        <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
       </div>
       <div className={styles.rightImg}>
         <Image
@@ -156,11 +139,10 @@ const MFilm: FC<IProps> = (
       </div>
     </div>
 
-    <div style={recommends?.length>0 ? {} : {display:'none'}}>
-      {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
+    {recommends.length > 0 ? <>
       <LikeTitle title={t('bookInfo.recLike')}/>
       <LikeItem dataSource={recommends || []} onBookClick={onBookClick}/>
-    </div>
+    </> : null}
 
     <EpisopeDialog
       bookInfo={bookInfo}
@@ -168,6 +150,7 @@ const MFilm: FC<IProps> = (
       chapterList={chapterList}
       closeDialog={closeEpisodeDialog}
       showDialog={showDialog}/>
+
     <EpisodeNav
       isApple={isApple}
       bookInfo={bookInfo}

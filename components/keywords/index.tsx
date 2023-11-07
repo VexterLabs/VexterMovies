@@ -4,7 +4,7 @@ import MorePagination from "@/components/more/pagination/MorePagination";
 import { IKeywordItem } from "typings/book.interface";
 import { MEmpty } from "@/components/common/empty";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import styles from '@/components/keywords/MKeywords.module.scss';
+import styles from '@/components/keywords/index.module.scss';
 
 interface IProps {
   breadData: IBreadcrumb[];

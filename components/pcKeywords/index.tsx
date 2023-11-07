@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import PaginationCom from "@/components/common/paginationCom";
-import { IKeywordItem } from "typings/book.interface";
+import { IKeywordItem } from "@/typings/book.interface";
 import { PcEmpty } from "@/components/common/empty";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import styles from '@/components/pcKeywords/PcKeywords.module.scss';
+import styles from '@/components/pcKeywords/index.module.scss';
 
 interface IProps {
   keywordList: IKeywordItem[]

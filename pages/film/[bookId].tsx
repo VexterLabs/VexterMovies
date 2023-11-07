@@ -1,8 +1,8 @@
 import React from "react";
 import { GetServerSideProps, GetServerSidePropsResult, NextPage } from "next";
 import { netBookDetail } from "@/server/home";
-import PcDetail from "@/components/pcFilm";
-import MDetail from "@/components/film";
+import PcFilm from "@/components/pcFilm";
+import MFilm from "@/components/film";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -47,7 +47,7 @@ const Film: NextPage<IProps> = (
 
   return <>
     { isPc ?
-      <PcDetail
+      <PcFilm
         onChannel={onChannel}
         onBookClick={onBookClick}
         breadData={breadData}
@@ -55,7 +55,7 @@ const Film: NextPage<IProps> = (
         recommends={recommends}
         chapterList={chapterList}
       /> :
-      <MDetail
+      <MFilm
         onChannel={onChannel}
         onBookClick={onBookClick}
         breadData={breadData}
