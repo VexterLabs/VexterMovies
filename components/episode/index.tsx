@@ -62,7 +62,7 @@ const WapEpisode:  FC<IProps> = (
       { title: t('home.home'), link: "/" },
       { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
       { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
-      { title: currentPage + 1},
+      { title: chapterList?.[currentPage]?.name },
     ]
     let preChapterData:any //后面再改
     if(curChapterData) {
