@@ -1,23 +1,20 @@
-import React, { FC } from 'react'
-import styles from '@/components/film/likeItem/LikeItem.module.scss'
+import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
+import styles from '@/components/film/likeItem/LikeItem.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
-  priority?: boolean;
 }
 
-const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
+const LikeItem: FC<IProps> = ({ dataSource }) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
-
-      return <div key={index} className={styles.itemBox}>
-        <Link href={`/film/${detailItem.bookId}`} className={styles.bookImage}>
+      return <div key={detailItem.bookId} className={styles.itemBox}>
+        <Link href={`/film/${detailItem.bookId}`} className={styles.bookImage} replace>
           <Image
-            priority={priority}
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
@@ -29,10 +26,10 @@ const LikeItem: FC<IProps> = ({ dataSource, priority }) => {
           />
         </Link>
 
-        <Link href={`/film/${detailItem.bookId}`} className={styles.bookName}>
+        <Link href={`/film/${detailItem.bookId}`} className={styles.bookName} replace>
           {detailItem.bookName}
         </Link>
-        <Link href={`/film/${detailItem.bookId}`} className={styles.bookTags}>
+        <Link href={`/film/${detailItem.bookId}`} className={styles.bookTags} replace>
           <div className={styles.tagBox}>
             {(detailItem?.tags || []).slice(0, 2).map(val => {
               return <div key={val} className={styles.tagItem}>{val}</div>

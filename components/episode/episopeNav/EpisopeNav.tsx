@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
-import styles from '@/components/layout/episopeNav/EpisopeNav.module.scss'
+import styles from '@/components/episode/episopeNav/EpisopeNav.module.scss'
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import ClientConfig from "@/client.config";
 import Image from "next/image";
 
 interface IProps {
