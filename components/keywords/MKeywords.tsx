@@ -11,7 +11,7 @@ interface IProps {
   keywordList: IKeywordItem[];
   pageNo: number;
   totalPage: number;
-  keywordClick: (keyword: string) => void;
+  keywordClick: (item: IKeywordItem) => void;
 }
 
 const MKeywords: FC<IProps> = ({ breadData, pageNo, totalPage, keywordList, keywordClick }) => {
@@ -25,7 +25,7 @@ const MKeywords: FC<IProps> = ({ breadData, pageNo, totalPage, keywordList, keyw
       <>
         <div className={styles.keywordBox}>
           {keywordList.map(val => {
-            return <Link key={val.id} href={`/tag/${val.id}`} onClick={() => keywordClick(val.name)} className={styles.keywordItem}>
+            return <Link key={val.id} href={`/tag/${val.id}`} onClick={() => keywordClick(val)} className={styles.keywordItem}>
               {val.name}
             </Link>
           })}

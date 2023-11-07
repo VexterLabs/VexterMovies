@@ -7,12 +7,13 @@ import styles from '@/components/film/likeItem/LikeItem.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
+  onBookClick?: (item: IBookItem) => void;
 }
 
-const LikeItem: FC<IProps> = ({ dataSource }) => {
+const LikeItem: FC<IProps> = ({ dataSource, onBookClick }) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
-      return <div key={detailItem.bookId} className={styles.itemBox}>
+      return <div key={detailItem.bookId} className={styles.itemBox} onClick={() => onBookClick && onBookClick(detailItem)}>
         <Link href={`/film/${detailItem.bookId}`} className={styles.bookImage} replace>
           <Image
             className={styles.imageItem}

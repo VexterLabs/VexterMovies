@@ -3,7 +3,7 @@ const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
 const WebDomainObj = {
-  test: 'http://192.168.1.71:3000',
+  test: 'http://192.168.1.71:3001',
   staging: 'https://yfbwww.dramaboxapp.com',
   prod: 'https://www.dramaboxapp.com'
 }

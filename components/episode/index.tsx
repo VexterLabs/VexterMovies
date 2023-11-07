@@ -18,6 +18,7 @@ import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
 import { Ellipsis } from "antd-mobile";
+import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 
 
 interface IProps {
@@ -27,6 +28,8 @@ interface IProps {
     chapterName: string;
     currentPage: number;
     isApple: boolean;
+  onBookClick: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 // 引入视频组件 引入剧集组件 引入相关剧集组件 引入你可能喜欢
 
@@ -38,6 +41,8 @@ const WapEpisode:  FC<IProps> = (
     chapterList = [],
     chapterName,
     isApple,
+    onBookClick,
+    onChannel
   }
 ) => {
     const router = useRouter()
@@ -153,9 +158,20 @@ const WapEpisode:  FC<IProps> = (
                 alt=''/>
               <div className={styles.downInfo}>
                 <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
-                <div className={styles.btnDown}>
-                  <div>Download the App</div>
-                </div>
+
+                <Link href={shopLink} className={styles.btnDown} onClick={() => {
+                  onCopyText(copyText, () => {
+                    netIpUa(clipboard)
+                    HiveLog.trackDownload('PayChapterDownload_click', {
+                      bookId: bookInfo.bookId,
+                      bookName: bookInfo.bookName,
+                      chapterId: chapterList?.[currentPage]?.id,
+                      chapterName: chapterList?.[currentPage]?.name,
+                    })
+                  })
+                }}>
+                  Download the App
+                </Link>
               </div>
             </div> : null}
           </div>
@@ -176,7 +192,11 @@ const WapEpisode:  FC<IProps> = (
               bookInfo?.typeTwoList && bookInfo.typeTwoList.length > 0 ?
                 <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val,ind) => {
-                  return <Link key={ind} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+                  return <Link
+                    onClick={() => onChannel(val.name)}
+                    key={ind}
+                    href={`/browse/${val.id}`}
+                    className={styles.tagItem}>{val.name}</Link>
                 })}
               </div> : null
             }
@@ -237,48 +257,14 @@ const WapEpisode:  FC<IProps> = (
         </div>
         <div className={styles.mightLike} style={recommends?.length>0 ? {} : {display:'none'}}>
           <LikeTitle title={t('bookInfo.recLike')}/>
-          <LikeItem dataSource={recommends || []}/>
+          <LikeItem dataSource={recommends || []} onBookClick={onBookClick}/>
         </div>
-        <div className={styles.navBox}>
-          <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
-            <Image
-              className={styles.navIcon}
-              width={64}
-              height={64}
-              src={'/images/book/episode-d.png'}
-              alt={'more'}
-            />
-            {/* <span>{t('home.privacyPolicy')}</span> */}
-            <span>{t('bookInfo.episodes')}</span>
-          </div>
-          <Link href={`/episode/${bookInfo.bookId}/${curChapterData?.id}`} className={styles.playIcon}>
-            <Image
-              className={styles.navIcon}
-              width={64}
-              height={64}
-              src={'/images/book/botplay-d.png'}
-              alt={'more'}
-            />
-            {/* <span>{t('home.termsOfUse')}</span> */}
-            <span className={styles.playTxt}>{t('home.play')}</span>
-          </Link>
-          <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
-            onCopyText(copyText, () => {
-              netIpUa(clipboard)
-              HiveLog.trackDownload('turnPage_click', { book_ID: bookInfo.bookId, chapter_id: 0 })
-            })
-          }}>
-            <Image
-              className={styles.navIcon}
-              width={64}
-              height={64}
-              src={'/images/book/download-d.png'}
-              alt={'more'}
-            />
-            {/* <span>{t('home.termsOfUse')}</span> */}
-            <span>{t('appPage.download')}</span>
-          </Link>
-        </div>
+        <EpisodeNav
+          isApple={isApple}
+          bookInfo={bookInfo}
+          chapterId={curChapterData?.id}
+          showEpisodeDialog={showEpisodeDialog}
+        />
       </div>
       <EpisopeDialog
         bookInfo={bookInfo}

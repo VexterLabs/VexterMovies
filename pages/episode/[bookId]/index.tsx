@@ -8,6 +8,7 @@ import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import { useTranslation } from "next-i18next";
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
   isPc: boolean;
@@ -30,10 +31,25 @@ const Episode: NextPage<IProps> = (
     { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
     { title: chapterList?.[current]?.name },
   ]
+  const HiveLog = useHiveLog();
+  const onBookClick = (book: IBookItem) => {
+    HiveLog.track("ReadRecommend_click", {
+      bookId: book.bookId,
+      bookName: book.bookName
+    })
+  }
+
+  const onChannel = (name: string) => {
+    HiveLog.track("ReadChannel_click", {
+      typeTwoName: name
+    })
+  }
 
   return <>
     {isPc ?
       <PcEpisode
+        onChannel={onChannel}
+        onBookClick={onBookClick}
         breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
@@ -41,6 +57,8 @@ const Episode: NextPage<IProps> = (
         current={current}
       /> :
       <WapEpisode
+        onChannel={onChannel}
+        onBookClick={onBookClick}
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}

@@ -16,6 +16,7 @@ interface IProps {
   keywordId: string;
   keyword: string;
   breadData: IBreadcrumb[];
+  onBookClick: (book: ITagBookItem) => void;
 }
 
 const PcTag: FC<IProps> = (
@@ -26,7 +27,8 @@ const PcTag: FC<IProps> = (
     bookList,
     keyword,
     relationKeywords,
-    breadData
+    breadData,
+    onBookClick
   }) => {
   const { t } = useTranslation();
   return <main className={styles.tagWrap}>
@@ -55,7 +57,7 @@ const PcTag: FC<IProps> = (
         </div>
       </div> : null}
       {bookList.length > 0 ? <div className={styles.tagListBox}>
-        <TagBookList dataSource={bookList} keyword={keyword}/>
+        <TagBookList dataSource={bookList} keyword={keyword} onBookClick={onBookClick}/>
         {totalPage && totalPage > 1 ? <PaginationCom
           path={`/tag/${keywordId}/`}
           pageNo={pageNo}

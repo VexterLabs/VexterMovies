@@ -22,8 +22,8 @@ interface IProps extends SSRConfig {
 const KeywordsPage: NextPage<IProps> = ({ isPc, currentPage, totalPage = 0, keywordList = [] }) => {
   const HiveLog = useHiveLog();
   // 关键词列表页点击
-  const keywordClick = (keyword: string) => {
-    HiveLog.track('ListPage_click', { key_word: keyword })
+  const keywordClick = (item: IKeywordItem) => {
+    HiveLog.track('Keyword_click', { keyword: item.name, keywordId: item.id })
   }
 
   const breadData: IBreadcrumb[] = [

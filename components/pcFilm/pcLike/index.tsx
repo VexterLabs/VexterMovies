@@ -9,9 +9,10 @@ import styles from '@/components/pcFilm/pcLike/PcLike.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
+  onBookClick?: (book: IBookItem) => void;
 }
 
-const PcLike: FC<IProps> = ({ dataSource = [] }) => {
+const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -23,8 +24,7 @@ const PcLike: FC<IProps> = ({ dataSource = [] }) => {
     <div className={styles.listBox}>
       {dataSource.map((book) => {
 
-        return <div key={book.bookId} className={styles.listItem}>
-
+        return <div key={book.bookId} className={styles.listItem} onClick={() => onBookClick && onBookClick(book)}>
           <div className={styles.coverBox}>
             <Link href={`/film/${book.bookId}`} className={styles.bookImage}>
               <ImageLegacy

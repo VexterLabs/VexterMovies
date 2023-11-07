@@ -45,7 +45,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
       onClick={() => {
         onCopyText(copyText, () => {
           netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: clipboard.bid, chapter_id: clipboard.cid })
+          HiveLog.trackDownload('turnPage_click', { bookId: clipboard.bid, chapterId: clipboard.cid })
         })
       }}
     >

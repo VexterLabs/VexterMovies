@@ -12,6 +12,7 @@ import styles from '@/components/pcTag/tagBookList/TagBookList.module.scss';
 interface IProps {
   dataSource: ITagBookItem[];
   keyword: string;
+  onBookClick?: (book: ITagBookItem) => void;
 }
 
 export const printKeyword = (content: string, keyword: string) => {
@@ -23,26 +24,24 @@ export const printKeyword = (content: string, keyword: string) => {
   return content.replace(regS, res) || content
 }
 
-const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
+const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
   // 聚合页书籍列表点击
   const tagBookClick = (keyword: string, bookId: string, recommend: boolean) => {
     HiveLog.track('Aggregate_page_click', {
       key_word: keyword,
-      book_ID: bookId,
+      bookId: bookId,
       AggregatePage_Properties: recommend ? EAggregatePageProperties.推荐书籍 : EAggregatePageProperties.有版权书籍,
     })
   };
   return <div className={styles.tagBookBox}>
-    {dataSource.map((book, bookInd) => {
+    {dataSource.map((book) => {
 
       const {
         bookId,
         bookName,
         introduction,
-        replacedBookName,
-        typeTwoName,
         typeTwoNames = [],
         typeTwoIds = [],
         firstChapterId,
@@ -54,7 +53,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
       const recommend = isHot === ETagBookItemIsHot.yes
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
-      return <div key={bookId} className={styles.listItem}>
+      return <div key={bookId} className={styles.listItem} onClick={() => onBookClick && onBookClick(book)}>
         <Link
           href={linkUrl}
           locale={simpleLanguage}
@@ -81,14 +80,14 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword }) => {
             onClick={() => tagBookClick(keyword, bookId, recommend)}
           />
 
-          { 
+          {
             !!(typeTwoNames && typeTwoNames.length) && <div className={styles.bookLabelBox}>
               {
                 typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
-                  <Link 
+                  <Link
                     key={bookId + '_browse_' + typeTwoNamesIdx}
-                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`} 
-                    locale={simpleLanguage} 
+                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`}
+                    locale={simpleLanguage}
                     className={styles.bookLabel}
                     onClick={() => tagBookClick(keyword, bookId, recommend)}>
                       {typeTwoNamesItem}

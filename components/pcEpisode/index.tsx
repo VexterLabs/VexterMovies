@@ -19,6 +19,8 @@ interface IProps {
   chapterList: IChapterList[];
   current: number;
   breadData: IBreadcrumb[];
+  onBookClick: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
 const PcEpisode: FC<IProps> = (
@@ -28,18 +30,20 @@ const PcEpisode: FC<IProps> = (
     chapterList = [],
     current = 0,
     breadData,
+    onBookClick,
+    onChannel,
   }) => {
 
   const { t } = useTranslation();
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
-  const playerInstance = useRef<Player>({ } as Player);
+  const playerInstance = useRef<Player>({} as Player);
   const episodeIndex = useRef(current);
   const [errorBgsrc, setErrorBg] = useState('')
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
-    { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+    { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
     { title: chapterList?.[currentPage]?.name },
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
@@ -51,7 +55,6 @@ const PcEpisode: FC<IProps> = (
     }
 
   }, [chapterList]);
-
 
 
   // 播放器设置
@@ -71,7 +74,8 @@ const PcEpisode: FC<IProps> = (
 
     if (playerInstance.current) {
       // 播放
-      playerInstance.current.on(Events.PLAY, () => {})
+      playerInstance.current.on(Events.PLAY, () => {
+      })
       // EVENTS.ENDED 结束播放,播放完后
       playerInstance.current.on(Events.ENDED, () => {
         const nextChapter = chapterList[episodeIndex.current + 1];
@@ -99,11 +103,11 @@ const PcEpisode: FC<IProps> = (
     setErrorBg(item.unlock ? '' : item.cover)
 
     if (!item.unlock) return
-      if (playerInstance.current) {
-        playerInstance.current.currentTime = 0;
-        await playerInstance.current.switchURL(item?.mp4, { seamless: true, currentTime: 0 });
-        playerInstance.current.play();
-      }
+    if (playerInstance.current) {
+      playerInstance.current.currentTime = 0;
+      await playerInstance.current.switchURL(item?.mp4, { seamless: true, currentTime: 0 });
+      playerInstance.current.play();
+    }
   }
 
   return <main className={styles.episodeWrap}>
@@ -124,7 +128,7 @@ const PcEpisode: FC<IProps> = (
               alt='photo'/>
             <div className={styles.downloadMark}/>
           </div> : null}
-          {errorBgsrc ?<div className={styles.downInfo}>
+          {errorBgsrc ? <div className={styles.downInfo}>
             <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
             <div className={styles.btnDown}>Download the App to continue watching</div>
           </div> : null}
@@ -149,6 +153,17 @@ const PcEpisode: FC<IProps> = (
             expandText={
               <span className={styles.extend}>
                 {t('home.more')}
+                <Image
+                  className={styles.moreIcon}
+                  width={16}
+                  height={16}
+                  src={'/images/episode/more.png'}
+                  alt={''}
+                />
+              </span>
+            }
+            collapseText={
+              <span className={styles.retract}>
                  <Image
                    className={styles.moreIcon}
                    width={16}
@@ -156,30 +171,25 @@ const PcEpisode: FC<IProps> = (
                    src={'/images/episode/more.png'}
                    alt={''}
                  />
-                </span>
-            }
-            collapseText={
-              <span className={styles.retract}>
-                   <Image
-                     className={styles.moreIcon}
-                     width={16}
-                     height={16}
-                     src={'/images/episode/more.png'}
-                     alt={''}
-                   />
-                </span>
+              </span>
             }
             content={bookInfo.introduction}/>
           <div className={styles.tagBox}>
             {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
-              return <Link key={val.id} href={`/browsw/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+              return <Link
+                onClick={() => onChannel(val.name)}
+                key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
         </div>
       </div>
 
       {/* 视频右侧所有剧集 */}
-      <RightList chapterList={chapterList} current={currentPage} bookId={bookInfo.bookId} onChooseEpisode={chooseEpisode}/>
+      <RightList
+        chapterList={chapterList}
+        current={currentPage}
+        bookId={bookInfo.bookId}
+        onChooseEpisode={chooseEpisode}/>
     </div>
     {/* 相关剧集 */}
     <div className={styles.bottomBox}>
@@ -190,7 +200,7 @@ const PcEpisode: FC<IProps> = (
           bookInfo={bookInfo}
           onChooseEpisode={chooseEpisode}/> : null}
 
-      <PcLike dataSource={recommends}/>
+      <PcLike dataSource={recommends} onBookClick={onBookClick}/>
     </div>
   </main>
 }

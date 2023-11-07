@@ -10,7 +10,7 @@ interface IProps {
   keywordList: IKeywordItem[]
   pageNo: number;
   totalPage: number;
-  keywordClick: (keyword: string) => void;
+  keywordClick: (item: IKeywordItem) => void;
   breadData: IBreadcrumb[];
 }
 
@@ -27,7 +27,7 @@ const PcKeywords: FC<IProps> = ({ pageNo, totalPage, keywordList, keywordClick, 
           return <Link
             key={val.id}
             href={`/tag/${val.id}`}
-            onClick={() => keywordClick(val.name)}
+            onClick={() => keywordClick(val)}
             className={styles.keywordItem}>
             {val.name}
           </Link>

@@ -62,14 +62,14 @@ const useLogParams = (pageProps: any): void => {
     } else if (router.pathname === pathData.film) {
       // 书籍详情页
       HiveLog.pageView('FilmPage_view', {
-        book_ID: pageProps?.bookInfo?.bookId,
-        book_name: pageProps?.bookInfo?.bookName,
+        bookId: pageProps?.bookInfo?.bookId,
+        bookName: pageProps?.bookInfo?.bookName,
       });
     } else if (router.pathname.includes(pathData.episode)) {
       // 书籍详情页
       HiveLog.pageView('ReadPage_view', {
-        book_ID: pageProps?.bookInfo?.bookId,
-        book_name: pageProps?.bookInfo?.bookName,
+        bookId: pageProps?.bookInfo?.bookId,
+        bookName: pageProps?.bookInfo?.bookName,
         chapterId: (pageProps?.chapterList || [])?.[pageProps.currency]?.id,
         chapterName: (pageProps?.chapterList || [])?.[pageProps.currency]?.name,
       });
