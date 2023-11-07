@@ -33,7 +33,6 @@ const useLogParams = (pageProps: any): void => {
     const { ip, h5fingerPrint, bid } = clipboard;
     if (ip && h5fingerPrint && bid) {
       setIsReady(true)
-      netIpUa(clipboard);
       HiveLog.appLaunch();
     }
   }, [clipboard]); // eslint-disable-line
