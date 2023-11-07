@@ -15,6 +15,7 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { Ellipsis } from "antd-mobile";
+import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 
 
 interface IProps {
@@ -24,10 +25,21 @@ interface IProps {
   recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
+  onBookClick: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
 const MFilm: FC<IProps> = (
-  { bookInfo, isApple, recommends = [], chapterList = [], chapterName, breadData }) => {
+  {
+    bookInfo,
+    isApple,
+    recommends = [],
+    chapterList = [],
+    chapterName,
+    breadData,
+    onBookClick,
+    onChannel
+  }) => {
   const { t } = useTranslation();
   const [chapterFirstId, setChapterId] = useState(chapterList&&chapterList.length>0&&chapterList[0].id)//设置剧集的首剧集id
   const clipboard = useAppSelector(state => state.hive.clipboard)
@@ -49,7 +61,8 @@ const MFilm: FC<IProps> = (
 
   // 展示剧集弹框
   const showEpisodeDialog = () => {
-    setEpiDialog(true)
+    setEpiDialog(true);
+    HiveLog.track('EpisodesList_click')
   }
   // 关闭剧集弹框
   const closeEpisodeDialog = () => {
@@ -76,7 +89,11 @@ const MFilm: FC<IProps> = (
 
       {bookInfo?.typeTwoList && bookInfo?.typeTwoList.length > 0 ? <div className={styles.tagBox}>
         {(bookInfo?.typeTwoList || []).map(val => {
-          return <Link key={val.id}  href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+          return <Link
+            onClick={() => onChannel(val.name)}
+            key={val.id}
+            href={`/browse/${val.id}`}
+            className={styles.tagItem}>{val.name}</Link>
         })}
       </div> : null}
 
@@ -142,7 +159,7 @@ const MFilm: FC<IProps> = (
     <div style={recommends?.length>0 ? {} : {display:'none'}}>
       {/* <LikeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/> */}
       <LikeTitle title={t('bookInfo.recLike')}/>
-      <LikeItem dataSource={recommends || []}/>
+      <LikeItem dataSource={recommends || []} onBookClick={onBookClick}/>
     </div>
 
     <EpisopeDialog
@@ -151,46 +168,11 @@ const MFilm: FC<IProps> = (
       chapterList={chapterList}
       closeDialog={closeEpisodeDialog}
       showDialog={showDialog}/>
-    <div className={styles.navBox}>
-      <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
-        <Image
-          className={styles.navIcon}
-          width={64}
-          height={64}
-          src={'/images/book/episode-d.png'}
-          alt={'more'}
-        />
-        {/* <span>{t('home.privacyPolicy')}</span> */}
-        <span>{t('bookInfo.episodes')}</span>
-      </div>
-      <Link href={`/episode/${bookInfo.bookId}/${chapterFirstId}`} className={styles.playIcon}>
-        <Image
-          className={styles.navIcon}
-          width={64}
-          height={64}
-          src={'/images/book/botplay-d.png'}
-          alt={'more'}
-        />
-        {/* <span>{t('home.termsOfUse')}</span> */}
-        <span className={styles.playTxt}>{t('home.play')}</span>
-      </Link>
-      <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
-        onCopyText(copyText, () => {
-          netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-        })
-      }}>
-        <Image
-          className={styles.navIcon}
-          width={64}
-          height={64}
-          src={'/images/book/download-d.png'}
-          alt={'more'}
-        />
-        {/* <span>{t('home.termsOfUse')}</span> */}
-        <span>{t('appPage.download')}</span>
-      </Link>
-    </div>
+    <EpisodeNav
+      isApple={isApple}
+      bookInfo={bookInfo}
+      showEpisodeDialog={showEpisodeDialog}
+    />
   </div>
 
 }

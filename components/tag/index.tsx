@@ -16,6 +16,7 @@ interface IProps {
   totalPage: number;
   keywordId: string;
   keyword: string;
+  onBookClick: (book: ITagBookItem) => void;
 }
 
 const MTag: FC<IProps> = (
@@ -27,7 +28,7 @@ const MTag: FC<IProps> = (
     keyword,
     relationKeywords,
     breadData,
-
+    onBookClick
   }) => {
   const { t } = useTranslation();
   return <div className={styles.tagWrap}>
@@ -46,7 +47,7 @@ const MTag: FC<IProps> = (
     </div>
 
     {bookList.length > 0 ? <>
-      <MTagBookList keyword={keyword} dataSource={bookList}/>
+      <MTagBookList keyword={keyword} dataSource={bookList} onBookClick={onBookClick}/>
 
       {totalPage && totalPage > 1 ? <MorePagination
         prevPath={`/tag/${keywordId}/`}

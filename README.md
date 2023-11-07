@@ -6,7 +6,7 @@ SSR
 // 测试环境jenkins
 http://192.168.0.60:1808/jenkins/view/HWYC-TEST_QAT/job/TEST-haiwai_dramabox_ssr_qat/
 // 测试域名
-http://192.168.1.71:3000
+http://192.168.1.71:3001
 // 预发布域名
 https://yfbwww.dramaboxapp.com
 // 线上域名

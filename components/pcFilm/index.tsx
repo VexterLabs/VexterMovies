@@ -13,11 +13,20 @@ interface IProps {
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
   breadData: IBreadcrumb[];
+  onBookClick: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
-const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], chapterName, breadData}) => {
+const PcDetail: FC<IProps> = (
+  {
+    bookInfo,
+    recommends = [],
+    chapterList = [],
+    breadData,
+    onBookClick,
+    onChannel,
+  }) => {
   const { t } = useTranslation()
 
   return <main className={styles.detailWrap}>
@@ -50,7 +59,11 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
 
             <div className={styles.tagsContent}>
               { (bookInfo?.typeTwoList || []).map(val => {
-                return <Link key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+                return <Link
+                  onClick={() => onChannel(val.name)}
+                  key={val.id}
+                  href={`/browse/${val.id}`}
+                  className={styles.tagItem}>{val.name}</Link>
               })}
             </div>
           </div>
@@ -69,7 +82,7 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
         </div>
       </div>
       <PcSeries chapterList={chapterList} bookInfo={bookInfo}/>
-      <PcLike dataSource={recommends}/>
+      <PcLike dataSource={recommends} onBookClick={onBookClick}/>
     </div>
 
   </main>

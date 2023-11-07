@@ -8,6 +8,7 @@ import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { SSRConfig, useTranslation } from "next-i18next";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
@@ -25,23 +26,38 @@ const Film: NextPage<IProps> = (
 ) => {
 
   const { t } = useTranslation();
-
+  const HiveLog = useHiveLog();
   const breadData: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName },
-  ]
+  ];
+
+  const onBookClick = (book: IBookItem) => {
+    HiveLog.track("Recommend_click", {
+      bookId: book.bookId,
+      bookName: book.bookName
+    })
+  }
+  const onChannel = (name: string) => {
+    HiveLog.track("Channel_click", {
+      typeTwoName: name,
+    })
+  }
 
   return <>
     { isPc ?
       <PcDetail
+        onChannel={onChannel}
+        onBookClick={onBookClick}
         breadData={breadData}
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        chapterName={chapterName}
       /> :
       <MDetail
+        onChannel={onChannel}
+        onBookClick={onBookClick}
         breadData={breadData}
         chapterName={chapterName}
         isApple={isApple}

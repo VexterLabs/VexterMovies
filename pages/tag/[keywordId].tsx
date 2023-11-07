@@ -9,6 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "typings/home.interface";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import { SSRConfig } from "next-i18next";
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps extends SSRConfig {
   bookList: ITagBookItem[];
@@ -35,10 +36,18 @@ const ConvergencePage: NextPage<IProps> = (
     { title: 'Keywords', link: "/keywords" },
     { title: keyword },
   ]
+  const HiveLog = useHiveLog();
+  const onBookClick = (book: ITagBookItem) => {
+    HiveLog.track("PolymerizationBook_click", {
+      bookId: book.bookId,
+      bookName: book.bookName,
+    })
+  }
 
   return <>
     {isPc ?
       <PcTag
+        onBookClick={onBookClick}
         breadData={breadData}
         relationKeywords={relationKeywords}
         pageNo={currentPage}
@@ -47,6 +56,7 @@ const ConvergencePage: NextPage<IProps> = (
         keyword={keyword}
         bookList={bookList}/> :
       <MTag
+        onBookClick={onBookClick}
         breadData={breadData}
         relationKeywords={relationKeywords}
         pageNo={currentPage}
@@ -68,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   const response = await netKeywordTag({
     id: keywordId,
     pageNum: Number(page) || 1,
-    pageSize: 30,
+    pageSize: 10,
   })
 
   if (response === 'BadRequest_404' || !response) {
