@@ -26,7 +26,7 @@ export interface IBookItem {
   typeTwoIds: string[];
   language: string;
   simpleLanguage?: ELanguage;
-
+  typeTwoList?: { id: number; name: string; }[]
   name: string;
   actionType: string;
   action: string;

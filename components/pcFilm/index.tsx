@@ -49,8 +49,8 @@ const PcDetail: FC<IProps> = ({ bookInfo, recommends = [], chapterList = [], cha
             </p>
 
             <div className={styles.tagsContent}>
-              { (bookInfo?.tags || []).map(val => {
-                return <div key={val} className={styles.tagItem}>{val}</div>
+              { (bookInfo?.typeTwoList || []).map(val => {
+                return <Link key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
               })}
             </div>
           </div>
