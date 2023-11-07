@@ -6,6 +6,7 @@ import Link from "next/link";
 import ClientConfig from "@/client.config";
 import { useTranslation } from "next-i18next";
 import Language from "@/components/layout/pcHeader/Language";
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
 
@@ -21,16 +22,20 @@ const PcHeader: FC<IProps> = () => {
   ]
 
   const [isLanguageShow, setIsLanguageShow] = useState<boolean | false>(false);
-
+  const HiveLog = useHiveLog()
   useEffect(() => {
-    if(router && router.pathname) setIsLanguageShow(!!(['/', '/home'].indexOf(router.pathname) !== -1))
+    if(router && router.pathname) {
+      setIsLanguageShow((router.pathname === '/'))
+    }
   }, [router])
 
   return <>
     <div className={styles.navWrap}>
       <div className={styles.navContent}>
         <div className={styles.navLeft}>
-          <Link href={'/'} className={styles.logoTxtBox}>
+          <Link href={'/'} className={styles.logoTxtBox} onClick={() => {
+            HiveLog.track('Logo_click')
+          }}>
             <Image
               className={styles.logoTxt}
               width={33}
@@ -42,15 +47,23 @@ const PcHeader: FC<IProps> = () => {
           </Link>
           <div className={styles.navBox}>
             { MenuData.map(val => {
-              return <Link key={val.id} href={val.link} className={(router.asPath === val.link || router.asPath.includes(val.id)) ? styles.navItemActive : styles.navItem}>
+              return <Link
+                key={val.id}
+                href={val.link}
+                onClick={() => {
+                  if (val.id === 'index') {
+                    HiveLog.track('FirstPage_click')
+                  } else if (val.id === "browse") {
+                    HiveLog.track('TopClassify_click')
+                  }
+                }}
+                className={(router.asPath === val.link || router.asPath.includes(val.id)) ? styles.navItemActive : styles.navItem}>
                 <div className={styles.navItemLabel}>{val.label}</div>
               </Link>
             }) }
           </div>
         </div>
-        {  
-          !!isLanguageShow && <Language/>
-        }
+        {isLanguageShow ? <Language/> : null}
       </div>
     </div>
     <div className={styles.navOccupy}/>
