@@ -4,7 +4,7 @@ import PaginationCom from "@/components/common/paginationCom";
 import { IKeywordItem } from "typings/book.interface";
 import { PcEmpty } from "@/components/common/empty";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import styles from '@/components/PcKeywords/PcKeywords.module.scss';
+import styles from '@/components/pcKeywords/PcKeywords.module.scss';
 
 interface IProps {
   keywordList: IKeywordItem[]

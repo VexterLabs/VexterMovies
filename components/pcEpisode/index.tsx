@@ -8,8 +8,8 @@ import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
-import styles from "@/components/pcEpisode/index.module.scss";
 import { Ellipsis } from "antd-mobile";
+import styles from "@/components/pcEpisode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -158,11 +158,11 @@ const PcEpisode: FC<IProps> = (
                 </span>
             }
             content={bookInfo.introduction}/>
-        </div>
-        <div className={styles.tagBox}>
-          {(bookInfo?.tags || []).slice(0, 2).map(val => {
-            return <div key={val} className={styles.tagItem}>{val}</div>
-          })}
+          <div className={styles.tagBox}>
+            {(bookInfo?.tags || []).slice(0, 2).map(val => {
+              return <div key={val} className={styles.tagItem}>{val}</div>
+            })}
+          </div>
         </div>
       </div>
 
@@ -170,14 +170,16 @@ const PcEpisode: FC<IProps> = (
       <RightList chapterList={chapterList} current={currentPage} bookId={bookInfo.bookId} onChooseEpisode={chooseEpisode}/>
     </div>
     {/* 相关剧集 */}
-    {chapterList.length > 0 ?
-      <RelatedEpisode
-        chapterList={chapterList}
-        current={currentPage}
-        bookInfo={bookInfo}
-        onChooseEpisode={chooseEpisode}/> : null}
+    <div className={styles.bottomBox}>
+      {chapterList.length > 0 ?
+        <RelatedEpisode
+          chapterList={chapterList}
+          current={currentPage}
+          bookInfo={bookInfo}
+          onChooseEpisode={chooseEpisode}/> : null}
 
-    <PcLike dataSource={recommends}/>
+      <PcLike dataSource={recommends}/>
+    </div>
   </main>
 }
 
