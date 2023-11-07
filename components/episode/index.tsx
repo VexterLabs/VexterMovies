@@ -17,6 +17,7 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
+import { Ellipsis } from "antd-mobile";
 
 
 interface IProps {
@@ -62,7 +63,7 @@ const WapEpisode:  FC<IProps> = (
       { title: t('home.home'), link: "/" },
       { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
       { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
-      { title: currentPage + 1},
+      { title: chapterList?.[currentPage]?.name },
     ]
     let preChapterData:any //后面再改
     if(curChapterData) {
@@ -172,16 +173,39 @@ const WapEpisode:  FC<IProps> = (
               <p className={styles.epoScore}>{bookInfo.chapterCount}</p>
             </div>
             {
-              bookInfo?.tags && bookInfo.tags.length > 0 ?
+              bookInfo?.typeTwoList && bookInfo.typeTwoList.length > 0 ?
                 <div className={styles.videoTag}>
-                {(bookInfo?.tags || []).slice(0, 5).map((val,ind) => {
-                  return <div key={ind} className={styles.tagItem}>{val}</div>
+                {(bookInfo?.typeTwoList || []).slice(0, 5).map((val,ind) => {
+                  return <Link key={ind} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
                 })}
               </div> : null
             }
-            <div className={styles.videoDesc}>
-              <p>{bookInfo.introduction}</p>
-            </div>
+            <Ellipsis
+              rows={2}
+              className={styles.introText}
+              direction='end'
+              expandText={
+                <span className={styles.expand}>
+                  {t("home.more")}
+                  <Image
+                    className={styles.moreIcon}
+                    width={24}
+                    height={24}
+                    src={'/images/episode/wap-more.png'}
+                    alt={''}
+                  />
+                </span>
+              }
+              collapseText={<span className={styles.retract}>
+                <Image
+                  className={styles.moreIcon}
+                  width={24}
+                  height={24}
+                  src={'/images/episode/wap-more.png'}
+                  alt={''}
+                />
+              </span>}
+              content={bookInfo.introduction} />
           </div>
         </div>
         <div  className={styles.epiList}>

@@ -10,6 +10,8 @@ import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
 import { Ellipsis } from "antd-mobile";
 import styles from "@/components/pcEpisode/index.module.scss";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -28,20 +30,29 @@ const PcEpisode: FC<IProps> = (
     breadData,
   }) => {
 
+  const { t } = useTranslation();
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({ } as Player);
   const episodeIndex = useRef(current);
   const [errorBgsrc, setErrorBg] = useState('')
-  // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
-
+  const breadDatas: IBreadcrumb[] = [
+    { title: t('home.home'), link: "/" },
+    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+    { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+    { title: chapterList?.[currentPage]?.name },
+  ]
+  // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
     const curId = chapterList.find((item, index) => index === currentPage)
     const cover = curId?.cover
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
+
   }, [chapterList]);
+
+
 
   // 播放器设置
   useEffect(() => {
@@ -97,7 +108,7 @@ const PcEpisode: FC<IProps> = (
 
   return <main className={styles.episodeWrap}>
     <div className={styles.episodeHeader}>
-      <Breadcrumb data={breadData}/>
+      <Breadcrumb data={breadDatas}/>
     </div>
 
     <div className={styles.videoBox}>
@@ -136,7 +147,8 @@ const PcEpisode: FC<IProps> = (
             rows={1}
             className={styles.videoDesc}
             expandText={
-              <span className={styles.extend}>More
+              <span className={styles.extend}>
+                {t('home.more')}
                  <Image
                    className={styles.moreIcon}
                    width={16}
@@ -159,8 +171,8 @@ const PcEpisode: FC<IProps> = (
             }
             content={bookInfo.introduction}/>
           <div className={styles.tagBox}>
-            {(bookInfo?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
+            {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
+              return <Link key={val.id} href={`/browsw/${val.id}`} className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
         </div>

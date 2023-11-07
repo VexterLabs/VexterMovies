@@ -51,15 +51,12 @@ const PcLike: FC<IProps> = ({ dataSource = [] }) => {
               <span className={styles.chapterText}>{`${book.chapterCount} ${t("home.episodes")}`}</span>
             </Link>
           </div>
-
           <Link href={`/film/${book.bookId}`} className={styles.bookName}>
             {book.bookName}
           </Link>
-          <Link href={`/film/${book.bookId}`} className={styles.tagBox}>
-            {(book?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
-          </Link>
+          {book?.typeTwoIds && book?.typeTwoIds.length > 0 ?
+            <Link href={`/browse/${book.typeTwoIds[0]}`} className={styles.tagItem}>{book.typeTwoName}</Link> : null
+          }
         </div>
       })}
     </div>

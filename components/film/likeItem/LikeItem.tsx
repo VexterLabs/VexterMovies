@@ -29,13 +29,10 @@ const LikeItem: FC<IProps> = ({ dataSource }) => {
         <Link href={`/film/${detailItem.bookId}`} className={styles.bookName} replace>
           {detailItem.bookName}
         </Link>
-        <Link href={`/film/${detailItem.bookId}`} className={styles.bookTags} replace>
-          <div className={styles.tagBox}>
-            {(detailItem?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
-          </div>
-        </Link>
+        {detailItem.typeTwoIds && detailItem.typeTwoIds.length > 0 ?
+          <Link href={`/browse/${detailItem.typeTwoIds[0]}`} className={styles.bookTags}>
+            { detailItem.typeTwoName }
+          </Link> : null}
       </div>
     }) : null}
   </div>

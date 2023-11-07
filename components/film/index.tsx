@@ -14,6 +14,7 @@ import { onCopyText } from "@/utils/copy";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
+import { Ellipsis } from "antd-mobile";
 
 
 interface IProps {
@@ -44,11 +45,8 @@ const MFilm: FC<IProps> = (
     introduction
   } = bookInfo;
 
-  const [isShowMore, setIsShowMore] = useState(false);//查看介绍详情
   const [showDialog, setEpiDialog] = useState(false);//展示所有剧集的弹框
-  const onMore = () => {
-    setIsShowMore(true)
-  }
+
   // 展示剧集弹框
   const showEpisodeDialog = () => {
     setEpiDialog(true)
@@ -76,9 +74,9 @@ const MFilm: FC<IProps> = (
 
       {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
 
-      {bookInfo?.tags && bookInfo?.tags.length > 0 ? <div className={styles.tagBox}>
-        {(bookInfo?.tags || []).map(val => {
-          return <div key={val} className={styles.tagItem}>{val}</div>
+      {bookInfo?.typeTwoList && bookInfo?.typeTwoList.length > 0 ? <div className={styles.tagBox}>
+        {(bookInfo?.typeTwoList || []).map(val => {
+          return <Link key={val.id}  href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
         })}
       </div> : null}
 
@@ -97,8 +95,31 @@ const MFilm: FC<IProps> = (
 
       {introduction ? <div className={styles.introBox}>
         <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
-        <p className={isShowMore ? styles.introTextMore : styles.introText}>{introduction}</p>
-        {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
+
+        <Ellipsis
+          rows={3}
+          className={styles.introText}
+          direction='end'
+          expandText={<span className={styles.expand}>
+            {t("home.more")}
+            <Image
+              className={styles.moreIcon}
+              width={24}
+              height={24}
+              src={'/images/episode/wap-more.png'}
+              alt={''}
+            />
+          </span>}
+          collapseText={<span className={styles.retract}>
+            <Image
+              className={styles.moreIcon}
+              width={24}
+              height={24}
+              src={'/images/episode/wap-more.png'}
+              alt={''}
+            />
+          </span>}
+          content={introduction} />
       </div> : null}
     </div>
 

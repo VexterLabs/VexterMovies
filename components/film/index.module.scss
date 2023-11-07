@@ -109,19 +109,45 @@
   }
 
   .introText {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    word-wrap: break-word;
-  }
-
-  .introTextMore, .introText {
     font-size: 0.28rem;
     font-weight: 400;
     color: rgba(255,255,255,0.4);
     line-height: 0.4rem;
+    position: relative;
+
+    a {
+      position: absolute;
+      right: 0.32rem;
+      bottom: 0;
+      z-index: 9;
+      text-align: right;
+      width: 0.9rem;
+      font-size: 0.28rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      line-height: 0.34rem;
+    }
+
+    .expand, .retract {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 1.2rem;
+      height: 0.4rem;
+      background: linear-gradient(270deg, #000000 0%, rgba(20,20,20,0) 100%);
+
+      .moreIcon {
+        margin-left: 0.02rem;
+        width: 0.24rem;
+        height: 0.24rem;
+      }
+    }
+    .retract {
+      .moreIcon {
+        margin-left: 0;
+        transform: rotate(180deg);
+      }
+    }
   }
 
   .introMore {
