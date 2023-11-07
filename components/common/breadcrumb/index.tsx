@@ -20,7 +20,7 @@ const Breadcrumb: FC<IProps> = ({ data, isWap }) => {
   const HiveLog = useHiveLog()
   return <div className={classNames(styles.crumbsWrap, isWap && styles.crumbsWrapWap)}>
     {data.map((item, itemIndex) => {
-      return <div key={item.title} className={styles.crumbItem}>
+      return <div key={itemIndex + String(item.title)} className={styles.crumbItem}>
         { item?.link
           ? <Link
             href={item.link}
