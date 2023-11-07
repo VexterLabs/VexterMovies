@@ -172,7 +172,7 @@ const PcEpisode: FC<IProps> = (
             content={bookInfo.introduction}/>
           <div className={styles.tagBox}>
             {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
-              return <Link key={val.id} href={`/browsw/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+              return <Link key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
         </div>
