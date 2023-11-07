@@ -173,10 +173,10 @@ const WapEpisode:  FC<IProps> = (
               <p className={styles.epoScore}>{bookInfo.chapterCount}</p>
             </div>
             {
-              bookInfo?.tags && bookInfo.tags.length > 0 ?
+              bookInfo?.typeTwoList && bookInfo.typeTwoList.length > 0 ?
                 <div className={styles.videoTag}>
-                {(bookInfo?.tags || []).slice(0, 5).map((val,ind) => {
-                  return <div key={ind} className={styles.tagItem}>{val}</div>
+                {(bookInfo?.typeTwoList || []).slice(0, 5).map((val,ind) => {
+                  return <Link key={ind} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
                 })}
               </div> : null
             }

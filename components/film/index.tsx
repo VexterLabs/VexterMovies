@@ -74,9 +74,9 @@ const MFilm: FC<IProps> = (
 
       {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
 
-      {bookInfo?.tags && bookInfo?.tags.length > 0 ? <div className={styles.tagBox}>
-        {(bookInfo?.tags || []).map(val => {
-          return <div key={val} className={styles.tagItem}>{val}</div>
+      {bookInfo?.typeTwoList && bookInfo?.typeTwoList.length > 0 ? <div className={styles.tagBox}>
+        {(bookInfo?.typeTwoList || []).map(val => {
+          return <Link key={val.id}  href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
         })}
       </div> : null}
 

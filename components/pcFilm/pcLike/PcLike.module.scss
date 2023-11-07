@@ -82,28 +82,21 @@
         margin-top: 0.12rem;
       }
 
-      .tagBox {
+      .tagItem {
         margin-top: 0.08rem;
+        display: inline-block;
         font-size: 0.12rem;
         font-weight: 400;
         color: rgba(255, 255, 255, 0.4);
-        grid-gap: 0.08rem;
-        display: flex;
-        flex-wrap: wrap;
+        border-radius: 0.12rem;
+        padding: 0 0.1rem;
+        background-color: rgba(255, 255, 255, 0.08);
+        max-width: 2rem;
         height: 0.24rem;
+        line-height: 0.24rem;
         overflow: hidden;
-
-        .tagItem {
-          border-radius: 0.12rem;
-          padding: 0 0.1rem;
-          background-color: rgba(255, 255, 255, 0.08);
-          max-width: 2rem;
-          height: 0.24rem;
-          line-height: 0.24rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       &:hover {

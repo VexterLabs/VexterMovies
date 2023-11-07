@@ -4,13 +4,14 @@ import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
-import { useTranslation } from "next-i18next";
 import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
 import { Ellipsis } from "antd-mobile";
 import styles from "@/components/pcEpisode/index.module.scss";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -48,10 +49,10 @@ const PcEpisode: FC<IProps> = (
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
-    
+
   }, [chapterList]);
 
-  
+
 
   // 播放器设置
   useEffect(() => {
@@ -170,8 +171,8 @@ const PcEpisode: FC<IProps> = (
             }
             content={bookInfo.introduction}/>
           <div className={styles.tagBox}>
-            {(bookInfo?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
+            {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
+              return <Link key={val.id} href={`/browsw/${val.id}`} className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
         </div>

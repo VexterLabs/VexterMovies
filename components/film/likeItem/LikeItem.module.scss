@@ -14,7 +14,7 @@
       border-radius: 0.08rem;
       display: flex;
       align-items: center;
-      
+
       .imageItem {
         width: 100%;
         height: auto;
@@ -38,25 +38,18 @@
       line-height: 0.32rem;
     }
     .bookTags {
-      .tagBox {
-        display: flex;
-        .tagItem {
-          padding: 0.05rem 0.12rem;
-          backdrop-filter: blur(20px);
-          font-size: 0.18rem;
-          background-color: rgba(255, 255, 255, 0.1);
-          border-radius: 0.18rem;
-          margin-right: 0.08rem;
-          color: rgba(255,255,255,0.6);
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          margin-top: 0.08rem;
-        }
-        
-      }
-      
-      
+      display: inline-block;
+      padding: 0.05rem 0.12rem;
+      backdrop-filter: blur(20px);
+      font-size: 0.18rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 0.18rem;
+      margin-right: 0.08rem;
+      color: rgba(255,255,255,0.6);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin-top: 0.08rem;
     }
   }
 }
