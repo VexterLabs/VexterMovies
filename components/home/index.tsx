@@ -3,10 +3,10 @@ import SwiperNormal from "@/components/home/swiperNormal/SwiperNormal";
 import HomeTitle from "@/components/home/homeTitle/HomeTitle";
 import FirstItem from "@/components/home/firstItem/FirstItem";
 import { ColumnNameRoute, IBookItem, IHomeResItem } from "@/typings/home.interface";
-import styles from '@/components/home/MHome.module.scss'
 import { MEmpty } from "@/components/common/empty";
 import MFooter from "@/components/layout/mFooter/MFooter";
 import { useTranslation } from "next-i18next";
+import styles from '@/components/home/index.module.scss'
 
 interface IProps {
   bigList: IBookItem[];
@@ -20,7 +20,7 @@ const MHome: FC<IProps> = ({ bigList, smallData }) => {
     <div className={styles.homeWrap}>
       {bigList.length > 0 ? <SwiperNormal bigList={bigList}/> : null}
 
-      {smallData.map((item, itemIndex) => {
+      {smallData.map((item) => {
         return <div key={item.id} className={styles.mainContent}>
           <HomeTitle title={t(item.name)} href={`/more/${ColumnNameRoute[item.name]}`}/>
           <FirstItem dataSource={item.items || []} />
