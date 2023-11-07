@@ -11,7 +11,6 @@ interface IProps {
   isPc: boolean;
 }
 
-/** 小说阅读吧 */
 const AgreementPrivacy: NextPage<IProps> = ({ isPc }) => {
   const { t } = useTranslation()
   return <>
@@ -43,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   return {
     props: {
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }
 }

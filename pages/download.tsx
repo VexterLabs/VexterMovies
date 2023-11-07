@@ -22,14 +22,14 @@ const DownloadApp: NextPage<IProps> = ({ isPc, isApple }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || '';
-  const { bookId = '' } = query as { bookId: string; };
+  const { filmId = '' } = query as { filmId: string; };
   // 返回的参数将会按照 key 值赋值到 Home 组件的同名入参中
   return {
     props: {
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
-      bookId,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common']))
+      filmId,
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common']))
     }
   }
 }

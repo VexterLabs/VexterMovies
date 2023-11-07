@@ -31,7 +31,7 @@ const MMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
         src={'/images/home/pc-more.png'}
         alt={'>'}
       />
-      <div className={styles.crumbsItem}>{moreData.name}</div>
+      <div className={styles.crumbsItem}>{t(moreData?.name) || ''}</div>
     </div>
     {moreData.items && moreData.items.length > 0 ?
       <>

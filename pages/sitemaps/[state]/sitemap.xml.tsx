@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       ...options,
       loc: options.loc + val,
       alternateRefs: languageArr.map(lan => {
-        const _loc = lan === ELanguage.ZhHans ? val : `/${lan}${val}`
+        const _loc = lan === ELanguage.English ? val : `/${lan}${val}`
         return { href: options.loc + _loc, hreflang: lan, hrefIsAbsolute: false }
       }),
       changefreq: 'monthly',
@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (response === 'BadRequest_404') return { notFound: true }
     let fields: ISitemapField[] = [];
     (response || []).forEach(val => {
-      const pages = Array.from({ length: Math.ceil(val.bookCount / 30) }, (v, i) => {
+      const pages = Array.from({ length: Math.ceil(val.bookCount / 18) }, (v, i) => {
         const _loc = `${options.loc}/more/${ColumnNameRoute?.[val.name]}` + (i > 0 ? `/${i + 1}` : '')
         return { ...options, loc: _loc }
       })
@@ -51,13 +51,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // 浏览
   if (state === 'browse') {
     const response = await netBrowseType();
+    // console.log(response);
     if (response === 'BadRequest_500') return { redirect: { destination: '/500', permanent: false } }
     if (response === 'BadRequest_404') return { notFound: true }
     let fields: ISitemapField[] = [];
     (response || []).forEach(val => {
-      const pages = Array.from({ length: Math.ceil(val.total / 60) }, (v, i) => {
+      const pages = Array.from({ length: Math.ceil(val.total / 18) }, (v, i) => {
         let _loc = `/browse/${val.id}`;
-        if (val.simpleLanguage !== ELanguage.ZhHans) {
+        if (val.simpleLanguage !== ELanguage.English) {
           _loc = '/' + val.simpleLanguage + _loc
         }
         if (i > 0) {
@@ -72,8 +73,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 
   // 书籍详情
-  if (state === 'books') {
+  if (state === 'films') {
     const response = await netAllBook({ searchType: ESearchType.ALL });
+    // console.log(response);
     const bookResponse = await netAllBook({ searchType: ESearchType.INCREASE });
     if (response === 'BadRequest_500' || bookResponse === 'BadRequest_500') return {
       redirect: {
@@ -90,10 +92,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         ...options,
         lastmod: isNewBook ? book.utime : options.lastmod,
         changefreq: isNewBook ? 'daily' : options.changefreq,
-        loc: `${options.loc}/film/${book.bookId}`,
+        loc: `${options.loc}/detail/${book.bookId}`,
         alternateRefs: (book.languages || []).map(lan => {
-          let _loc = `/film/${book.bookId}`;
-          if (lan !== ELanguage.ZhHans) {
+          let _loc = `/detail/${book.bookId}`;
+          if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
           return {
@@ -119,10 +121,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         ...options,
         changefreq: 'daily',
         lastmod: book.utime,
-        loc: `${options.loc}/film/${book.bookId}`,
+        loc: `${options.loc}/detail/${book.bookId}`,
         alternateRefs: (book.languages || []).map(lan => {
-          let _loc = `/film/${book.bookId}`;
-          if (lan !== ELanguage.ZhHans) {
+          let _loc = `/detail/${book.bookId}`;
+          if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
           return {

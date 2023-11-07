@@ -1,0 +1,184 @@
+import React, { FC, useEffect, useRef, useState, } from "react";
+import Player, { Events } from 'xgplayer';
+import 'xgplayer/dist/index.min.css';
+import Image from "next/image";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
+import { useRouter } from "next/router";
+import PcLike from '@/components/pcFilm/pcLike';
+import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import RightList from "@/components/pcEpisode/rightList/RightList";
+import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
+import styles from "@/components/pcEpisode/index.module.scss";
+import { Ellipsis } from "antd-mobile";
+
+interface IProps {
+  bookInfo: IBookItem;
+  recommends: IBookItem[];
+  chapterList: IChapterList[];
+  current: number;
+  breadData: IBreadcrumb[];
+}
+
+const PcEpisode: FC<IProps> = (
+  {
+    bookInfo,
+    recommends = [],
+    chapterList = [],
+    current = 0,
+    breadData,
+  }) => {
+
+  const router = useRouter()
+  const [currentPage, setCurrentPage] = useState(current);
+  const playerInstance = useRef<Player>({ } as Player);
+  const episodeIndex = useRef(current);
+  const [errorBgsrc, setErrorBg] = useState('')
+  // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
+
+  useEffect(() => {
+    const curId = chapterList.find((item, index) => index === currentPage)
+    const cover = curId?.cover
+    if (curId?.unlock === false) {
+      setErrorBg(cover as string)
+    }
+  }, [chapterList]);
+
+  // 播放器设置
+  useEffect(() => {
+    playerInstance.current = new Player({
+      id: "playVideo",
+      autoplay: true,
+      autoplayMuted: false,
+      url: chapterList[currentPage]?.mp4,
+      width: '100%',
+      height: '100%',
+      videoFillMode: "fillHeight",
+      playsinline: true,
+      ignores: ['playbackRate'],
+      cssFullscreen: false,
+    })
+
+    if (playerInstance.current) {
+      // 播放
+      playerInstance.current.on(Events.PLAY, () => {})
+      // EVENTS.ENDED 结束播放,播放完后
+      playerInstance.current.on(Events.ENDED, () => {
+        const nextChapter = chapterList[episodeIndex.current + 1];
+        if (nextChapter) {
+          router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
+          setCurrentPage(prevState => prevState + 1);
+          episodeIndex.current += 1;
+          if (nextChapter.mp4 && nextChapter.unlock) {
+            playerInstance.current.playNext({
+              url: nextChapter.mp4
+            })
+          } else {
+            setErrorBg(nextChapter.cover)
+          }
+        }
+      })
+    }
+  }, []);
+
+  // 点击右侧全部剧集，选择播放剧集
+  const chooseEpisode = async (index: number) => {
+    setCurrentPage(index);
+    episodeIndex.current = index;
+    const item = chapterList[index];
+    setErrorBg(item.unlock ? '' : item.cover)
+
+    if (!item.unlock) return
+      if (playerInstance.current) {
+        playerInstance.current.currentTime = 0;
+        await playerInstance.current.switchURL(item?.mp4, { seamless: true, currentTime: 0 });
+        playerInstance.current.play();
+      }
+  }
+
+  return <main className={styles.episodeWrap}>
+    <div className={styles.episodeHeader}>
+      <Breadcrumb data={breadData}/>
+    </div>
+
+    <div className={styles.videoBox}>
+      <div className={styles.leftVideo}>
+        <div className={styles.videoContainer}>
+          <div id="playVideo"/>
+          {errorBgsrc ? <div className={styles.downloads}>
+            <Image
+              className={styles.errBg}
+              width={398}
+              height={708}
+              src={errorBgsrc}
+              alt='photo'/>
+            <div className={styles.downloadMark}/>
+          </div> : null}
+          {errorBgsrc ?<div className={styles.downInfo}>
+            <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
+            <div className={styles.btnDown}>Download the App to continue watching</div>
+          </div> : null}
+        </div>
+
+        <div className={styles.videoInfo}>
+          <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
+          <p className={styles.videoStar}>
+            <Image
+              className={styles.imageStar}
+              src={'/images/book/star-d.png'}
+              width={24}
+              height={24}
+              alt="star"
+            />
+            <span className={styles.videoScore}>{bookInfo.chapterCount}</span>
+          </p>
+
+          <Ellipsis
+            rows={1}
+            className={styles.videoDesc}
+            expandText={
+              <span className={styles.extend}>More
+                 <Image
+                   className={styles.moreIcon}
+                   width={16}
+                   height={16}
+                   src={'/images/episode/more.png'}
+                   alt={''}
+                 />
+                </span>
+            }
+            collapseText={
+              <span className={styles.retract}>
+                   <Image
+                     className={styles.moreIcon}
+                     width={16}
+                     height={16}
+                     src={'/images/episode/more.png'}
+                     alt={''}
+                   />
+                </span>
+            }
+            content={bookInfo.introduction}/>
+        </div>
+        <div className={styles.tagBox}>
+          {(bookInfo?.tags || []).slice(0, 2).map(val => {
+            return <div key={val} className={styles.tagItem}>{val}</div>
+          })}
+        </div>
+      </div>
+
+      {/* 视频右侧所有剧集 */}
+      <RightList chapterList={chapterList} current={currentPage} bookId={bookInfo.bookId} onChooseEpisode={chooseEpisode}/>
+    </div>
+    {/* 相关剧集 */}
+    {chapterList.length > 0 ?
+      <RelatedEpisode
+        chapterList={chapterList}
+        current={currentPage}
+        bookInfo={bookInfo}
+        onChooseEpisode={chooseEpisode}/> : null}
+
+    <PcLike dataSource={recommends}/>
+  </main>
+}
+
+export default PcEpisode;

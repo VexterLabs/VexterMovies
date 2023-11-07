@@ -1,0 +1,64 @@
+.firstItemWrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 0.07rem;
+  padding: 0 0.32rem;
+  .itemBox {
+    width: 2.18rem;
+    // padding-bottom: 0.32rem;
+    margin-bottom: 0.16rem;
+    .bookImage {
+      width: 2.24rem;
+      height: 2.98rem;
+      overflow: hidden;
+      border-radius: 0.08rem;
+      display: flex;
+      align-items: center;
+      
+      .imageItem {
+        width: 100%;
+        height: auto;
+        min-height: 2.98rem;
+      }
+    }
+
+    .bookName {
+      padding-top: 0.16rem;
+      display: block;
+      width: 2.18rem;
+      color: #FFFFFF;
+      font-size: 0.28rem;
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      word-wrap: break-word;
+      line-height: 0.32rem;
+    }
+    .bookTags {
+      .tagBox {
+        display: flex;
+        .tagItem {
+          padding: 0.05rem 0.12rem;
+          backdrop-filter: blur(20px);
+          font-size: 0.18rem;
+          background-color: rgba(255, 255, 255, 0.1);
+          border-radius: 0.18rem;
+          margin-right: 0.08rem;
+          color: rgba(255,255,255,0.6);
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-top: 0.08rem;
+        }
+        
+      }
+      
+      
+    }
+  }
+}
+
+

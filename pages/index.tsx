@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import React from "react";
 import { netHomeData } from "@/server/home";
 import { EHomeStyle, ELanguage, IBookItem, IHomeResItem } from "@/typings/home.interface";
-import PcHome from "@/components/pcHome/PcHome";
+import PcHome from "@/components/pcHome";
 import MHome from "@/components/home/MHome";
 import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }): P
       bigList,
       smallData,
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }
 }

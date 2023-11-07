@@ -60,7 +60,7 @@ export default Custom404;
 export const getStaticProps: GetStaticProps = async ({ locale }) =>{
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common']))
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common']))
     },
   };
 }

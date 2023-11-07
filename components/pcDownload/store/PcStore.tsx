@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import styles from "@/components/pcDownload/store/PcStore.module.scss";
 import QRCode from "qrcode.react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Toast } from "antd-mobile";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/store";
 import { ELanguage } from "@/typings/home.interface";
+import { onCopyText } from "@/utils/copy";
+import styles from "@/components/pcDownload/store/PcStore.module.scss";
 
 interface IProps {
 }
@@ -19,10 +19,10 @@ const PcStore: FC<IProps> = () => {
   const copyUrl = useAppSelector(state => {
     const bookId = state.hive.clipboard.bid;
     const locale = state.hive.language;
-    if (locale === ELanguage.ZhHans) {
-      return `${process.env.WebDomain}/download?bookId=${bookId}&path=${process.env.WebDomain + router.asPath}`
+    if (locale === ELanguage.English) {
+      return `${process.env.WebDomain}/download?filmId=${bookId}`
     }
-    return `${process.env.WebDomain}/${router.locale}/download?bookId=${bookId}&path=${process.env.WebDomain + '/' + locale + router.asPath}`
+    return `${process.env.WebDomain}/${router.locale}/download?filmId=${bookId}`
   })
 
   return <div className={styles.storeBox}>
@@ -31,11 +31,11 @@ const PcStore: FC<IProps> = () => {
     <div className={styles.storeContent}>
       <QRCode value={copyUrl} className={styles.qrCode}/>
       <p className={styles.copyTxt}>{t('appPage.copyGuide')}</p>
-      <CopyToClipboard text={copyUrl} onCopy={() => {
-        Toast.show(t('appPage.copied'))
-      }}>
-        <p className={styles.clickToCopy}>{t('appPage.clickCopy')}</p>
-      </CopyToClipboard>
+      <p className={styles.clickToCopy} onClick={() => {
+        onCopyText(copyUrl, () => {
+          Toast.show(t('appPage.copied'))
+        })
+      }}>{t('appPage.clickCopy')}</p>
     </div>
   </div>
 }

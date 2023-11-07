@@ -1,0 +1,84 @@
+import type { NextPage, GetServerSidePropsResult, GetServerSideProps } from 'next'
+import React from "react";
+import { netBookDetail } from "@/server/home";
+import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
+import { isIos, ownOs } from "@/utils/ownOs";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import PcEpisode from '@/components/pcEpisode';
+import WapEpisode from '@/components/episode'
+import { IBreadcrumb } from "@/components/common/breadcrumb";
+import { useTranslation } from "next-i18next";
+
+interface IProps {
+  isPc: boolean;
+  bookId: string;
+  bookInfo: IBookItem;
+  recommends: IBookItem[];
+  chapterList: IChapterList[];
+  isApple: boolean;
+  current: number;
+}
+
+const Episode: NextPage<IProps> = (
+  { isPc, bookInfo, isApple, recommends, chapterList, current }) => {
+  const { t } = useTranslation();
+
+
+  const breadData: IBreadcrumb[] = [
+    { title: t('home.home'), link: "/" },
+    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+    { title: bookInfo.bookName,  link: `/film/${bookInfo.bookId}`},
+    { title: chapterList?.[current]?.name },
+  ]
+
+  return <>
+    {isPc ?
+      <PcEpisode
+        breadData={breadData}
+        bookInfo={bookInfo}
+        recommends={recommends}
+        chapterList={chapterList}
+        current={current}
+      /> :
+      <WapEpisode
+        bookInfo={bookInfo}
+        recommends={recommends}
+        chapterList={chapterList}
+        chapterName={''}
+        currentPage={current}
+        isApple={isApple}
+      />}
+  </>
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
+  const ua = req?.headers['user-agent'] || ''
+  const { bookId, chapterId } = query as { bookId: string,chapterId: string};
+  if (!bookId) {
+    return { notFound: true };
+  }
+  const response = await netBookDetail(bookId, locale as ELanguage);
+
+  if (response === 'BadRequest_404') {
+    return { notFound: true }
+  }
+  if (response === 'BadRequest_500') {
+    return { redirect: { destination: '/500', permanent: false } }
+  }
+  const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
+  const current = chapterList.findIndex(val => val.id === chapterId) || 0;
+  return {
+    props: {
+      bookId,
+      bookInfo: book,
+      isPc: ownOs(ua).isPc,
+      isApple: isIos(ua),
+      recommends,
+      chapterList,
+      current,
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
+    },
+  }
+}
+
+export default Episode;

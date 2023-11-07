@@ -1,0 +1,8 @@
+# *
+User-agent: *
+Allow: /
+
+# Disallow
+Disallow: /*.css
+Disallow: /*.js
+Disallow: /search?*

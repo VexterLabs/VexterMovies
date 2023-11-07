@@ -31,7 +31,7 @@ export const getLogParams = ({ event, clipboard, language, data = {} }: IGetLogP
   const log_id = randomString();
   return {
     bline: "db",
-    app_version: "1.0.0",
+    app_version: "2.0.0",
     imei: "",
     oaid: "",
     idfa: "",

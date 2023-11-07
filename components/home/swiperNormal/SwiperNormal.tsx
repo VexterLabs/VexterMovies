@@ -3,8 +3,9 @@ import React, { FC } from 'react'
 import styles from '@/components/home/swiperNormal/SwiperNormal.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import ImageCover from "@/components/common/image/ImageCover";
+import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
+import Image from "next/legacy/image";
 
 interface IProps {
   bigList: IBookItem[];
@@ -15,14 +16,18 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
   const items = bigList.map((item) => (
     <Swiper.Item key={item.bookId} className={styles.content}>
       <div className={styles.swiperItem}>
-        <ImageCover
-          href={`/film/${item.bookId}`}
-          className={styles.contentImgBox}
-          src={item.cover}
-          width={218}
-          height={294}
-          alt={item.bookName}
-        />
+        <Link href={`/film/${item.bookId}`} className={styles.contentImgBox}>
+          <Image
+            className={styles.imageItem}
+            onError={onImgError}
+            placeholder="blur"
+            blurDataURL={'/images/defaultFilm.png'}
+            width={218}
+            height={294}
+            src={item.cover}
+            alt={item.bookName}
+          />
+        </Link>
 
         <Link className={styles.rightCard} href={`/film/${item.bookId}`}>
           <div className={styles.rightCardTop}>
@@ -33,7 +38,7 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
             <p className={styles.intro}>{item.introduction}</p>
           </div>
           <div className={styles.rightCardBottom}>
-            { (item.tags || []).map(val => {
+            { (item?.tags || []).map(val => {
               return <div key={val} className={styles.rightTag}>{val}</div>
             })}
           </div>
@@ -57,4 +62,4 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
     loop>{items}</Swiper>
 }
 
-export default SwiperNormal
+export default SwiperNormal;

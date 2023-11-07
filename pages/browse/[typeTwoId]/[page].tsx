@@ -1,5 +1,5 @@
-import Browse, { getServerSideProps as getServerSideProps2} from '../[typeTwoId]'
+import Browse, { getServerSideProps as getServerSidePropsDefault} from '../index'
 
 export default Browse;
 
-export const getServerSideProps = getServerSideProps2;
+export const getServerSideProps = getServerSidePropsDefault;

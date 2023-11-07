@@ -4,13 +4,13 @@ const path = require("path");
 // 网站域名
 const WebDomainObj = {
   test: 'http://192.168.1.70:3000',
-  staging: 'https://yfbinfo.dramaboxdb.com',
-  prod: 'https://www.dramaboxdb.com'
+  staging: 'https://yfbwww.dramaboxapp.com',
+  prod: 'https://www.dramaboxapp.com'
 }
 // 网站服务api
 const BaseUrlObj = {
-  test: 'http://192.168.0.253:8080',
-  // test: 'http://192.168.1.70:8080',
+  // test: 'http://192.168.0.253:8080',
+  test: 'http://192.168.0.253:8080',// http://192.168.1.70:8080
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
 }
@@ -25,7 +25,7 @@ const IpUaUrlObj = {
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
 const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox-010001'; // 构建ID
+const buildId = 'dramabox-020001'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
@@ -39,6 +39,7 @@ console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ �
 
 const nextConfig = {
   reactStrictMode: true,
+  cleanDistDir: true,
   // Configuring the Build ID
   generateBuildId: async () => {
     return buildId;
@@ -53,32 +54,12 @@ const nextConfig = {
   // https://www.nextjs.cn/docs/upgrading
   swcMinify: true,
   images: { // 远程图片资源域名
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'reshot.hw.dzods.cn',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'res.dramabox.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'nas2osstest.wpzkj.cn',
-        port: '',
-        pathname: '/**',
-      },
-    ],
     domains: [
       "reshot.hw.dzods.cn",
-      "res.webfic.com",
-      "res.novelread.com",
       "res.dramabox.com",
-      "nas2osstest.wpzkj.cn"
+      "nas2osstest.wpzkj.cn",
+      "nchapter.dramaboxdb.com",
+      'dzztstgvideo.cbread.cn'
     ],
   },
   // 环境配置
@@ -88,9 +69,9 @@ const nextConfig = {
     IpUaUrl,
   },
   // 参考 https://nextjs.org/docs/messages/swc-disabled
-  experimental: {
-    forceSwcTransforms: true,
-  },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
 }
 
 module.exports = nextConfig;

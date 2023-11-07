@@ -1,0 +1,140 @@
+.detailWrap {
+  width: 14.4rem;
+  margin: 0 auto;
+  background-color: #000000;
+
+  .detailHeader {
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    height: 0.80rem;
+    padding: 0 0.12rem;
+    border-bottom: 1px solid rgba(255,255,255,0.16);
+    //position: sticky;
+    //top: 0.8rem;
+    //z-index: 1;
+  }
+
+  .container {
+    padding: 0 0.12rem;
+
+  }
+
+}
+
+
+.detailBox {
+  padding-left: 0.08rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  // column-gap: 0.4rem;
+  margin-top: 0.76rem;
+  // border: 1px solid red;
+  margin-bottom: 0.48rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.08rem;
+  .detailBookCoverBox {
+    margin-top: -0.5rem;
+    width: 3.15rem;
+    height: 4.2rem;
+    overflow: hidden;
+    border-radius: 0.08rem;
+    display: flex;
+    align-items: center;
+    // border: 1px solid red;
+    .detailBookCover {
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+    }
+  }
+
+
+  .detailBoxRight {
+    padding: 0.32rem;
+    position: relative;
+    flex: 1;
+    // border: 1px solid pink;
+    height: 3.78rem;
+
+    .detailBoxRightTop {
+      .bookName {
+        display: block;
+        width: 9rem;
+        font-size: 0.24rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 0.32rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-bottom: 0.08rem;
+      }
+
+      .chapterCount {
+        display: block;
+        width: 9rem;
+        font-size: 0.13rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 0.18rem;
+        margin-bottom: 0.2rem;
+      }
+
+      .intro {
+        display: block;
+        margin-bottom: 0.12rem;
+        font-size: 0.14rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 8;
+        word-wrap: break-word;
+      }
+
+      .tagsContent {
+        font-size: 0.12rem;
+        font-weight: 400;
+        grid-gap: 0.08rem;
+        display: flex;
+
+        .tagItem {
+          border-radius: 0.12rem;
+          padding: 0.04rem 0.1rem;
+          color: rgba(255, 255, 255, 0.6);
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+
+    .playBtn {
+      font-size: 0.18rem;
+      font-weight: 500;
+      color: #FFFFFF;
+      background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      width: 1.8rem;
+      height: 0.48rem;
+      position: absolute;
+      right: 0.24rem;
+      bottom: 0.32rem;
+      border-radius: 0.24rem;
+      .playIcon {
+        margin-right: 0.06rem;
+        width: 0.28rem;
+        height: 0.28rem;
+      }
+    }
+  }
+}
+
+

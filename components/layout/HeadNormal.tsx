@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 const { googleCode } = ClientConfig;
 
 export const pathnameData = {
-  browse: '/browse/[typeTwoId]',
+  browse: '/browse',
   more: '/more/[position]',
   book: '/film/[bookId]',
   download: '/download',
@@ -27,15 +27,14 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
     // @ts-ignore
     if (!TDK[_locale]) {
-      return TDK[ELanguage.ZhHans].index;
+      return TDK[ELanguage.English].index;
     }
     if (router.pathname === '/') {
       return TDK[_locale].index
     } else if (router.pathname.includes('/more/[position]')) {
       const positionName = t(pageProps.positionName) || '';
-      console.log('t(pageProps.positionName)', t(pageProps.positionName));
       return TDK[_locale].more({ ...router.query, positionName })
-    } else if (router.pathname.includes('/browse/[typeTwoId]')) {
+    } else if (router.pathname.includes('/browse')) {
       const  _typeTwoName = pageProps.typeTwoId === 0 ? t(`browse.all`) : pageProps.typeTwoName;
       return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
     } else {
@@ -60,8 +59,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     setPageTdk(getTdk())
   },[router, router.locale, t]); // eslint-disable-line
 
-  const getUrl = (lan = ELanguage.ZhHans) => {
-    const _locale = lan === ELanguage.ZhHans ? '' : `/${lan}`
+  const getUrl = (lan = ELanguage.English) => {
+    const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
     return process.env.WebDomain +_locale + _asPath;
   }
@@ -93,6 +92,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
       <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
       {/*防止xss攻击*/}
       <meta key="httpEquiv2" httpEquiv="Content-Security-Policy"/>
+      {/*Sets whether a web application runs in full-screen mode.*/}
+      <meta key={'ios_web'} name="apple-mobile-web-app-capable" content="yes" />
       <link rel="icon" href={'/favicon.ico'}/>
       <link rel="canonical" href={getUrl(router.locale as ELanguage)}/>
       <AlternateLink />

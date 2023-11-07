@@ -1,0 +1,125 @@
+.dialogBox {
+  height: 7.99rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #191919;
+  z-index: 99;
+  overflow-y: auto;
+  border-radius: 0.24rem 0.24rem 0 0;
+  // display: flex;
+  // flex-direction: column;
+  padding: 0.24rem 0.32rem;
+  .topInfo {
+    display: flex;
+    justify-content: space-between;
+    .closeIcon {
+      width: 0.48rem;
+      height: 0.48rem;
+    }
+  }
+  .title {
+    font-size: 0.32rem;
+    line-height: 0.42rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 0.24rem;
+  }
+  .titleTab {
+    display: flex;
+    margin-bottom: 0.24rem;
+    .tabTop {
+      position: relative;
+      display: inline-block;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.28rem;
+      margin-right: 0.34rem;
+      // border: 1px solid red;
+      &:not(:last-child)::after {
+        position: absolute;
+        content: '';
+        overflow: hidden;
+        display: block;
+        right: -30%;
+        top: 50%;
+        transform: translateY(-40%);
+        width: 0.02rem;
+        height: 0.24rem;
+        background: rgba(255,255,255,0.4);
+      }
+    }
+    .tabTopActive {
+      position: relative;
+      display: inline-block;
+      font-size: 0.28rem;
+      margin-right: 0.34rem;
+      // border: 1px solid red;
+      color: #FF375F;
+      &:not(:last-child)::after {
+        position: absolute;
+        content: '';
+        overflow: hidden;
+        display: block;
+        right: -30%;
+        top: 50%;
+        transform: translateY(-40%);
+        width: 0.02rem;
+        height: 0.24rem;
+        background: rgba(255,255,255,0.4);
+      }
+    }
+  }
+  .episodeList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 0.1rem;
+    grid-row-gap: 0.1rem;
+    .linkBox {
+      .episodeItem {
+        width: 1.3rem;
+        height: 1rem;
+        line-height: 1rem;
+        text-align: center;
+        background-color: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 0.08rem;
+        span {
+          color: rgba(255,255,255,0.8);
+          font-weight: 500;
+          line-height: 0.34rem;
+          font-size: 0.28rem;
+        }
+      }
+      .episodeItemLock {
+        position: relative;
+        width: 1.3rem;
+        height: 1rem;
+        line-height: 1rem;
+        text-align: center;
+        background-color: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 0.08rem;
+        span {
+          color: rgba(255,255,255,0.4);
+          font-weight: 500;
+          line-height: 0.34rem;
+          font-size: 0.28rem;
+        }
+        &::after {
+          position: absolute;
+          right: 0.08rem;
+          top: 0.08rem;
+          content: '';
+          display: block;
+          overflow: hidden;
+          width: 0.24rem;
+          height: 0.24rem;
+          background: url('/images/book/mlock.png') no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+  }
+  
+}
