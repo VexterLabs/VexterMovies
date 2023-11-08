@@ -126,10 +126,11 @@ const PcEpisode: FC<IProps> = (
               alt='photo'/>
             <div className={styles.downloadMark}/>
           </div> : null}
-          {errorBgsrc ? <div className={styles.downInfo}>
+          {
+            errorBgsrc ? <Link href={'/download'} className={styles.downInfo}>
             <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
             <div className={styles.btnDown}>Download the App to continue watching</div>
-          </div> : null}
+          </Link> : null}
         </div>
 
         <div className={styles.videoInfo}>
