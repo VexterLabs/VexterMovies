@@ -50,6 +50,7 @@ export interface IChapterList {
   new: boolean;
   utime: string;
   showEposide?: boolean;
+  newInd?: number;
 }
 
 

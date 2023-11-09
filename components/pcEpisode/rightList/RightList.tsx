@@ -10,7 +10,7 @@ interface IProps {
   bookId: string;
   current: number;
   chapterList: IChapterList[];
-  onChooseEpisode: (index: number) => void;
+  onChooseEpisode: (index: number, id: string) => void;
 }
 
 const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }) => {
@@ -27,7 +27,7 @@ const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }
           return <div
             key={item.id}
             className={styles.listItem}
-            onClick={() => {onChooseEpisode(index)}}>
+            onClick={() => {onChooseEpisode(index, item.id)}}>
             <Link href={`/episode/${bookId}/${item.id}`} className={styles.imgBox} shallow replace>
               <Image
                 className={styles.imgItem}

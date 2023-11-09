@@ -199,7 +199,7 @@ const WapEpisode: FC<IProps> = (
               </div> : null
           }
           <Ellipsis
-            rows={2}
+            rows={3}
             className={styles.introText}
             direction='end'
             expandText={
