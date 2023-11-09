@@ -46,11 +46,13 @@ const PcEpisode: FC<IProps> = (
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
-    const curId = chapterList.find((item, index) => index === currentPage)
+    currentPage === -1 && setCurrentPage(0)
+    const curId = chapterList.find((item, index) => index === currentPage) || chapterList[0]
     const cover = curId?.cover
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
+   
 
   }, [chapterList]);
 
@@ -61,7 +63,7 @@ const PcEpisode: FC<IProps> = (
       id: "playVideo",
       autoplay: true,
       autoplayMuted: false,
-      url: chapterList[currentPage]?.mp4,
+      url: currentPage === -1 ? chapterList[0]?.mp4 : chapterList[currentPage]?.mp4,
       width: '100%',
       height: '100%',
       videoFillMode: "fillHeight",
@@ -79,6 +81,7 @@ const PcEpisode: FC<IProps> = (
         const nextChapter = chapterList[episodeIndex.current + 1];
         if (nextChapter) {
           router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
+          console.log('currentPage-----0', currentPage)
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
           if (nextChapter.mp4 && nextChapter.unlock) {
@@ -96,8 +99,9 @@ const PcEpisode: FC<IProps> = (
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = async (index: number,id: string) => {
     // 根据点击剧集的id，查找对应的index
-    const tempCurInd = chapterList.find(item => item.id === id)?.index as number
-    setCurrentPage(tempCurInd);
+    const tempCurInd = chapterList.find(item => item.id === id)?.index as number || 0
+    setCurrentPage(tempCurInd == -1 ? 0 : tempCurInd);
+    console.log('currentPage-----1', currentPage)
     episodeIndex.current = tempCurInd;
     const item = chapterList[tempCurInd];
     setErrorBg(item.unlock ? '' : item.cover)
