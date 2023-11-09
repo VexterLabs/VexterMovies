@@ -2,7 +2,7 @@ import { ELanguage } from "@/typings/home.interface";
 
 const ClientConfig = {
   name: "DramaBox",
-  companyName: "STORYMATRIX TECHNOLOGY SINGAPORE PTE.LTD.",
+  companyName: "STORYMATRIX PTE.LTD.",
   productName: "db",
   googleCode: "G-BXDJ8KNG7N",
   email: "dramaboxapp@gmail.com",
