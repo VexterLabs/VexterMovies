@@ -156,7 +156,6 @@ const WapEpisode: FC<IProps> = (
               src={errorBgsrc}
               alt=''/>
             <div className={styles.downInfo}>
-              <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
 
               <Link href={shopLink} className={styles.btnDown} onClick={() => {
                 onCopyText(copyText, () => {

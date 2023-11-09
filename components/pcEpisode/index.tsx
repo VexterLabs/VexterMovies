@@ -128,7 +128,6 @@ const PcEpisode: FC<IProps> = (
           </div> : null}
           {
             errorBgsrc ? <Link href={`/download?filmId=${bookInfo.bookId}`} className={styles.downInfo}>
-            <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
             <div className={styles.btnDown}>Download the App to continue watching</div>
           </Link> : null}
         </div>
