@@ -42,8 +42,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
         bookId,
         bookName,
         introduction,
-        typeTwoNames = [],
-        typeTwoIds = [],
+        typeTwoList = [],
         firstChapterId,
         isHot
       } = book;
@@ -81,16 +80,16 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
           />
 
           {
-            !!(typeTwoNames && typeTwoNames.length) && <div className={styles.bookLabelBox}>
+            !!(typeTwoList && typeTwoList.length) && <div className={styles.bookLabelBox}>
               {
-                typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
                   <Link
-                    key={bookId + '_browse_' + typeTwoNamesIdx}
-                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`}
+                    key={bookId + '_browse_' + typeTwoListIdx}
+                    href={`/browse/${typeTwoListItem.id || 0}/`}
                     locale={simpleLanguage}
                     className={styles.bookLabel}
                     onClick={() => tagBookClick(keyword, bookId, recommend)}>
-                      {typeTwoNamesItem}
+                      {typeTwoListItem.name}
                   </Link>
                 ))
               }
