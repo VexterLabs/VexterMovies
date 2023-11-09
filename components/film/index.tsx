@@ -8,8 +8,8 @@ import { IBookItem } from "@/typings/home.interface";
 import { netIpUa } from "@/server/clientLog";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useHiveLog from "@/hooks/useHiveLog";
+import { onCopyText } from "@/utils/copy";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -59,11 +59,13 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
     </div> : null}
 
     <div className={styles.footerBox}>
-      <CopyToClipboard text={copyText} onCopy={() => {
-        netIpUa(clipboard)
-        HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+      <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink} onClick={() => {
+        onCopyText(copyText, () => {
+          netIpUa(clipboard)
+          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
+        })
       }}>
-        <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink}>
+        <div>
           <Image
             className={styles.playIcon}
             width={48}
@@ -72,8 +74,8 @@ const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
             alt={''}
           />
           <span>{t("home.play")}</span>
-        </Link>
-      </CopyToClipboard>
+        </div>
+      </Link>
     </div>
 
     {introduction ? <div className={styles.introBox}>

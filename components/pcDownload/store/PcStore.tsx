@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import styles from "@/components/pcDownload/store/PcStore.module.scss";
 import QRCode from "qrcode.react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Toast } from "antd-mobile";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useAppSelector } from "@/store";
 import { ELanguage } from "@/typings/home.interface";
+import { onCopyText } from "@/utils/copy";
 
 interface IProps {
 }
@@ -31,11 +31,11 @@ const PcStore: FC<IProps> = () => {
     <div className={styles.storeContent}>
       <QRCode value={copyUrl} className={styles.qrCode}/>
       <p className={styles.copyTxt}>{t('appPage.copyGuide')}</p>
-      <CopyToClipboard text={copyUrl} onCopy={() => {
-        Toast.show(t('appPage.copied'))
-      }}>
-        <p className={styles.clickToCopy}>{t('appPage.clickCopy')}</p>
-      </CopyToClipboard>
+      <p className={styles.clickToCopy} onClick={() => {
+        onCopyText(copyUrl, () => {
+          Toast.show(t('appPage.copied'))
+        })
+      }}>{t('appPage.clickCopy')}</p>
     </div>
   </div>
 }
