@@ -17,7 +17,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
-  const shopLink =  useAppSelector(state => {
+  const shopLink = useAppSelector(state => {
     if (isApple) {
       return ClientConfig.ios.deeplink + state.hive.copyText;
     }
