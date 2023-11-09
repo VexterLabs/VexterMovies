@@ -53,7 +53,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
           </Link>
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
             <p className={styles.title}>{item.name}</p>
-            <p className={styles.pageNum}>EP.{item.index}</p>
+            <p className={styles.pageNum}>EP.{item.index + 1}</p>
           </Link>
         </div>
       })}
