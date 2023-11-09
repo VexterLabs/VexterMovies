@@ -27,12 +27,12 @@ const PcHeader: FC<IProps> = () => {
           <Link href={'/'} className={styles.logoTxtBox}>
             <Image
               className={styles.logoTxt}
-              width={40}
+              width={168}
               height={40}
-              src={'/images/logo.png'}
+              src={'/images/home/logo-text.png'}
               alt={ClientConfig.name}
             />
-            <span>DramaBox</span>
+            {/*<span>DramaBox</span>*/}
           </Link>
           <div className={styles.navBox}>
             { MenuData.map(val => {
