@@ -8,10 +8,11 @@ import styles from '@/components/pcHome/secondList/SecondList.module.scss'
 
 interface IProps {
   dataSource: IBookItem[];
+  typeTwoId: number;
   typeTwoName: string;
 }
 
-const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '' }) => {
+const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '', typeTwoId = 0 }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -26,7 +27,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '' }) => {
         chapterCount = 0
       } = book;
       // const routerToBookInfo = `/film/${bookId}`
-      const routerToBookInfo = `/film/${bookId}?typeTwoName=${typeTwoName == 'all' ? '' : typeTwoName}`
+      const routerToBookInfo = `/film/${bookId}?typeTwoName=${typeTwoName == 'all' ? '' : typeTwoName}&typeTwoId=${typeTwoId}`
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
