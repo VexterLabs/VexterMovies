@@ -60,7 +60,7 @@ const WapEpisode: FC<IProps> = (
   const HiveLog = useHiveLog();
 
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
-  const curChapterData = chapterList.find(item => item.id === chapterId) //&& item.unlock === true
+  const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
   currentPage = curChapterData?.index as number
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },

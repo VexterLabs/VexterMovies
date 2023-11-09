@@ -63,6 +63,7 @@ const Episode: NextPage<IProps> = (
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
   const { bookId, chapterId } = query as { bookId: string,chapterId: string};
+  console.log('chapterId', chapterId)
   if (!bookId) {
     return { notFound: true };
   }

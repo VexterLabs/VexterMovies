@@ -23,7 +23,6 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
     return newList.concat(item);
   });
   const { t } = useTranslation();
-  console.log("relatedList", relatedList)
   useEffect(() => {
     setRelatedList(() => {
       const item = chapterList.slice(0 , current);
