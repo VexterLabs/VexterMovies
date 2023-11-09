@@ -78,7 +78,7 @@ export default Film;
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
-  const { bookId, typeTwoName, typeTwoId } = query as { bookId: string, typeTwoId: string, typeTwoName: string};
+  const { bookId, typeTwoName = '', typeTwoId = 0 } = query as { bookId: string, typeTwoId: string, typeTwoName: string};
   if (!bookId) {
     return { notFound: true }
   }
