@@ -52,7 +52,9 @@ const PcFilm: FC<IProps> = (
         <div className={styles.detailBoxRight}>
           <div className={styles.detailBoxRightTop}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
-
+            <p className={styles.epiNum}>
+              {chapterList?.length} {t("bookInfo.episodes")}
+            </p>
             <p className={styles.intro}>
               {bookInfo.introduction}
             </p>

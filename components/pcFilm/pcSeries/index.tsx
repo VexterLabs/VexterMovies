@@ -4,6 +4,7 @@ import Image from "next/image";
 import ImageLegacy from "next/legacy/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
+import { useTranslation } from "next-i18next";
 import classNames from "classnames";
 import styles from "@/components/pcFilm/pcSeries/index.module.scss";
 
@@ -19,11 +20,12 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
     return 1 + i * 30 + '-' + (i + 1) * 30
   });
   const [tabIndex, setTabIndex] = useState(0);
+  const { t } = useTranslation();
 
   return <div className={styles.episodeListBox}>
     <div className={styles.topInfo}>
-      <div className={styles.episodeTitle}>EpisodesList</div>
-      <div className={styles.allCounts}>{chapterList.length} Episodes</div>
+      <div className={styles.episodeTitle}>{t("bookInfo.episodeList")}</div>
+      <div className={styles.allCounts}>{chapterList.length} {t("bookInfo.episodes")}</div>
     </div>
     <div className={styles.listInfo}>
       { chapterList.map((item, index) => {
@@ -52,7 +54,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
             </div> : null }
           </Link>
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
-            <p className={styles.title}>{item.name}</p>
+            <p className={styles.title}>{bookInfo.bookName}</p>
             <p className={styles.pageNum}>EP.{item.index + 1}</p>
           </Link>
         </div>

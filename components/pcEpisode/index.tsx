@@ -94,10 +94,12 @@ const PcEpisode: FC<IProps> = (
   }, []);
 
   // 点击右侧全部剧集，选择播放剧集
-  const chooseEpisode = async (index: number) => {
-    setCurrentPage(index);
-    episodeIndex.current = index;
-    const item = chapterList[index];
+  const chooseEpisode = async (index: number,id: string) => {
+    // 根据点击剧集的id，查找对应的index
+    const tempCurInd = chapterList.find(item => item.id === id)?.index as number
+    setCurrentPage(tempCurInd);
+    episodeIndex.current = tempCurInd;
+    const item = chapterList[tempCurInd];
     setErrorBg(item.unlock ? '' : item.cover)
 
     if (!item.unlock) return
