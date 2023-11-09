@@ -14,9 +14,10 @@ interface IProps {
   pageNo: number;
   pages: number;
   typeTwoId: number;
+  typeTwoName: string;
 }
 
-const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
+const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, typeTwoName, types }) => {
   const { t } = useTranslation();
 
   return <main className={styles.browseWrap}>
@@ -54,7 +55,7 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => 
 
       <div className={styles.browseContent}>
         {bookList.length === 0 ? <PcEmpty/> :
-          <SecondList dataSource={bookList}/>}
+          <SecondList dataSource={bookList} typeTwoName={typeTwoName}/>}
 
         {pages && pages > 1 ?
           <PaginationCom
