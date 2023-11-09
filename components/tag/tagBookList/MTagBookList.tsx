@@ -25,7 +25,7 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword, onBookClick}) => {
   };
   return <div className={styles.listBox}>
     {dataSource && dataSource.length > 0 ? dataSource.map((book, bookInd) => {
-      const { bookId, bookName, introduction, cover, typeTwoNames = [], typeTwoIds = [], isHot} = book;
+      const { bookId, bookName, introduction, cover, typeTwoList = [], isHot} = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
       const linkUrl = `/film/${bookId}`;
@@ -54,16 +54,16 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword, onBookClick}) => {
           />
 
           {
-            !!(typeTwoNames && typeTwoNames.length) && <div className={styles.bookLabels}>
+            !!(typeTwoList && typeTwoList.length) && <div className={styles.bookLabels}>
               {
-                typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
                   <Link
-                    key={bookId + '_browse_' + typeTwoNamesIdx}
-                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`}
+                    key={bookId + '_browse_' + typeTwoListIdx}
+                    href={`/browse/${typeTwoListItem.id || 0}/`}
                     locale={simpleLanguage}
                     className={styles.bookLabel}
                     onClick={() => tagBookClick(keyword, bookId, recommend)}>
-                      {typeTwoNamesItem}
+                      {typeTwoListItem.name}
                   </Link>
                 ))
               }

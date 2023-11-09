@@ -97,6 +97,11 @@ export interface INetKeywordTagRes {
   keyStatus: 0 | 1;
 }
 
+export interface typeTwoListItem {
+  id: string;
+  name: string;
+}
+
 export interface ITagBookItem extends IBook {
   bookId: string;
   bookName: string;
@@ -107,6 +112,7 @@ export interface ITagBookItem extends IBook {
   tag: string;
   simpleLanguage: ELanguage;
   isHot: ETagBookItemIsHot;
+  typeTwoList: typeTwoListItem[];
 }
 
 export enum EAggregatePageProperties {
