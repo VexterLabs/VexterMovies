@@ -9,9 +9,9 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
 import { Ellipsis } from "antd-mobile";
-import styles from "@/components/pcEpisode/index.module.scss";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import styles from "@/components/pcEpisode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -127,7 +127,7 @@ const PcEpisode: FC<IProps> = (
             <div className={styles.downloadMark}/>
           </div> : null}
           {
-            errorBgsrc ? <Link href={'/download'} className={styles.downInfo}>
+            errorBgsrc ? <Link href={`/download?filmId=${bookInfo.bookId}`} className={styles.downInfo}>
             <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
             <div className={styles.btnDown}>Download the App to continue watching</div>
           </Link> : null}
