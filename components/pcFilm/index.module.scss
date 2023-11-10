@@ -53,7 +53,7 @@
 
 
   .detailBoxRight {
-    padding: 0.32rem;
+    padding: 0.32rem 0.32rem 0.32rem 0.16rem;
     position: relative;
     flex: 1;
     // border: 1px solid pink;
@@ -96,6 +96,7 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 8;
         word-wrap: break-word;
+        width: 10.59rem;
       }
       .epiNum {
         font-size: 0.14rem;
