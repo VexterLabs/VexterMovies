@@ -91,23 +91,6 @@ const WapEpisode: FC<IProps> = (
     // 查找当前视频中下一个有MP4
     playerInstance.current = new Player({
       id: "mPlay",
-      icons: {
-        play: () => {
-          return Util.createDom('div', '<img src="/images/book/play.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        pause: () => {
-          return Util.createDom('div', '<img src="/images/book/pause.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        fullscreen: () => {
-          return Util.createDom('div', '<img src="/images/book/fullscreen.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        volumeMuted: () => {
-          return Util.createDom('div', '<img src="/images/book/muted.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        volumeLarge: () => {
-          return Util.createDom('div', '<img src="/images/book/voice.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-      },
       autoplay: true,
       autoplayMuted: false,
       url: curChapterData?.mp4,

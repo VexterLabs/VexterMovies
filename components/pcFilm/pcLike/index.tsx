@@ -20,7 +20,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
   }
 
   return <div className={styles.recommendBox}>
-    <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
+    <h2 className={styles.titleText}>{t('bookInfo.recLike')}</h2>
     <div className={styles.listBox}>
       {dataSource.map((book) => {
 
