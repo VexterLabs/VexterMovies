@@ -5,7 +5,6 @@ import { ELanguage } from "@/typings/home.interface";
 import { clipboardAsync, setClipboard, setLanguage } from "@/store/modules/hive.module";
 import { useAppDispatch, useAppSelector } from "@/store";
 import useHiveLog from "@/hooks/useHiveLog";
-import { netIpUa } from "@/server/clientLog";
 
 const pathData = {
   index: '/',
@@ -89,7 +88,7 @@ const useLogParams = (pageProps: any): void => {
   const getIds = (): { bid: string; cid: string | number } => {
     let clipboardBookId, clipboardChapterId;
     const localeBookId = LanguageDefaultBookId?.[(router.locale || ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
-    if (router.pathname === pathData.film) {
+    if (router.pathname === pathData.film || router.pathname.includes(pathData.episode)) {
       clipboardBookId = pageProps?.bookInfo?.bookId;
     } else if (router.pathname === pathData.download) {
       clipboardBookId = pageProps?.filmId;
