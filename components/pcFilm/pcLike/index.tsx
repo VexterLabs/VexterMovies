@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
@@ -10,9 +10,10 @@ import styles from '@/components/pcFilm/pcLike/PcLike.module.scss';
 interface IProps {
   dataSource: IBookItem[];
   onBookClick?: (book: IBookItem) => void;
+  onChannel: (name: string, e?: SyntheticEvent) => void;
 }
 
-const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
+const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -20,7 +21,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
   }
 
   return <div className={styles.recommendBox}>
-    <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
+    <h2 className={styles.titleText}>{t('bookInfo.recLike')}</h2>
     <div className={styles.listBox}>
       {dataSource.map((book) => {
 
@@ -55,7 +56,10 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
             {book.bookName}
           </Link>
           {book?.typeTwoIds && book?.typeTwoIds.length > 0 ?
-            <Link href={`/browse/${book.typeTwoIds[0]}`} className={styles.tagItem}>{book.typeTwoName}</Link> : null
+            <Link 
+              onClick={(e) => onChannel(book.typeTwoName, e)}
+              href={`/browse/${book.typeTwoIds[0]}`} 
+              className={styles.tagItem}>{book.typeTwoName}</Link> : null
           }
         </div>
       })}

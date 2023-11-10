@@ -29,45 +29,51 @@
   .titleTab {
     display: flex;
     margin-bottom: 0.24rem;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    .tabs {
+      display: flex;
+    }
     .tabTop {
       position: relative;
       display: inline-block;
       color: rgba(255,255,255,0.6);
       font-size: 0.28rem;
-      margin-right: 0.34rem;
-      // border: 1px solid red;
-      &:not(:last-child)::after {
-        position: absolute;
-        content: '';
-        overflow: hidden;
-        display: block;
-        right: -30%;
-        top: 50%;
-        transform: translateY(-40%);
-        width: 0.02rem;
-        height: 0.24rem;
-        background: rgba(255,255,255,0.4);
-      }
+      // &:not(:last-child)::after {
+      //   position: absolute;
+      //   content: '';
+      //   overflow: hidden;
+      //   display: block;
+      //   right: -30%;
+      //   top: 50%;
+      //   transform: translateY(-40%);
+      //   width: 0.02rem;
+      //   height: 0.24rem;
+      //   background: rgba(255,255,255,0.4);
+      // }
+    }
+    .tabLine {
+      margin: 0 0.16rem;
+      color: rgba(255,255,255,0.4);
     }
     .tabTopActive {
       position: relative;
       display: inline-block;
       font-size: 0.28rem;
-      margin-right: 0.34rem;
       // border: 1px solid red;
       color: #FF375F;
-      &:not(:last-child)::after {
-        position: absolute;
-        content: '';
-        overflow: hidden;
-        display: block;
-        right: -30%;
-        top: 50%;
-        transform: translateY(-40%);
-        width: 0.02rem;
-        height: 0.24rem;
-        background: rgba(255,255,255,0.4);
-      }
+      // &:not(:last-child)::after {
+      //   position: absolute;
+      //   content: '';
+      //   overflow: hidden;
+      //   display: block;
+      //   right: -30%;
+      //   top: 50%;
+      //   transform: translateY(-40%);
+      //   width: 0.02rem;
+      //   height: 0.24rem;
+      //   background: rgba(255,255,255,0.4);
+      // }
     }
   }
   .episodeList {

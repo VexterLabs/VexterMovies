@@ -45,7 +45,7 @@ const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
         <>
           <PcHomeTitle title={t(moreData.name)} />
           <div className={styles.moreBookList}>
-            <SecondList dataSource={moreData.items} />
+            <SecondList dataSource={moreData.items} typeTwoId={0} typeTwoName={''} />
             {pages && pages > 1 ? <PaginationCom
               path={`/more/${ColumnNameRoute[moreData.name]}/`}
               pageNo={pageNo}

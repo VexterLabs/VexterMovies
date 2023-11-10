@@ -19,17 +19,21 @@ interface IProps extends SSRConfig {
   recommends: IBookItem[];
   chapterList: IChapterList[];
   chapterName: string;
+  typeTwoId: number;
+  typeTwoName: string;
 }
 
 const Film: NextPage<IProps> = (
-  { isPc, bookInfo, isApple, recommends, chapterList, chapterName }
+  { isPc, bookInfo, isApple, recommends, chapterList, chapterName, typeTwoId, typeTwoName }
 ) => {
 
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
+  const typeTwoIdQuery = typeTwoId;
+  const typeTwoNameQuery = typeTwoName;
   const breadData: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
-    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+    { title: typeTwoNameQuery || bookInfo.typeTwoNames[0], link: `/browse/${typeTwoIdQuery || bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName },
   ];
 
@@ -74,7 +78,7 @@ export default Film;
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
-  const { bookId } = query as { bookId: string;};
+  const { bookId, typeTwoName = '', typeTwoId = 0 } = query as { bookId: string, typeTwoId: string, typeTwoName: string};
   if (!bookId) {
     return { notFound: true }
   }
@@ -96,6 +100,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isApple: isIos(ua),
       recommends,
       chapterList,
+      typeTwoId: Number(typeTwoId),
+      typeTwoName,
       languages,
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },

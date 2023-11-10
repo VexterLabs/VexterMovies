@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, } from "react";
+import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
 import Player, { Events, Util } from 'xgplayer'
 import styles from "@/components/episode/index.module.scss"
 import 'xgplayer/dist/index.min.css';
@@ -28,7 +28,7 @@ interface IProps {
   currentPage: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string) => void;
+  onChannel: (name: string, e?: SyntheticEvent) => void;
 }
 
 const WapEpisode: FC<IProps> = (
@@ -60,7 +60,7 @@ const WapEpisode: FC<IProps> = (
   const HiveLog = useHiveLog();
 
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
-  const curChapterData = chapterList.find(item => item.id === chapterId) //&& item.unlock === true
+  const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
   currentPage = curChapterData?.index as number
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
@@ -91,23 +91,6 @@ const WapEpisode: FC<IProps> = (
     // 查找当前视频中下一个有MP4
     playerInstance.current = new Player({
       id: "mPlay",
-      icons: {
-        play: () => {
-          return Util.createDom('div', '<img src="/images/book/play.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        pause: () => {
-          return Util.createDom('div', '<img src="/images/book/pause.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        fullscreen: () => {
-          return Util.createDom('div', '<img src="/images/book/fullscreen.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        volumeMuted: () => {
-          return Util.createDom('div', '<img src="/images/book/muted.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        volumeLarge: () => {
-          return Util.createDom('div', '<img src="/images/book/voice.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-      },
       autoplay: true,
       autoplayMuted: false,
       url: curChapterData?.mp4,
@@ -156,7 +139,6 @@ const WapEpisode: FC<IProps> = (
               src={errorBgsrc}
               alt=''/>
             <div className={styles.downInfo}>
-              <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
 
               <Link href={shopLink} className={styles.btnDown} onClick={() => {
                 onCopyText(copyText, () => {
@@ -192,7 +174,7 @@ const WapEpisode: FC<IProps> = (
               <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val, ind) => {
                   return <Link
-                    onClick={() => onChannel(val.name)}
+                    onClick={(e) => onChannel(val.name, e)}
                     key={ind}
                     href={`/browse/${val.id}`}
                     className={styles.tagItem}>{val.name}</Link>
@@ -200,7 +182,7 @@ const WapEpisode: FC<IProps> = (
               </div> : null
           }
           <Ellipsis
-            rows={2}
+            rows={3}
             className={styles.introText}
             direction='end'
             expandText={
@@ -259,7 +241,7 @@ const WapEpisode: FC<IProps> = (
       </div>
       {recommends.length > 0 ? <div className={styles.mightLike}>
         <LikeTitle title={t('bookInfo.recLike')}/>
-        <LikeItem dataSource={recommends} onBookClick={onBookClick}/>
+        <LikeItem dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
       </div> : null}
       <EpisodeNav
         isApple={isApple}

@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSidePropsResult, GetServerSideProps } from 'next'
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { netBookDetail } from "@/server/home";
 import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { isIos, ownOs } from "@/utils/ownOs";
@@ -31,7 +31,9 @@ const Episode: NextPage<IProps> = (
     })
   }
 
-  const onChannel = (name: string) => {
+  const onChannel = (name: string,e?: SyntheticEvent) => {
+    e && e.stopPropagation()
+    e && e.nativeEvent.stopImmediatePropagation()
     HiveLog.track("ReadChannel_click", {
       typeTwoName: name
     })
@@ -63,6 +65,7 @@ const Episode: NextPage<IProps> = (
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
   const { bookId, chapterId } = query as { bookId: string,chapterId: string};
+  console.log('chapterId', chapterId)
   if (!bookId) {
     return { notFound: true };
   }

@@ -16,10 +16,11 @@ interface IProps {
   pageNo: number;
   pages: number;
   typeTwoId: number;
+  typeTwoName: string;
 }
 
 const Browse: NextPage<IProps> = (
-  { isPc, types, bookList, pageNo, pages, typeTwoId }) => {
+  { isPc, types, bookList, pageNo, pages, typeTwoId, typeTwoName }) => {
   return <>
     {isPc ?
       <PcBrowse
@@ -28,6 +29,7 @@ const Browse: NextPage<IProps> = (
         bookList={bookList}
         pages={pages}
         typeTwoId={typeTwoId}
+        typeTwoName={typeTwoName}
       /> :
       <MBrowse
         pageNo={pageNo}
@@ -35,6 +37,7 @@ const Browse: NextPage<IProps> = (
         bookList={bookList}
         pages={pages}
         typeTwoId={typeTwoId}
+        typeTwoName={typeTwoName}
       />}
   </>
 }

@@ -7,14 +7,18 @@ import Image from "next/legacy/image";
 
 interface IProps {
   dataSource: IBookItem[];
+  typeTwoId: number;
+  typeTwoName: string;
 }
 
-const FirstItem: FC<IProps> = ({ dataSource}) => {
+const FirstItem: FC<IProps> = ({ dataSource, typeTwoId = 0, typeTwoName = ''}) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((filmItem) => {
 
+      const routerToBookInfo = `/film/${filmItem.bookId}?typeTwoName=${typeTwoName == 'all' ? '' : typeTwoName}&typeTwoId=${typeTwoId}`
+      
       return <div key={filmItem.bookId} className={styles.itemBox}>
-        <Link href={`/film/${filmItem.bookId}`} className={styles.bookImage}>
+        <Link href={routerToBookInfo} className={styles.bookImage}>
           <Image
             className={styles.imageItem}
             onError={onImgError}
@@ -27,7 +31,7 @@ const FirstItem: FC<IProps> = ({ dataSource}) => {
           />
         </Link>
 
-        <Link href={`/film/${filmItem.bookId}`} className={styles.bookName}>
+        <Link href={routerToBookInfo} className={styles.bookName}>
           {filmItem.bookName}
         </Link>
       </div>
