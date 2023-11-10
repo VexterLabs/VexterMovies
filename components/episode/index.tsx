@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, } from "react";
+import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
 import Player, { Events, Util } from 'xgplayer'
 import styles from "@/components/episode/index.module.scss"
 import 'xgplayer/dist/index.min.css';
@@ -28,7 +28,7 @@ interface IProps {
   currentPage: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string) => void;
+  onChannel: (name: string, e?: SyntheticEvent) => void;
 }
 
 const WapEpisode: FC<IProps> = (
@@ -174,7 +174,7 @@ const WapEpisode: FC<IProps> = (
               <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val, ind) => {
                   return <Link
-                    onClick={() => onChannel(val.name)}
+                    onClick={(e) => onChannel(val.name, e)}
                     key={ind}
                     href={`/browse/${val.id}`}
                     className={styles.tagItem}>{val.name}</Link>
@@ -241,7 +241,7 @@ const WapEpisode: FC<IProps> = (
       </div>
       {recommends.length > 0 ? <div className={styles.mightLike}>
         <LikeTitle title={t('bookInfo.recLike')}/>
-        <LikeItem dataSource={recommends} onBookClick={onBookClick}/>
+        <LikeItem dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
       </div> : null}
       <EpisodeNav
         isApple={isApple}

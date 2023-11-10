@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, } from "react";
+import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
@@ -9,6 +9,7 @@ import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
 import { Ellipsis } from "antd-mobile";
+import useHiveLog from "@/hooks/useHiveLog";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import styles from "@/components/pcEpisode/index.module.scss";
@@ -19,7 +20,7 @@ interface IProps {
   chapterList: IChapterList[];
   current: number;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string) => void;
+  onChannel: (name: string, e?:SyntheticEvent) => void;
 }
 
 const PcEpisode: FC<IProps> = (
@@ -33,6 +34,7 @@ const PcEpisode: FC<IProps> = (
   }) => {
 
   const { t } = useTranslation();
+  const HiveLog = useHiveLog();
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({} as Player);
@@ -133,7 +135,14 @@ const PcEpisode: FC<IProps> = (
             <div className={styles.downloadMark}/>
           </div> : null}
           {
-            errorBgsrc ? <Link href={`/download?filmId=${bookInfo.bookId}`} className={styles.downInfo}>
+            errorBgsrc ? <Link href={`/download?filmId=${bookInfo.bookId}`} className={styles.downInfo} onClick={() => {
+              HiveLog.trackDownload('PayChapterDownload_click', {
+                bookId: bookInfo.bookId,
+                bookName: bookInfo.bookName,
+                chapterId: chapterList?.[currentPage]?.id,
+                chapterName: chapterList?.[currentPage]?.name,
+              })
+            }}>
             <div className={styles.btnDown}>Download the App to continue watching</div>
           </Link> : null}
         </div>
@@ -181,7 +190,7 @@ const PcEpisode: FC<IProps> = (
           <div className={styles.tagBox}>
             {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
               return <Link
-                onClick={() => onChannel(val.name)}
+                onClick={(e) => onChannel(val.name, e)}
                 key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
@@ -204,7 +213,7 @@ const PcEpisode: FC<IProps> = (
           bookInfo={bookInfo}
           onChooseEpisode={chooseEpisode}/> : null}
 
-      <PcLike dataSource={recommends} onBookClick={onBookClick}/>
+      <PcLike dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
     </div>
   </main>
 }

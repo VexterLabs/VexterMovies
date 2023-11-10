@@ -141,7 +141,7 @@ const MFilm: FC<IProps> = (
 
     {recommends.length > 0 ? <>
       <LikeTitle title={t('bookInfo.recLike')}/>
-      <LikeItem dataSource={recommends || []} onBookClick={onBookClick}/>
+      <LikeItem dataSource={recommends || []} onBookClick={onBookClick} onChannel={onChannel}/>
     </> : null}
 
     <EpisopeDialog

@@ -84,7 +84,7 @@ const PcFilm: FC<IProps> = (
         </div>
       </div>
       <PcSeries chapterList={chapterList} bookInfo={bookInfo}/>
-      <PcLike dataSource={recommends} onBookClick={onBookClick}/>
+      <PcLike dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
     </div>
 
   </main>

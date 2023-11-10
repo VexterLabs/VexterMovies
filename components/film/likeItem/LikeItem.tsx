@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
@@ -8,9 +8,10 @@ import styles from '@/components/film/likeItem/LikeItem.module.scss';
 interface IProps {
   dataSource: IBookItem[];
   onBookClick?: (item: IBookItem) => void;
+  onChannel: (name: string, e?: SyntheticEvent) => void;
 }
 
-const LikeItem: FC<IProps> = ({ dataSource, onBookClick }) => {
+const LikeItem: FC<IProps> = ({ dataSource, onBookClick, onChannel }) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
       return <div key={detailItem.bookId} className={styles.itemBox} onClick={() => onBookClick && onBookClick(detailItem)}>
@@ -31,7 +32,7 @@ const LikeItem: FC<IProps> = ({ dataSource, onBookClick }) => {
           {detailItem.bookName}
         </Link>
         {detailItem.typeTwoIds && detailItem.typeTwoIds.length > 0 ?
-          <Link href={`/browse/${detailItem.typeTwoIds[0]}`} className={styles.bookTags}>
+          <Link onClick={(e) => onChannel(detailItem.typeTwoName, e)} href={`/browse/${detailItem.typeTwoIds[0]}`} className={styles.bookTags}>
             { detailItem.typeTwoName }
           </Link> : null}
       </div>
