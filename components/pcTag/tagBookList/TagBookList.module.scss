@@ -74,6 +74,11 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+
+          &:hover {
+            transition: color 0.3s;
+            color: $theme_color;
+          }
         }
       }
 

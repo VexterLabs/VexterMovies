@@ -20,7 +20,7 @@ interface IProps {
   chapterList: IChapterList[];
   current: number;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string, e?:SyntheticEvent) => void;
+  onChannel: (name: string) => void;
 }
 
 const PcEpisode: FC<IProps> = (
@@ -54,7 +54,7 @@ const PcEpisode: FC<IProps> = (
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
-   
+
 
   }, [chapterList]);
 
@@ -191,8 +191,9 @@ const PcEpisode: FC<IProps> = (
           <div className={styles.tagBox}>
             {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
               return <Link
-                onClick={(e) => onChannel(val.name, e)}
-                key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+                onClick={() => onChannel(val.name)}
+                key={val.id} href={`/browse/${val.id}`}
+                className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
         </div>

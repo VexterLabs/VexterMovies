@@ -55,7 +55,7 @@ const PcBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, typeTwoName,
 
       <div className={styles.browseContent}>
         {bookList.length === 0 ? <PcEmpty/> :
-          <SecondList dataSource={bookList} typeTwoId={typeTwoId} typeTwoName={typeTwoName}/>}
+          <SecondList dataSource={bookList} typeTwoId={typeTwoId} />}
 
         {pages && pages > 1 ?
           <PaginationCom
