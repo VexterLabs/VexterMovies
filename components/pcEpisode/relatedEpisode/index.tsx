@@ -70,8 +70,8 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
             onClick={() => onChooseEpisode(index,item.id)}
             shallow
             replace>
-            <p className={styles.title}>{item.name}</p>
-            <p className={styles.pageNum}>EP.{item.index + 1}</p>
+            <span className={styles.title}>{item.name}</span>
+            <span className={styles.pageNum}>EP.{item.index + 1}</span>
           </Link>
         </div>
       })}
