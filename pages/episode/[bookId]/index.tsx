@@ -6,8 +6,6 @@ import { isIos, ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
-import { IBreadcrumb } from "@/components/common/breadcrumb";
-import { useTranslation } from "next-i18next";
 import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {

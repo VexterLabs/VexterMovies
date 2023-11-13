@@ -12,7 +12,7 @@ interface IProps {
 
 const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   const { t } = useTranslation()
-  const { bookId, tags = [] } = bigList?.[0]
+  const { bookId, typeTwoList = [] } = bigList?.[0]
   const routerToBookInfo = `/film/${bookId}`
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
@@ -36,11 +36,15 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             <p className={styles.intro}>{bigList[0].introduction}</p>
           </div>
 
-          <div className={styles.leftCardContentBottom}>
-            {tags.map(val => {
-              return <div key={val} className={styles.leftTag}>{val}</div>
-            })}
-          </div>
+          {
+            !!(typeTwoList && typeTwoList.length) ? <div className={styles.leftCardContentBottom}>
+              {
+                typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
+                  <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.leftTag}>{typeTwoListItem.name}</div>
+                ))
+              }
+            </div> : null
+          }
         </Link>
       </div>
 

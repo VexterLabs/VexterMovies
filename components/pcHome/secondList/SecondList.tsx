@@ -55,11 +55,16 @@ const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '', typeTwoId =
           <div className={styles.bookNameHover}>
             {bookName}
           </div>
-          <div className={styles.tagBox}>
-            {(book?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
-          </div>
+
+          {
+            !!(book?.typeTwoList && book.typeTwoList.length) ? <div className={styles.tagBox}>
+              {
+                book.typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
+                  <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.tagItem}>{typeTwoListItem.name}</div>
+                ))
+              }
+            </div> : null
+          }
         </Link>
       </div>
     })}
