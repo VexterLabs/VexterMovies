@@ -63,7 +63,7 @@ const MNav: FC<IProps> = ({ visible, cancel }) => {
             cancel()
           }}
         >
-          <div className={styles.navItemTxt}>{val.label}</div>
+          <span className={styles.navItemTxt}>{val.label}</span>
         </Link>
       })}
     </div>

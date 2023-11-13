@@ -52,18 +52,18 @@ const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '', typeTwoId =
         </Link>
 
         <Link href={routerToBookInfo} className={styles.bookNameBox}>
-          <div className={styles.bookNameHover}>
+          <span className={styles.bookNameHover}>
             {bookName}
-          </div>
+          </span>
 
           {
-            !!(book?.typeTwoList && book.typeTwoList.length) ? <div className={styles.tagBox}>
+            !!(book?.typeTwoList && book.typeTwoList.length) ? <span className={styles.tagBox}>
               {
                 book.typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
-                  <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.tagItem}>{typeTwoListItem.name}</div>
+                  <span key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.tagItem}>{typeTwoListItem.name}</span>
                 ))
               }
-            </div> : null
+            </span> : null
           }
         </Link>
       </div>

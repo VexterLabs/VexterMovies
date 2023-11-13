@@ -83,6 +83,7 @@
     grid-row-gap: 0.1rem;
     .linkBox {
       .episodeItem {
+        display: inline-block;
         width: 1.3rem;
         height: 1rem;
         line-height: 1rem;
@@ -99,6 +100,7 @@
       }
       .episodeItemLock {
         position: relative;
+        display: inline-block;
         width: 1.3rem;
         height: 1rem;
         line-height: 1rem;

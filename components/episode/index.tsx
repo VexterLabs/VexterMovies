@@ -220,11 +220,11 @@ const WapEpisode: FC<IProps> = (
             chapterList && chapterList.slice(0, 9).map((chapterItem) => {
               return <div className={styles.epiOuter} key={chapterItem.id}>
                 <Link href={`/episode/${bookInfo.bookId}/${chapterItem.id}`} shallow>
-                  <div className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {
+                  <span className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {
                     chooseEpisode(chapterItem)
                   }}>
-                    <p>{chapterItem.index + 1}</p>
-                  </div>
+                    <span>{chapterItem.index + 1}</span>
+                  </span>
                 </Link>
               </div>
             })

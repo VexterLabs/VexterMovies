@@ -52,7 +52,7 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
         netIpUa(clipboard)
       })
     }}>
-      <div className={styles.openBtn}>{t('banner.Open')}</div>
+      <span className={styles.openBtn}>{t('banner.Open')}</span>
     </Link>
   </div>
 }
