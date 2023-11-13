@@ -29,7 +29,6 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, b
     <div className={styles.titleTab}>
       {
         Array.from({length: Math.ceil(chapterList.length/50)},(v, i) => {
-          console.log('Math.floor(chapterList.length/50) - 1', Math.floor(chapterList.length/50) - 1)
           return <div key={i} className={styles.tabs}>
              <div
               onClick={() => setCurIndex(i)}
@@ -45,9 +44,9 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, b
       {chapterList.length > 0 ? chapterList.map((item,ind) => {
         return <div className={styles.linkBox} key={ind} style={ind >= curIndex * 50 && ind < (curIndex + 1) * 50 ?{}:{display:"none"}} >
           <Link  href={`/episode/${bookInfo.bookId}/${item.id}`} className={styles.linkBox}>
-            <div className={item.unlock ? styles.episodeItem : styles.episodeItemLock} onClick={() => {closeDialog()}}>
+            <span className={item.unlock ? styles.episodeItem : styles.episodeItemLock} onClick={() => {closeDialog()}}>
               <span>{item.index + 1}</span>
-            </div>
+            </span>
           </Link>
         </div>
       }) : null}

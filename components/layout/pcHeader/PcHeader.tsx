@@ -58,7 +58,7 @@ const PcHeader: FC<IProps> = () => {
                   }
                 }}
                 className={(router.asPath === val.link || router.asPath.includes(val.id)) ? styles.navItemActive : styles.navItem}>
-                <div className={styles.navItemLabel}>{val.label}</div>
+                <span className={styles.navItemLabel}>{val.label}</span>
               </Link>
             }) }
           </div>
