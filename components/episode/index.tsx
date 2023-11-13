@@ -117,6 +117,7 @@ const WapEpisode: FC<IProps> = (
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = (item: IChapterList) => {
+    
     setErrorBg(item.unlock ? '' : item.cover)
     if (item.unlock) {
       playerInstance.current && playerInstance.current.switchURL(item.mp4)

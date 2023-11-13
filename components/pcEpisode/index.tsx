@@ -106,6 +106,7 @@ const PcEpisode: FC<IProps> = (
     console.log('currentPage-----1', currentPage)
     episodeIndex.current = tempCurInd;
     const item = chapterList[tempCurInd];
+    !item.unlock && playerInstance && playerInstance.current.pause();//视频切换，暂停播放
     setErrorBg(item.unlock ? '' : item.cover)
 
     if (!item.unlock) return
