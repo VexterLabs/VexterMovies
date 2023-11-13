@@ -30,7 +30,6 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
     <div className={styles.titleTab}>
       {
         Array.from({length: Math.ceil(chapterList.length/50)},(v, i) => {
-          console.log('Math.floor(chapterList.length/50) - 1', Math.floor(chapterList.length/50) - 1)
           return <div key={i} className={styles.tabs}>
              <div
               onClick={() => setCurIndex(i)}
