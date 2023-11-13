@@ -19,7 +19,6 @@ interface IProps {
   isApple: boolean;
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
   onBookClick: (book: IBookItem) => void;
   onChannel: (name: string) => void;
 }
@@ -30,7 +29,6 @@ const MFilm: FC<IProps> = (
     isApple,
     recommends = [],
     chapterList = [],
-    chapterName,
     breadData,
     onBookClick,
     onChannel
@@ -146,7 +144,6 @@ const MFilm: FC<IProps> = (
 
     <EpisopeDialog
       bookInfo={bookInfo}
-      chapterName={chapterName}
       chapterList={chapterList}
       closeDialog={closeEpisodeDialog}
       showDialog={showDialog}/>

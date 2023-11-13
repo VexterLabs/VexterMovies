@@ -23,7 +23,7 @@
         width: 100%;
         height: auto;
         min-height: 100%;
-        transition: all 0.5s;
+        transition: all 0.3s;
       }
     }
 
@@ -77,6 +77,7 @@
       border-radius: 0 0 0.04rem 0.04rem;
 
       .bookNameHover {
+        display: block;
         font-size: 0.16rem;
         font-weight: 500;
         color: #FF375F;
@@ -89,30 +90,6 @@
         word-wrap: break-word;
         margin-bottom: 0.1rem;
       }
-
-      .tagBox {
-        font-size: 0.12rem;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.4);
-        grid-gap: 0.08rem;
-        display: flex;
-        flex-wrap: wrap;
-        height: 0.24rem;
-        overflow: hidden;
-
-        .tagItem {
-          border-radius: 0.12rem;
-          padding: 0 0.1rem;
-          background-color: rgba(255, 255, 255, 0.08);
-          max-width: 2rem;
-          height: 0.24rem;
-          line-height: 0.24rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-      }
-
     }
 
     &:hover {
