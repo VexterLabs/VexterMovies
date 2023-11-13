@@ -16,8 +16,8 @@ const BaseUrlObj = {
 }
 // ipua
 const IpUaUrlObj = {
-  // https://hotdrama.hw.dzods.cn/drama-box
-  test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
+  test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
+  // test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
   staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
   prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
 }
