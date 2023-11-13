@@ -5,14 +5,14 @@ import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import styles from '@/components/pcHome/secondList/SecondList.module.scss'
+import TypeTwoTag from "@/components/common/typeTwoTag";
 
 interface IProps {
   dataSource: IBookItem[];
-  typeTwoId: number;
-  typeTwoName: string;
+  typeTwoId?: number;
 }
 
-const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '', typeTwoId = 0 }) => {
+const SecondList: FC<IProps> = ({ dataSource = [], typeTwoId }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -27,7 +27,8 @@ const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '', typeTwoId =
         chapterCount = 0
       } = book;
       // const routerToBookInfo = `/film/${bookId}`
-      const routerToBookInfo = `/film/${bookId}?typeTwoName=${typeTwoName == 'all' ? '' : typeTwoName}&typeTwoId=${typeTwoId}`
+      const routerToBookInfo = typeTwoId ? `/film/${bookId}?typeTwoId=${typeTwoId}` : `/film/${bookId}`
+
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
@@ -51,21 +52,13 @@ const SecondList: FC<IProps> = ({ dataSource = [], typeTwoName = '', typeTwoId =
           {bookName}
         </Link>
 
-        <Link href={routerToBookInfo} className={styles.bookNameBox}>
-          <span className={styles.bookNameHover}>
+        <div className={styles.bookNameBox}>
+          <Link href={routerToBookInfo} className={styles.bookNameHover}>
             {bookName}
-          </span>
+          </Link>
 
-          {
-            !!(book?.typeTwoList && book.typeTwoList.length) ? <span className={styles.tagBox}>
-              {
-                book.typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
-                  <span key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.tagItem}>{typeTwoListItem.name}</span>
-                ))
-              }
-            </span> : null
-          }
-        </Link>
+          {book?.typeTwoList && book.typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={book.typeTwoList}/> : null}
+        </div>
       </div>
     })}
   </div>

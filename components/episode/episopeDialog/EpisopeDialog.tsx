@@ -8,11 +8,10 @@ interface IProps {
   chapterList:IChapterList[];
   showDialog: boolean;
   closeDialog: Function;
-  chapterName: string;
   bookInfo: IBookItem;
 }
 
-const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, chapterName, bookInfo}) => {
+const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, bookInfo}) => {
   const [curIndex, setCurIndex] = useState<number>(0)
 
   return <div className={styles.dialogBox} style={showDialog ? {} : {display:'none'}}>
@@ -39,7 +38,7 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, c
         })
       }
     </div>
-     
+
 
     <div className={styles.episodeList}>
       {chapterList.length > 0 ? chapterList.map((item,ind) => {

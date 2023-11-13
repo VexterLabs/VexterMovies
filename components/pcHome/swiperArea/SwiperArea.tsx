@@ -4,6 +4,7 @@ import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import Image from "next/legacy/image";
+import TypeTwoTag from "@/components/common/typeTwoTag";
 import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss';
 
 interface IProps {
@@ -29,23 +30,14 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             alt={bigList[0].bookName}
           />
         </Link>
-        <Link href={routerToBookInfo} className={styles.leftCardContent}>
+        <div className={styles.leftCardContent}>
           <div className={styles.leftCardContentTop}>
-            <h2>{bigList[0].bookName}</h2>
-            <p className={styles.chapterCount}>{`${bigList[0].chapterCount || 0} ${t("home.episodes")}`}</p>
-            <p className={styles.intro}>{bigList[0].introduction}</p>
+            <Link href={routerToBookInfo} className={styles.leftBookName}>{bigList[0].bookName}</Link>
+            <Link href={routerToBookInfo} className={styles.chapterCount}>{`${bigList[0].chapterCount || 0} ${t("home.episodes")}`}</Link>
+            <Link href={routerToBookInfo} className={styles.intro}>{bigList[0].introduction}</Link>
           </div>
-
-          {
-            !!(typeTwoList && typeTwoList.length) ? <div className={styles.leftCardContentBottom}>
-              {
-                typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
-                  <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.leftTag}>{typeTwoListItem.name}</div>
-                ))
-              }
-            </div> : null
-          }
-        </Link>
+          {typeTwoList && typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={typeTwoList}/> : null}
+        </div>
       </div>
 
       <div className={styles.rightCard}>
@@ -64,24 +56,16 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
               />
             </Link>
 
-            <Link href={`/film/${item.bookId}`} className={styles.rightCardContent}>
-              <div className={styles.rightCardContentTop}>
-                <h2 className={styles.bookName}>
+            <div className={styles.rightCardContent}>
+              <div  className={styles.rightCardContentTop}>
+                <Link href={`/film/${item.bookId}`} className={styles.bookName}>
                   {item.bookName}
-                </h2>
-                <p className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </p>
-                <p className={styles.intro}>{item.introduction}</p>
+                </Link>
+                <Link href={`/film/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </Link>
+                <Link href={`/film/${item.bookId}`} className={styles.intro}>{item.introduction}</Link>
               </div>
-              {
-                !!(item?.typeTwoList && item.typeTwoList.length) ? <div className={styles.rightCardContentBottom}>
-                  {
-                    item.typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
-                      <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.rightTag}>{typeTwoListItem.name}</div>
-                    ))
-                  }
-                </div> : null
-              }
-            </Link>
+              {item?.typeTwoList && item.typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={item.typeTwoList}/> : null}
+            </div>
           </div>
         })}
       </div>

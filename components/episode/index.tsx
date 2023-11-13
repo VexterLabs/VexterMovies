@@ -24,7 +24,6 @@ interface IProps {
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
   currentPage: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
@@ -37,7 +36,6 @@ const WapEpisode: FC<IProps> = (
     recommends = [],
     currentPage = 1,
     chapterList = [],
-    chapterName,
     isApple,
     onBookClick,
     onChannel
@@ -117,7 +115,7 @@ const WapEpisode: FC<IProps> = (
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = (item: IChapterList) => {
-    
+
     setErrorBg(item.unlock ? '' : item.cover)
     if (item.unlock) {
       playerInstance.current && playerInstance.current.switchURL(item.mp4)
@@ -255,7 +253,6 @@ const WapEpisode: FC<IProps> = (
       bookInfo={bookInfo}
       chapterList={chapterList}
       closeDialog={closeEpisodeDialog}
-      chapterName={chapterName}
       showDialog={showDialog}/>
   </>
 }

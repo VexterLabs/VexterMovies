@@ -30,8 +30,6 @@ const Episode: NextPage<IProps> = (
   }
 
   const onChannel = (name: string,e?: SyntheticEvent) => {
-    e && e.stopPropagation()
-    e && e.nativeEvent.stopImmediatePropagation()
     HiveLog.track("ReadChannel_click", {
       typeTwoName: name
     })
@@ -53,7 +51,6 @@ const Episode: NextPage<IProps> = (
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        chapterName={''}
         currentPage={current}
         isApple={isApple}
       />}

@@ -18,22 +18,19 @@ interface IProps extends SSRConfig {
   languages: ELanguage[]; // tdk需要， 勿删
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
   typeTwoId: number;
   typeTwoName: string;
 }
 
 const Film: NextPage<IProps> = (
-  { isPc, bookInfo, isApple, recommends, chapterList, chapterName, typeTwoId, typeTwoName }
+  { isPc, bookInfo, isApple, recommends, chapterList, typeTwoId, typeTwoName }
 ) => {
 
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
-  const typeTwoIdQuery = typeTwoId;
-  const typeTwoNameQuery = typeTwoName;
   const breadData: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
-    { title: typeTwoNameQuery || bookInfo.typeTwoNames[0], link: `/browse/${typeTwoIdQuery || bookInfo.typeTwoIds[0]}` },
+    { title: typeTwoName || bookInfo.typeTwoNames[0], link: `/browse/${typeTwoId || bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName },
   ];
 
@@ -63,7 +60,6 @@ const Film: NextPage<IProps> = (
         onChannel={onChannel}
         onBookClick={onBookClick}
         breadData={breadData}
-        chapterName={chapterName}
         isApple={isApple}
         bookInfo={bookInfo}
         recommends={recommends}
@@ -78,7 +74,7 @@ export default Film;
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
-  const { bookId, typeTwoName = '', typeTwoId = 0 } = query as { bookId: string, typeTwoId: string, typeTwoName: string};
+  const { bookId, typeTwoId } = query as { bookId: string, typeTwoId: string };
   if (!bookId) {
     return { notFound: true }
   }
@@ -90,17 +86,17 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     return { redirect: { destination: '/500', permanent: false } }
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [], languages = [] } = response;
-  const chapterName = book.bookName
+  const _typeTwoId = Number(typeTwoId) ? Number(typeTwoId) : book.typeTwoList && book.typeTwoList.length > 0 ? book.typeTwoList[0].id : 0;
+  const typeTwoName = book.typeTwoList && book.typeTwoList.length > 0 ? book.typeTwoList.find(val => val.id == _typeTwoId)?.name || '' : '';
   return {
     props: {
       bookId,
-      chapterName,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
       recommends,
       chapterList,
-      typeTwoId: Number(typeTwoId),
+      typeTwoId: _typeTwoId,
       typeTwoName,
       languages,
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
