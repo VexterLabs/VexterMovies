@@ -9,7 +9,7 @@ import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
 import { netIpUa } from "@/server/clientLog";
-import { IBookItem, IChapterList } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/episode/episopeDialog/EpisopeDialog';
 import { onCopyText } from "@/utils/copy";
@@ -59,12 +59,12 @@ const WapEpisode: FC<IProps> = (
 
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
   const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
-  currentPage = curChapterData?.index as number
+  currentPage = curChapterData?.index as number;
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
-    { title: `${currentPage + 1} ${t("bookInfo.episodes")}`},
+    { title: router.locale === ELanguage.English ? `${t("bookInfo.episode")} ${currentPage + 1}` : `${currentPage + 1} ${t("bookInfo.episodes")}`},
   ]
   let preChapterData: any //后面再改
   if (curChapterData) {
@@ -156,7 +156,9 @@ const WapEpisode: FC<IProps> = (
           </div> : null}
         </div>
         <div className={styles.videoIntro}>
-          <h1 className={styles.videoTit}>{bookInfo.bookName} {currentPage + 1}</h1>
+          <h1 className={styles.videoTit}>
+            {bookInfo.bookName +  (router.locale === ELanguage.English ? ` ${t("bookInfo.episode")} ${currentPage + 1}` : ` ${currentPage + 1} ${t("bookInfo.episodes")}`)}
+          </h1>
           <div className={styles.videoScore}>
             <Image
               className={styles.epoImg}
