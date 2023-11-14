@@ -4,8 +4,8 @@ import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
-import styles from '@/components/pcHome/secondList/SecondList.module.scss'
 import TypeTwoTag from "@/components/common/typeTwoTag";
+import styles from '@/components/pcHome/secondList/SecondList.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];

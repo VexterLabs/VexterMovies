@@ -18,7 +18,6 @@ interface IProps extends ImageProps {
 }
 
 export const onImgError = (e: any) => {
-  console.log('imgError:', e.target.src)
   e.target.style.visibility = 'hidden';
   e.target.src = '/images/defaultFilm.png';
   e.target.srcset = '/images/defaultFilm.png';
