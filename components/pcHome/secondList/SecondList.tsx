@@ -9,10 +9,9 @@ import TypeTwoTag from "@/components/common/typeTwoTag";
 
 interface IProps {
   dataSource: IBookItem[];
-  typeTwoId?: number;
 }
 
-const SecondList: FC<IProps> = ({ dataSource = [], typeTwoId }) => {
+const SecondList: FC<IProps> = ({ dataSource = [] }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -26,8 +25,7 @@ const SecondList: FC<IProps> = ({ dataSource = [], typeTwoId }) => {
         bookName,
         chapterCount = 0
       } = book;
-      // const routerToBookInfo = `/film/${bookId}`
-      const routerToBookInfo = typeTwoId ? `/film/${bookId}?typeTwoId=${typeTwoId}` : `/film/${bookId}`
+      const routerToBookInfo = `/film/${bookId}`
 
       return <div key={bookId} className={styles.secondListBox}>
 

@@ -13,6 +13,7 @@ export const pathnameData = {
   browse: '/browse',
   more: '/more/[position]',
   book: '/film/[bookId]',
+  episode: '/episode/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',

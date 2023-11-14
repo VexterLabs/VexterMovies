@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
@@ -83,7 +83,6 @@ const PcEpisode: FC<IProps> = (
         const nextChapter = chapterList[episodeIndex.current + 1];
         if (nextChapter) {
           router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
-          console.log('currentPage-----0', currentPage)
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
           if (nextChapter.mp4 && nextChapter.unlock) {
@@ -103,7 +102,6 @@ const PcEpisode: FC<IProps> = (
     // 根据点击剧集的id，查找对应的index
     const tempCurInd = chapterList.find(item => item.id === id)?.index as number || 0
     setCurrentPage(tempCurInd == -1 ? 0 : tempCurInd);
-    console.log('currentPage-----1', currentPage)
     episodeIndex.current = tempCurInd;
     const item = chapterList[tempCurInd];
     !item.unlock && playerInstance && playerInstance.current.pause();//视频切换，暂停播放
@@ -149,7 +147,7 @@ const PcEpisode: FC<IProps> = (
         </div>
 
         <div className={styles.videoInfo}>
-          <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
+          <h1 className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</h1>
           <p className={styles.videoStar}>
             <Image
               className={styles.imageStar}

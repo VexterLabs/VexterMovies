@@ -156,7 +156,7 @@ const WapEpisode: FC<IProps> = (
           </div> : null}
         </div>
         <div className={styles.videoIntro}>
-          <p className={styles.videoTit}>{bookInfo.bookName} {currentPage + 1}</p>
+          <h1 className={styles.videoTit}>{bookInfo.bookName} {currentPage + 1}</h1>
           <div className={styles.videoScore}>
             <Image
               className={styles.epoImg}
