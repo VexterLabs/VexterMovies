@@ -22,6 +22,7 @@
   },
   "bookInfo": {
     "more": "更多",
+    "viewMore": "查看更多",
     "introduction": "简介",
     "previousPage": "上一页",
     "nextPage": "下一页",
@@ -29,7 +30,7 @@
     "firstChapterTip": "当前已在第一页",
     "like": "你也许也喜欢",
     "relatedEpisodes": "相关剧集",
-    "episodesDownload": "本集需要下载才能观看",
+    "episodesDownload": "下载应用程序继续观看",
     "episodes": "集",
     "recLike": "猜你喜欢",
     "totalEpisodes": "剧集数",

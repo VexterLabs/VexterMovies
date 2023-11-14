@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  // margin-bottom: 0.52rem;
+  margin-bottom: 0.52rem;
   .topInfo {
     display: flex;
     align-items: center;
@@ -26,8 +26,6 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 0.1rem;
-    margin-bottom: 0.48rem;
-
     .listItem {
       position: relative;
       height: 1.25rem;
@@ -36,7 +34,8 @@
       border-radius: 0.08rem;
       padding: 0.04rem;
       margin-bottom: 0.08rem;
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
 
       .imgBox {
         flex-shrink: 0;
@@ -129,6 +128,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 0.32rem;
 
     .tabItem {
       height: 0.4rem;

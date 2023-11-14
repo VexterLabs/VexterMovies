@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import ImageLegacy from "next/legacy/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
@@ -20,6 +21,8 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
     return 1 + i * 30 + '-' + (i + 1) * 30
   });
   const [tabIndex, setTabIndex] = useState(0);
+  const router = useRouter()
+  const language = router?.locale || ''
   const { t } = useTranslation();
 
   return <div className={styles.episodeListBox}>
@@ -55,13 +58,13 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
           </Link>
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
             <span className={styles.title}>{bookInfo.bookName}</span>
-            <span className={styles.pageNum}>EP.{item.index + 1}</span>
+            <span className={styles.pageNum}>{language==='en' || !language ?  `EP.${item.index + 1}` :  `${item.index + 1} ${t("home.episodes")}`}</span>
           </Link>
         </div>
       })}
       {chapterList.length > 11 && showMore ? <div className={styles.listItem} onClick={() => setShowMore(false)}>
         <div className={styles.viewMore}>
-          <span>View More</span>
+          <span>{t("bookInfo.viewMore")}</span>
           <Image
             className={styles.moreIcon}
             width={16}

@@ -83,7 +83,6 @@ const PcEpisode: FC<IProps> = (
         const nextChapter = chapterList[episodeIndex.current + 1];
         if (nextChapter) {
           router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
-          console.log('currentPage-----0', currentPage)
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
           if (nextChapter.mp4 && nextChapter.unlock) {
@@ -103,7 +102,6 @@ const PcEpisode: FC<IProps> = (
     // 根据点击剧集的id，查找对应的index
     const tempCurInd = chapterList.find(item => item.id === id)?.index as number || 0
     setCurrentPage(tempCurInd == -1 ? 0 : tempCurInd);
-    console.log('currentPage-----1', currentPage)
     episodeIndex.current = tempCurInd;
     const item = chapterList[tempCurInd];
     !item.unlock && playerInstance && playerInstance.current.pause();//视频切换，暂停播放
@@ -144,7 +142,7 @@ const PcEpisode: FC<IProps> = (
                 chapterName: chapterList?.[currentPage]?.name,
               })
             }}>
-            <div className={styles.btnDown}>Download the App to continue watching</div>
+            <div className={styles.btnDown}>{t('bookInfo.episodesDownload')}</div>
           </Link> : null}
         </div>
 
