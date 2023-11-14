@@ -50,7 +50,7 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, typeTwoName, 
 
     {bookList.length > 0 ? <div className={styles.browseContent}>
       <div className={styles.browseContent2} ref={browseRef}>
-        <FirstItem dataSource={bookList} typeTwoId={typeTwoId} typeTwoName={typeTwoName}/>
+        <FirstItem dataSource={bookList}/>
         {pages && pages > 1 ? <MorePagination
           prevPath={`/browse/${typeTwoId}/`}
           page={pageNo}
