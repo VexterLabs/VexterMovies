@@ -18,19 +18,17 @@ interface IProps extends SSRConfig {
   languages: ELanguage[]; // tdk需要， 勿删
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  typeTwoId: number;
-  typeTwoName: string;
 }
 
 const Film: NextPage<IProps> = (
-  { isPc, bookInfo, isApple, recommends, chapterList, typeTwoId, typeTwoName }
+  { isPc, bookInfo, isApple, recommends, chapterList }
 ) => {
 
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
   const breadData: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
-    { title: typeTwoName || bookInfo.typeTwoNames[0], link: `/browse/${typeTwoId || bookInfo.typeTwoIds[0]}` },
+    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName },
   ];
 
@@ -74,7 +72,7 @@ export default Film;
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
-  const { bookId, typeTwoId } = query as { bookId: string, typeTwoId: string };
+  const { bookId } = query as { bookId: string };
   if (!bookId) {
     return { notFound: true }
   }
@@ -86,8 +84,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     return { redirect: { destination: '/500', permanent: false } }
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [], languages = [] } = response;
-  const _typeTwoId = Number(typeTwoId) ? Number(typeTwoId) : book.typeTwoList && book.typeTwoList.length > 0 ? book.typeTwoList[0].id : 0;
-  const typeTwoName = book.typeTwoList && book.typeTwoList.length > 0 ? book.typeTwoList.find(val => val.id == _typeTwoId)?.name || '' : '';
   return {
     props: {
       bookId,
@@ -96,8 +92,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isApple: isIos(ua),
       recommends,
       chapterList,
-      typeTwoId: _typeTwoId,
-      typeTwoName,
       languages,
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },

@@ -36,7 +36,7 @@ const MMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
     {moreData.items && moreData.items.length > 0 ?
       <>
         <HomeTitle title={t(moreData?.name) || ''} />
-        <FirstItem dataSource={moreData.items} typeTwoId={0} typeTwoName={''}/>
+        <FirstItem dataSource={moreData.items} />
         {pages && pages > 1 ? <MorePagination
           prevPath={`/more/${ColumnNameRoute[moreData.name]}/`}
           page={pageNo}

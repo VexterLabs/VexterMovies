@@ -1,4 +1,4 @@
-import { ELanguage, IBookItem } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 
 export const TDK = {
   [ELanguage.ZhHans]: {
@@ -41,6 +41,15 @@ export const TDK = {
         title: `${bookName}短剧-DramaBox`,
         keywords: `${bookName}, ${bookName}短剧`,
         description: `${bookName}短剧 ${introduction.slice(0, 200)}...`
+      }
+    },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterInfo = chapterList.find(val => val.id === chapterId) || chapterList[0] || { name: '' };
+      return {
+        title: `${bookName + chapterInfo.name}-DramaBox`,
+        keywords: bookName + chapterInfo.name,
+        description: `在线观看${bookName + chapterInfo.name}`
       }
     },
     download: {
@@ -111,6 +120,15 @@ export const TDK = {
         description: `${bookName}短劇 ${introduction.slice(0, 200)}...`
       }
     },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterInfo = chapterList.find(val => val.id === chapterId) || chapterList[0] || { name: '' };
+      return {
+        title: `${bookName + chapterInfo.name}-DramaBox`,
+        keywords: bookName + chapterInfo.name,
+        description: `在線觀看${bookName + chapterInfo.name}`
+      }
+    },
     error500: {
       title: '500-DramaBox',
       keywords: '',
@@ -179,6 +197,15 @@ export const TDK = {
         description: `${bookName} short film ${introduction.slice(0, 200)}...`
       }
     },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterInfo = chapterList.find(val => val.id === chapterId) || chapterList[0] || { name: '' };
+      return {
+        title: `${bookName + chapterInfo.name}-DramaBox`,
+        keywords: bookName + chapterInfo.name,
+        description: `${bookName + chapterInfo.name} online`
+      }
+    },
     error500: {
       title: '500-DramaBox',
       keywords: '',
@@ -245,6 +272,15 @@ export const TDK = {
         title: `${bookName}단편 영화-DramaBox`,
         keywords: `${bookName}, ${bookName}단편 영화`,
         description: `${bookName}단편 영화 ${introduction.slice(0, 200)}...`
+      }
+    },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterInfo = chapterList.find(val => val.id === chapterId) || chapterList[0] || { name: '' };
+      return {
+        title: `${bookName + chapterInfo.name}-DramaBox`,
+        keywords: bookName + chapterInfo.name,
+        description: `${bookName + chapterInfo.name}을 온라인으로 시청하세요`
       }
     },
     error500: {
