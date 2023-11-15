@@ -1,17 +1,17 @@
 import React, { FC } from 'react'
-import styles from '@/components/pcHome/secondList/SecondList.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
+import TypeTwoTag from "@/components/common/typeTwoTag";
+import styles from '@/components/pcHome/secondList/SecondList.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
-  priority?: boolean;
 }
 
-const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
+const SecondList: FC<IProps> = ({ dataSource = [] }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -26,17 +26,17 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
         chapterCount = 0
       } = book;
       const routerToBookInfo = `/film/${bookId}`
+
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
           <Image
-            priority={priority}
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={book.cover}
-            width={272}
-            height={363}
+            blurDataURL={'/images/defaultFilm.png'}
+            width={228}
+            height={304}
             src={book.cover}
             alt={book.bookName}
           />
@@ -50,16 +50,13 @@ const SecondList: FC<IProps> = ({ dataSource = [], priority = false }) => {
           {bookName}
         </Link>
 
-        <Link href={routerToBookInfo} className={styles.bookNameBox}>
-          <div className={styles.bookNameHover}>
+        <div className={styles.bookNameBox}>
+          <Link href={routerToBookInfo} className={styles.bookNameHover}>
             {bookName}
-          </div>
-          <div className={styles.tagBox}>
-            {(book?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
-          </div>
-        </Link>
+          </Link>
+
+          {book?.typeTwoList && book.typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={book.typeTwoList}/> : null}
+        </div>
       </div>
     })}
   </div>

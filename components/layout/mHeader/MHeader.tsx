@@ -1,10 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "@/components/layout/mHeader/MHeader.module.scss";
 import MNav from "@/components/layout/mHeader/mNav";
 import MLanguage from "@/components/layout/mHeader/mLanguage/MLanguage";
 import ClientConfig from "@/client.config";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
 }
@@ -12,6 +14,15 @@ interface IProps {
 const MHeader: FC<IProps> = () => {
   const [visible, setVisible] = useState(false);
   const router = useRouter()
+
+  const [isLanguageShow, setIsLanguageShow] = useState<boolean | false>(false);
+  const HiveLog = useHiveLog()
+  useEffect(() => {
+    if(router && router.pathname) {
+      setIsLanguageShow((router.pathname === '/'))
+    }
+  }, [router])
+
   const navIconClick = () => {
     if (visible) {
       setVisible(false)
@@ -33,18 +44,24 @@ const MHeader: FC<IProps> = () => {
         width={48}
         height={48}
         src={'/images/home/m-menu.png'}
-        alt={'menu'}
+        alt={''}
       />
-      <Image
-        className={styles.logoBox}
-        width={181}
-        height={40}
-        src={'/images/logo2.png'}
-        placeholder="blur"
-        blurDataURL={'/images/logo2.png'}
-        alt={ClientConfig.name}
-      />
-      <MLanguage/>
+      <Link href={'/'} className={styles.logoBox} onClick={() => {
+        HiveLog.track('Logo_click')
+      }}>
+        <Image
+          className={styles.logo}
+          width={181}
+          height={40}
+          src={'/images/logo2.png'}
+          placeholder="blur"
+          blurDataURL={'/images/logo2.png'}
+          alt={ClientConfig.name}
+        />
+      </Link>
+      {
+        isLanguageShow ? <MLanguage/> : null
+      }
 
     </div>
     <div className={styles.headerOccupy}/>

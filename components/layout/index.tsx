@@ -5,10 +5,13 @@ import PcHeader from "@/components/layout/pcHeader/PcHeader";
 import PcFooter from "@/components/layout/pcFooter/PcFooter";
 import useLogParams from "@/hooks/useLogParams";
 import { useAppDispatch, useAppSelector } from "@/store";
-import { setDevice } from "@/store/modules/app.module";
+import { setDevice, setFooterAdVisible } from "@/store/modules/app.module";
 import { EDevice } from "@/store/store.interfaces";
 import MHeader from "@/components/layout/mHeader/MHeader";
-import styles from "@/components/layout/index.module.scss"
+import FooterAd from "@/components/layout/footerAd";
+import classNames from "classnames";
+import { useRouter } from "next/router";
+import styles from "@/components/layout/index.module.scss";
 
 interface IProps {
   children: React.ReactNode;
@@ -16,7 +19,10 @@ interface IProps {
 }
 
 const DLayout: FC<IProps> = ({ children, pageProps }) => {
+  const router = useRouter();
+  const [footerAdShow, setFooterAdShow] = useState<boolean | false>(false);
   const device = useAppSelector(state => state.app.device);
+  const footerAdVisible = useAppSelector(state => state.app.footerAdVisible);
   const dispatch = useAppDispatch();
   const [domVisible, setDomVisible] = useState(false);
 
@@ -32,21 +38,16 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
     }
   },[]) // eslint-disable-line
 
+  useEffect(() => {
+    setFooterAdShow(!(router.pathname == '/film/[bookId]' || router.pathname == '/episode/[bookId]' || router.pathname == '/episode/[bookId]/[chapterId]'))
+  }, [router])
+
   // 设置rem字体大小并判断设备 初始化
   const setRemScript = () => {
     const clientWidth = window.innerWidth || document.documentElement.clientWidth;
     const { isPc } = ownOs(window.navigator.userAgent);
     dispatch(setDevice(isPc ? EDevice.pc : EDevice.mobile));
-    if (isPc) {
-      /**pc端补偿google cls标准, 禁用以下*/
-      if (document.documentElement.style?.fontSize === '52px') {
-        if (clientWidth <= 1366){
-          document.documentElement.style.fontSize = 100 * (1366 / 1800) + 'px';
-        } else {
-          document.documentElement.style.fontSize = 100 * (clientWidth / 1920) + 'px';
-        }
-      }
-    } else {
+    if (!isPc) {
       document.documentElement.style.fontSize = 100 * (clientWidth / 750) + 'px';
     }
   }
@@ -54,20 +55,14 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   const setRemScriptListen = () => {
     const clientWidth = window.innerWidth || document.documentElement.clientWidth
     const { isPc } = ownOs(window.navigator.userAgent)
-    if (isPc) {
-      if (clientWidth >= 1366 && clientWidth <= 1800) {
-        document.documentElement.style.fontSize = 100 * (clientWidth / 1700) + 'px';
-      }
-    } else {
+    if (!isPc) {
       document.documentElement.style.fontSize = 100 * (clientWidth / 750) + 'px';
     }
   }
   if ((Reflect.has(pageProps, 'isPc') && Reflect.get(pageProps, 'isPc')) || (device === EDevice.pc && domVisible)) {
     return <>
       <PcHeader />
-      <main className={styles.pcWrap}>
-        {children}
-      </main>
+      {children}
       <PcFooter />
     </>
   }
@@ -75,9 +70,11 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   return (
     <>
       <MHeader/>
-      <main className={styles.mWrap}>
+      <main className={classNames(styles.mWrap, footerAdShow && footerAdVisible && styles.mWrapPaddingBo)}>
         {children}
+        {footerAdVisible && footerAdShow ? <FooterAd adClose={() => dispatch(setFooterAdVisible(false)) } /> : null}
       </main>
+
     </>
   );
 }

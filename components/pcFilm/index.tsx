@@ -1,99 +1,93 @@
-import React, { FC } from 'react'
-import styles from "@/components/pcFilm/index.module.scss";
+import React, { FC } from 'react';
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItem } from "@/typings/home.interface";
+import { IChapterList, IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
-import SecondList from "@/components/pcHome/secondList/SecondList";
+import PcSeries from '@/components/pcFilm/pcSeries';
+import PcLike from '@/components/pcFilm/pcLike';
+import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import styles from "@/components/pcFilm/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
-  firstChapterId: string;
   recommends: IBookItem[];
+  chapterList: IChapterList[];
+  breadData: IBreadcrumb[];
+  onBookClick: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
-const PcFilm: FC<IProps> = ({ bookInfo, firstChapterId, recommends = []  }) => {
+const PcFilm: FC<IProps> = (
+  {
+    bookInfo,
+    recommends = [],
+    chapterList = [],
+    breadData,
+    onBookClick,
+    onChannel,
+  }) => {
   const { t } = useTranslation()
 
-  const router = useRouter();
-
-  return <>
-    <div className={styles.backHead}>
-      <div className={styles.backBox}>
-        <div className={styles.backBoxLink} onClick={() => {
-          router.back();
-        }}>
-          <Image
-            className={styles.backIcon}
-            width={16}
-            height={16}
-            src={'/images/home/pc-more.png'}
-            alt={''}
-          />
-          <Image
-            className={styles.backIconActive}
-            width={16}
-            height={16}
-            src={'/images/home/pc-more-active.png'}
-            alt={''}
-          />
-          <span>{t("home.back")}</span>
-        </div>
-      </div>
+  return <main className={styles.detailWrap}>
+    <div className={styles.detailHeader}>
+      <Breadcrumb data={breadData} />
     </div>
-    <div className={styles.detailBox}>
-      <div className={styles.detailBookCoverBox}>
-        <Image
-          onError={onImgError}
-          className={styles.detailBookCover}
-          width={272}
-          height={363}
-          src={bookInfo.cover}
-          placeholder="blur"
-          blurDataURL={bookInfo.cover}
-          alt={bookInfo.bookName}
-        />
-      </div>
 
-      <div className={styles.detailBoxRight}>
-        <div className={styles.detailBoxRightTop}>
-          <Link href={`/film/${bookInfo.bookId}`}>
+    <div className={styles.container}>
+      <div className={styles.detailBox}>
+        <div className={styles.detailBookCoverBox}>
+          <Image
+            onError={onImgError}
+            className={styles.detailBookCover}
+            width={315}
+            height={420}
+            src={bookInfo.cover}
+            placeholder="blur"
+            blurDataURL={'/images/defaultFilm.png'}
+            alt={bookInfo.bookName}
+          />
+        </div>
+
+        <div className={styles.detailBoxRight}>
+          <div className={styles.detailBoxRightTop}>
             <h1 className={styles.bookName}>{bookInfo.bookName}</h1>
-          </Link>
-          <p className={styles.chapterCount}>
-            {`${bookInfo.chapterCount || 0} ${t("home.episodes")}`}
-          </p>
+            <p className={styles.epiNum}>
+              {chapterList?.length} {t("bookInfo.episodes")}
+            </p>
+            <p className={styles.intro}>
+              {bookInfo.introduction}
+            </p>
 
-          <p className={styles.intro}>
-            {bookInfo.introduction}
-          </p>
-
-          <div className={styles.tagsContent}>
-            { (bookInfo?.tags || []).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
+            <div className={styles.tagsContent}>
+              { (bookInfo?.typeTwoList || []).map(val => {
+                return <Link
+                  onClick={() => onChannel(val.name)}
+                  key={val.id}
+                  href={`/browse/${val.id}`}
+                  className={styles.tagItem}>{val.name}</Link>
+              })}
+            </div>
           </div>
-        </div>
 
-        <Link rel={"nofollow"} href={`/download?filmId=${bookInfo?.replacedBookId || bookInfo.bookId}`} className={styles.playBtn}>
-          <Image
-            className={styles.playIcon}
-            width={16}
-            height={16}
-            src={'/images/book/play-icon.png'}
-            alt={''}
-          />
-          <span>{t("home.play")}</span>
-        </Link>
+          {chapterList?.[0]?.id ? <Link href={`/episode/${bookInfo.bookId}/${chapterList?.[0]?.id}`}
+                                        className={styles.playBtn}>
+            <Image
+              className={styles.playIcon}
+              width={16}
+              height={16}
+              src={'/images/book/play-pc.png'}
+              alt={''}
+            />
+            <span>{t("home.play")}</span>
+          </Link> : null}
+        </div>
       </div>
+      <PcSeries chapterList={chapterList} bookInfo={bookInfo}/>
+      <PcLike dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
     </div>
-    {recommends.length > 0 ? <div className={styles.recommendBox}>
-      <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
-      <SecondList dataSource={recommends}/>
-    </div> : null }
-  </>
+
+  </main>
 }
 
 export default PcFilm;

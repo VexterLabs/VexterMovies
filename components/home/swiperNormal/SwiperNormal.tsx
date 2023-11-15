@@ -18,11 +18,10 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
       <div className={styles.swiperItem}>
         <Link href={`/film/${item.bookId}`} className={styles.contentImgBox}>
           <Image
-            priority
             className={styles.imageItem}
             onError={onImgError}
             placeholder="blur"
-            blurDataURL={item.cover}
+            blurDataURL={'/images/defaultFilm.png'}
             width={218}
             height={294}
             src={item.cover}
@@ -38,11 +37,16 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
             <p className={styles.chapterCount}>{item.chapterCount || 0} {t('home.episodes')}</p>
             <p className={styles.intro}>{item.introduction}</p>
           </div>
-          <div className={styles.rightCardBottom}>
-            { (item?.tags || []).map(val => {
-              return <div key={val} className={styles.rightTag}>{val}</div>
-            })}
-          </div>
+
+          {
+            !!(item?.typeTwoList && item.typeTwoList.length) ? <div className={styles.rightCardBottom}>
+              {
+                item.typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
+                  <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.rightTag}>{typeTwoListItem.name}</div>
+                ))
+              }
+            </div> : null
+          }
         </Link>
       </div>
     </Swiper.Item>

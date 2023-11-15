@@ -18,8 +18,8 @@ const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
   if (bookInfo.typeTwoNames?.[0] && bookInfo.typeTwoNames?.[0] !== 'all') {
     typeTwoName = bookInfo.typeTwoNames?.[0]
   }
-
-  return <div className={styles.crumbsWrap} style={isPc ? { display: 'none' } : {}}>
+  // style={isPc ? { display: 'none' } : {}}
+  return <div className={styles.crumbsWrap} >
     <Link href="/" className={styles.crumbsItem}>
       {t('home.home')}
       <Image

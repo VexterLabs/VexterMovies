@@ -3,29 +3,29 @@ const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
 const WebDomainObj = {
-  test: 'http://192.168.1.70:3000',
+  test: 'http://192.168.1.71:3001',
   staging: 'https://yfbwww.dramaboxapp.com',
   prod: 'https://www.dramaboxapp.com'
 }
 // 网站服务api
 const BaseUrlObj = {
   // test: 'http://192.168.0.253:8080',
-  test: 'http://192.168.1.70:8080',
+  test: 'http://192.168.0.253:8080',// http://192.168.1.70:8080
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
 }
 // ipua
 const IpUaUrlObj = {
-  // https://hotdrama.hw.dzods.cn/drama-box
-  test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
+  test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
+  // test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
   staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
   prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox-010001'; // 构建ID
+const buildId = 'dramabox-020001'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
@@ -54,38 +54,12 @@ const nextConfig = {
   // https://www.nextjs.cn/docs/upgrading
   swcMinify: true,
   images: { // 远程图片资源域名
-    // https://nextjs.org/docs/messages/next-image-unconfigured-host
-    // remotePatterns: [
-    //   {
-    //     protocol: 'https',
-    //     hostname: 'reshot.hw.dzods.cn',
-    //     port: '',
-    //     pathname: '/**',
-    //   },
-    //   {
-    //     protocol: 'https',
-    //     hostname: 'res.dramabox.com',
-    //     port: '',
-    //     pathname: '/**',
-    //   },
-    //   {
-    //     protocol: 'http',
-    //     hostname: 'nas2osstest.wpzkj.cn',
-    //     port: '',
-    //     pathname: '/**',
-    //   },
-    //   {
-    //     protocol: 'https',
-    //     hostname: 'nchapter.dramaboxdb.com',
-    //     port: '',
-    //     pathname: '/**',
-    //   },
-    // ],
     domains: [
       "reshot.hw.dzods.cn",
       "res.dramabox.com",
       "nas2osstest.wpzkj.cn",
-      "nchapter.dramaboxdb.com"
+      "nchapter.dramaboxdb.com",
+      'dzztstgvideo.cbread.cn'
     ],
   },
   // 环境配置
@@ -95,9 +69,9 @@ const nextConfig = {
     IpUaUrl,
   },
   // 参考 https://nextjs.org/docs/messages/swc-disabled
-  experimental: {
-    forceSwcTransforms: true,
-  },
+  // experimental: {
+  //   forceSwcTransforms: true,
+  // },
 }
 
 module.exports = nextConfig;

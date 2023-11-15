@@ -47,7 +47,8 @@
 
         .leftCardContentTop {
 
-          h2 {
+          .leftBookName {
+            display: block;
             font-size: 0.24rem;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.9);
@@ -62,6 +63,7 @@
           }
 
           .chapterCount {
+            display: inline-block;
             font-size: 0.14rem;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.9);
@@ -70,6 +72,7 @@
           }
 
           .intro {
+            display: inline-block;
             font-size: 0.14rem;
             font-weight: 400;
             color: rgba(255, 255, 255, 0.4);
@@ -82,24 +85,10 @@
             overflow: hidden;
           }
         }
-
-        .leftCardContentBottom {
-          font-size: 0.12rem;
-          font-weight: 400;
-          color: rgba(255, 255, 255, 0.4);
-          grid-gap: 0.08rem;
-          display: flex;
-
-          .leftTag {
-            border-radius: 0.03rem;
-            padding: 0.04rem 0.1rem;
-            background-color: rgba(255, 255, 255, 0.08);
-          }
-        }
       }
 
       &:hover {
-        transition: background-color 0.5s;
+        transition: background-color 0.3s;
         background-color: rgba(255, 255, 255, 0.12);
 
         .leftCardImg {
@@ -110,8 +99,8 @@
 
         .leftCardContent {
           .leftCardContentTop {
-            h2 {
-              transition: color 0.5s;
+            .leftBookName {
+              transition: color 0.3s;
               color: $theme_color;
             }
           }
@@ -147,7 +136,7 @@
             width: 100%;
             height: auto;
             min-height: 100%;
-            transition: all 0.5s;
+            transition: all 0.3s;
           }
         }
 
@@ -160,6 +149,7 @@
 
           .rightCardContentTop {
             .bookName {
+              display: block;
               font-size: 0.24rem;
               font-weight: 500;
               color: rgba(255, 255, 255, 0.9);
@@ -183,6 +173,7 @@
             }
 
             .intro {
+              display: block;
               font-size: 0.14rem;
               font-weight: 400;
               color: rgba(255, 255, 255, 0.4);
@@ -195,24 +186,10 @@
               word-wrap: break-word;
             }
           }
-
-          .rightCardContentBottom {
-            font-size: 0.12rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.4);
-            grid-gap: 0.08rem;
-            display: flex;
-
-            .rightTag {
-              border-radius: 0.03rem;
-              padding: 0.04rem 0.1rem;
-              background-color: rgba(255, 255, 255, 0.08);
-            }
-          }
         }
 
         &:hover {
-          transition: background-color 0.5s;
+          transition: background-color 0.3s;
           background-color: rgba(255, 255, 255, 0.12);
 
           .rightCardItemImg {
@@ -225,7 +202,7 @@
           .rightCardContent {
             .rightCardContentTop {
               .bookName {
-                transition: color 0.5s;
+                transition: color 0.3s;
                 color: $theme_color;
               }
             }

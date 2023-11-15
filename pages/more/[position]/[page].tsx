@@ -16,6 +16,7 @@ interface IProps {
 }
 
 const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages }) => {
+
   return <>
     {isPc ? <PcMore pageNo={pageNo} pages={pages} moreData={moreData} /> :
       <MMore pageNo={pageNo} pages={pages} moreData={moreData}/>
@@ -26,7 +27,11 @@ const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages }) => {
 // 导出异步获取数据方法
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
-  const { page = '1', position = '' } = query;
+  const { page, position = '' } = query;
+  if (page === "1") {
+    return { redirect: { destination: `/more/${position}`, permanent: false } }
+  }
+
   let name = '';
   if (position && Reflect.has(ColumnNameRouteReversion, position as EHomeName)) {
     name = Reflect.get(ColumnNameRouteReversion, position as EHomeName)
@@ -35,7 +40,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
   const response = await netMoreBook({
     name,
-    pageNum: Number(page),
+    pageNum: Number(page) || 1,
+    pageSize: 18
   }, locale as ELanguage)
 
   if (response === 'BadRequest_404') {
@@ -53,7 +59,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       positionName: name,
       pages,
       isPc: ownOs(ua).isPc,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }
 }

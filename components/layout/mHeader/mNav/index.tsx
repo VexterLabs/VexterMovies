@@ -1,10 +1,12 @@
-import React, { FC } from 'react'
-import styles from '@/components/layout/mHeader/mNav/index.module.scss'
+import React, { FC } from 'react';
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { Popup } from "antd-mobile";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import useHiveLog from "@/hooks/useHiveLog";
+import classNames from "classnames";
+import styles from '@/components/layout/mHeader/mNav/index.module.scss'
 
 interface IProps {
   visible: boolean;
@@ -18,7 +20,8 @@ const MNav: FC<IProps> = ({ visible, cancel }) => {
     { id: 'browse', label: t('home.browse'), link: '/browse' },
     { id: 'App', label: t('home.app'), link: '/download' },
   ]
-  const router = useRouter()
+  const router = useRouter();
+  const HiveLog = useHiveLog()
 
   return <Popup
     visible={visible}
@@ -51,10 +54,17 @@ const MNav: FC<IProps> = ({ visible, cancel }) => {
         return <Link
           key={val.id}
           href={val.link}
-          className={router.pathname === val.link ? styles.navItemActive : styles.navItem}
-          onClick={() => cancel()}
+          className={classNames(styles.navItem, router.pathname === val.link && styles.navItemActive)}
+          onClick={() => {
+            if (val.id === 'index') {
+              HiveLog.track('FirstPage_click')
+            } else if (val.id === "browse") {
+              HiveLog.track('TopClassify_click')
+            }
+            cancel()
+          }}
         >
-          <div className={styles.navItemTxt}>{val.label}</div>
+          <span className={styles.navItemTxt}>{val.label}</span>
         </Link>
       })}
     </div>

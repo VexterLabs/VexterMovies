@@ -13,31 +13,46 @@ export interface IHomeResItem {
 }
 
 export interface IBookItem {
-  name: string;
-  actionType: string;
-  action: string;
-  chapterCount: number;
-  ratings: number;
   bookId: string;
   bookName: string;
-  author: string;
-  introduction: string;
   cover: string;
-  tags: string[];
-  labels: string[];
   viewCount: number;
-  lastUpdateTime: string;
-  writeStatus: string; // COMPLETE
-  viewCountDisplay: string;
-  lastUpdateTimeDisplay: string;
-  replacedBookId?: string;
-  replacedBookName: string;
-  firstChapterId?: string;
-  columnName: string;
+  followCount?: number;
+  introduction: string;
+  chapterCount: number;
+  tags: string[];
   typeTwoNames: string[];
   typeTwoName: string;
   typeTwoIds: string[];
+  language: string;
+  simpleLanguage?: ELanguage;
+  typeTwoList?: { id: number; name: string; }[]
+  name: string;
+  actionType: string;
+  action: string;
+  ratings: number;
+  author: string;
+  lastUpdateTime: string;
+  viewCountDisplay: string;
+  lastUpdateTimeDisplay: string;
+  replacedBookName: string;
+  firstChapterId?: string;
+  columnName: string;
 }
+
+export interface IChapterList {
+  id: string;
+  index: number;
+  mp4: string;
+  name: string;
+  unlock: boolean;
+  cover: string;
+  new: boolean;
+  utime: string;
+  showEposide?: boolean;
+  newInd?: number;
+}
+
 
 export enum ELanguage {
   English = 'en',
@@ -47,9 +62,9 @@ export enum ELanguage {
 }
 
 export const LanguageActions: { text: string; key: ELanguage }[] = [
+  { text: 'English', key: ELanguage.English },
   { text: '简体中文', key: ELanguage.ZhHans },
   { text: '繁體中文', key: ELanguage.Zh },
-  { text: 'English', key: ELanguage.English },
   { text: '한국인', key: ELanguage.Korean },
 ]
 
@@ -58,6 +73,7 @@ export enum EHomeName {
   MustSees = '必看好剧',
   Trending = '当前热播',
   HiddenGems = '精彩剧集',
+  // MightLike = '为你推荐',
 }
 
 export const ColumnNameRoute = {
@@ -65,6 +81,7 @@ export const ColumnNameRoute = {
   [EHomeName.MustSees]: 'must-sees',
   [EHomeName.Trending]: 'trending',
   [EHomeName.HiddenGems]: 'hidden-gems',
+  // [EHomeName.MightLike]: 'might-like',
 }
 
 export const ColumnNameRouteReversion = {
@@ -72,4 +89,17 @@ export const ColumnNameRouteReversion = {
   'must-sees': EHomeName.MustSees,
   'trending': EHomeName.Trending,
   'hidden-gems': EHomeName.HiddenGems,
+  // 'might-like': EHomeName.MightLike,
+}
+
+export enum EnumPosition {
+  banner = 'banner',
+  popular = 'Popular',
+  trending = 'Trending',
+  ranking = 'Ranking',
+  'new-releases' = 'New Releases',
+  romance = 'Romance',
+  completed = 'Completed',
+  'editors-picks' = "Editors' Picks",
+  customInset = "inset"
 }

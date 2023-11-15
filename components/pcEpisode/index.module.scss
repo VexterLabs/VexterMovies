@@ -1,0 +1,198 @@
+.episodeWrap {
+  width: 14.4rem;
+  margin: 0 auto;
+  background-color: #000000;
+
+  .episodeHeader {
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    height: 0.80rem;
+    padding: 0 0.12rem;
+    //position: sticky;
+    //top: 0.8rem;
+    //z-index: 1;
+  }
+
+  .videoBox {
+    display: flex;
+    margin-bottom: 0.48rem;
+
+    .leftVideo {
+      width: 11.24rem;
+
+      .videoContainer {
+        height: 7.08rem;
+        width: 11.24rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 0.08rem;
+        overflow: hidden;
+        position: relative;
+
+        .downloads {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          z-index: 9;
+          text-align: center;
+
+          .errBg {
+            width: 3.98rem;
+            height: 100%;
+          }
+
+          .downloadMark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+          }
+        }
+
+        .downInfo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 9999;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+
+          .downTip {
+            font-size: 0.2rem;
+            color: #FFFFFF;
+            white-space: nowrap;
+            margin-bottom: 0.24rem;
+          }
+
+          .btnDown {
+            background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
+            border-radius: 0.24rem;
+            height: 0.48rem;
+            line-height: 0.48rem;
+            cursor: pointer;
+            padding: 0 0.24rem;
+            font-size: 0.18rem;
+            font-weight: 500;
+            color: #FFFFFF;
+          }
+        }
+      }
+
+      .videoInfo {
+        width: 11.24rem;
+        padding: 0 0.12rem;
+
+        .videoTitle {
+          margin-top: 0.24rem;
+          font-size: 0.28rem;
+          line-height: 0.32rem;
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 500;
+          margin-bottom: 0.12rem;
+        }
+
+        .videoStar {
+          display: flex;
+          // border: 1px solid red;
+          align-items: center;
+          margin-bottom: 0.12rem;
+
+          .imageStar {
+            width: 0.24rem;
+            height: 0.24rem;
+          }
+
+          .videoScore {
+            font-size: 0.18rem;
+            line-height: 0.2rem;
+            color: rgba(255, 255, 255, 0.8);
+          }
+        }
+
+        .videoDesc {
+          color: rgba(255, 255, 255, 0.6);
+          width: 11rem;
+          display: block;
+          font-size: 0.14rem;
+          font-weight: 400;
+          line-height: 0.20rem;
+          margin-bottom: 0.2rem;
+          position: relative;
+          word-break: break-word;
+
+
+          a {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            z-index: 9;
+            text-align: right;
+            width: 0.9rem;
+            height: 0.24rem;
+            font-size: 0.14rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+          }
+
+          .extend, .retract {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 0.9rem;
+            background: linear-gradient(270deg, #000000 0%, rgba(20, 20, 20, 0) 100%);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 0.3rem;
+
+            .moreIcon {
+              margin-left: 0.02rem;
+              width: 0.16rem;
+              height: 0.16rem;
+            }
+
+          }
+
+          .retract {
+            .moreIcon {
+              margin-left: 0;
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        .tagBox {
+          font-size: 0.12rem;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.6);
+          grid-gap: 0.08rem;
+          display: flex;
+
+          .tagItem {
+            border-radius: 0.12rem;
+            padding: 0.04rem 0.1rem;
+            color: rgba(255,255,255,0.6);
+            background-color: rgba(255, 255, 255, 0.1);
+
+            &:hover {
+              transition: color 0.3s;
+              color: $theme_color;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .bottomBox {
+    padding: 0 0.12rem;
+  }
+}

@@ -16,11 +16,11 @@ interface IProps {
   pageNo: number;
   pages: number;
   typeTwoId: number;
+  typeTwoName: string;
 }
 
 const Browse: NextPage<IProps> = (
-  { isPc, types, bookList, pageNo, pages, typeTwoId }) => {
-
+  { isPc, types, bookList, pageNo, pages, typeTwoId, typeTwoName }) => {
   return <>
     {isPc ?
       <PcBrowse
@@ -29,6 +29,7 @@ const Browse: NextPage<IProps> = (
         bookList={bookList}
         pages={pages}
         typeTwoId={typeTwoId}
+        typeTwoName={typeTwoName}
       /> :
       <MBrowse
         pageNo={pageNo}
@@ -36,18 +37,21 @@ const Browse: NextPage<IProps> = (
         bookList={bookList}
         pages={pages}
         typeTwoId={typeTwoId}
+        typeTwoName={typeTwoName}
       />}
   </>
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }) => {
   const ua = req?.headers['user-agent'] || ''
-  const { page = '1', typeTwoId = 0 } = query;
-
+  const { page, typeTwoId = 0 } = query;
+  if (page === "1") {
+    return { redirect: { destination: `/browse/${typeTwoId}`, permanent: false } }
+  }
   const response = await netBrowse({
     typeTwoId: Number(typeTwoId) || 0,
-    pageNo: Number(page),
-    pageSize: 15
+    pageNo: Number(page) || 1,
+    pageSize: 18
   }, locale as ELanguage)
   if (response === 'BadRequest_404') {
     return { notFound: true }
@@ -71,7 +75,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       typeTwoId: Number(typeTwoId),
       isPc: ownOs(ua).isPc,
       typeTwoName,
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common'])),
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }
 }

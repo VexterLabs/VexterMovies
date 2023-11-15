@@ -39,20 +39,26 @@ const MDownload: FC<IProps> = ({ isApple }) => {
       blurDataURL={'/images/download/cover.png'}
       alt={ClientConfig.name}
     />
-    <Link rel={"nofollow"} href={shopLink} className={styles.downloadBtn} onClick={() => {
-      onCopyText(copyText, () => {
-        netIpUa(clipboard)
-        HiveLog.trackDownload('turnPage_click', { book_ID: clipboard.bid, chapter_id: clipboard.cid })
-      })
-    }}>
-      <Image
-        className={styles.downloadBtnIcon}
-        width={48}
-        height={48}
-        src={isApple ? '/images/download/ios.png' : '/images/download/android.png'}
-        alt={ClientConfig.name}
-      />
-      <span>{t("appPage.download")}</span>
+    <Link
+      rel={"nofollow"}
+      href={shopLink}
+      onClick={() => {
+        onCopyText(copyText, () => {
+          netIpUa(clipboard)
+          HiveLog.trackDownload('turnPage_click', { bookId: clipboard.bid, chapterId: clipboard.cid })
+        })
+      }}
+    >
+      <span className={styles.downloadBtn}>
+        <Image
+          className={styles.downloadBtnIcon}
+          width={48}
+          height={48}
+          src={isApple ? '/images/download/ios.png' : '/images/download/android.png'}
+          alt={ClientConfig.name}
+        />
+        <span>{t("appPage.download")}</span>
+      </span>
     </Link>
     <div className={styles.downloadContent}>
       {t("appPage.content")}

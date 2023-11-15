@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import styles from '@/components/pcHome/homeTitle/HomeTitle.module.scss'
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import styles from '@/components/pcHome/homeTitle/HomeTitle.module.scss'
 
 interface IProps {
   title: string;

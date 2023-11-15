@@ -1,90 +1,160 @@
-import React, { FC, useState } from 'react'
-import styles from "@/components/film/index.module.scss";
+import React, { FC, useState } from 'react';
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IBookItem } from "@/typings/home.interface";
-import { netIpUa } from "@/server/clientLog";
-import { useAppSelector } from "@/store";
-import ClientConfig from "@/client.config";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import useHiveLog from "@/hooks/useHiveLog";
-import { onCopyText } from "@/utils/copy";
+import EpisopeDialog from '@/components/episode/episopeDialog/EpisopeDialog';
+import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import LikeTitle from "@/components/film/likeTitle/LikeTitle";
+import LikeItem from "@/components/film/likeItem/LikeItem";
+import { Ellipsis } from "antd-mobile";
+import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import styles from "@/components/film/index.module.scss";
 
 interface IProps {
+  breadData: IBreadcrumb[];
   bookInfo: IBookItem;
   isApple: boolean;
+  recommends: IBookItem[];
+  chapterList: IChapterList[];
+  onBookClick: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
-const MFilm: FC<IProps> = ({ bookInfo, isApple }) => {
+const MFilm: FC<IProps> = (
+  {
+    bookInfo,
+    isApple,
+    recommends = [],
+    chapterList = [],
+    breadData,
+    onBookClick,
+    onChannel
+  }) => {
   const { t } = useTranslation();
-  const clipboard = useAppSelector(state => state.hive.clipboard)
-  const copyText = useAppSelector(state => state.hive.copyText);
-  const shopLink = useAppSelector(state => {
-    if (isApple) {
-      return ClientConfig.ios.deeplink + state.hive.copyText;
-    }
-    return ClientConfig.android.link;
-  });
   const HiveLog = useHiveLog();
-  const {
-    bookId,
-    bookName,
-    introduction
-  } = bookInfo;
 
-  const [isShowMore, setIsShowMore] = useState(false);
-  const onMore = () => {
-    setIsShowMore(true)
+  const [showDialog, setEpiDialog] = useState(false);//展示所有剧集的弹框
+
+  // 展示剧集弹框
+  const showEpisodeDialog = () => {
+    setEpiDialog(true);
+    HiveLog.track('EpisodesList_click')
+  }
+  // 关闭剧集弹框
+  const closeEpisodeDialog = () => {
+    setEpiDialog(false)
   }
 
-  return <div className={styles.detailBox}>
-    <Image
-      onError={onImgError}
-      className={styles.bookCover}
-      width={280}
-      height={378}
-      src={bookInfo.cover}
-      placeholder="blur"
-      blurDataURL={'/images/defaultFilm.png'}
-      alt={bookInfo.bookName}
-    />
+  return <div className={styles.filmWrap}>
+    <div className={styles.filmHeader}>
+      <Breadcrumb data={breadData} isWap={true}/>
+    </div>
+    <div className={styles.detailBox}>
+      <Image
+        onError={onImgError}
+        className={styles.bookCover}
+        width={280}
+        height={378}
+        src={bookInfo.cover}
+        placeholder="blur"
+        blurDataURL={'/images/defaultFilm.png'}
+        alt={bookInfo.bookName}
+      />
 
-    {bookName ? <h1 className={styles.bookName}>{bookName}</h1> : null}
+      {bookInfo.bookName ? <h1 className={styles.bookName}>{bookInfo.bookName}</h1> : null}
 
-    {bookInfo?.tags && bookInfo?.tags.length > 0 ? <div className={styles.tagBox}>
-      {(bookInfo?.tags || []).map(val => {
-        return <div key={val} className={styles.tagItem}>{val}</div>
-      })}
-    </div> : null}
+      {bookInfo?.typeTwoList && bookInfo?.typeTwoList.length > 0 ? <div className={styles.tagBox}>
+        {(bookInfo?.typeTwoList || []).map(val => {
+          return <Link
+            onClick={() => onChannel(val.name)}
+            key={val.id}
+            href={`/browse/${val.id}`}
+            className={styles.tagItem}>{val.name}</Link>
+        })}
+      </div> : null}
 
-    <div className={styles.footerBox}>
-      <Link rel={"nofollow"} className={styles.footerBtn} href={shopLink} onClick={() => {
-        onCopyText(copyText, () => {
-          netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { book_ID: bookId, chapter_id: 0 })
-        })
-      }}>
-        <div>
+      <div className={styles.footerBox}>
+        <Link rel={"nofollow"} className={styles.footerBtn} href={`/episode/${bookInfo.bookId}`}>
           <Image
             className={styles.playIcon}
             width={48}
             height={48}
-            src={'/images/book/play-icon2.png'}
+            src={'/images/book/play-d.png'}
             alt={''}
           />
           <span>{t("home.play")}</span>
-        </div>
-      </Link>
+        </Link>
+      </div>
+
+      {bookInfo.introduction ? <div className={styles.introBox}>
+        <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
+
+        <Ellipsis
+          rows={3}
+          className={styles.introText}
+          direction='end'
+          expandText={<span className={styles.expand}>
+            {t("home.more")}
+            <Image
+              className={styles.moreIcon}
+              width={24}
+              height={24}
+              src={'/images/episode/wap-more.png'}
+              alt={''}
+            />
+          </span>}
+          collapseText={<span className={styles.retract}>
+            <Image
+              className={styles.moreIcon}
+              width={24}
+              height={24}
+              src={'/images/episode/wap-more.png'}
+              alt={''}
+            />
+          </span>}
+          content={bookInfo.introduction}/>
+      </div> : null}
     </div>
 
-    {introduction ? <div className={styles.introBox}>
-      <p className={styles.introTitle}>{t('bookInfo.introduction')}</p>
-      <p className={isShowMore ? styles.introTextMore : styles.introText}>{introduction}</p>
-      {!isShowMore ? <div className={styles.introMore} onClick={() => onMore()}>{t('bookInfo.more')}</div> : null}
-    </div> : null}
+    <div className={styles.episodeNav} onClick={() => {
+      showEpisodeDialog()
+    }}>
+      <div className={styles.leftInfo}>
+        <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
+        <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
+      </div>
+      <div className={styles.rightImg}>
+        <Image
+          className={styles.arrowIcon}
+          width={24}
+          height={24}
+          src={'/images/book/arrow-r-d.png'}
+          alt={''}
+        />
+      </div>
+    </div>
 
+    {recommends.length > 0 ? <>
+      <LikeTitle title={t('bookInfo.recLike')}/>
+      <LikeItem dataSource={recommends || []} onBookClick={onBookClick} onChannel={onChannel}/>
+    </> : null}
+
+    <EpisopeDialog
+      bookInfo={bookInfo}
+      chapterList={chapterList}
+      closeDialog={closeEpisodeDialog}
+      showDialog={showDialog}/>
+
+    <EpisodeNav
+      isApple={isApple}
+      bookInfo={bookInfo}
+      showEpisodeDialog={showEpisodeDialog}
+    />
   </div>
+
 }
 
 export default MFilm;

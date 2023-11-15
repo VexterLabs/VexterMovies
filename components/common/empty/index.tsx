@@ -1,12 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, CSSProperties } from "react";
 import { useTranslation } from "next-i18next";
-import styles from '@/components/common/empty/index.module.scss'
 import Image from "next/image";
+import styles from '@/components/common/empty/index.module.scss'
 
-export const PcEmpty: FC = () => {
+export const PcEmpty: FC<{ style?: CSSProperties; message?: string; }> = ({ style, message }) => {
   const { t } = useTranslation();
 
-  return <div className={styles.emptyBox}>
+  return <div className={styles.emptyBox} style={style}>
     <Image
       className={styles.emptyIcon}
       width={320}
@@ -17,14 +17,14 @@ export const PcEmpty: FC = () => {
       alt={t('home.emptyDesc')}
     />
     <div className={styles.emptyIntro}>
-      {t('home.emptyDesc')}
+      {message ?? t('home.emptyDesc')}
     </div>
   </div>
 }
 
-export const MEmpty: FC = () => {
+export const MEmpty: FC<{ style?: CSSProperties; message?: string; }> = ({ style, message }) => {
   const { t } = useTranslation();
-  return <div className={styles.mEmptyBox}>
+  return <div className={styles.mEmptyBox} style={style}>
     <Image
       className={styles.emptyIcon}
       width={320}
@@ -35,7 +35,7 @@ export const MEmpty: FC = () => {
       alt={t('home.emptyDesc')}
     />
     <div className={styles.emptyIntro}>
-      {t('home.emptyDesc')}
+      {message ?? t('home.emptyDesc')}
     </div>
   </div>
 }

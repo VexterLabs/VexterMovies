@@ -1,0 +1,28 @@
+.typeTagBox {
+  font-size: 0.12rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  gap: 0.08rem;
+  display: flex;
+  flex-wrap: wrap;
+  height: 0.24rem;
+  overflow: hidden;
+
+  .leftTag {
+    color: rgba(255, 255, 255, 0.4);
+    border-radius: 0.12rem;
+    padding: 0 0.1rem;
+    background-color: rgba(255, 255, 255, 0.08);
+    height: 0.24rem;
+    line-height: 0.24rem;
+    max-width: 3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $theme_color;
+    }
+  }
+}

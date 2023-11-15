@@ -1,11 +1,10 @@
 import React, { FC } from "react";
-import styles from '@/components/pcDownload/index.module.scss';
 import { useTranslation } from "next-i18next";
 import PcStore from "@/components/pcDownload/store/PcStore";
 import Image from "next/image";
+import styles from '@/components/pcDownload/index.module.scss';
 
-interface IProps {
-}
+interface IProps {}
 
 const PcDownload: FC<IProps> = () => {
   const { t } = useTranslation();

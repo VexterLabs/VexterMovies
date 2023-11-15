@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import styles from "@/components/pcDownload/store/PcStore.module.scss";
 import QRCode from "qrcode.react";
 import { Toast } from "antd-mobile";
 import { useTranslation } from "next-i18next";
@@ -7,6 +6,7 @@ import { useRouter } from "next/router";
 import { useAppSelector } from "@/store";
 import { ELanguage } from "@/typings/home.interface";
 import { onCopyText } from "@/utils/copy";
+import styles from "@/components/pcDownload/store/PcStore.module.scss";
 
 interface IProps {
 }
@@ -19,7 +19,7 @@ const PcStore: FC<IProps> = () => {
   const copyUrl = useAppSelector(state => {
     const bookId = state.hive.clipboard.bid;
     const locale = state.hive.language;
-    if (locale === ELanguage.ZhHans) {
+    if (locale === ELanguage.English) {
       return `${process.env.WebDomain}/download?filmId=${bookId}`
     }
     return `${process.env.WebDomain}/${router.locale}/download?filmId=${bookId}`

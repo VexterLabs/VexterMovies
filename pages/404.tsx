@@ -32,7 +32,7 @@ const Custom404: NextPage<IProps> = () => {
         alt={'404'}
       />
       <Link href="/" className={styles.pcIntro}>
-        <p>{t('others.error')}</p>
+        <span>{t('others.error')}</span>
       </Link>
     </div> : null}
 
@@ -47,8 +47,8 @@ const Custom404: NextPage<IProps> = () => {
         alt={'404'}
       />
 
-      <Link href="/" className={styles.mIntro}>
-        <p>{t('others.error')}</p>
+      <Link href="/" className={styles.pcIntro}>
+        <span>{t('others.error')}</span>
       </Link>
     </div> : null}
   </>
@@ -60,7 +60,7 @@ export default Custom404;
 export const getStaticProps: GetStaticProps = async ({ locale }) =>{
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? ELanguage.ZhHans, ['common']))
+      ...(await serverSideTranslations(locale || ELanguage.English, ['common']))
     },
   };
 }

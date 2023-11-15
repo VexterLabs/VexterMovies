@@ -17,9 +17,10 @@ interface IProps {
   pageNo: number;
   pages: number;
   typeTwoId: number;
+  typeTwoName: string;
 }
 
-const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
+const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, typeTwoName, types }) => {
   const { t } = useTranslation()
   const browseRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -49,7 +50,7 @@ const MBrowse: FC<IProps> = ({ bookList, pageNo, pages, typeTwoId, types }) => {
 
     {bookList.length > 0 ? <div className={styles.browseContent}>
       <div className={styles.browseContent2} ref={browseRef}>
-        <FirstItem dataSource={bookList} />
+        <FirstItem dataSource={bookList}/>
         {pages && pages > 1 ? <MorePagination
           prevPath={`/browse/${typeTwoId}/`}
           page={pageNo}
