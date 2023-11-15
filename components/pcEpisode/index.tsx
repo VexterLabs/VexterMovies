@@ -155,7 +155,7 @@ const PcEpisode: FC<IProps> = (
               height={24}
               alt="star"
             />
-            <span className={styles.videoScore}>{bookInfo.chapterCount}</span>
+            <span className={styles.videoScore}>{bookInfo.followCount}</span>
           </p>
 
           <Ellipsis

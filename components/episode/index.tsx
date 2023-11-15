@@ -168,7 +168,7 @@ const WapEpisode: FC<IProps> = (
               src='/images/book/start-m.png'
               alt='photo'
             />
-            <p className={styles.epoScore}>{bookInfo.chapterCount}</p>
+            <p className={styles.epoScore}>{bookInfo.followCount}</p>
           </div>
           {
             bookInfo?.typeTwoList && bookInfo.typeTwoList.length > 0 ?
