@@ -55,18 +55,16 @@
 
       .bookLabelBox {
         margin-top: 0.12rem;
-        height: 0.24rem;
         overflow: hidden;
         display: flex;
-        flex-direction: row;
+        // flex-direction: row;
         flex-wrap: wrap;
         gap: 0.08rem;
+        
 
         .bookLabel {
-          height: 0.24rem;
           background-color: rgba(255,255,255,0.1);
           border-radius: 0.12rem;
-          padding: 0.04rem 0.1rem;
           font-size: 0.12rem;
           font-weight: 400;
           color: rgba(255,255,255,0.6);
@@ -74,6 +72,8 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          padding: 0.04rem 0.1rem;
+          
 
           &:hover {
             transition: color 0.3s;
