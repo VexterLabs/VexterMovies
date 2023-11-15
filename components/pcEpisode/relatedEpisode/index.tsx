@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import ImageLegacy from "next/legacy/image";
 import { onImgError } from "@/components/common/image/ImageCover";
@@ -22,6 +23,8 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
     const newList = chapterList.slice(current, chapterList.length);
     return newList.concat(item);
   });
+  const router = useRouter()
+  const language = router?.locale || ''
   const { t } = useTranslation();
   useEffect(() => {
     setRelatedList(() => {
@@ -70,8 +73,10 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
             onClick={() => onChooseEpisode(index,item.id)}
             shallow
             replace>
-            <span className={styles.title}>{item.name}</span>
-            <span className={styles.pageNum}>EP.{item.index + 1}</span>
+            <span className={styles.title}>{bookInfo.bookName}</span>
+            <span className={styles.pageNum}>
+              {language==='en' || !language ?  `EP.${item.index + 1}` :  `${item.index + 1} ${t("home.episodes")}`}
+              </span>
           </Link>
         </div>
       })}

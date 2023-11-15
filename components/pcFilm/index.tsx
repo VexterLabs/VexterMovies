@@ -76,7 +76,7 @@ const PcFilm: FC<IProps> = (
               className={styles.playIcon}
               width={16}
               height={16}
-              src={'/images/book/play-icon.png'}
+              src={'/images/book/play-pc.png'}
               alt={''}
             />
             <span>{t("home.play")}</span>

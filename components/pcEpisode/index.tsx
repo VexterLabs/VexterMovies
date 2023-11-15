@@ -142,7 +142,7 @@ const PcEpisode: FC<IProps> = (
                 chapterName: chapterList?.[currentPage]?.name,
               })
             }}>
-            <div className={styles.btnDown}>Download the App to continue watching</div>
+            <div className={styles.btnDown}>{t('bookInfo.episodesDownload')}</div>
           </Link> : null}
         </div>
 

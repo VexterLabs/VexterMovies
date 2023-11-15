@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useRef} from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import { IChapterList, IBookItem } from "@/typings/home.interface";
@@ -13,30 +13,37 @@ interface IProps {
 
 const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, bookInfo}) => {
   const [curIndex, setCurIndex] = useState<number>(0)
+  const navRef = useRef<HTMLDivElement>(null);
+  const setCurIndexInd = (i: number) => {
+    setCurIndex(i)
+    navRef?.current && (navRef.current.scrollTop = 0)
+  }
 
-  return <div className={styles.dialogBox} style={showDialog ? {} : {display:'none'}}>
-    <div className={styles.topInfo}>
-      <div className={styles.title}>{bookInfo.bookName}</div>
-      <Image
-        className={styles.closeIcon}
-        onClick={() => {closeDialog()}}
-        width={48}
-        height={48}
-        src={'/images/book/close-d.png'}
-        alt={''}
-      />
-    </div>
-    <div className={styles.titleTab}>
-      {
-        Array.from({length: Math.ceil(chapterList.length/50)},(v, i) => {
-          return <div key={i} className={styles.tabs}>
-             <div
-              onClick={() => setCurIndex(i)}
-              className={curIndex === i ? styles.tabTopActive : styles.tabTop}>{1 + i * 50 + '-' + (i + 1) * 50}</div>
-               <div className={styles.tabLine} style={i == Math.ceil(chapterList.length/50) - 1 ? {display:"none"} : {}}>|</div>
-          </div>
-        })
-      }
+  return <div className={styles.dialogBox} style={showDialog ? {} : {display:'none'}} ref={navRef}>
+    <div className={styles.headerTop}>
+      <div className={styles.topInfo}>
+        <div className={styles.title}>{bookInfo.bookName}</div>
+        <Image
+          className={styles.closeIcon}
+          onClick={() => {closeDialog()}}
+          width={48}
+          height={48}
+          src={'/images/book/close-d.png'}
+          alt={''}
+        />
+      </div>
+      <div className={styles.titleTab}>
+        {
+          Array.from({length: Math.ceil(chapterList.length/50)},(v, i) => {
+            return <div key={i} className={styles.tabs}>
+              <div
+                onClick={() => setCurIndexInd(i)}
+                className={curIndex === i ? styles.tabTopActive : styles.tabTop}>{1 + i * 50 + '-' + (i + 1) * 50}</div>
+                <div className={styles.tabLine} style={i == Math.ceil(chapterList.length/50) - 1 ? {display:"none"} : {}}>|</div>
+            </div>
+          })
+        }
+      </div>
     </div>
 
 

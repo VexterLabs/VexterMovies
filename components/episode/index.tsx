@@ -150,7 +150,7 @@ const WapEpisode: FC<IProps> = (
                   })
                 })
               }}>
-                Download the App
+                {t('bookInfo.episodesDownload')}
               </Link>
             </div>
           </div> : null}
