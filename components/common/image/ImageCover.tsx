@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import Image from 'next/image';
 import { ImageProps } from "next/dist/shared/lib/get-img-props";
 import Link from "next/link";
 import { UrlObject } from "url";
-import styles from "@/components/common/image/index.module.scss";
 import { ELanguage } from "@/typings/home.interface";
+import styles from "@/components/common/image/index.module.scss";
 
 type Url = string | UrlObject;
 
@@ -28,20 +28,20 @@ export const onImgError = (e: any) => {
 
 export const ImageCover: FC<IProps> = (props) => {
 
-  const imageProps = Object.assign({}, props);
+  const imageProps = useMemo(() => {
+    const _props = {} as ImageProps;
+    const blackAttributes = ['scale', 'locale', 'onClick', 'className', 'href', 'replace', 'rel'];
+    for (const item in props) {
+      if (blackAttributes.indexOf(item) === -1) {
+        _props[item] = props[item]
+      }
+    }
+    if(!_props.src) {
+      _props.src = '/images/defaultFilm.png';
+    }
+    return _props;
+  }, [props]);
 
-  if (Reflect.has(imageProps, 'locale')) {
-    Reflect.deleteProperty(imageProps, 'locale')
-  }
-  if (Reflect.has(imageProps, 'onClick')) {
-    Reflect.deleteProperty(imageProps, 'onClick')
-  }
-  if (Reflect.has(imageProps, 'className')) {
-    Reflect.deleteProperty(imageProps, 'className')
-  }
-  if (Reflect.has(imageProps, 'href')) {
-    Reflect.deleteProperty(imageProps, 'href')
-  }
 
   const { scale = false, href, className = '', alt = '', onClick, locale = ELanguage.English } = props;
 
