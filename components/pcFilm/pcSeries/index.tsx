@@ -28,7 +28,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
   return <div className={styles.episodeListBox}>
     <div className={styles.topInfo}>
       <div className={styles.episodeTitle}>{t("bookInfo.episodeList")}</div>
-      <div className={styles.allCounts}>{chapterList.length} {t("bookInfo.episodes")}</div>
+      <div className={styles.allCounts}>({chapterList.length} {t("bookInfo.episodes")})</div>
     </div>
     <div className={styles.listInfo}>
       { chapterList.map((item, index) => {
