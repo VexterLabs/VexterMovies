@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
-import Player, { Events, Util } from 'xgplayer'
-import styles from "@/components/episode/index.module.scss"
+import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
@@ -9,7 +8,7 @@ import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import useHiveLog from "@/hooks/useHiveLog";
 import { netIpUa } from "@/server/clientLog";
-import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import EpisopeDialog from '@/components/episode/episopeDialog/EpisopeDialog';
 import { onCopyText } from "@/utils/copy";
@@ -19,6 +18,7 @@ import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import styles from "@/components/episode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -64,7 +64,7 @@ const WapEpisode: FC<IProps> = (
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
-    { title: router.locale === ELanguage.English ? `${t("bookInfo.episode")} ${currentPage + 1}` : `${currentPage + 1} ${t("bookInfo.episodes")}`},
+    { title: chapterList?.[currentPage]?.name || t("bookInfo.episode")},
   ]
   let preChapterData: any //后面再改
   if (curChapterData) {
@@ -157,7 +157,7 @@ const WapEpisode: FC<IProps> = (
         </div>
         <div className={styles.videoIntro}>
           <h1 className={styles.videoTit}>
-            {bookInfo.bookName +  (router.locale === ELanguage.English ? ` ${t("bookInfo.episode")} ${currentPage + 1}` : ` ${currentPage + 1} ${t("bookInfo.episodes")}`)}
+            {`${bookInfo.bookName} ${chapterList?.[currentPage]?.name || t("bookInfo.episodes")}`}
           </h1>
           <div className={styles.videoScore}>
             <Image
