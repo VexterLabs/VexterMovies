@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
-import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
@@ -103,8 +103,12 @@ const PcEpisode: FC<IProps> = (
     const item = chapterList[tempCurInd];
     !item.unlock && playerInstance && playerInstance.current.pause();//视频切换，暂停播放
     setErrorBg(item.unlock ? '' : item.cover)
-
-    if (!item.unlock) return
+    if (!item.unlock) {
+      if (playerInstance.current) {
+        playerInstance.current.currentTime = 0;
+      }
+      return;
+    }
     if (playerInstance.current) {
       playerInstance.current.currentTime = 0;
       await playerInstance.current.switchURL(item?.mp4, { seamless: true, currentTime: 0 });
