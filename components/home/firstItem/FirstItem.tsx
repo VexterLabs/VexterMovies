@@ -3,7 +3,7 @@ import styles from '@/components/home/firstItem/FirstItem.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 interface IProps {
   dataSource: IBookItem[];

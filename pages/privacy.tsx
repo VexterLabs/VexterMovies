@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   const ua = req?.headers['user-agent'] || '';
   try {
     const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
-    if (clientUrl && clientUrl.includes('/en/')){
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
       return { redirect: { destination: '/privacy', permanent: false } }
     }
   } catch (e) {}

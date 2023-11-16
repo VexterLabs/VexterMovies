@@ -5,7 +5,7 @@ import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 interface IProps {
   bigList: IBookItem[];

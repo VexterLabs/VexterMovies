@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   // 返回的参数将会按照 key 值赋值到 Home 组件的同名入参中
   try {
     const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
-    if (clientUrl && clientUrl.includes('/en/')){
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
       return { redirect: { destination: '/terms', permanent: false } }
     }
   } catch (e) {}
