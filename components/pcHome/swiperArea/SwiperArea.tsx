@@ -3,7 +3,7 @@ import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import TypeTwoTag from "@/components/common/typeTwoTag";
 import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss';
 

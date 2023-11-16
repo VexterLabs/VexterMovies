@@ -3,6 +3,7 @@ import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/image";
+import ImageLegacy from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import styles from '@/components/pcFilm/pcLike/PcLike.module.scss';
 
@@ -30,7 +31,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
               href={`/film/${book.bookId}`}
               className={styles.bookImage}
               onClick={() => onBookClick && onBookClick(book)}>
-              <Image
+              <ImageLegacy
                 className={styles.imageItem}
                 onError={onImgError}
                 placeholder="blur"
