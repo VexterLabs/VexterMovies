@@ -1,8 +1,8 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from '@/components/film/likeItem/LikeItem.module.scss';
 
 interface IProps {

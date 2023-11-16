@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import TypeTwoTag from "@/components/common/typeTwoTag";
 import styles from '@/components/pcHome/secondList/SecondList.module.scss';

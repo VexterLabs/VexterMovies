@@ -51,7 +51,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
   try {
     const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
-    if (clientUrl && clientUrl.includes('/en/')){
+
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
       let destination = '/browse';
       if (page === "1") {
         if (typeTwoId != 0) {

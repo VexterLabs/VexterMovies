@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
 
   try {
     const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
-    if (clientUrl && clientUrl.includes('/en/')){
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
       return { redirect: { destination: page === "1" ? `/more/${position}` : `/more/${position}/${page}`, permanent: false } }
     }
   } catch (e) {}
