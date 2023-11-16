@@ -2,7 +2,7 @@ import React, { FC, useEffect, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
-import { IBookItem, IChapterList } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
@@ -44,7 +44,7 @@ const PcEpisode: FC<IProps> = (
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
-    { title: chapterList?.[currentPage]?.name || t("bookInfo.episode")},
+    { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
@@ -145,7 +145,7 @@ const PcEpisode: FC<IProps> = (
 
         <div className={styles.videoInfo}>
           <h1 className={styles.videoTitle}>
-            {`${bookInfo.bookName} ${chapterList?.[currentPage]?.name || t("bookInfo.episodes")}`}
+            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
           </h1>
           <p className={styles.videoStar}>
             <Image

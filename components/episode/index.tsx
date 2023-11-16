@@ -64,7 +64,7 @@ const WapEpisode: FC<IProps> = (
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
-    { title: chapterList?.[currentPage]?.name || t("bookInfo.episode")},
+    { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
   let preChapterData: any //后面再改
   if (curChapterData) {
@@ -157,7 +157,7 @@ const WapEpisode: FC<IProps> = (
         </div>
         <div className={styles.videoIntro}>
           <h1 className={styles.videoTit}>
-            {`${bookInfo.bookName} ${chapterList?.[currentPage]?.name || t("bookInfo.episodes")}`}
+            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
           </h1>
           <div className={styles.videoScore}>
             <Image
