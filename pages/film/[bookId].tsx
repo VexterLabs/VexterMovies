@@ -9,6 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { SSRConfig, useTranslation } from "next-i18next";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import useHiveLog from "@/hooks/useHiveLog";
+import { getRequestMeta } from "next/dist/server/request-meta";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
@@ -76,6 +77,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (!bookId) {
     return { notFound: true }
   }
+  try {
+    const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
+    if (clientUrl && clientUrl.includes('/en/')){
+      return { redirect: { destination: `/film/${bookId}`, permanent: false } }
+    }
+  } catch (e) {}
+
   const response = await netBookDetail(bookId, locale as ELanguage);
   if (response === 'BadRequest_404') {
     return { notFound: true }

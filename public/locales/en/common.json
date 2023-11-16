@@ -32,7 +32,8 @@
     "relatedEpisodes": "Related Episodes",
     "episodesDownload": "Download The App",
     "episodes": "Episodes",
-    "episode": "Episode",
+    "first": "Episode",
+    "episode": "",
     "recLike": "Recommended for you",
     "totalEpisodes": "Total Episodes",
     "episodeList": "Episode List"

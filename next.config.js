@@ -59,7 +59,9 @@ const nextConfig = {
       "res.dramabox.com",
       "nas2osstest.wpzkj.cn",
       "nchapter.dramaboxdb.com",
-      'dzztstgvideo.cbread.cn'
+      "dzztstgvideo.cbread.cn",
+      "nvideo.dramaboxdb.com",
+      "nakavideo.dramaboxdb.com"
     ],
   },
   // 环境配置
