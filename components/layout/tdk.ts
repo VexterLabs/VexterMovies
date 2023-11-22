@@ -1,7 +1,30 @@
 import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 
+const commonTDK = {
+  tag: ({ keyword = '', page = '1' }) => {
+    if (page === '1') {
+      return {
+        title: `${keyword}-DramaBox`,
+        keywords: `${keyword}`,
+        description: `DramaBox has found related content about ${keyword} for you.This includes books related to ${keyword},as well as ${keyword} related content information.`
+      }
+    }
+    return {
+      title: `${keyword}-${page}-DramaBox`,
+      keywords: `${keyword} ${page}`,
+      description: `DramaBox has found related content about ${keyword} for you.This includes books related to ${keyword},as well as ${keyword} related content information.`
+    }
+  },
+  keywords: ({ page = '1' }) => {
+    if (page === '1') {
+      return { title: ':Dramabox app-Dramabox Movies-DramaBox', keywords: 'Dramabox app,Dramabox Movies', description: 'Dramabox app,Dramabox Movies' }
+    }
+    return { title: `Dramabox app-Dramabox Movies-${page}-DramaBox`, keywords: `Dramabox app,Dramabox Movies ${page}`, description: `Dramabox app,Dramabox Movies ${page}` }
+  },
+}
 export const TDK = {
   [ELanguage.ZhHans]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox-短剧-追剧-电视剧app-精彩故事',
       keywords: 'DramaBox,DramaBox app',
@@ -79,6 +102,7 @@ export const TDK = {
     }
   },
   [ELanguage.Zh]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox-短劇-追劇-電視app-精彩故事',
       keywords: 'DramaBox,DramaBox app',
@@ -156,6 +180,7 @@ export const TDK = {
     }
   },
   [ELanguage.English]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox - movies and drama',
       keywords: 'DramaBox,DramaBox app',
@@ -233,6 +258,7 @@ export const TDK = {
     }
   },
   [ELanguage.Korean]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox-환상적인 이야기와 단편',
       keywords: 'DramaBox,DramaBox app',

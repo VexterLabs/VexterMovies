@@ -19,6 +19,8 @@ export const pathnameData = {
   error500: '/500',
   agreementPrivacy: '/privacy',
   agreementUser: '/terms',
+  tag: '/tag/[keywordId]',
+  keywords: '/keywords'
 }
 
 const HeadNormal: FC<any> = ({ pageProps = {} }) => {
@@ -57,6 +59,7 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
   const [pageTdk, setPageTdk] = useState(() => getTdk());
 
   useEffect(() => {
+    console.log('hehehe',getTdk())
     setPageTdk(getTdk())
   },[router, router.locale, t]); // eslint-disable-line
 
