@@ -17,7 +17,7 @@ const commonTDK = {
   },
   keywords: ({ page = '1' }) => {
     if (page === '1') {
-      return { title: ':Dramabox app-Dramabox Movies-DramaBox', keywords: 'Dramabox app,Dramabox Movies', description: 'Dramabox app,Dramabox Movies' }
+      return { title: 'Dramabox app-Dramabox Movies-DramaBox', keywords: 'Dramabox app,Dramabox Movies', description: 'Dramabox app,Dramabox Movies' }
     }
     return { title: `Dramabox app-Dramabox Movies-${page}-DramaBox`, keywords: `Dramabox app,Dramabox Movies ${page}`, description: `Dramabox app,Dramabox Movies ${page}` }
   },

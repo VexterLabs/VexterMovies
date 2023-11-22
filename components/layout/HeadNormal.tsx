@@ -59,7 +59,6 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
   const [pageTdk, setPageTdk] = useState(() => getTdk());
 
   useEffect(() => {
-    console.log('hehehe',getTdk())
     setPageTdk(getTdk())
   },[router, router.locale, t]); // eslint-disable-line
 
