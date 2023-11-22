@@ -10,6 +10,10 @@ import DLayout from "@/components/layout";
 import { appWithTranslation } from "next-i18next";
 
 function App({ Component, pageProps, router }: AppProps) {
+  useEffect(() => {
+    nprogressEve();
+  }, []); // eslint-disable-line
+
   const nprogressEve = () => {
     router.events.on("routeChangeStart", () => {
       NProgress.start();
@@ -21,10 +25,6 @@ function App({ Component, pageProps, router }: AppProps) {
       NProgress.done();
     });
   };
-
-  useEffect(() => {
-    nprogressEve();
-  }, []); // eslint-disable-line
 
   return <Provider store={store}>
     <DLayout pageProps={pageProps}>

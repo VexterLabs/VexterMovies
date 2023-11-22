@@ -38,12 +38,12 @@ const PcHeader: FC<IProps> = () => {
           }}>
             <Image
               className={styles.logoTxt}
-              width={33}
-              height={33}
-              src={'/images/logo.png'}
+              width={168}
+              height={40}
+              src={'/images/home/logo-text.png'}
               alt={ClientConfig.name}
             />
-            <span>DramaBox</span>
+            {/*<span>DramaBox</span>*/}
           </Link>
           <div className={styles.navBox}>
             { MenuData.map(val => {
@@ -58,7 +58,7 @@ const PcHeader: FC<IProps> = () => {
                   }
                 }}
                 className={(router.asPath === val.link || router.asPath.includes(val.id)) ? styles.navItemActive : styles.navItem}>
-                <div className={styles.navItemLabel}>{val.label}</div>
+                <span className={styles.navItemLabel}>{val.label}</span>
               </Link>
             }) }
           </div>

@@ -39,7 +39,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   },[]) // eslint-disable-line
 
   useEffect(() => {
-    setFooterAdShow(router.pathname !== '/film/[bookId]' && router.pathname !== '/episode/[bookId]/[chapterId]')
+    setFooterAdShow(!(router.pathname == '/film/[bookId]' || router.pathname == '/episode/[bookId]' || router.pathname == '/episode/[bookId]/[chapterId]'))
   }, [router])
 
   // 设置rem字体大小并判断设备 初始化

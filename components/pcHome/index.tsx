@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import SecondList from "@/components/pcHome/secondList/SecondList";
 import { ColumnNameRoute, IBookItem, IHomeResItem } from "@/typings/home.interface";
-import SwiperArea from "@/components/pcHome/swiperArea/SwiperArea";
 import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
+import SwiperArea from "@/components/pcHome/swiperArea/SwiperArea";
+import SecondList from "@/components/pcHome/secondList/SecondList";
 import { PcEmpty } from "@/components/common/empty";
 import { useTranslation } from "next-i18next";
 import styles from '@/components/pcHome/index.module.scss';

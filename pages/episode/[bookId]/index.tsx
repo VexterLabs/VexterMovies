@@ -1,13 +1,11 @@
 import type { NextPage, GetServerSidePropsResult, GetServerSideProps } from 'next'
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { netBookDetail } from "@/server/home";
 import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { isIos, ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
-import { IBreadcrumb } from "@/components/common/breadcrumb";
-import { useTranslation } from "next-i18next";
 import useHiveLog from "@/hooks/useHiveLog";
 
 interface IProps {
@@ -31,7 +29,7 @@ const Episode: NextPage<IProps> = (
     })
   }
 
-  const onChannel = (name: string) => {
+  const onChannel = (name: string,e?: SyntheticEvent) => {
     HiveLog.track("ReadChannel_click", {
       typeTwoName: name
     })
@@ -53,7 +51,6 @@ const Episode: NextPage<IProps> = (
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        chapterName={''}
         currentPage={current}
         isApple={isApple}
       />}
@@ -63,6 +60,7 @@ const Episode: NextPage<IProps> = (
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
   const { bookId, chapterId } = query as { bookId: string,chapterId: string};
+
   if (!bookId) {
     return { notFound: true };
   }

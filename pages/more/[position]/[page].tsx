@@ -6,6 +6,7 @@ import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcMore from "@/components/pcMore";
 import MMore from "@/components/more";
+import { getRequestMeta } from "next/dist/server/request-meta";
 
 interface IProps {
   isPc: boolean;
@@ -31,6 +32,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (page === "1") {
     return { redirect: { destination: `/more/${position}`, permanent: false } }
   }
+
+  try {
+    const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
+      return { redirect: { destination: page === "1" ? `/more/${position}` : `/more/${position}/${page}`, permanent: false } }
+    }
+  } catch (e) {}
 
   let name = '';
   if (position && Reflect.has(ColumnNameRouteReversion, position as EHomeName)) {

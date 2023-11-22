@@ -1,11 +1,12 @@
 import React from "react";
 import { GetServerSideProps, NextPage } from "next";
-import styles from 'styles/Privacy.module.scss'
 import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { ELanguage } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next"
 import Head from "next/head";
+import { getRequestMeta } from "next/dist/server/request-meta";
+import styles from 'styles/Privacy.module.scss';
 
 interface IProps {
   isPc: boolean;
@@ -37,8 +38,14 @@ const AgreementPrivacy: NextPage<IProps> = ({ isPc }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, locale }) => {
-  const ua = req?.headers['user-agent'] || ''
-  // 返回的参数将会按照 key 值赋值到 Home 组件的同名入参中
+  const ua = req?.headers['user-agent'] || '';
+  try {
+    const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
+      return { redirect: { destination: '/privacy', permanent: false } }
+    }
+  } catch (e) {}
+
   return {
     props: {
       isPc: ownOs(ua).isPc,

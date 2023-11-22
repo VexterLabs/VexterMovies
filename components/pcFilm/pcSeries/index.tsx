@@ -2,8 +2,10 @@ import React, { FC, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import ImageLegacy from "next/legacy/image";
+import { useRouter } from "next/router";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
+import { useTranslation } from "next-i18next";
 import classNames from "classnames";
 import styles from "@/components/pcFilm/pcSeries/index.module.scss";
 
@@ -19,11 +21,14 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
     return 1 + i * 30 + '-' + (i + 1) * 30
   });
   const [tabIndex, setTabIndex] = useState(0);
+  const router = useRouter()
+  const language = router?.locale || ''
+  const { t } = useTranslation();
 
   return <div className={styles.episodeListBox}>
     <div className={styles.topInfo}>
-      <div className={styles.episodeTitle}>EpisodesList</div>
-      <div className={styles.allCounts}>{chapterList.length} Episodes</div>
+      <div className={styles.episodeTitle}>{t("bookInfo.episodeList")}</div>
+      <div className={styles.allCounts}>({chapterList.length} {t("bookInfo.episodes")})</div>
     </div>
     <div className={styles.listInfo}>
       { chapterList.map((item, index) => {
@@ -52,14 +57,14 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
             </div> : null }
           </Link>
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
-            <p className={styles.title}>{item.name}</p>
-            <p className={styles.pageNum}>EP.{item.index + 1}</p>
+            <span className={styles.title}>{bookInfo.bookName}</span>
+            <span className={styles.pageNum}>{language==='en' || !language ?  `EP.${item.index + 1}` :  `${item.index + 1} ${t("home.episodes")}`}</span>
           </Link>
         </div>
       })}
       {chapterList.length > 11 && showMore ? <div className={styles.listItem} onClick={() => setShowMore(false)}>
         <div className={styles.viewMore}>
-          <span>View More</span>
+          <span>{t("bookInfo.viewMore")}</span>
           <Image
             className={styles.moreIcon}
             width={16}

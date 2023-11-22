@@ -9,6 +9,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { SSRConfig, useTranslation } from "next-i18next";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import useHiveLog from "@/hooks/useHiveLog";
+import { getRequestMeta } from "next/dist/server/request-meta";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
@@ -18,11 +19,10 @@ interface IProps extends SSRConfig {
   languages: ELanguage[]; // tdk需要， 勿删
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
 }
 
 const Film: NextPage<IProps> = (
-  { isPc, bookInfo, isApple, recommends, chapterList, chapterName }
+  { isPc, bookInfo, isApple, recommends, chapterList }
 ) => {
 
   const { t } = useTranslation();
@@ -59,7 +59,6 @@ const Film: NextPage<IProps> = (
         onChannel={onChannel}
         onBookClick={onBookClick}
         breadData={breadData}
-        chapterName={chapterName}
         isApple={isApple}
         bookInfo={bookInfo}
         recommends={recommends}
@@ -74,10 +73,17 @@ export default Film;
 // ssr
 export const getServerSideProps: GetServerSideProps = async ({ req, query, locale }):Promise<GetServerSidePropsResult<IProps>> => {
   const ua = req?.headers['user-agent'] || ''
-  const { bookId } = query as { bookId: string;};
+  const { bookId } = query as { bookId: string };
   if (!bookId) {
     return { notFound: true }
   }
+  try {
+    const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
+      return { redirect: { destination: `/film/${bookId}`, permanent: false } }
+    }
+  } catch (e) {}
+
   const response = await netBookDetail(bookId, locale as ELanguage);
   if (response === 'BadRequest_404') {
     return { notFound: true }
@@ -86,11 +92,9 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     return { redirect: { destination: '/500', permanent: false } }
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [], languages = [] } = response;
-  const chapterName = book.bookName
   return {
     props: {
       bookId,
-      chapterName,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),

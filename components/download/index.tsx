@@ -17,7 +17,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
-  const shopLink =  useAppSelector(state => {
+  const shopLink = useAppSelector(state => {
     if (isApple) {
       return ClientConfig.ios.deeplink + state.hive.copyText;
     }
@@ -49,7 +49,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
         })
       }}
     >
-      <div className={styles.downloadBtn}>
+      <span className={styles.downloadBtn}>
         <Image
           className={styles.downloadBtnIcon}
           width={48}
@@ -58,7 +58,7 @@ const MDownload: FC<IProps> = ({ isApple }) => {
           alt={ClientConfig.name}
         />
         <span>{t("appPage.download")}</span>
-      </div>
+      </span>
     </Link>
     <div className={styles.downloadContent}>
       {t("appPage.content")}

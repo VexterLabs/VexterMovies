@@ -5,7 +5,7 @@ import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 interface IProps {
   bigList: IBookItem[];
@@ -37,11 +37,16 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
             <p className={styles.chapterCount}>{item.chapterCount || 0} {t('home.episodes')}</p>
             <p className={styles.intro}>{item.introduction}</p>
           </div>
-          <div className={styles.rightCardBottom}>
-            { (item?.tags || []).map(val => {
-              return <div key={val} className={styles.rightTag}>{val}</div>
-            })}
-          </div>
+
+          {
+            !!(item?.typeTwoList && item.typeTwoList.length) ? <div className={styles.rightCardBottom}>
+              {
+                item.typeTwoList.map((typeTwoListItem, typeTwoListIdx) => (
+                  <div key={typeTwoListItem + '_' +typeTwoListIdx} className={styles.rightTag}>{typeTwoListItem.name}</div>
+                ))
+              }
+            </div> : null
+          }
         </Link>
       </div>
     </Swiper.Item>

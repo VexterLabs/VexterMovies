@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useRef, useState, } from "react";
-import Player, { Events, Util } from 'xgplayer'
-import styles from "@/components/episode/index.module.scss"
+import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
+import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
 import Image from "next/image";
@@ -19,16 +18,16 @@ import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import styles from "@/components/episode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  chapterName: string;
   currentPage: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string) => void;
+  onChannel: (name: string, e?: SyntheticEvent) => void;
 }
 
 const WapEpisode: FC<IProps> = (
@@ -37,7 +36,6 @@ const WapEpisode: FC<IProps> = (
     recommends = [],
     currentPage = 1,
     chapterList = [],
-    chapterName,
     isApple,
     onBookClick,
     onChannel
@@ -60,13 +58,13 @@ const WapEpisode: FC<IProps> = (
   const HiveLog = useHiveLog();
 
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
-  const curChapterData = chapterList.find(item => item.id === chapterId) //&& item.unlock === true
-  currentPage = curChapterData?.index as number
+  const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
+  currentPage = curChapterData?.index as number;
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
-    { title: `${currentPage + 1} ${t("bookInfo.episodes")}`},
+    { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
   let preChapterData: any //后面再改
   if (curChapterData) {
@@ -91,23 +89,6 @@ const WapEpisode: FC<IProps> = (
     // 查找当前视频中下一个有MP4
     playerInstance.current = new Player({
       id: "mPlay",
-      icons: {
-        play: () => {
-          return Util.createDom('div', '<img src="/images/book/play.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        pause: () => {
-          return Util.createDom('div', '<img src="/images/book/pause.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        fullscreen: () => {
-          return Util.createDom('div', '<img src="/images/book/fullscreen.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        volumeMuted: () => {
-          return Util.createDom('div', '<img src="/images/book/muted.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-        volumeLarge: () => {
-          return Util.createDom('div', '<img src="/images/book/voice.png" style="width:0.32rem;height:0.32rem" alt=""/>', {}, 'customclass')
-        },
-      },
       autoplay: true,
       autoplayMuted: false,
       url: curChapterData?.mp4,
@@ -130,10 +111,14 @@ const WapEpisode: FC<IProps> = (
         url: preChapterData?.mp4,
       })
     })
+    return () => {
+      playerInstance && playerInstance.current && playerInstance.current.destroy()
+    }
   }, [curChapterData])
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = (item: IChapterList) => {
+
     setErrorBg(item.unlock ? '' : item.cover)
     if (item.unlock) {
       playerInstance.current && playerInstance.current.switchURL(item.mp4)
@@ -156,7 +141,6 @@ const WapEpisode: FC<IProps> = (
               src={errorBgsrc}
               alt=''/>
             <div className={styles.downInfo}>
-              <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
 
               <Link href={shopLink} className={styles.btnDown} onClick={() => {
                 onCopyText(copyText, () => {
@@ -169,13 +153,15 @@ const WapEpisode: FC<IProps> = (
                   })
                 })
               }}>
-                Download the App
+                {t('bookInfo.episodesDownload')}
               </Link>
             </div>
           </div> : null}
         </div>
         <div className={styles.videoIntro}>
-          <p className={styles.videoTit}>{bookInfo.bookName} {currentPage + 1}</p>
+          <h1 className={styles.videoTit}>
+            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+          </h1>
           <div className={styles.videoScore}>
             <Image
               className={styles.epoImg}
@@ -185,14 +171,14 @@ const WapEpisode: FC<IProps> = (
               src='/images/book/start-m.png'
               alt='photo'
             />
-            <p className={styles.epoScore}>{bookInfo.chapterCount}</p>
+            <p className={styles.epoScore}>{bookInfo.followCount}</p>
           </div>
           {
             bookInfo?.typeTwoList && bookInfo.typeTwoList.length > 0 ?
               <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val, ind) => {
                   return <Link
-                    onClick={() => onChannel(val.name)}
+                    onClick={(e) => onChannel(val.name, e)}
                     key={ind}
                     href={`/browse/${val.id}`}
                     className={styles.tagItem}>{val.name}</Link>
@@ -200,7 +186,7 @@ const WapEpisode: FC<IProps> = (
               </div> : null
           }
           <Ellipsis
-            rows={2}
+            rows={3}
             className={styles.introText}
             direction='end'
             expandText={
@@ -237,11 +223,11 @@ const WapEpisode: FC<IProps> = (
             chapterList && chapterList.slice(0, 9).map((chapterItem) => {
               return <div className={styles.epiOuter} key={chapterItem.id}>
                 <Link href={`/episode/${bookInfo.bookId}/${chapterItem.id}`} shallow>
-                  <div className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {
+                  <span className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {
                     chooseEpisode(chapterItem)
                   }}>
-                    <p>{chapterItem.index + 1}</p>
-                  </div>
+                    <span>{chapterItem.index + 1}</span>
+                  </span>
                 </Link>
               </div>
             })
@@ -259,7 +245,7 @@ const WapEpisode: FC<IProps> = (
       </div>
       {recommends.length > 0 ? <div className={styles.mightLike}>
         <LikeTitle title={t('bookInfo.recLike')}/>
-        <LikeItem dataSource={recommends} onBookClick={onBookClick}/>
+        <LikeItem dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
       </div> : null}
       <EpisodeNav
         isApple={isApple}
@@ -272,7 +258,6 @@ const WapEpisode: FC<IProps> = (
       bookInfo={bookInfo}
       chapterList={chapterList}
       closeDialog={closeEpisodeDialog}
-      chapterName={chapterName}
       showDialog={showDialog}/>
   </>
 }

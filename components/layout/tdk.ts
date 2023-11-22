@@ -1,7 +1,30 @@
-import { ELanguage, IBookItem } from "@/typings/home.interface";
+import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 
+const commonTDK = {
+  tag: ({ keyword = '', page = '1' }) => {
+    if (page === '1') {
+      return {
+        title: `${keyword}-DramaBox`,
+        keywords: `${keyword}`,
+        description: `DramaBox has found related content about ${keyword} for you.This includes books related to ${keyword},as well as ${keyword} related content information.`
+      }
+    }
+    return {
+      title: `${keyword}-${page}-DramaBox`,
+      keywords: `${keyword} ${page}`,
+      description: `DramaBox has found related content about ${keyword} for you.This includes books related to ${keyword},as well as ${keyword} related content information.`
+    }
+  },
+  keywords: ({ page = '1' }) => {
+    if (page === '1') {
+      return { title: 'Dramabox app-Dramabox Movies-DramaBox', keywords: 'Dramabox app,Dramabox Movies', description: 'Dramabox app,Dramabox Movies' }
+    }
+    return { title: `Dramabox app-Dramabox Movies-${page}-DramaBox`, keywords: `Dramabox app,Dramabox Movies ${page}`, description: `Dramabox app,Dramabox Movies ${page}` }
+  },
+}
 export const TDK = {
   [ELanguage.ZhHans]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox-短剧-追剧-电视剧app-精彩故事',
       keywords: 'DramaBox,DramaBox app',
@@ -43,6 +66,15 @@ export const TDK = {
         description: `${bookName}短剧 ${introduction.slice(0, 200)}...`
       }
     },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      return {
+        title: `${bookName}第${chapterIndex + 1}集-DramaBox`,
+        keywords: `${bookName}第${chapterIndex + 1}集`,
+        description: `在线观看${bookName}第${chapterIndex + 1}集`
+      }
+    },
     download: {
       title: 'DramaBox app下载-DramaBox',
       keywords: 'DramaBox app下载',
@@ -70,6 +102,7 @@ export const TDK = {
     }
   },
   [ELanguage.Zh]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox-短劇-追劇-電視app-精彩故事',
       keywords: 'DramaBox,DramaBox app',
@@ -111,6 +144,15 @@ export const TDK = {
         description: `${bookName}短劇 ${introduction.slice(0, 200)}...`
       }
     },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      return {
+        title: `${bookName}第${chapterIndex + 1}集-DramaBox`,
+        keywords: `${bookName}第${chapterIndex + 1}集`,
+        description: `在線觀看${bookName}第${chapterIndex + 1}集`
+      }
+    },
     error500: {
       title: '500-DramaBox',
       keywords: '',
@@ -138,6 +180,7 @@ export const TDK = {
     }
   },
   [ELanguage.English]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox - movies and drama',
       keywords: 'DramaBox,DramaBox app',
@@ -179,6 +222,15 @@ export const TDK = {
         description: `${bookName} short film ${introduction.slice(0, 200)}...`
       }
     },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      return {
+        title: `${bookName} Episode ${chapterIndex+1}-DramaBox`,
+        keywords: `${bookName} Episode ${chapterIndex+1}`,
+        description: `${bookName} Episode ${chapterIndex+1} online`
+      }
+    },
     error500: {
       title: '500-DramaBox',
       keywords: '',
@@ -206,6 +258,7 @@ export const TDK = {
     }
   },
   [ELanguage.Korean]: {
+    ...commonTDK,
     index: {
       title: 'DramaBox-환상적인 이야기와 단편',
       keywords: 'DramaBox,DramaBox app',
@@ -245,6 +298,15 @@ export const TDK = {
         title: `${bookName}단편 영화-DramaBox`,
         keywords: `${bookName}, ${bookName}단편 영화`,
         description: `${bookName}단편 영화 ${introduction.slice(0, 200)}...`
+      }
+    },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      return {
+        title: `${bookName}제${chapterIndex + 1}회-DramaBox`,
+        keywords: `${bookName}제${chapterIndex + 1}회`,
+        description: `${bookName}제${chapterIndex + 1}회을 온라인으로 시청하세요`
       }
     },
     error500: {

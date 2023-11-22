@@ -3,7 +3,7 @@ import styles from '@/components/home/firstItem/FirstItem.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 interface IProps {
   dataSource: IBookItem[];
@@ -13,8 +13,10 @@ const FirstItem: FC<IProps> = ({ dataSource}) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((filmItem) => {
 
+      const routerToBookInfo = `/film/${filmItem.bookId}`
+
       return <div key={filmItem.bookId} className={styles.itemBox}>
-        <Link href={`/film/${filmItem.bookId}`} className={styles.bookImage}>
+        <Link href={routerToBookInfo} className={styles.bookImage}>
           <Image
             className={styles.imageItem}
             onError={onImgError}
@@ -27,7 +29,7 @@ const FirstItem: FC<IProps> = ({ dataSource}) => {
           />
         </Link>
 
-        <Link href={`/film/${filmItem.bookId}`} className={styles.bookName}>
+        <Link href={routerToBookInfo} className={styles.bookName}>
           {filmItem.bookName}
         </Link>
       </div>

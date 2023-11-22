@@ -1,17 +1,18 @@
-import React, { FC, useEffect, useRef, useState, } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Image from "next/image";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useRouter } from "next/router";
-import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import RightList from "@/components/pcEpisode/rightList/RightList";
 import RelatedEpisode from "@/components/pcEpisode/relatedEpisode";
+import PcLike from '@/components/pcFilm/pcLike';
 import { Ellipsis } from "antd-mobile";
-import styles from "@/components/pcEpisode/index.module.scss";
+import useHiveLog from "@/hooks/useHiveLog";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import styles from "@/components/pcEpisode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -33,6 +34,7 @@ const PcEpisode: FC<IProps> = (
   }) => {
 
   const { t } = useTranslation();
+  const HiveLog = useHiveLog();
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({} as Player);
@@ -42,18 +44,17 @@ const PcEpisode: FC<IProps> = (
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
     { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
-    { title: `${currentPage + 1} ${t("bookInfo.episodes")}`},
+    { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
-    const curId = chapterList.find((item, index) => index === currentPage)
+    currentPage === -1 && setCurrentPage(0)
+    const curId = chapterList.find((item, index) => index === currentPage) || chapterList[0]
     const cover = curId?.cover
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
-
   }, [chapterList]);
-
 
   // 播放器设置
   useEffect(() => {
@@ -61,7 +62,7 @@ const PcEpisode: FC<IProps> = (
       id: "playVideo",
       autoplay: true,
       autoplayMuted: false,
-      url: chapterList[currentPage]?.mp4,
+      url: currentPage === -1 ? chapterList[0]?.mp4 : chapterList[currentPage]?.mp4,
       width: '100%',
       height: '100%',
       videoFillMode: "fillHeight",
@@ -94,13 +95,20 @@ const PcEpisode: FC<IProps> = (
   }, []);
 
   // 点击右侧全部剧集，选择播放剧集
-  const chooseEpisode = async (index: number) => {
-    setCurrentPage(index);
-    episodeIndex.current = index;
-    const item = chapterList[index];
+  const chooseEpisode = async (index: number,id: string) => {
+    // 根据点击剧集的id，查找对应的index
+    const tempCurInd = chapterList.find(item => item.id === id)?.index as number || 0
+    setCurrentPage(tempCurInd == -1 ? 0 : tempCurInd);
+    episodeIndex.current = tempCurInd;
+    const item = chapterList[tempCurInd];
+    !item.unlock && playerInstance && playerInstance.current.pause();//视频切换，暂停播放
     setErrorBg(item.unlock ? '' : item.cover)
-
-    if (!item.unlock) return
+    if (!item.unlock) {
+      if (playerInstance.current) {
+        playerInstance.current.currentTime = 0;
+      }
+      return;
+    }
     if (playerInstance.current) {
       playerInstance.current.currentTime = 0;
       await playerInstance.current.switchURL(item?.mp4, { seamless: true, currentTime: 0 });
@@ -127,14 +135,22 @@ const PcEpisode: FC<IProps> = (
             <div className={styles.downloadMark}/>
           </div> : null}
           {
-            errorBgsrc ? <Link href={'/download'} className={styles.downInfo}>
-            <p className={styles.downTip}>This episode needs to be downloaded to watch</p>
-            <div className={styles.btnDown}>Download the App to continue watching</div>
+            errorBgsrc ? <Link href={`/download?filmId=${bookInfo.bookId}`} className={styles.downInfo} onClick={() => {
+              HiveLog.trackDownload('PayChapterDownload_click', {
+                bookId: bookInfo.bookId,
+                bookName: bookInfo.bookName,
+                chapterId: chapterList?.[currentPage]?.id,
+                chapterName: chapterList?.[currentPage]?.name,
+              })
+            }}>
+            <div className={styles.btnDown}>{t('bookInfo.episodesDownload')}</div>
           </Link> : null}
         </div>
 
         <div className={styles.videoInfo}>
-          <p className={styles.videoTitle}>{bookInfo.bookName} {currentPage + 1}</p>
+          <h1 className={styles.videoTitle}>
+            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+          </h1>
           <p className={styles.videoStar}>
             <Image
               className={styles.imageStar}
@@ -143,7 +159,7 @@ const PcEpisode: FC<IProps> = (
               height={24}
               alt="star"
             />
-            <span className={styles.videoScore}>{bookInfo.chapterCount}</span>
+            <span className={styles.videoScore}>{bookInfo.followCount}</span>
           </p>
 
           <Ellipsis
@@ -177,7 +193,8 @@ const PcEpisode: FC<IProps> = (
             {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
               return <Link
                 onClick={() => onChannel(val.name)}
-                key={val.id} href={`/browse/${val.id}`} className={styles.tagItem}>{val.name}</Link>
+                key={val.id} href={`/browse/${val.id}`}
+                className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
         </div>
@@ -199,7 +216,7 @@ const PcEpisode: FC<IProps> = (
           bookInfo={bookInfo}
           onChooseEpisode={chooseEpisode}/> : null}
 
-      <PcLike dataSource={recommends} onBookClick={onBookClick}/>
+      <PcLike dataSource={recommends} onBookClick={onBookClick} onChannel={onChannel}/>
     </div>
   </main>
 }

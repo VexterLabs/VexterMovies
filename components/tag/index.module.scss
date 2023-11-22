@@ -53,6 +53,10 @@
       padding: 0 0.16rem;
       background: rgba(255,255,255,0.1);
       color: $theme_color;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
     }
   }
 

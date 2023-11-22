@@ -22,6 +22,7 @@
   },
   "bookInfo": {
     "more": "more",
+    "viewMore": "View More",
     "introduction": "Introduction",
     "previousPage": "Previous page",
     "nextPage": "Next page",
@@ -29,8 +30,10 @@
     "firstChapterTip": "Already the first chapter",
     "like": "You may like",
     "relatedEpisodes": "Related Episodes",
-    "episodesDownload": "Downloading is necessary to watch this episode",
-    "episodes": "episodes",
+    "episodesDownload": "Download The App",
+    "episodes": "Episodes",
+    "first": "Episode",
+    "episode": "",
     "recLike": "Recommended for you",
     "totalEpisodes": "Total Episodes",
     "episodeList": "Episode List"

@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 import styles from '@/components/pcMore/index.module.scss'
-import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
 import { ColumnNameRoute, IHomeResItem } from "@/typings/home.interface";
-import PaginationCom from "@/components/common/paginationCom";
 import Link from "next/link";
+import PcHomeTitle from "@/components/pcHome/homeTitle/HomeTitle";
 import SecondList from "@/components/pcHome/secondList/SecondList";
+import PaginationCom from "@/components/common/paginationCom";
 import { PcEmpty } from "@/components/common/empty";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";

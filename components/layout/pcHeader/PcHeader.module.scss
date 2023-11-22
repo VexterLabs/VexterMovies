@@ -11,7 +11,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 999;
 
   .navContent {
     width: 14.4rem;
@@ -31,9 +31,9 @@
         align-items: center;
 
         .logoTxt {
-          width: 0.4rem;
+          width: 1.68rem;
           height: 0.4rem;
-          margin-right: 0.1rem;
+          //margin-right: 0.1rem;
         }
 
         span {
@@ -62,6 +62,7 @@
     color: rgba(255, 255, 255, 0.6);
 
     .navItemLabel {
+      display: inline-block;
       padding: 0.04rem 0.1rem;
       word-break: keep-all;
       min-width: 1rem;

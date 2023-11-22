@@ -2,19 +2,22 @@ import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import styles from '@/components/film/likeItem/LikeItem.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
   onBookClick?: (item: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
-const LikeItem: FC<IProps> = ({ dataSource, onBookClick }) => {
+const LikeItem: FC<IProps> = ({ dataSource, onBookClick, onChannel }) => {
   return <div className={styles.firstItemWrap}>
-    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem, index) => {
-      return <div key={detailItem.bookId} className={styles.itemBox} onClick={() => onBookClick && onBookClick(detailItem)}>
-        <Link href={`/film/${detailItem.bookId}`} className={styles.bookImage} replace>
+    {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem) => {
+      return <div key={detailItem.bookId} className={styles.itemBox}>
+        <Link
+          onClick={() => onBookClick && onBookClick(detailItem)}
+          href={`/film/${detailItem.bookId}`} className={styles.bookImage} replace>
           <Image
             className={styles.imageItem}
             onError={onImgError}
@@ -27,11 +30,16 @@ const LikeItem: FC<IProps> = ({ dataSource, onBookClick }) => {
           />
         </Link>
 
-        <Link href={`/film/${detailItem.bookId}`} className={styles.bookName} replace>
+        <Link
+          onClick={() => onBookClick && onBookClick(detailItem)}
+          href={`/film/${detailItem.bookId}`} className={styles.bookName} replace>
           {detailItem.bookName}
         </Link>
         {detailItem.typeTwoIds && detailItem.typeTwoIds.length > 0 ?
-          <Link href={`/browse/${detailItem.typeTwoIds[0]}`} className={styles.bookTags}>
+          <Link
+            onClick={() => onChannel(detailItem.typeTwoName)}
+            href={`/browse/${detailItem.typeTwoIds[0]}`}
+            className={styles.bookTags}>
             { detailItem.typeTwoName }
           </Link> : null}
       </div>

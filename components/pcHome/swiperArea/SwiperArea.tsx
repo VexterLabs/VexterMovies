@@ -4,6 +4,7 @@ import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import Image from "next/legacy/image";
+import TypeTwoTag from "@/components/common/typeTwoTag";
 import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss';
 
 interface IProps {
@@ -12,7 +13,7 @@ interface IProps {
 
 const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   const { t } = useTranslation()
-  const { bookId, tags = [] } = bigList?.[0]
+  const { bookId, typeTwoList = [] } = bigList?.[0]
   const routerToBookInfo = `/film/${bookId}`
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
@@ -29,19 +30,14 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             alt={bigList[0].bookName}
           />
         </Link>
-        <Link href={routerToBookInfo} className={styles.leftCardContent}>
+        <div className={styles.leftCardContent}>
           <div className={styles.leftCardContentTop}>
-            <h2>{bigList[0].bookName}</h2>
-            <p className={styles.chapterCount}>{`${bigList[0].chapterCount || 0} ${t("home.episodes")}`}</p>
-            <p className={styles.intro}>{bigList[0].introduction}</p>
+            <Link href={routerToBookInfo} className={styles.leftBookName}>{bigList[0].bookName}</Link>
+            <Link href={routerToBookInfo} className={styles.chapterCount}>{`${bigList[0].chapterCount || 0} ${t("home.episodes")}`}</Link>
+            <Link href={routerToBookInfo} className={styles.intro}>{bigList[0].introduction}</Link>
           </div>
-
-          <div className={styles.leftCardContentBottom}>
-            {tags.map(val => {
-              return <div key={val} className={styles.leftTag}>{val}</div>
-            })}
-          </div>
-        </Link>
+          {typeTwoList && typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={typeTwoList}/> : null}
+        </div>
       </div>
 
       <div className={styles.rightCard}>
@@ -60,20 +56,16 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
               />
             </Link>
 
-            <Link href={`/film/${item.bookId}`} className={styles.rightCardContent}>
-              <div className={styles.rightCardContentTop}>
-                <h2 className={styles.bookName}>
+            <div className={styles.rightCardContent}>
+              <div  className={styles.rightCardContentTop}>
+                <Link href={`/film/${item.bookId}`} className={styles.bookName}>
                   {item.bookName}
-                </h2>
-                <p className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </p>
-                <p className={styles.intro}>{item.introduction}</p>
+                </Link>
+                <Link href={`/film/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </Link>
+                <Link href={`/film/${item.bookId}`} className={styles.intro}>{item.introduction}</Link>
               </div>
-              <div className={styles.rightCardContentBottom}>
-                {(item?.tags || []).map(val => {
-                  return <div key={val} className={styles.rightTag}>{val}</div>
-                })}
-              </div>
-            </Link>
+              {item?.typeTwoList && item.typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={item.typeTwoList}/> : null}
+            </div>
           </div>
         })}
       </div>

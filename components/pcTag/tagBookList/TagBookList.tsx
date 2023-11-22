@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import Link from "next/link";
-import { EAggregatePageProperties, ETagBookItemIsHot, ITagBookItem } from "@/typings/book.interface";
+import { ITagBookItem } from "@/typings/book.interface";
 import { useTranslation } from "next-i18next";
 import { ELanguage } from "@/typings/home.interface";
-import useHiveLog from "@/hooks/useHiveLog";
 import Image from "next/image";
 import ClientConfig from "@/client.config";
 import { onImgError } from "@/components/common/image/ImageCover";
@@ -26,15 +25,7 @@ export const printKeyword = (content: string, keyword: string) => {
 
 const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
   const { t } = useTranslation();
-  const HiveLog = useHiveLog();
-  // 聚合页书籍列表点击
-  const tagBookClick = (keyword: string, bookId: string, recommend: boolean) => {
-    HiveLog.track('Aggregate_page_click', {
-      key_word: keyword,
-      bookId: bookId,
-      AggregatePage_Properties: recommend ? EAggregatePageProperties.推荐书籍 : EAggregatePageProperties.有版权书籍,
-    })
-  };
+
   return <div className={styles.tagBookBox}>
     {dataSource.map((book) => {
 
@@ -42,23 +33,20 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
         bookId,
         bookName,
         introduction,
-        typeTwoNames = [],
-        typeTwoIds = [],
+        typeTwoList = [],
         firstChapterId,
-        isHot
       } = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
       const linkUrl = `/film/${bookId}`;
-      const recommend = isHot === ETagBookItemIsHot.yes
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
-      return <div key={bookId} className={styles.listItem} onClick={() => onBookClick && onBookClick(book)}>
+      return <div key={bookId} className={styles.listItem}>
         <Link
+          onClick={() => onBookClick && onBookClick(book)}
           href={linkUrl}
           locale={simpleLanguage}
-          className={styles.bookImageBox}
-          onClick={() => tagBookClick(keyword, bookId, recommend)}>
+          className={styles.bookImageBox}>
           <Image
             className={styles.bookImage}
             onError={onImgError}
@@ -73,36 +61,35 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
 
         <div className={styles.bookInfo}>
           <Link
+            onClick={() => onBookClick && onBookClick(book)}
             href={linkUrl}
             locale={simpleLanguage}
             className={styles.bookName}
             dangerouslySetInnerHTML={{ __html: bookNameDom }}
-            onClick={() => tagBookClick(keyword, bookId, recommend)}
           />
 
           {
-            !!(typeTwoNames && typeTwoNames.length) && <div className={styles.bookLabelBox}>
+            !!(typeTwoList && typeTwoList.length) && <div className={styles.bookLabelBox}>
               {
-                typeTwoNames.map((typeTwoNamesItem, typeTwoNamesIdx) => (
+                typeTwoList.map((item, itemIndex) => (
                   <Link
-                    key={bookId + '_browse_' + typeTwoNamesIdx}
-                    href={`/browse/${typeTwoIds[typeTwoNamesIdx] || 0}/`}
+                    key={item.id + '_browse_' + itemIndex}
+                    href={`/browse/${item.id || 0}/`}
                     locale={simpleLanguage}
                     className={styles.bookLabel}
-                    onClick={() => tagBookClick(keyword, bookId, recommend)}>
-                      {typeTwoNamesItem}
-                  </Link>
+                    dangerouslySetInnerHTML={{ __html: printKeyword(item.name, keyword) }}/>
                 ))
               }
             </div>
           }
 
           <Link
+            onClick={() => onBookClick && onBookClick(book)}
             href={linkUrl}
             locale={simpleLanguage}
             className={styles.intro}
             dangerouslySetInnerHTML={{ __html: introDom }}
-            onClick={() => tagBookClick(keyword, bookId, recommend)}/>
+          />
         </div>
 
         {
@@ -110,7 +97,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
             href={`/episode/${bookId}/${firstChapterId}`}
             locale={simpleLanguage}
             className={styles.readBtn}
-            onClick={() => tagBookClick(keyword, bookId, recommend)}>
+          >
             <Image
               className={styles.playBtnImage}
               width={28}

@@ -87,7 +87,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (response === 'BadRequest_500') {
     return { redirect: { destination: '/500', permanent: false } }
   }
-  const { books = [], relationKeywords = [], keyword = '', pages = 1, currentPage = 1 } = response;
+  const { books = [], relationKeywords = [], keyword = '', pages = 1, currentPage = 1, keyStatus } = response;
+
+  if (keyStatus === 0 || !keyword) {
+    return { notFound: true }
+  }
 
   return {
     props: {

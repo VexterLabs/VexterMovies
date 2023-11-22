@@ -8,6 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import MBrowse from "@/components/browse";
 import PcBrowse from "@/components/pcBrowse";
 import { IBrowseTypes } from "@/typings/browse.interface";
+import { getRequestMeta } from "next/dist/server/request-meta";
 
 interface IProps {
   isPc: boolean;
@@ -16,10 +17,11 @@ interface IProps {
   pageNo: number;
   pages: number;
   typeTwoId: number;
+  typeTwoName: string;
 }
 
 const Browse: NextPage<IProps> = (
-  { isPc, types, bookList, pageNo, pages, typeTwoId }) => {
+  { isPc, types, bookList, pageNo, pages, typeTwoId, typeTwoName }) => {
   return <>
     {isPc ?
       <PcBrowse
@@ -28,6 +30,7 @@ const Browse: NextPage<IProps> = (
         bookList={bookList}
         pages={pages}
         typeTwoId={typeTwoId}
+        typeTwoName={typeTwoName}
       /> :
       <MBrowse
         pageNo={pageNo}
@@ -35,6 +38,7 @@ const Browse: NextPage<IProps> = (
         bookList={bookList}
         pages={pages}
         typeTwoId={typeTwoId}
+        typeTwoName={typeTwoName}
       />}
   </>
 }
@@ -45,6 +49,22 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (page === "1") {
     return { redirect: { destination: `/browse/${typeTwoId}`, permanent: false } }
   }
+  try {
+    const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
+
+    if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
+      let destination = '/browse';
+      if (page === "1") {
+        if (typeTwoId != 0) {
+          destination += `/${typeTwoId}`
+        }
+      } else {
+        destination += `/${typeTwoId}/${page}`
+      }
+      return { redirect: { destination, permanent: false } }
+    }
+  } catch (e) {}
+
   const response = await netBrowse({
     typeTwoId: Number(typeTwoId) || 0,
     pageNo: Number(page) || 1,

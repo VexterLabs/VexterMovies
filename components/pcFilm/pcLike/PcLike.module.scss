@@ -80,10 +80,10 @@
         line-height: 0.24rem;
         max-height: 0.48rem;
         margin-top: 0.12rem;
+        padding: 0 0.09rem;
       }
 
       .tagItem {
-        margin-top: 0.08rem;
         display: inline-block;
         font-size: 0.12rem;
         font-weight: 400;
@@ -97,6 +97,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        margin: 0.08rem 0.09rem 0rem 0.09rem;
       }
 
       &:hover {

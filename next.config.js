@@ -16,14 +16,14 @@ const BaseUrlObj = {
 }
 // ipua
 const IpUaUrlObj = {
-  // https://hotdrama.hw.dzods.cn/drama-box
-  test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
+  test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
+  // test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
   staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
   prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 const buildId = 'dramabox-020001'; // 构建ID
 const WebDomain = WebDomainObj[environment]
@@ -59,7 +59,9 @@ const nextConfig = {
       "res.dramabox.com",
       "nas2osstest.wpzkj.cn",
       "nchapter.dramaboxdb.com",
-      'dzztstgvideo.cbread.cn'
+      "dzztstgvideo.cbread.cn",
+      "nvideo.dramaboxdb.com",
+      "nakavideo.dramaboxdb.com"
     ],
   },
   // 环境配置

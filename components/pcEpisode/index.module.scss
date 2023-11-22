@@ -2,6 +2,7 @@
   width: 14.4rem;
   margin: 0 auto;
   background-color: #000000;
+  min-height: calc(100vh - 2.32rem);
 
   .episodeHeader {
     background-color: #000000;
@@ -150,6 +151,7 @@
             width: 0.9rem;
             background: linear-gradient(270deg, #000000 0%, rgba(20, 20, 20, 0) 100%);
             color: rgba(255, 255, 255, 0.8);
+            line-height: 0.3rem;
 
             .moreIcon {
               margin-left: 0.02rem;
@@ -179,6 +181,11 @@
             padding: 0.04rem 0.1rem;
             color: rgba(255,255,255,0.6);
             background-color: rgba(255, 255, 255, 0.1);
+
+            &:hover {
+              transition: color 0.3s;
+              color: $theme_color;
+            }
           }
         }
       }

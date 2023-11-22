@@ -2,17 +2,18 @@ import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
-import ImageLegacy from "next/legacy/image";
 import Image from "next/image";
+import ImageLegacy from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import styles from '@/components/pcFilm/pcLike/PcLike.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
   onBookClick?: (book: IBookItem) => void;
+  onChannel: (name: string) => void;
 }
 
-const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
+const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
   const { t } = useTranslation()
 
   if (dataSource.length === 0) {
@@ -20,13 +21,16 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
   }
 
   return <div className={styles.recommendBox}>
-    <h2 className={styles.titleText}>{t('bookInfo.like')}</h2>
+    <h2 className={styles.titleText}>{t('bookInfo.recLike')}</h2>
     <div className={styles.listBox}>
       {dataSource.map((book) => {
 
-        return <div key={book.bookId} className={styles.listItem} onClick={() => onBookClick && onBookClick(book)}>
+        return <div key={book.bookId} className={styles.listItem}>
           <div className={styles.coverBox}>
-            <Link href={`/film/${book.bookId}`} className={styles.bookImage}>
+            <Link
+              href={`/film/${book.bookId}`}
+              className={styles.bookImage}
+              onClick={() => onBookClick && onBookClick(book)}>
               <ImageLegacy
                 className={styles.imageItem}
                 onError={onImgError}
@@ -39,7 +43,11 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
               />
             </Link>
 
-            <Link className={styles.chapterCount} href={`/film/${book.bookId}`}>
+            <Link
+              className={styles.chapterCount}
+              href={`/film/${book.bookId}`}
+              onClick={() => onBookClick && onBookClick(book)}
+            >
               <Image
                 className={styles.playIcon}
                 onError={onImgError}
@@ -51,11 +59,17 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick }) => {
               <span className={styles.chapterText}>{`${book.chapterCount} ${t("home.episodes")}`}</span>
             </Link>
           </div>
-          <Link href={`/film/${book.bookId}`} className={styles.bookName}>
+          <Link
+            href={`/film/${book.bookId}`}
+            className={styles.bookName}
+            onClick={() => onBookClick && onBookClick(book)}>
             {book.bookName}
           </Link>
           {book?.typeTwoIds && book?.typeTwoIds.length > 0 ?
-            <Link href={`/browse/${book.typeTwoIds[0]}`} className={styles.tagItem}>{book.typeTwoName}</Link> : null
+            <Link
+              onClick={(e) => onChannel(book.typeTwoName)}
+              href={`/browse/${book.typeTwoIds[0]}`}
+              className={styles.tagItem}>{book.typeTwoName}</Link> : null
           }
         </div>
       })}

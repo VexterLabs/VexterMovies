@@ -4,7 +4,8 @@ import Link from "next/link";
 import { onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/legacy/image";
 import { useTranslation } from "next-i18next";
-import styles from '@/components/pcHome/secondList/SecondList.module.scss'
+import TypeTwoTag from "@/components/common/typeTwoTag";
+import styles from '@/components/pcHome/secondList/SecondList.module.scss';
 
 interface IProps {
   dataSource: IBookItem[];
@@ -24,8 +25,8 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
         bookName,
         chapterCount = 0
       } = book;
-      // const routerToBookInfo = `/film/${bookId}`
       const routerToBookInfo = `/film/${bookId}`
+
       return <div key={bookId} className={styles.secondListBox}>
 
         <Link href={routerToBookInfo} className={styles.bookImage}>
@@ -49,16 +50,13 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
           {bookName}
         </Link>
 
-        <Link href={routerToBookInfo} className={styles.bookNameBox}>
-          <div className={styles.bookNameHover}>
+        <div className={styles.bookNameBox}>
+          <Link href={routerToBookInfo} className={styles.bookNameHover}>
             {bookName}
-          </div>
-          <div className={styles.tagBox}>
-            {(book?.tags || []).slice(0, 2).map(val => {
-              return <div key={val} className={styles.tagItem}>{val}</div>
-            })}
-          </div>
-        </Link>
+          </Link>
+
+          {book?.typeTwoList && book.typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={book.typeTwoList}/> : null}
+        </div>
       </div>
     })}
   </div>

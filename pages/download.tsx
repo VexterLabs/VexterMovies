@@ -10,7 +10,7 @@ import { SSRConfig } from "next-i18next";
 interface IProps extends SSRConfig {
   isPc: boolean;
   isApple: boolean;
-  bookId?: string; // 勿删，剪切板使用
+  filmId: string; // 勿删，剪切板使用
 }
 
 const DownloadApp: NextPage<IProps> = ({ isPc, isApple }) => {

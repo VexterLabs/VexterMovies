@@ -22,6 +22,7 @@
   },
   "bookInfo": {
     "more": "추가",
+    "viewMore": "더 보기",
     "introduction": "소개",
     "previousPage": "이전 페이지",
     "nextPage": "다음 페이지",
@@ -29,8 +30,10 @@
     "firstChapterTip": "이미 첫 번째 장입니다",
     "like": "당신이 좋아할 만한",
     "relatedEpisodes": "관련 드라마",
-    "episodesDownload": "이 에피소드는 다운로드 받아야만 볼 수 있다",
+    "episodesDownload": "다운로드 받아 계속 보기",
     "episodes": "회",
+    "first": "제",
+    "episode": "회",
     "recLike": "취향 추측",
     "totalEpisodes": "회차수",
     "episodeList": "에피소드 목록"
