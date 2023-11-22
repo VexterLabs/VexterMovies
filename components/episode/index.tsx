@@ -111,6 +111,9 @@ const WapEpisode: FC<IProps> = (
         url: preChapterData?.mp4,
       })
     })
+    return () => {
+      playerInstance && playerInstance.current && playerInstance.current.destroy()
+    }
   }, [curChapterData])
 
   // 点击右侧全部剧集，选择播放剧集
