@@ -19,6 +19,8 @@ export const pathnameData = {
   error500: '/500',
   agreementPrivacy: '/privacy',
   agreementUser: '/terms',
+  tag: '/tag/[keywordId]',
+  keywords: '/keywords'
 }
 
 const HeadNormal: FC<any> = ({ pageProps = {} }) => {
