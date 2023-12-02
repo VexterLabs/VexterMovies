@@ -6,7 +6,8 @@
   .imageItem {
     width: 100%;
     height: 100%;
-    //transition: all 0.3s;
+    transition: all 0.5s;
+    background: url("../../../public/images/defaultFilm.png") 0 0 / 100% 100% no-repeat;
   }
 }
 

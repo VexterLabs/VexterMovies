@@ -19,21 +19,6 @@
       width: 1.5rem;
       height: 2rem;
       border-radius: 0.04rem;
-      overflow: hidden;
-
-      .bookImage {
-        width: 1.5rem;
-        height: 2rem;
-        transition: all 0.3s;
-      }
-    }
-
-    &:hover {
-      .bookImageBox {
-        .bookImage {
-          transform: scale(1.1);
-        }
-      }
     }
 
     .bookInfo {
@@ -60,7 +45,7 @@
         // flex-direction: row;
         flex-wrap: wrap;
         gap: 0.08rem;
-        
+
 
         .bookLabel {
           background-color: rgba(255,255,255,0.1);
@@ -73,7 +58,7 @@
           text-overflow: ellipsis;
           white-space: nowrap;
           padding: 0.04rem 0.1rem;
-          
+
 
           &:hover {
             transition: color 0.3s;

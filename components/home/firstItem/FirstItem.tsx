@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styles from '@/components/home/firstItem/FirstItem.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
 import Image from "next/image";
 
 interface IProps {
@@ -16,19 +16,14 @@ const FirstItem: FC<IProps> = ({ dataSource}) => {
       const routerToBookInfo = `/film/${filmItem.bookId}`
 
       return <div key={filmItem.bookId} className={styles.itemBox}>
-        <Link href={routerToBookInfo} className={styles.bookImage}>
-          <Image
-            className={styles.imageItem}
-            onError={onImgError}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={218}
-            height={294}
-            src={filmItem.cover}
-            alt={filmItem.bookName}
-          />
-        </Link>
-
+        <ImageCover
+          href={routerToBookInfo}
+          className={styles.bookImage}
+          width={218}
+          height={294}
+          src={filmItem.cover}
+          alt={filmItem.bookName}
+        />
         <Link href={routerToBookInfo} className={styles.bookName}>
           {filmItem.bookName}
         </Link>

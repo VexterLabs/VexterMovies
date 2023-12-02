@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
-import Image from "next/legacy/image";
 import TypeTwoTag from "@/components/common/typeTwoTag";
 import styles from '@/components/pcHome/swiperArea/SwiperArea.module.scss';
 
@@ -18,18 +17,16 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
       <div className={styles.leftCard}>
-        <Link href={routerToBookInfo} className={styles.leftCardImg}>
-          <Image
-            src={bigList[0].cover}
-            className={styles.imageItem}
-            onError={onImgError}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={345}
-            height={460}
-            alt={bigList[0].bookName}
-          />
-        </Link>
+        <ImageCover
+          scale={true}
+          href={routerToBookInfo}
+          className={styles.leftCardImg}
+          src={bigList[0].cover}
+          width={345}
+          height={460}
+          alt={bigList[0].bookName}
+        />
+
         <div className={styles.leftCardContent}>
           <div className={styles.leftCardContentTop}>
             <Link href={routerToBookInfo} className={styles.leftBookName}>{bigList[0].bookName}</Link>
@@ -43,19 +40,15 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
       <div className={styles.rightCard}>
         {[bigList[1], bigList[2]].map(item => {
           return <div key={item.bookId} className={styles.rightCardItem}>
-            <Link href={`/film/${item.bookId}`} className={styles.rightCardItemImg}>
-              <Image
-                src={item.cover}
-                className={styles.imageItem}
-                onError={onImgError}
-                placeholder="blur"
-                blurDataURL={'/images/defaultFilm.png'}
-                width={165}
-                height={220}
-                alt={item.bookName}
-              />
-            </Link>
-
+            <ImageCover
+              scale={true}
+              href={`/film/${item.bookId}`}
+              className={styles.rightCardItemImg}
+              src={item.cover}
+              width={165}
+              height={220}
+              alt={item.bookName}
+            />
             <div className={styles.rightCardContent}>
               <div  className={styles.rightCardContentTop}>
                 <Link href={`/film/${item.bookId}`} className={styles.bookName}>

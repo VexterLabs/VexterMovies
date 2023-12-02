@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import styles from '@/components/home/swiperNormal/SwiperNormal.module.scss'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 
@@ -16,18 +16,15 @@ const SwiperNormal: FC<IProps> = ({ bigList }) => {
   const items = bigList.map((item) => (
     <Swiper.Item key={item.bookId} className={styles.content}>
       <div className={styles.swiperItem}>
-        <Link href={`/film/${item.bookId}`} className={styles.contentImgBox}>
-          <Image
-            className={styles.imageItem}
-            onError={onImgError}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={218}
-            height={294}
-            src={item.cover}
-            alt={item.bookName}
-          />
-        </Link>
+
+        <ImageCover
+          href={`/film/${item.bookId}`}
+          className={styles.contentImgBox}
+          width={218}
+          height={294}
+          src={item.cover}
+          alt={item.bookName}
+        />
 
         <Link className={styles.rightCard} href={`/film/${item.bookId}`}>
           <div className={styles.rightCardTop}>

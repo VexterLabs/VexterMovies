@@ -18,13 +18,6 @@
       z-index: 9;
       display: flex;
       align-items: center;
-
-      .imageItem {
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        transition: all 0.3s;
-      }
     }
 
     .chapterCount {
@@ -104,10 +97,6 @@
 
       .bookImage {
         border-radius: 0.04rem 0.04rem 0 0;
-
-        .imageItem {
-          transform: scale(1.1);
-        }
       }
     }
 

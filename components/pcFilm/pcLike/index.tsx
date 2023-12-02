@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import Image from "next/image";
-import ImageLegacy from "next/legacy/image";
 import { useTranslation } from "next-i18next";
 import styles from '@/components/pcFilm/pcLike/PcLike.module.scss';
 
@@ -27,22 +26,16 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
 
         return <div key={book.bookId} className={styles.listItem}>
           <div className={styles.coverBox}>
-            <Link
+            <ImageCover
+              scale={true}
               href={`/film/${book.bookId}`}
               className={styles.bookImage}
-              onClick={() => onBookClick && onBookClick(book)}>
-              <ImageLegacy
-                className={styles.imageItem}
-                onError={onImgError}
-                placeholder="blur"
-                blurDataURL={'/images/defaultFilm.png'}
-                width={272}
-                height={363}
-                src={book.cover}
-                alt={book.bookName}
-              />
-            </Link>
-
+              onClick={() => onBookClick && onBookClick(book)}
+              width={272}
+              height={363}
+              src={book.cover}
+              alt={book.bookName}
+            />
             <Link
               className={styles.chapterCount}
               href={`/film/${book.bookId}`}
@@ -50,7 +43,6 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
             >
               <Image
                 className={styles.playIcon}
-                onError={onImgError}
                 width={16}
                 height={16}
                 src='/images/layout/play.png'

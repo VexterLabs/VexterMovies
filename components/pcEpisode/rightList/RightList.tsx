@@ -35,12 +35,10 @@ const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }
               <Image
                 className={styles.imgItem}
                 onError={onImgError}
-                placeholder="blur"
-                blurDataURL={'/images/defaultFilm.png'}
                 width={88}
                 height={89}
                 src={item.cover}
-                alt='photo'
+                alt={item.name}
               />
 
               { !item.unlock ? <div className={styles.imageMark}>

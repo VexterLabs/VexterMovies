@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { ELanguage } from "@/typings/home.interface";
 import Image from "next/image";
 import ClientConfig from "@/client.config";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
 import styles from '@/components/pcTag/tagBookList/TagBookList.module.scss';
 
 interface IProps {
@@ -42,22 +42,18 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId} className={styles.listItem}>
-        <Link
+
+        <ImageCover
+          scale={true}
           onClick={() => onBookClick && onBookClick(book)}
           href={linkUrl}
           locale={simpleLanguage}
-          className={styles.bookImageBox}>
-          <Image
-            className={styles.bookImage}
-            onError={onImgError}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={150}
-            height={200}
-            src={book.cover}
-            alt={book.bookName}
-          />
-        </Link>
+          className={styles.bookImageBox}
+          width={150}
+          height={200}
+          src={book.cover}
+          alt={book.bookName}
+        />
 
         <div className={styles.bookInfo}>
           <Link

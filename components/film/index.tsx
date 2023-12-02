@@ -59,8 +59,6 @@ const MFilm: FC<IProps> = (
         width={280}
         height={378}
         src={bookInfo.cover}
-        placeholder="blur"
-        blurDataURL={'/images/defaultFilm.png'}
         alt={bookInfo.bookName}
       />
 
