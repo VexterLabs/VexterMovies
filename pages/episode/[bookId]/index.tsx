@@ -74,6 +74,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
   const current = chapterList.findIndex(val => val.id === chapterId) || 0;
+
   return {
     props: {
       bookId,
