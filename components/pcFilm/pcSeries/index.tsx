@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
-import ImageLegacy from "next/legacy/image";
 import { useRouter } from "next/router";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
@@ -36,11 +35,9 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
         const isShow = showMore ? index < 11 : (index >= tabIndex * 30 && index < (tabIndex + 1) * 30);
         return <div key={item.id} className={styles.listItem} style={isShow? {} : { display: 'none' }}>
           <Link href={routerToVideoInfo} className={styles.imgBox}>
-            <ImageLegacy
+            <Image
               className={styles.imageItem}
               onError={onImgError}
-              placeholder="blur"
-              blurDataURL={'/images/defaultFilm.png'}
               width={88}
               height={117}
               src={item.cover || bookInfo.cover}

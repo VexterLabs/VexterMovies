@@ -28,13 +28,6 @@
         display: flex;
         align-items: center;
         border-radius: 0.04rem;
-
-        .imageItem {
-          width: 100%;
-          height: auto;
-          min-height: 100%;
-          transition: all 0.5s;
-        }
       }
 
       .leftCardContent {
@@ -91,12 +84,6 @@
         transition: background-color 0.3s;
         background-color: rgba(255, 255, 255, 0.12);
 
-        .leftCardImg {
-          .imageItem {
-            transform: scale(1.1);
-          }
-        }
-
         .leftCardContent {
           .leftCardContentTop {
             .leftBookName {
@@ -131,13 +118,6 @@
           display: flex;
           align-items: center;
           border-radius: 0.04rem;
-
-          .imageItem {
-            width: 100%;
-            height: auto;
-            min-height: 100%;
-            transition: all 0.3s;
-          }
         }
 
         .rightCardContent {
@@ -191,13 +171,6 @@
         &:hover {
           transition: background-color 0.3s;
           background-color: rgba(255, 255, 255, 0.12);
-
-          .rightCardItemImg {
-
-            .imageItem {
-              transform: scale(1.1);
-            }
-          }
 
           .rightCardContent {
             .rightCardContentTop {

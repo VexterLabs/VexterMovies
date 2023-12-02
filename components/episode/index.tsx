@@ -169,7 +169,7 @@ const WapEpisode: FC<IProps> = (
               width={40}
               height={40}
               src='/images/book/start-m.png'
-              alt='photo'
+              alt=''
             />
             <p className={styles.epoScore}>{bookInfo.followCount}</p>
           </div>

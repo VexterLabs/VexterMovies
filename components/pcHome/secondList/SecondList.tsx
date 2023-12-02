@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/legacy/image";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import TypeTwoTag from "@/components/common/typeTwoTag";
 import styles from '@/components/pcHome/secondList/SecondList.module.scss';
@@ -29,18 +28,15 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
 
       return <div key={bookId} className={styles.secondListBox}>
 
-        <Link href={routerToBookInfo} className={styles.bookImage}>
-          <Image
-            className={styles.imageItem}
-            onError={onImgError}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={228}
-            height={304}
-            src={book.cover}
-            alt={book.bookName}
-          />
-        </Link>
+        <ImageCover
+          scale={true}
+          href={routerToBookInfo}
+          className={styles.bookImage}
+          width={228}
+          height={304}
+          src={book.cover}
+          alt={book.bookName}
+        />
 
         <Link className={styles.chapterCount} href={routerToBookInfo}>
           <p>{`${chapterCount} ${t("home.episodes")}`}</p>

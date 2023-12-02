@@ -43,9 +43,11 @@ export const ImageCover: FC<IProps> = (props) => {
   }, [props]);
 
 
-  const { scale = false, href, className = '', alt = '', onClick, locale = ELanguage.English } = props;
+  const { scale = false, href, className = '', alt = '', onClick, locale = ELanguage.English, replace = false, rel } = props;
 
   return <Link
+    rel={rel}
+    replace={replace}
     locale={locale}
     href={href}
     className={`${scale ? styles.imageScaleBox : styles.imageBox} ${className}`}
@@ -55,8 +57,8 @@ export const ImageCover: FC<IProps> = (props) => {
       className={styles.imageItem}
       onError={onImgError}
       {...imageProps}
-      placeholder="blur"
-      blurDataURL={'/images/defaultFilm.png'}
+      // placeholder="blur"
+      // blurDataURL={'/images/defaultFilm.png'}
       alt={alt}
     />
   </Link>

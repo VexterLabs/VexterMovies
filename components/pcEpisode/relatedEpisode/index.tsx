@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import ImageLegacy from "next/legacy/image";
 import { onImgError } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
@@ -47,11 +46,9 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
             onClick={() => onChooseEpisode(index,item.id)}
             shallow
             replace>
-            <ImageLegacy
+            <Image
               className={styles.imageItem}
               onError={onImgError}
-              placeholder="blur"
-              blurDataURL={'/images/defaultFilm.png'}
               width={88}
               height={117}
               src={item.cover || bookInfo.cover}

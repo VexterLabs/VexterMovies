@@ -43,8 +43,6 @@ const PcFilm: FC<IProps> = (
             width={315}
             height={420}
             src={bookInfo.cover}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
             alt={bookInfo.bookName}
           />
         </div>

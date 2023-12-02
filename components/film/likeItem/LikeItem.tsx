@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { onImgError } from "@/components/common/image/ImageCover";
-import Image from "next/image";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import styles from '@/components/film/likeItem/LikeItem.module.scss';
 
 interface IProps {
@@ -15,20 +14,16 @@ const LikeItem: FC<IProps> = ({ dataSource, onBookClick, onChannel }) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem) => {
       return <div key={detailItem.bookId} className={styles.itemBox}>
-        <Link
+        <ImageCover
           onClick={() => onBookClick && onBookClick(detailItem)}
-          href={`/film/${detailItem.bookId}`} className={styles.bookImage} replace>
-          <Image
-            className={styles.imageItem}
-            onError={onImgError}
-            placeholder="blur"
-            blurDataURL={'/images/defaultFilm.png'}
-            width={218}
-            height={294}
-            src={detailItem.cover}
-            alt={detailItem.bookName}
-          />
-        </Link>
+          href={`/film/${detailItem.bookId}`}
+          className={styles.bookImage}
+          replace={true}
+          width={218}
+          height={294}
+          src={detailItem.cover}
+          alt={detailItem.bookName}
+        />
 
         <Link
           onClick={() => onBookClick && onBookClick(detailItem)}

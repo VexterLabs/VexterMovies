@@ -40,7 +40,18 @@ export const clipboardAsync = createAsyncThunk<IClipboard>(
 
 const getCopyText = (clipboard: IClipboard) => {
   const { bid = "", channelCode = "", cid = 0, h5uid = "", ua = '' } = clipboard;
-  const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_gg` : `${h5uid}_${bid}_${channelCode}_gg_${cid}`;
+  const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_other` : `${h5uid}_${bid}_${channelCode}_other_${cid}`;
+  // if (ua && !isIos(ua)) {
+  //   const androidClip = encrypt(JSON.stringify({
+  //     k: h5uid,
+  //     bid,
+  //     channel: channelCode,
+  //     media: "other",
+  //     cid: "",
+  //     ext: "", // 拓展字符
+  //   }))
+  //   return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&a=${androidClip} UA8322`
+  // }
   return `[dramaBox]https://app.dramaboxdb.com/${ isIos(ua) ? 'ios' : 'android' }/open?c=${ queryStr } UA8322`
 }
 
@@ -51,7 +62,7 @@ export const hiveSlice = createSlice<IHiveStore, SliceCaseReducers<IHiveStore>>(
       clipboard: {
         ip: "0.0.0.0",
         h5uid: "",
-        bid: '',
+        bid: LanguageDefaultBookId[ELanguage.English],
         channelCode: '',
         cid: 0,
         shareCode: 0,
