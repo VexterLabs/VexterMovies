@@ -9,6 +9,7 @@ import { SliceCaseReducers } from "@reduxjs/toolkit/src/createSlice";
 import { IClipboard } from "@/typings/hive.interfaces";
 import { netIpUa } from "@/server/clientLog";
 import { ipReg } from "@/utils/other";
+import { encrypt } from "@/utils/crypto";
 
 export const clipboardAsync = createAsyncThunk<IClipboard>(
   'hive/getClipboard',
@@ -41,17 +42,17 @@ export const clipboardAsync = createAsyncThunk<IClipboard>(
 const getCopyText = (clipboard: IClipboard) => {
   const { bid = "", channelCode = "", cid = 0, h5uid = "", ua = '' } = clipboard;
   const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_other` : `${h5uid}_${bid}_${channelCode}_other_${cid}`;
-  // if (ua && !isIos(ua)) {
-  //   const androidClip = encrypt(JSON.stringify({
-  //     k: h5uid,
-  //     bid,
-  //     channel: channelCode,
-  //     media: "other",
-  //     cid: "",
-  //     ext: "", // 拓展字符
-  //   }))
-  //   return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&a=${androidClip} UA8322`
-  // }
+  if (ua && !isIos(ua)) {
+    const androidClip = encrypt(JSON.stringify({
+      k: h5uid,
+      bid,
+      channel: channelCode,
+      media: "other",
+      cid: cid || "",
+      ext: "", // 拓展字符
+    }))
+    return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&a=${androidClip} UA8322`
+  }
   return `[dramaBox]https://app.dramaboxdb.com/${ isIos(ua) ? 'ios' : 'android' }/open?c=${ queryStr } UA8322`
 }
 
