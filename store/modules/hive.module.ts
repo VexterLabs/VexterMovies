@@ -51,7 +51,7 @@ const getCopyText = (clipboard: IClipboard) => {
       cid: cid || "",
       ext: "", // 拓展字符
     }))
-    return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&a=${androidClip} UA8322`
+    return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&lpat=${androidClip} UA8322`
   }
   return `[dramaBox]https://app.dramaboxdb.com/${ isIos(ua) ? 'ios' : 'android' }/open?c=${ queryStr } UA8322`
 }
