@@ -29,6 +29,7 @@ const buildId = 'dramabox_20231207'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
+process.title = `next-${buildId}`;
 
 console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ ✨ ✨ --------------------------')
 console.log('\x1B[34m%s\x1B[39m', '部署环境:', environment, '构建ID:', buildId)
