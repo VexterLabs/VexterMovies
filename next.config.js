@@ -23,12 +23,13 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox_20231206'; // 构建ID
+const buildId = 'dramabox_20231216'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
+process.title = `next-${buildId}`;
 
 console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ ✨ ✨ --------------------------')
 console.log('\x1B[34m%s\x1B[39m', '部署环境:', environment, '构建ID:', buildId)

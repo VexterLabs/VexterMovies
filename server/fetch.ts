@@ -41,7 +41,7 @@ export const geFetch = async (url: string, params?: AnyObject, data?: AnyObject)
     return 'BadRequest_404'
   } catch (e) {
     console.error(`\n >>> Request failed <<< \n` +
-      `ERROR: ${JSON.stringify(e)}`);
+      `ERROR: ${(e || '').toString()}`);
     return 'BadRequest_500'
   }
 }
@@ -93,7 +93,7 @@ export const poFetch = async (url: string, data?: AnyObject, language?: ELanguag
     return 'BadRequest_404'
   } catch (e) {
     console.error(`\n >>> Request failed <<< \n` +
-      `ERROR: ${JSON.stringify(e)}`);
+      `ERROR: ${(e || '').toString()}`);
     return 'BadRequest_500'
   }
 }

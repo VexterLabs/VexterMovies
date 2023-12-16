@@ -10,8 +10,6 @@ import { onCopyText } from "@/utils/copy";
 import Image from "next/image";
 import styles from './index.module.scss';
 
-const androidLink = ClientConfig.android.link;
-
 interface IProps {
   adClose: () => void;
 }
@@ -25,7 +23,15 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
     HiveLog.track('BannerDownloadButton_close');
     adClose()
   }
-  const iosLink = ClientConfig.ios.deeplink + copyText;
+  const shopLink = useAppSelector(state => {
+    const { bid, cid, channelCode, ua } = state.hive.clipboard;
+    if (isIos(clipboard.ua)) {
+      return ClientConfig.ios.deeplink + state.hive.copyText;
+    }
+    const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
+    return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+  });
+
    return <div className={styles.adWrap}>
     <div className={styles.adLeft}>
       <Image
@@ -46,7 +52,7 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
       <div className={styles.intro}>{t('banner.OpenApp')}</div>
     </div>
 
-    <Link href={isIos(clipboard.ua) ? iosLink : androidLink} rel={'nofollow'} onClick={() => {
+    <Link href={shopLink} rel={'nofollow'} onClick={() => {
       onCopyText(copyText, () => {
         HiveLog.trackDownload('BannerDownloadButton_Click');
         netIpUa(clipboard)

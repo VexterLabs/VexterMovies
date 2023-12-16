@@ -29,7 +29,7 @@ const Film: NextPage<IProps> = (
   const HiveLog = useHiveLog();
   const breadData: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
-    { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
+    { title: bookInfo?.typeTwoNames?.[0], link: `/browse/${bookInfo?.typeTwoIds?.[0]}` },
     { title: bookInfo.bookName },
   ];
 
