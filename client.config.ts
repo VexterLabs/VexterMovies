@@ -5,7 +5,7 @@ const ClientConfig = {
   companyName: "STORYMATRIX PTE.LTD.",
   productName: "db",
   googleCode: "G-BXDJ8KNG7N",
-  email: "dramaboxapp@gmail.com",
+  email: "dramaboxbusiness@gmail.com", // "dramaboxapp@gmail.com",
   ios: {
     deeplink: "https://app.dramaboxdb.com/ios/open?c=",
     pname: "com.storymatrix.drama",
