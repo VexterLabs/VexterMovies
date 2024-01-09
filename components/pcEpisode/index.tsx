@@ -39,6 +39,7 @@ const PcEpisode: FC<IProps> = (
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({} as Player);
   const episodeIndex = useRef(current);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const [errorBgsrc, setErrorBg] = useState('')
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
@@ -48,32 +49,60 @@ const PcEpisode: FC<IProps> = (
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
-    currentPage === -1 && setCurrentPage(0)
     const curId = chapterList.find((item, index) => index === currentPage) || chapterList[0]
     const cover = curId?.cover
     if (curId?.unlock === false) {
-      setErrorBg(cover as string)
+      setErrorBg(cover as string || bookInfo.cover);
     }
-  }, [chapterList]);
+    playUrl();
+  }, [chapterList, currentPage]);
+
+  const playUrl = async () => {
+    if (playerInstance.current && chapterList?.[currentPage]) {
+      playerInstance.current.poster = chapterList[currentPage]?.cover || bookInfo.cover;
+      playerInstance.current.currentTime = 0;
+      if (playerInstance.current?.switchURL) {
+        await playerInstance.current?.switchURL(chapterList?.[currentPage]?.mp4 as string, { seamless: true, currentTime: 0 });
+        playerInstance.current.play();
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (errorBgsrc) {
+      if (isFullScreen && playerInstance.current) {
+        playerInstance.current.exitFullscreen();
+      }
+      if (playerInstance.current) {
+        playerInstance.current.currentTime = 0;
+        playerInstance.current.pause();
+      }
+    }
+  }, [isFullScreen, errorBgsrc]);
 
   // 播放器设置
   useEffect(() => {
+    if (!chapterList[currentPage]) return;
+
     playerInstance.current = new Player({
       id: "playVideo",
       autoplay: true,
       autoplayMuted: false,
-      url: currentPage === -1 ? chapterList[0]?.mp4 : chapterList[currentPage]?.mp4,
+      url: chapterList[currentPage]?.mp4,
+      poster: chapterList[currentPage]?.cover || bookInfo.cover,
       width: '100%',
       height: '100%',
       videoFillMode: "fillHeight",
       playsinline: true,
-      ignores: ['playbackRate'],
+      ignores: ['playbackRate', 'replay'],
       cssFullscreen: false,
     })
 
     if (playerInstance.current) {
       // 播放
-      playerInstance.current.on(Events.PLAY, () => {
+      playerInstance.current.on(Events.PLAY, () => {})
+      playerInstance.current.on(Events.FULLSCREEN_CHANGE, (e) => {
+        setIsFullScreen(e);
       })
       // EVENTS.ENDED 结束播放,播放完后
       playerInstance.current.on(Events.ENDED, () => {
@@ -82,11 +111,7 @@ const PcEpisode: FC<IProps> = (
           router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
-          if (nextChapter.mp4 && nextChapter.unlock) {
-            playerInstance.current.playNext({
-              url: nextChapter.mp4
-            })
-          } else {
+          if (!nextChapter.mp4 || !nextChapter.unlock) {
             setErrorBg(nextChapter.cover)
           }
         }

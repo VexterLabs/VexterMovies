@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
-import styles from '@/components/layout/pcFooter/PcFooter.module.scss'
+import React, { FC } from 'react';
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import ClientConfig from "@/client.config";
+import styles from '@/components/layout/pcFooter/PcFooter.module.scss'
 
 interface IProps {
 }

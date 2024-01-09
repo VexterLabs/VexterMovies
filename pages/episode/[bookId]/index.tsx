@@ -73,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     return { redirect: { destination: '/500', permanent: false } }
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
-  const current = chapterList.findIndex(val => val.id === chapterId) || 0;
+  const current = chapterList.findIndex(val => val.id === chapterId);
 
   return {
     props: {
@@ -83,7 +83,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isApple: isIos(ua),
       recommends,
       chapterList,
-      current,
+      current: current === -1 ? 0 : current,
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },
   }
