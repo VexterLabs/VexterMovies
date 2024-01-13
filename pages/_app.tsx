@@ -29,7 +29,7 @@ function App({ Component, pageProps, router }: AppProps) {
   return <Provider store={store}>
     <DLayout pageProps={pageProps}>
       <>
-        <HeadNormal pageProps={pageProps}/>
+        <HeadNormal pageProps={pageProps} router={router}/>
         <Component {...pageProps} />
       </>
     </DLayout>

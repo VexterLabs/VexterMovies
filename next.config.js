@@ -16,16 +16,16 @@ const BaseUrlObj = {
 }
 // ipua
 const IpUaUrlObj = {
-  test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
-  // test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
+  // test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
+  test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
   staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
   prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox_20240109'; // 构建ID
+const buildId = 'dramabox_20240113'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
@@ -40,7 +40,7 @@ console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ �
 
 const nextConfig = {
   reactStrictMode: true,
-  cleanDistDir: true,
+  // cleanDistDir: true,
   // Configuring the Build ID
   generateBuildId: async () => {
     return buildId;

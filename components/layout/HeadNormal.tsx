@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import ClientConfig from "@/client.config";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { Router } from "next/router";
 import { TDK } from "@/components/layout/tdk";
 import { ELanguage } from "@/typings/home.interface";
 import Script from "next/script";
@@ -23,8 +23,8 @@ export const pathnameData = {
   keywords: '/keywords'
 }
 
-const HeadNormal: FC<any> = ({ pageProps = {} }) => {
-  const router = useRouter();
+const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; router: Router }) => {
+
   const { t } = useTranslation()
   const getTdk = (): { title: string; keywords: string; description: string; } => {
     const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
@@ -70,6 +70,8 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
 
   // 拓展多语言字段
   const AlternateLink = () => {
+    if (router.pathname.includes(pathnameData.tag) || router.pathname.includes(pathnameData.keywords)) return null;
+
     if (router.pathname.includes(pathnameData.book)) {
       return <>
         {pageProps.languages && pageProps.languages.length > 0 && pageProps.languages.map((lanUrl: ELanguage) => {
