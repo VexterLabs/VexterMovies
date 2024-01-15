@@ -21,6 +21,8 @@ interface IProps {
   chapterList: IChapterList[];
   onBookClick: (book: IBookItem) => void;
   onChannel: (name: string) => void;
+  shareArr: { id: string; link: string; icon: string; }[];
+  onShare: (url: string) => void;
 }
 
 const MFilm: FC<IProps> = (
@@ -31,7 +33,9 @@ const MFilm: FC<IProps> = (
     chapterList = [],
     breadData,
     onBookClick,
-    onChannel
+    onChannel,
+    shareArr,
+    onShare,
   }) => {
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
@@ -117,14 +121,12 @@ const MFilm: FC<IProps> = (
       </div> : null}
     </div>
 
-    <div className={styles.episodeNav} onClick={() => {
-      showEpisodeDialog()
-    }}>
-      <div className={styles.leftInfo}>
-        <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
-        <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
-      </div>
-      <div className={styles.rightImg}>
+    <div className={styles.episodeNav}>
+      <div className={styles.catalogBox} onClick={showEpisodeDialog}>
+        <div className={styles.leftInfo}>
+          <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
+          <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
+        </div>
         <Image
           className={styles.arrowIcon}
           width={24}
@@ -132,6 +134,21 @@ const MFilm: FC<IProps> = (
           src={'/images/book/arrow-r-d.png'}
           alt={''}
         />
+      </div>
+
+      <div className={styles.shareBox}>
+        <div className={styles.shareLabel}>{t('bookInfo.share')}:</div>
+        {shareArr.map(share => (
+          <Image
+            onClick={() => onShare(share.link)}
+            key={share.id}
+            className={styles.shareIcon}
+            width={40}
+            height={40}
+            src={share.icon}
+            alt={share.id}
+          />
+        ))}
       </div>
     </div>
 

@@ -39,6 +39,24 @@
       width: 1.81rem;
     }
 
+    .community {
+      margin-top: 0.2rem;
+      display: flex;
+      justify-content: space-between;
+
+      .communityLabel {
+        font-weight: 500;
+        margin-right: 0.1rem;
+      }
+
+      .communityItem {
+        padding: 0 0.1rem;
+        display: inline-block;
+        color: rgba(255,255,255,0.4);
+      }
+
+    }
+
     .fmail {
       margin: 0.25rem 0 0.2rem;
       display: block;

@@ -11,7 +11,10 @@
     "back": "返回",
     "email": "邮箱",
     "emptyDesc": "没找到内容",
-    "episodes": "集"
+    "episodes": "集",
+    "about": "关于我们",
+    "contact": "联系我们",
+    "community": "社区"
   },
   "热门好剧": "热门好剧",
   "必看好剧": "必看好剧",
@@ -36,7 +39,8 @@
     "episode": "集",
     "recLike": "猜你喜欢",
     "totalEpisodes": "剧集数",
-    "episodeList": "剧集列表"
+    "episodeList": "剧集列表",
+    "share": "分享"
   },
   "appPage": {
     "title": "DramaBox - 追剧，电视，精彩故事",

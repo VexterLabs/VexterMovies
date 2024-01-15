@@ -121,6 +121,26 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
     gtag('config', '${googleCode}');`,
       }}
     />
+    {/*<Script*/}
+    {/*  id={'facebook_sdk'}*/}
+    {/*  crossOrigin={"anonymous"}*/}
+    {/*  strategy={'afterInteractive'}*/}
+    {/*  src={"https://connect.facebook.net/en_US/sdk.js"}*/}
+    {/*/>*/}
+    {/*<Script*/}
+    {/*  id={'facebook_sdk'}*/}
+    {/*  crossOrigin={"anonymous"}*/}
+    {/*  strategy={'afterInteractive'}*/}
+    {/*  dangerouslySetInnerHTML={{*/}
+    {/*    __html: `window.fbAsyncInit = function() {*/}
+    {/*  FB.init({*/}
+    {/*    appId            : '1076053070212633',*/}
+    {/*    xfbml            : true,*/}
+    {/*    version          : 'v18.0'*/}
+    {/*  });*/}
+    {/*};`*/}
+    {/*  }}*/}
+    {/*/>*/}
   </>
 }
 

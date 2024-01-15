@@ -11,7 +11,10 @@
     "back": "Back",
     "email": "Email",
     "emptyDesc": "It's empty!",
-    "episodes": "Episodes"
+    "episodes": "Episodes",
+    "about": "About",
+    "contact": "Contact Us",
+    "community": "Community"
   },
   "热门好剧": "Top Hits",
   "必看好剧": "Must-sees",
@@ -36,7 +39,8 @@
     "episode": "",
     "recLike": "Recommended for you",
     "totalEpisodes": "Total Episodes",
-    "episodeList": "Episode List"
+    "episodeList": "Episode List",
+    "share": "Share"
   },
   "appPage": {
     "title": "DramaBox - movies and drama",

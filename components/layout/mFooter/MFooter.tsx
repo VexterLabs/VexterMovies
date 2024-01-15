@@ -43,11 +43,21 @@ const MFooter: FC<IProps> = () => {
         blurDataURL={'/images/logo2.png'}
         alt={ClientConfig.name}
       />
+
+      <div className={styles.community}>
+        <div className={styles.communityLabel}>{t("home.community")}:</div>
+        <Link className={styles.communityItem} href={'https://www.facebook.com/profile.php?id=61552540530213'} target={'_blank'}>
+          Facebook
+        </Link>
+        <Link className={styles.communityItem} href={'https://www.youtube.com/@dramaboxapp'} target={'_blank'}>
+          Youtube
+        </Link>
+      </div>
+
       <Link className={styles.fmail} href={`mailto:${ClientConfig.email}`}>
         {t("home.email")}: &nbsp;{ ClientConfig.email }
       </Link>
-      <p className={styles.fText}>© {ClientConfig.name}, {t('home.allRightsReserved')}</p>
-      <p className={styles.fText}>{ClientConfig.companyName}</p>
+      <p className={styles.fText}>© {ClientConfig.name}, {t('home.allRightsReserved')} {ClientConfig.companyName}</p>
     </div>
   </div>
 }
