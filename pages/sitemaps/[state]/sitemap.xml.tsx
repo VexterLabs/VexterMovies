@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import { ISitemapField } from "next-sitemap/dist/@types/interface";
 import { netAllBook, netAllColumn, netBookDetail, netBrowseType, netKeywords } from "@/server/home";
 import dayjs from "dayjs";
-import { ColumnNameRoute, ELanguage } from "@/typings/home.interface";
+import { ColumnNameRoute, ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { ESearchType, INetAllBookRes, INetAllColumnRes } from "@/typings/sitemap.interface";
 import { INetBrowseTypeRes } from "@/typings/browse.interface";
 import { IKeywordItem } from "@/typings/book.interface";
@@ -220,6 +220,70 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }
 
     const content = sitemapBuilder.buildSitemapXml(fields).replace(/xmlns:.*="(.*)"/g, 'xmlns:xhtml="http://www.w3.org/1999/xhtml"');
+    return withXMLResponseLegacy(ctx, content)
+  }
+  // 视频地图
+  if (state.includes('video_')) {
+    const bookId = state.replace('video_', '');
+    const response = await netBookDetail(bookId);
+    // console.log(response);
+    let fields = [] as ISitemapField[];
+    if (response !== 'BadRequest_500' && response !== 'BadRequest_404'){
+      const { chapterList = [] as IChapterList[], languages = [], book = {} as IBookItem } = response;
+
+      fields = chapterList.map((val, index) => {
+        const data = {
+          ...options,
+          changefreq: val.new ? 'daily' : 'weekly',
+          lastmod: val.new ? val.utime : lastmod,
+          loc: `${options.loc}/episode/${bookId}/${val.id}`,
+          alternateRefs: languages.map(lan => {
+            let _loc = `/episode/${bookId}/${val.id}`;
+            if (lan !== ELanguage.English) {
+              _loc = '/' + lan + _loc
+            }
+            return {
+              href: options.loc + _loc,
+              hreflang: lan,
+              hrefIsAbsolute: false
+            }
+          }),
+          trailingSlash: false,
+        }
+
+        return {
+          ...data,
+          videos: [
+            {
+              title: book.bookName + ' episode ' + (index + 1),
+              thumbnailLoc: {
+                href: val.cover || book.cover
+              },
+              description: book.introduction,
+              contentLoc: val.mp4 ? { href: val.mp4 } : undefined, // 实际视频媒体文件的网址
+              playerLoc: val.mp4 ? { href: val.mp4 } : undefined, // 特定视频的播放器的网址 ？
+              // duration: 60, // 视频的时长
+              // expirationDate: new Date().toISOString(), // 视频的失效日期
+              // rating: book.ratings, // 视频的评分
+              viewCount: book.viewCount,
+              // publicationDate: new Date(book.lastUpdateTime || "").toISOString(), // 首次发布视频的日期
+              familyFriendly: true, // 用户能否在安全搜索模式下搜到该视频
+              // restriction?: IRestriction; // 是否在特定国家/地区的搜索结果中显示或隐藏您的视频。
+              // platform?: IRestriction; // 是否在所列类型的平台的搜索结果中显示或隐藏您的视频
+              requiresSubscription: false, // 指明是否需要订阅才能观看视频。支持的值包括：
+              // uploader?: { // 视频上传者的名称。
+              //   name: string;
+              //   info?: URL;
+              // };
+              live: false, // 视频是否为直播视频
+              // tag?: string; // 描述视频的任意字符串标记
+            }
+          ]
+        }
+      })
+    }
+
+    const content = sitemapBuilder.buildSitemapXml(fields).replace(/xmlns:.*="(.*)"/g, 'xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"');
     return withXMLResponseLegacy(ctx, content)
   }
 
