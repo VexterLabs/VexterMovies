@@ -13,6 +13,7 @@ import useHiveLog from "@/hooks/useHiveLog";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import styles from "@/components/pcEpisode/index.module.scss";
+import PcShare from "@/components/pcFilm/share";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -176,7 +177,7 @@ const PcEpisode: FC<IProps> = (
           <h1 className={styles.videoTitle}>
             {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
           </h1>
-          <p className={styles.videoStar}>
+          <div className={styles.videoStar}>
             <Image
               className={styles.imageStar}
               src={'/images/book/star-d.png'}
@@ -185,9 +186,9 @@ const PcEpisode: FC<IProps> = (
               alt="star"
             />
             <span className={styles.videoScore}>{bookInfo.followCount}</span>
-          </p>
+          </div>
 
-          <Ellipsis
+          {bookInfo.introduction ? <Ellipsis
             rows={1}
             className={styles.videoDesc}
             expandText={
@@ -213,7 +214,7 @@ const PcEpisode: FC<IProps> = (
                  />
               </span>
             }
-            content={bookInfo.introduction}/>
+            content={bookInfo.introduction}/> : null}
           <div className={styles.tagBox}>
             {(bookInfo?.typeTwoList || []).slice(0, 2).map(val => {
               return <Link
@@ -222,6 +223,7 @@ const PcEpisode: FC<IProps> = (
                 className={styles.tagItem}>{val.name}</Link>
             })}
           </div>
+          <PcShare bookInfo={bookInfo} />
         </div>
       </div>
 

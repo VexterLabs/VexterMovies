@@ -1,0 +1,22 @@
+.shareBox {
+  height: 1rem;
+  border-top: 0.08rem solid #141414;
+  background-color: #000000;
+  padding: 0 0.32rem;
+  display: flex;
+  align-items: center;
+
+  .shareLabel {
+    margin-right: 0.2rem;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.32rem;
+  }
+
+  .shareIcon {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    margin-right: 0.2rem;
+    cursor: pointer;
+  }
+}

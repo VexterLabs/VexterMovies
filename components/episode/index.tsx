@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
@@ -18,6 +18,7 @@ import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import WapShare from "@/components/film/wapShare";
 import styles from "@/components/episode/index.module.scss";
 
 interface IProps {
@@ -27,7 +28,7 @@ interface IProps {
   currentPage: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string, e?: SyntheticEvent) => void;
+  onChannel: (name: string) => void;
 }
 
 const WapEpisode: FC<IProps> = (
@@ -180,7 +181,7 @@ const WapEpisode: FC<IProps> = (
               <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val, ind) => {
                   return <Link
-                    onClick={(e) => onChannel(val.name, e)}
+                    onClick={() => onChannel(val.name)}
                     key={ind}
                     href={`/browse/${val.id}`}
                     className={styles.tagItem}>{val.name}</Link>
@@ -215,6 +216,7 @@ const WapEpisode: FC<IProps> = (
             content={bookInfo.introduction}/>
         </div>
       </div>
+      <WapShare bookInfo={bookInfo} />
       <div className={styles.epiList}>
         <div className={styles.titleList}>
           <p className={styles.titleLeft}>{t('bookInfo.episodeList')}</p>

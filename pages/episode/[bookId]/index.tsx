@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSidePropsResult, GetServerSideProps } from 'next'
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { netBookDetail } from "@/server/home";
 import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { isIos, ownOs } from "@/utils/ownOs";
@@ -7,6 +7,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
 import useHiveLog from "@/hooks/useHiveLog";
+import ShareHead from "@/components/film/wapShare/ShareHead";
 
 interface IProps {
   isPc: boolean;
@@ -29,13 +30,15 @@ const Episode: NextPage<IProps> = (
     })
   }
 
-  const onChannel = (name: string,e?: SyntheticEvent) => {
+  const onChannel = (name: string) => {
     HiveLog.track("ReadChannel_click", {
       typeTwoName: name
     })
   }
 
   return <>
+    <ShareHead bookInfo={bookInfo}/>
+
     {isPc ?
       <PcEpisode
         onChannel={onChannel}

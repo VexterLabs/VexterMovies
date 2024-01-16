@@ -175,6 +175,7 @@
           color: rgba(255, 255, 255, 0.6);
           grid-gap: 0.08rem;
           display: flex;
+          margin-bottom: 0.1rem;
 
           .tagItem {
             border-radius: 0.12rem;
@@ -190,7 +191,6 @@
         }
       }
     }
-
   }
 
   .bottomBox {

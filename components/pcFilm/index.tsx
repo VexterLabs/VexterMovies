@@ -7,8 +7,7 @@ import { useTranslation } from "next-i18next";
 import PcSeries from '@/components/pcFilm/pcSeries';
 import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
-import { onCopyText } from "@/utils/copy";
-import { Toast } from "antd-mobile";
+import PcShare from "@/components/pcFilm/share";
 import styles from "@/components/pcFilm/index.module.scss";
 
 interface IProps {
@@ -18,8 +17,6 @@ interface IProps {
   breadData: IBreadcrumb[];
   onBookClick: (book: IBookItem) => void;
   onChannel: (name: string) => void;
-  shareArr: { id: string; link: string; icon: string; }[];
-  onShare: (url: string) => void;
 }
 
 const PcFilm: FC<IProps> = (
@@ -29,9 +26,7 @@ const PcFilm: FC<IProps> = (
     chapterList = [],
     breadData,
     onBookClick,
-    onChannel,
-    shareArr,
-    onShare
+    onChannel
   }) => {
   const { t } = useTranslation();
 
@@ -87,35 +82,7 @@ const PcFilm: FC<IProps> = (
               <span>{t("home.play")}</span>
             </Link> : null}
 
-            <div className={styles.shareBox}>
-              <div className={styles.shareLabel}>{t('bookInfo.share')}:</div>
-              {shareArr.map(share => (
-                <Image
-                  onClick={() => onShare(share.link)}
-                  key={share.id}
-                  className={styles.shareIcon}
-                  width={40}
-                  height={40}
-                  src={share.icon}
-                  alt={share.id}
-                />
-              ))}
-              <div className={styles.copyTip}>
-                <Image
-                  onClick={() => {
-                    onCopyText(process.env.WebDomain + '/film/' + bookInfo.bookId, () => {
-                      Toast.show(t('appPage.copied'))
-                    })
-                  }}
-                  className={styles.shareIcon}
-                  width={34}
-                  height={34}
-                  src={'/images/common/copy.svg'}
-                  alt={'copy'}
-                />
-                <div className={styles.tip}>{t('appPage.clickCopy')}</div>
-              </div>
-            </div>
+            <PcShare bookInfo={bookInfo} />
           </div>
 
         </div>

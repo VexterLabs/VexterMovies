@@ -11,6 +11,7 @@ import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import WapShare from "@/components/film/wapShare";
 import styles from "@/components/film/index.module.scss";
 
 interface IProps {
@@ -21,8 +22,6 @@ interface IProps {
   chapterList: IChapterList[];
   onBookClick: (book: IBookItem) => void;
   onChannel: (name: string) => void;
-  shareArr: { id: string; link: string; icon: string; }[];
-  onShare: (url: string) => void;
 }
 
 const MFilm: FC<IProps> = (
@@ -34,8 +33,6 @@ const MFilm: FC<IProps> = (
     breadData,
     onBookClick,
     onChannel,
-    shareArr,
-    onShare,
   }) => {
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
@@ -136,20 +133,7 @@ const MFilm: FC<IProps> = (
         />
       </div>
 
-      <div className={styles.shareBox}>
-        <div className={styles.shareLabel}>{t('bookInfo.share')}:</div>
-        {shareArr.map(share => (
-          <Image
-            onClick={() => onShare(share.link)}
-            key={share.id}
-            className={styles.shareIcon}
-            width={40}
-            height={40}
-            src={share.icon}
-            alt={share.id}
-          />
-        ))}
-      </div>
+      <WapShare bookInfo={bookInfo} />
     </div>
 
     {recommends.length > 0 ? <>

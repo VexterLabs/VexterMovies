@@ -40,7 +40,8 @@
     "recLike": "Recommended for you",
     "totalEpisodes": "Total Episodes",
     "episodeList": "Episode List",
-    "share": "Share"
+    "share": "Share",
+    "shareCopy": "The link has been pasted to your clipboard."
   },
   "appPage": {
     "title": "DramaBox - movies and drama",
