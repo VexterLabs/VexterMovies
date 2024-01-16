@@ -56,7 +56,7 @@ const PcEpisode: FC<IProps> = (
       setErrorBg(cover as string || bookInfo.cover);
     }
     playUrl();
-  }, [chapterList, currentPage]);
+  }, [chapterList, currentPage]); // eslint-disable-line
 
   const playUrl = async () => {
     if (playerInstance.current && chapterList?.[currentPage]) {
@@ -118,7 +118,7 @@ const PcEpisode: FC<IProps> = (
         }
       })
     }
-  }, []);
+  }, []); // eslint-disable-line
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = async (index: number,id: string) => {

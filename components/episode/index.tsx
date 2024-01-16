@@ -86,7 +86,7 @@ const WapEpisode: FC<IProps> = (
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
-  }, [chapterList])
+  }, [chapterList]) // eslint-disable-line
   // 播放器设置
   useEffect(() => {
     // 查找当前视频中下一个有MP4
@@ -117,7 +117,7 @@ const WapEpisode: FC<IProps> = (
     return () => {
       playerInstance && playerInstance.current && playerInstance.current.destroy()
     }
-  }, [curChapterData])
+  }, [curChapterData]) // eslint-disable-line
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = (item: IChapterList) => {

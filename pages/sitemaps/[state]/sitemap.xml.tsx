@@ -279,7 +279,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
               // tag?: string; // 描述视频的任意字符串标记
             }
           ]
-        }
+        } as ISitemapField
       })
     }
 

@@ -11,7 +11,11 @@ export default async function handler(
   res: NextApiResponse<ResponseData>
 ) {
 
-  const { bookId = "" } = req.query
+  const { bookId = "" } = req.query as { bookId: string; }
+
+  if (!bookId) {
+    res.status(200).end(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/"><channel></channel></rss>`);
+  }
 
   const response = await netBookDetail(bookId);
   if (response !== 'BadRequest_500' && response !== 'BadRequest_404'){
@@ -37,7 +41,7 @@ export default async function handler(
   </item>`
     }).join('')
 
-    res.status(200).send(bodyFrond + item + bodyEnd)
+    res.status(200).end(bodyFrond + item + bodyEnd)
   }
-  res.status(200).send(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/"><channel></channel></rss>`);
+  res.status(200).end(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/"><channel></channel></rss>`);
 }

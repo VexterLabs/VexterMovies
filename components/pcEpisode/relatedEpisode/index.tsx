@@ -31,7 +31,7 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
       const newList = chapterList.slice(current, chapterList.length);
       return newList.concat(item);
     })
-  }, [current]);
+  }, [current]); // eslint-disable-line
 
   return <div className={styles.relatedEpisode}>
     <div className={styles.relatedTitle}>{t("bookInfo.relatedEpisodes")}</div>
