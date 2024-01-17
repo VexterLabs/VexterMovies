@@ -26,9 +26,10 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
     if (isApple) {
       return ClientConfig.ios.deeplink + state.hive.copyText;
     }
-    const { bid, cid, channelCode } = state.hive.clipboard;
-    const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+    return ClientConfig.android.link;
+    // const { bid, cid, channelCode } = state.hive.clipboard;
+    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
+    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
   });
 
   return <div className={styles.navBox}>

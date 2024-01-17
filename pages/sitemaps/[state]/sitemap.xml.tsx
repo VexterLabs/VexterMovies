@@ -251,17 +251,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           trailingSlash: false,
         }
 
+        const contentUrl = val?.mp4 || chapterList?.[0]?.mp4;
+
         return {
           ...data,
           videos: [
             {
-              title: book.bookName + ' episode ' + (index + 1),
+              title: book.bookName + ' Episode ' + (index + 1),
               thumbnailLoc: {
                 href: val.cover || book.cover
               },
-              description: book.introduction,
-              contentLoc: val.mp4 ? { href: val.mp4 } : undefined, // 实际视频媒体文件的网址
-              playerLoc: val.mp4 ? { href: val.mp4 } : undefined, // 特定视频的播放器的网址 ？
+              description: book.introduction || "DramaBox",
+              contentLoc: contentUrl ? { href: contentUrl } : undefined, // 实际视频媒体文件的网址
+              playerLoc: contentUrl ? { href: contentUrl } : undefined, // 特定视频的播放器的网址 ？
               // duration: 60, // 视频的时长
               // expirationDate: new Date().toISOString(), // 视频的失效日期
               // rating: book.ratings, // 视频的评分

@@ -27,15 +27,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const bookMap = allBookList.map(book => {
     return `${process.env.WebDomain}/sitemaps/film_${book.bookId}/sitemap.xml`
   });
-
-  const videoMap = allBookList.map(book => {
-    return `${process.env.WebDomain}/sitemaps/video_${book.bookId}/sitemap.xml`
-  });
-
-  const mrssMap = allBookList.map(book => {
-    return `${process.env.WebDomain}/api/mrss/${book.bookId}/sitemap.xml`
-  });
-
   const tagMap = Array.from({ length: Math.ceil(keywordsTotal/10000) }, (v, i) => {
     return `${process.env.WebDomain}/sitemaps/tag_page_${i + 1}/sitemap.xml`
   });
@@ -50,8 +41,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     `${process.env.WebDomain}/sitemaps/browse/sitemap.xml`,
     `${process.env.WebDomain}/sitemaps/keywords/sitemap.xml`,
     ...bookMap,
-    ...videoMap,
-    ...mrssMap,
     ...tagMap,
     ...tagIncrementalMap,
     `${process.env.WebDomain}/sitemaps/incremental/sitemap.xml`, // 新增地图 daily

@@ -53,9 +53,10 @@ const WapEpisode: FC<IProps> = (
     if (isApple) {
       return ClientConfig.ios.deeplink + state.hive.copyText;
     }
-    const { bid, cid, channelCode } = state.hive.clipboard;
-    const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+    // const { bid, cid, channelCode } = state.hive.clipboard;
+    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
+    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+    return ClientConfig.android.link;
   });
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
