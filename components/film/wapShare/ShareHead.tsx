@@ -16,14 +16,15 @@ const ShareHead: FC<IProps> = ({ bookInfo }) => {
 
   return <Head>
     {/*facebook分享*/}
-    <meta property="og:url" content={locationUrl}/>
+    <meta property="fb:app_id" content="61552540530213"/>
+    <meta property="og:url" content={process.env.WebDomain}/>
     <meta property="og:title" content={bookInfo.bookName || ClientConfig.name}/>
     <meta property="og:description" content={bookInfo.introduction}/>
     <meta property="og:image" content={bookInfo.cover}/>
     <meta property="og:site_name" content={ClientConfig.name}/>
     <meta property="og:type" content="website"/>
     {/*twitter分享*/}
-    <meta property="twitter:url" content={locationUrl}/>
+    <meta property="twitter:url" content={process.env.WebDomain}/>
     <meta name="twitter:title" content={bookInfo.bookName || ClientConfig.name}/>
     <meta name="twitter:description" content={bookInfo.introduction}/>
     <meta name="twitter:site" content={locationUrl}/>

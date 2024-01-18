@@ -24,6 +24,7 @@ const PcShare: FC<IProps> = ({ bookInfo }) => {
 
   // 创建并打开一个新的对话框
   const onShare = (url: string) => {
+    // HiveLog.track('Community_Share')
     window.open(url,
       "_blank", 'height=500, width=560, left=200, top=200'
     ); // ""表示空白页面作为对话框内容
