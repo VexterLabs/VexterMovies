@@ -7,7 +7,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
 import useHiveLog from "@/hooks/useHiveLog";
-import ShareHead from "@/components/film/wapShare/ShareHead";
 
 interface IProps {
   isPc: boolean;
@@ -37,8 +36,6 @@ const Episode: NextPage<IProps> = (
   }
 
   return <>
-    <ShareHead bookInfo={bookInfo}/>
-
     {isPc ?
       <PcEpisode
         onChannel={onChannel}

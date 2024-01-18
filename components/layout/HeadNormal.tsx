@@ -3,7 +3,7 @@ import ClientConfig from "@/client.config";
 import Head from "next/head";
 import { Router } from "next/router";
 import { TDK } from "@/components/layout/tdk";
-import { ELanguage } from "@/typings/home.interface";
+import { ELanguage, IBookItem } from "@/typings/home.interface";
 import Script from "next/script";
 import { useTranslation } from "next-i18next";
 
@@ -87,6 +87,33 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
       </>
     }
   }
+  // 分享
+  const ShareMate = () => {
+    const locationUrl = process.env.WebDomain + router.asPath;
+    if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {
+
+      const { bookInfo = {} as IBookItem } = pageProps;
+      return <>
+        {/*facebook分享 61552540530213*/}
+        <meta key="fb_app_id" property="fb:app_id" content="100091748110522"/>
+        <meta key="og_url" property="og:url" content={locationUrl}/>
+        <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
+        <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>
+        <meta key="og_image" property="og:image" content={bookInfo.cover}/>
+        <meta key="og_image_alt" property="og:image:alt" content={bookInfo.bookName || ClientConfig.name}/>
+        <meta key="og_site_name" property="og:site_name" content={ClientConfig.name}/>
+        <meta key="og_type" property="og:type" content="website"/>
+        {/*twitter分享*/}
+        <meta key="twitter_url" property="twitter:url" content={locationUrl}/>
+        <meta key="twitter_title" name="twitter:title" content={pageTdk.title || ClientConfig.name}/>
+        <meta key="twitter_description" name="twitter:description" content={pageTdk.description || ""}/>
+        <meta key="twitter_site" name="twitter:site" content={locationUrl}/>
+        <meta key="twitter_card" name="twitter:card" content="summary"/>
+        <meta key="twitter_image" name="twitter:image" content={bookInfo.cover}/>
+      </>
+    }
+    return null;
+  }
 
   return <>
     <Head>
@@ -102,6 +129,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
       <link rel="icon" href={'/favicon.ico'}/>
       <link rel="canonical" href={getUrl(router.locale as ELanguage)}/>
       <AlternateLink />
+      <ShareMate />
     </Head>
     {/* Global Site Tag (gtag.js) - Google Analytics */}
     <Script

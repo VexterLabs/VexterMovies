@@ -23,8 +23,8 @@ const PcShare: FC<IProps> = ({ bookInfo }) => {
   const HiveLog = useHiveLog();
 
   // 创建并打开一个新的对话框
-  const onShare = (url: string) => {
-    // HiveLog.track('Community_Share')
+  const onShare = (id: string, url: string) => {
+    HiveLog.track('Share_click', { share_platform: id })
     window.open(url,
       "_blank", 'height=500, width=560, left=200, top=200'
     ); // ""表示空白页面作为对话框内容
@@ -33,7 +33,7 @@ const PcShare: FC<IProps> = ({ bookInfo }) => {
     <div className={styles.shareLabel}>{t('bookInfo.share')}:</div>
     {shareList.map(share => (
       <Image
-        onClick={() => onShare(share.link)}
+        onClick={() => onShare(share.id, share.link)}
         key={share.id}
         className={styles.shareIcon}
         width={40}

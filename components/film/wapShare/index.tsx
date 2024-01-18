@@ -23,7 +23,8 @@ const WapShare: FC<IProps> = ({ bookInfo }) => {
   const HiveLog = useHiveLog();
 
   // 创建并打开一个新的对话框
-  const onShare = (url: string) => {
+  const onShare = (id: string, url: string) => {
+    HiveLog.track('Share_click', { share_platform: id })
     window.open(url, "_blank");
   }
 
@@ -31,7 +32,7 @@ const WapShare: FC<IProps> = ({ bookInfo }) => {
     <div className={styles.shareLabel}>{t('bookInfo.share')}:</div>
     {shareList.map(share => (
       <Image
-        onClick={() => onShare(share.link)}
+        onClick={() => onShare(share.id, share.link)}
         key={share.id}
         className={styles.shareIcon}
         width={40}

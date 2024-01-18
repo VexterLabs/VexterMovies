@@ -10,7 +10,6 @@ import { SSRConfig, useTranslation } from "next-i18next";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import useHiveLog from "@/hooks/useHiveLog";
 import { getRequestMeta } from "next/dist/server/request-meta";
-import ShareHead from "@/components/film/wapShare/ShareHead";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
@@ -47,7 +46,6 @@ const Film: NextPage<IProps> = (
   }
 
   return <>
-    <ShareHead bookInfo={bookInfo}/>
     { isPc ?
       <PcFilm
         onChannel={onChannel}
