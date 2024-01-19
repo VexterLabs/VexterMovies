@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Link from "next/link";
 import ClientConfig from "@/client.config";
 import { netIpUa } from "@/server/clientLog";
 import { useTranslation } from "next-i18next";
@@ -33,6 +32,14 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
     // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
   });
 
+  const onDownload = () => {
+    netIpUa(clipboard);
+    onCopyText(copyText, () => {
+      HiveLog.trackDownload('BannerDownloadButton_Click');
+      window.location.href = shopLink;
+    })
+  }
+
    return <div className={styles.adWrap}>
     <div className={styles.adLeft}>
       <Image
@@ -44,23 +51,19 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
         alt={ClientConfig.name}
       />
       <Image
+        onClick={onDownload}
         className={styles.logo}
         width={88}
         height={88}
         src={'/images/logo.png'}
         alt={ClientConfig.name}
       />
-      <div className={styles.intro}>{t('banner.OpenApp')}</div>
+      <div onClick={onDownload} className={styles.intro}>{t('banner.OpenApp')}</div>
     </div>
 
-    <Link href={shopLink} rel={'nofollow'} onClick={() => {
-      onCopyText(copyText, () => {
-        HiveLog.trackDownload('BannerDownloadButton_Click');
-        netIpUa(clipboard)
-      })
-    }}>
-      <span className={styles.openBtn}>{t('banner.Open')}</span>
-    </Link>
+    <button onClick={onDownload} className={styles.openBtn}>
+      {t('banner.Open')}
+    </button>
   </div>
 }
 

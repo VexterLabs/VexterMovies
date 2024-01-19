@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import styles from '@/components/episode/episodeNav/EpisodeNav.module.scss'
+import React, { FC } from 'react';
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
@@ -9,6 +8,7 @@ import useHiveLog from "@/hooks/useHiveLog";
 import { IBookItem } from "@/typings/home.interface";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
+import styles from '@/components/episode/episodeNav/EpisodeNav.module.scss';
 
 interface IProps {
   bookInfo: IBookItem;
@@ -31,6 +31,14 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
     // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
     // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
   });
+
+  const onDownload = () => {
+    netIpUa(clipboard);
+    onCopyText(copyText, () => {
+      HiveLog.trackDownload('Download_click', { bookId: bookInfo.bookId, chapterId: 0 });
+      window.location.href = shopLink;
+    });
+  }
 
   return <div className={styles.navBox}>
     <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
@@ -60,12 +68,7 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
       {/* <span>{t('home.termsOfUse')}</span> */}
       <span className={styles.playTxt}>{t('home.play')}</span>
     </Link>
-    <Link href={shopLink} className={styles.downloadIcon} onClick={() => {
-      onCopyText(copyText, () => {
-        netIpUa(clipboard)
-        HiveLog.trackDownload('Download_click', { bookId: bookInfo.bookId, chapterId: 0 })
-      })
-    }}>
+    <div className={styles.downloadIcon} onClick={onDownload}>
       <Image
         className={styles.navIcon}
         width={64}
@@ -75,7 +78,7 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
       />
       {/* <span>{t('home.termsOfUse')}</span> */}
       <span>{t('appPage.download')}</span>
-    </Link>
+    </div>
   </div>
 }
 

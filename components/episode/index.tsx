@@ -61,6 +61,19 @@ const WapEpisode: FC<IProps> = (
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
 
+  const onDownload = () => {
+    netIpUa(clipboard);
+    onCopyText(copyText, () => {
+      HiveLog.trackDownload('PayChapterDownload_click', {
+        bookId: bookInfo.bookId,
+        bookName: bookInfo.bookName,
+        chapterId: chapterList?.[currentPage]?.id,
+        chapterName: chapterList?.[currentPage]?.name,
+      });
+      window.location.href = shopLink;
+    })
+  }
+
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
   const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
   currentPage = curChapterData?.index as number;
@@ -145,20 +158,9 @@ const WapEpisode: FC<IProps> = (
               src={errorBgsrc}
               alt=''/>
             <div className={styles.downInfo}>
-
-              <Link href={shopLink} className={styles.btnDown} onClick={() => {
-                onCopyText(copyText, () => {
-                  netIpUa(clipboard)
-                  HiveLog.trackDownload('PayChapterDownload_click', {
-                    bookId: bookInfo.bookId,
-                    bookName: bookInfo.bookName,
-                    chapterId: chapterList?.[currentPage]?.id,
-                    chapterName: chapterList?.[currentPage]?.name,
-                  })
-                })
-              }}>
+              <button className={styles.btnDown} onClick={onDownload}>
                 {t('bookInfo.episodesDownload')}
-              </Link>
+              </button>
             </div>
           </div> : null}
         </div>
