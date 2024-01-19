@@ -11,6 +11,7 @@ import LikeTitle from "@/components/film/likeTitle/LikeTitle";
 import LikeItem from "@/components/film/likeItem/LikeItem";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import WapShare from "@/components/film/wapShare";
 import styles from "@/components/film/index.module.scss";
 
 interface IProps {
@@ -31,7 +32,7 @@ const MFilm: FC<IProps> = (
     chapterList = [],
     breadData,
     onBookClick,
-    onChannel
+    onChannel,
   }) => {
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
@@ -117,14 +118,12 @@ const MFilm: FC<IProps> = (
       </div> : null}
     </div>
 
-    <div className={styles.episodeNav} onClick={() => {
-      showEpisodeDialog()
-    }}>
-      <div className={styles.leftInfo}>
-        <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
-        <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
-      </div>
-      <div className={styles.rightImg}>
+    <div className={styles.episodeNav}>
+      <div className={styles.catalogBox} onClick={showEpisodeDialog}>
+        <div className={styles.leftInfo}>
+          <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
+          <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
+        </div>
         <Image
           className={styles.arrowIcon}
           width={24}
@@ -133,6 +132,8 @@ const MFilm: FC<IProps> = (
           alt={''}
         />
       </div>
+
+      <WapShare bookInfo={bookInfo} />
     </div>
 
     {recommends.length > 0 ? <>

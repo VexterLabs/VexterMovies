@@ -1,49 +1,35 @@
 .footerWrap {
   position: relative;
   background-color: #1C1C1E;
-  height: 1.8rem;
+  height: 2.2rem;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 
-  .footerContent {
-    min-width: 14.4rem;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
+  .company {
+    margin-top: 0.2rem;
+    opacity: 0.4;
+    font-size: 0.16rem;
+    font-weight: 400;
+    color: #FFFFFF;
+  }
 
-    .footerText {
-      display: grid;
-      grid-template-columns: auto auto;
-      grid-column-gap: 0.3rem;
-      justify-content: center;
-      align-items: center;
+  .footerBox {
 
-      .fText, .fmail {
-        opacity: 0.4;
-        font-size: 0.16rem;
-        font-weight: 400;
-        color: #FFFFFF;
-      }
-
-      .fmail {
-        transition: all 0.3s;
-        padding: 0.1rem;
-        font-size: 0.16rem !important;
-
-        &:hover {
-          color: $theme_color;
-          opacity: 0.9;
-        }
-      }
+    .footerLabel {
+      font-size: 0.22rem;
+      font-weight: bold;
+      color: #FFFFFF;
     }
 
     .footerLink {
+      display: flex;
+      flex-direction: column;
 
       .otherBtn {
-        padding: 0.2rem;
+        margin-top: 0.12rem;
         font-size: 0.16rem;
         font-weight: 400;
         color: #FFFFFF;
@@ -58,5 +44,33 @@
       }
     }
 
+    .fmail {
+      display: inline-block;
+      opacity: 0.4;
+      font-weight: 400;
+      color: #FFFFFF;
+      transition: all 0.3s;
+      font-size: 0.16rem !important;
+      margin-top: 0.12rem;
+
+      &:hover {
+        color: $theme_color;
+        opacity: 0.9;
+      }
+    }
+
+    .community {
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+
+  .footerContent {
+    min-width: 14.4rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
   }
 }

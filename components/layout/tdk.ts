@@ -69,10 +69,11 @@ export const TDK = {
     episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
       const { bookName = '' } = bookInfo;
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName}第${chapterIndex + 1}集-DramaBox`,
-        keywords: `${bookName}第${chapterIndex + 1}集`,
-        description: `在线观看${bookName}第${chapterIndex + 1}集`
+        title: `${bookName}第${index}集-DramaBox`,
+        keywords: `${bookName}第${index}集`,
+        description: `在线观看${bookName}第${index}集`
       }
     },
     download: {
@@ -147,10 +148,11 @@ export const TDK = {
     episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
       const { bookName = '' } = bookInfo;
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName}第${chapterIndex + 1}集-DramaBox`,
-        keywords: `${bookName}第${chapterIndex + 1}集`,
-        description: `在線觀看${bookName}第${chapterIndex + 1}集`
+        title: `${bookName}第${index}集-DramaBox`,
+        keywords: `${bookName}第${index}集`,
+        description: `在線觀看${bookName}第${index}集`
       }
     },
     error500: {
@@ -225,10 +227,11 @@ export const TDK = {
     episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
       const { bookName = '' } = bookInfo;
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName} Episode ${chapterIndex+1}-DramaBox`,
-        keywords: `${bookName} Episode ${chapterIndex+1}`,
-        description: `${bookName} Episode ${chapterIndex+1} online`
+        title: `${bookName} Episode ${index}-DramaBox`,
+        keywords: `${bookName} Episode ${index}`,
+        description: `${bookName} Episode ${index} online`
       }
     },
     error500: {
@@ -303,10 +306,11 @@ export const TDK = {
     episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
       const { bookName = '' } = bookInfo;
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName}제${chapterIndex + 1}회-DramaBox`,
-        keywords: `${bookName}제${chapterIndex + 1}회`,
-        description: `${bookName}제${chapterIndex + 1}회을 온라인으로 시청하세요`
+        title: `${bookName}제${index}회-DramaBox`,
+        keywords: `${bookName}제${index}회`,
+        description: `${bookName}제${index}회을 온라인으로 시청하세요`
       }
     },
     error500: {

@@ -1,13 +1,12 @@
 import React, { FC } from "react";
-import styles from '@/components/download/index.module.scss'
 import { useTranslation } from "next-i18next";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
-import Link from "next/link";
 import Image from "next/image";
 import { netIpUa } from "@/server/clientLog";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
+import styles from '@/components/download/index.module.scss';
 
 interface IProps {
   isApple: boolean;
@@ -17,16 +16,25 @@ const MDownload: FC<IProps> = ({ isApple }) => {
   const { t } = useTranslation();
   const clipboard = useAppSelector(state => state.hive.clipboard)
   const copyText = useAppSelector(state => state.hive.copyText);
+  const HiveLog = useHiveLog();
   const shopLink = useAppSelector(state => {
     if (isApple) {
       return ClientConfig.ios.deeplink + state.hive.copyText;
     }
-    const { bid, cid, channelCode } = state.hive.clipboard;
-    const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+    return ClientConfig.android.link;
+    // const { bid, cid, channelCode } = state.hive.clipboard;
+    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
+    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
   });
 
-  const HiveLog = useHiveLog();
+  const onDownload = () => {
+    netIpUa(clipboard);
+    onCopyText(copyText, () => {
+      HiveLog.trackDownload('turnPage_click', { bookId: clipboard.bid, chapterId: clipboard.cid })
+      window.location.href = shopLink;
+    })
+  }
+
 
   return <div className={styles.downloadWrap}>
     <div className={styles.downloadHead}>
@@ -41,27 +49,16 @@ const MDownload: FC<IProps> = ({ isApple }) => {
       blurDataURL={'/images/download/cover.png'}
       alt={ClientConfig.name}
     />
-    <Link
-      rel={"nofollow"}
-      href={shopLink}
-      onClick={() => {
-        onCopyText(copyText, () => {
-          netIpUa(clipboard)
-          HiveLog.trackDownload('turnPage_click', { bookId: clipboard.bid, chapterId: clipboard.cid })
-        })
-      }}
-    >
-      <span className={styles.downloadBtn}>
-        <Image
-          className={styles.downloadBtnIcon}
-          width={48}
-          height={48}
-          src={isApple ? '/images/download/ios.png' : '/images/download/android.png'}
-          alt={ClientConfig.name}
-        />
-        <span>{t("appPage.download")}</span>
-      </span>
-    </Link>
+    <button onClick={onDownload} className={styles.downloadBtn}>
+      <Image
+        className={styles.downloadBtnIcon}
+        width={48}
+        height={48}
+        src={isApple ? '/images/download/ios.png' : '/images/download/android.png'}
+        alt={ClientConfig.name}
+      />
+      <span>{t("appPage.download")}</span>
+    </button>
     <div className={styles.downloadContent}>
       {t("appPage.content")}
     </div>

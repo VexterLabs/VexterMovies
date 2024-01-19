@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 import ClientConfig from "@/client.config";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { Router } from "next/router";
 import { TDK } from "@/components/layout/tdk";
-import { ELanguage } from "@/typings/home.interface";
+import { ELanguage, IBookItem } from "@/typings/home.interface";
 import Script from "next/script";
 import { useTranslation } from "next-i18next";
 
@@ -23,8 +23,8 @@ export const pathnameData = {
   keywords: '/keywords'
 }
 
-const HeadNormal: FC<any> = ({ pageProps = {} }) => {
-  const router = useRouter();
+const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; router: Router }) => {
+
   const { t } = useTranslation()
   const getTdk = (): { title: string; keywords: string; description: string; } => {
     const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
@@ -65,11 +65,13 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
   const getUrl = (lan = ELanguage.English) => {
     const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
-    return process.env.WebDomain +_locale + _asPath;
+    return 'https://www.dramaboxapp.com' +_locale + _asPath;
   }
 
   // 拓展多语言字段
   const AlternateLink = () => {
+    if (router.pathname.includes(pathnameData.tag) || router.pathname.includes(pathnameData.keywords)) return null;
+
     if (router.pathname.includes(pathnameData.book)) {
       return <>
         {pageProps.languages && pageProps.languages.length > 0 && pageProps.languages.map((lanUrl: ELanguage) => {
@@ -84,6 +86,33 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
         <link rel="alternate" hrefLang={ELanguage.Zh} href={getUrl(ELanguage.Zh)}/>
       </>
     }
+  }
+  // 分享
+  const ShareMate = () => {
+    const locationUrl = "https://www.dramaboxapp.com" + router.asPath;
+    if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {
+
+      const { bookInfo = {} as IBookItem } = pageProps;
+      return <>
+        {/*facebook分享 61552540530213*/}
+        <meta key="fb_app_id" property="fb:app_id" content="100091748110522"/>
+        <meta key="og_url" property="og:url" content={locationUrl}/>
+        <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
+        <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>
+        <meta key="og_image" property="og:image" content={bookInfo.cover}/>
+        <meta key="og_image_alt" property="og:image:alt" content={bookInfo.bookName || ClientConfig.name}/>
+        <meta key="og_site_name" property="og:site_name" content={ClientConfig.name}/>
+        <meta key="og_type" property="og:type" content="website"/>
+        {/*twitter分享*/}
+        <meta key="twitter_url" property="twitter:url" content={locationUrl}/>
+        <meta key="twitter_title" name="twitter:title" content={pageTdk.title || ClientConfig.name}/>
+        <meta key="twitter_description" name="twitter:description" content={pageTdk.description || ""}/>
+        <meta key="twitter_site" name="twitter:site" content={locationUrl}/>
+        <meta key="twitter_card" name="twitter:card" content="summary"/>
+        <meta key="twitter_image" name="twitter:image" content={bookInfo.cover}/>
+      </>
+    }
+    return null;
   }
 
   return <>
@@ -100,6 +129,7 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
       <link rel="icon" href={'/favicon.ico'}/>
       <link rel="canonical" href={getUrl(router.locale as ELanguage)}/>
       <AlternateLink />
+      <ShareMate />
     </Head>
     {/* Global Site Tag (gtag.js) - Google Analytics */}
     <Script
@@ -119,6 +149,26 @@ const HeadNormal: FC<any> = ({ pageProps = {} }) => {
     gtag('config', '${googleCode}');`,
       }}
     />
+    {/*<Script*/}
+    {/*  id={'facebook_sdk'}*/}
+    {/*  crossOrigin={"anonymous"}*/}
+    {/*  strategy={'afterInteractive'}*/}
+    {/*  src={"https://connect.facebook.net/en_US/sdk.js"}*/}
+    {/*/>*/}
+    {/*<Script*/}
+    {/*  id={'facebook_sdk'}*/}
+    {/*  crossOrigin={"anonymous"}*/}
+    {/*  strategy={'afterInteractive'}*/}
+    {/*  dangerouslySetInnerHTML={{*/}
+    {/*    __html: `window.fbAsyncInit = function() {*/}
+    {/*  FB.init({*/}
+    {/*    appId            : '1076053070212633',*/}
+    {/*    xfbml            : true,*/}
+    {/*    version          : 'v18.0'*/}
+    {/*  });*/}
+    {/*};`*/}
+    {/*  }}*/}
+    {/*/>*/}
   </>
 }
 

@@ -1,5 +1,5 @@
 import type { NextPage, GetServerSidePropsResult, GetServerSideProps } from 'next'
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { netBookDetail } from "@/server/home";
 import { ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
 import { isIos, ownOs } from "@/utils/ownOs";
@@ -29,7 +29,7 @@ const Episode: NextPage<IProps> = (
     })
   }
 
-  const onChannel = (name: string,e?: SyntheticEvent) => {
+  const onChannel = (name: string) => {
     HiveLog.track("ReadChannel_click", {
       typeTwoName: name
     })

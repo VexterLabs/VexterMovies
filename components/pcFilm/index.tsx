@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import PcSeries from '@/components/pcFilm/pcSeries';
 import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
+import PcShare from "@/components/pcFilm/share";
 import styles from "@/components/pcFilm/index.module.scss";
 
 interface IProps {
@@ -25,9 +26,9 @@ const PcFilm: FC<IProps> = (
     chapterList = [],
     breadData,
     onBookClick,
-    onChannel,
+    onChannel
   }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return <main className={styles.detailWrap}>
     <div className={styles.detailHeader}>
@@ -68,17 +69,22 @@ const PcFilm: FC<IProps> = (
             </div>
           </div>
 
-          {chapterList?.[0]?.id ? <Link href={`/episode/${bookInfo.bookId}/${chapterList?.[0]?.id}`}
-                                        className={styles.playBtn}>
-            <Image
-              className={styles.playIcon}
-              width={16}
-              height={16}
-              src={'/images/book/play-pc.png'}
-              alt={''}
-            />
-            <span>{t("home.play")}</span>
-          </Link> : null}
+          <div className={styles.detailBottom}>
+            {chapterList?.[0]?.id ? <Link href={`/episode/${bookInfo.bookId}/${chapterList?.[0]?.id}`}
+                                          className={styles.playBtn}>
+              <Image
+                className={styles.playIcon}
+                width={16}
+                height={16}
+                src={'/images/book/play-pc.png'}
+                alt={''}
+              />
+              <span>{t("home.play")}</span>
+            </Link> : null}
+
+            <PcShare bookInfo={bookInfo} />
+          </div>
+
         </div>
       </div>
       <PcSeries chapterList={chapterList} bookInfo={bookInfo}/>

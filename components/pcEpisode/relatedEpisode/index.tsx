@@ -31,14 +31,14 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
       const newList = chapterList.slice(current, chapterList.length);
       return newList.concat(item);
     })
-  }, [current]);
+  }, [current]); // eslint-disable-line
 
   return <div className={styles.relatedEpisode}>
     <div className={styles.relatedTitle}>{t("bookInfo.relatedEpisodes")}</div>
     <div className={styles.listInfo}>
       { relatedList.map((item, index) => {
         const routerToVideoInfo = `/episode/${bookInfo.bookId}/${item.id}`;
-        const isShow = index !== 0 && index <= (chapterList.length > 18 ? 18 : chapterList.length);
+        const isShow = index !== 0 && index <= (chapterList.length > 18 ? 18 : chapterList.length) || (index === 0 && chapterList.length === 1);
         return <div key={item.id} className={styles.listItem} style={isShow? {} : { display: 'none' }}>
           <Link
             className={styles.imgBox}

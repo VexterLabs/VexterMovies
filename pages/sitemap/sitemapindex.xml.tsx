@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { getServerSideSitemapIndexLegacy } from "next-sitemap";
 import { ESearchType, INetAllBookRes } from "@/typings/sitemap.interface";
-import { netAllBook, netIncrementBook, netKeywords } from "@/server/home";
+import { netAllBook, netKeywords } from "@/server/home";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   let allBookList: INetAllBookRes[] = [];
@@ -27,7 +27,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const bookMap = allBookList.map(book => {
     return `${process.env.WebDomain}/sitemaps/film_${book.bookId}/sitemap.xml`
   });
-
   const tagMap = Array.from({ length: Math.ceil(keywordsTotal/10000) }, (v, i) => {
     return `${process.env.WebDomain}/sitemaps/tag_page_${i + 1}/sitemap.xml`
   });

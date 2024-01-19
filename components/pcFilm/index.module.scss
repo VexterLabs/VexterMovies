@@ -95,7 +95,7 @@
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 8;
+        -webkit-line-clamp: 7;
         word-wrap: break-word;
         width: 10.59rem;
       }
@@ -121,25 +121,93 @@
       }
     }
 
-    .playBtn {
-      font-size: 0.18rem;
-      font-weight: 500;
-      color: #FFFFFF;
-      background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
+
+    .detailBottom {
+      position: absolute;
+      left: 0.24rem;
+      bottom: 0.32rem;
+      z-index: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-direction: row;
-      width: 1.8rem;
-      height: 0.48rem;
-      position: absolute;
-      right: 0.24rem;
-      bottom: 0.32rem;
-      border-radius: 0.24rem;
-      .playIcon {
-        margin-right: 0.06rem;
-        width: 0.28rem;
-        height: 0.28rem;
+
+      .shareBox {
+        margin-left: 0.4rem;
+        height: 0.4rem;
+        display: flex;
+        align-items: center;
+
+        .shareLabel {
+          font-size: 0.18rem;
+          font-weight: 500;
+          color: #FFFFFF;
+          margin-right: 0.1rem;
+        }
+
+        .shareIcon {
+          width: 0.4rem;
+          height: 0.4rem;
+          border-radius: 50%;
+          margin-right: 0.1rem;
+          cursor: pointer;
+        }
+
+        .copyTip {
+          position: relative;
+
+          .tip {
+            position: absolute;
+            display: none;
+            bottom: 0.56rem;
+            left: -0.3rem;
+            height: 0.4rem;
+            line-height: 0.4rem;
+            padding: 0 0.2rem;
+            background: rgba(0,0,0,.8);
+            border-radius: 0.06rem;
+            font-size: 0.16rem;
+            font-weight: 400;
+            color: #fff;
+            white-space: nowrap;
+
+            &:after {
+              content: " ";
+              position: absolute;
+              width: 0;
+              height: 0;
+              border: 6px solid transparent;
+              border-top-color: rgba(0,0,0,.8);
+              bottom: -0.13rem;
+              left: 0.4rem;
+            }
+          }
+
+          &:hover {
+            .tip {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .playBtn {
+        font-size: 0.18rem;
+        font-weight: 500;
+        color: #FFFFFF;
+        background: linear-gradient(270deg, #FF871F 0%, #FF0045 48%, #F40065 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        width: 1.5rem;
+        height: 0.48rem;
+        border-radius: 0.08rem;
+        margin-right: 0.4rem;
+
+        .playIcon {
+          margin-right: 0.06rem;
+          width: 0.28rem;
+          height: 0.28rem;
+        }
       }
     }
   }

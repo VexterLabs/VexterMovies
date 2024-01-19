@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState, SyntheticEvent} from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
@@ -18,6 +18,7 @@ import LikeItem from "@/components/film/likeItem/LikeItem";
 import { useTranslation } from "next-i18next";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
+import WapShare from "@/components/film/wapShare";
 import styles from "@/components/episode/index.module.scss";
 
 interface IProps {
@@ -27,7 +28,7 @@ interface IProps {
   currentPage: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
-  onChannel: (name: string, e?: SyntheticEvent) => void;
+  onChannel: (name: string) => void;
 }
 
 const WapEpisode: FC<IProps> = (
@@ -52,12 +53,26 @@ const WapEpisode: FC<IProps> = (
     if (isApple) {
       return ClientConfig.ios.deeplink + state.hive.copyText;
     }
-    const { bid, cid, channelCode } = state.hive.clipboard;
-    const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+    // const { bid, cid, channelCode } = state.hive.clipboard;
+    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
+    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
+    return ClientConfig.android.link;
   });
   const { t } = useTranslation();
   const HiveLog = useHiveLog();
+
+  const onDownload = () => {
+    netIpUa(clipboard);
+    onCopyText(copyText, () => {
+      HiveLog.trackDownload('PayChapterDownload_click', {
+        bookId: bookInfo.bookId,
+        bookName: bookInfo.bookName,
+        chapterId: chapterList?.[currentPage]?.id,
+        chapterName: chapterList?.[currentPage]?.name,
+      });
+      window.location.href = shopLink;
+    })
+  }
 
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
   const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
@@ -85,7 +100,7 @@ const WapEpisode: FC<IProps> = (
     if (curId?.unlock === false) {
       setErrorBg(cover as string)
     }
-  }, [chapterList])
+  }, [chapterList]) // eslint-disable-line
   // 播放器设置
   useEffect(() => {
     // 查找当前视频中下一个有MP4
@@ -116,7 +131,7 @@ const WapEpisode: FC<IProps> = (
     return () => {
       playerInstance && playerInstance.current && playerInstance.current.destroy()
     }
-  }, [curChapterData])
+  }, [curChapterData]) // eslint-disable-line
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = (item: IChapterList) => {
@@ -143,20 +158,9 @@ const WapEpisode: FC<IProps> = (
               src={errorBgsrc}
               alt=''/>
             <div className={styles.downInfo}>
-
-              <Link href={shopLink} className={styles.btnDown} onClick={() => {
-                onCopyText(copyText, () => {
-                  netIpUa(clipboard)
-                  HiveLog.trackDownload('PayChapterDownload_click', {
-                    bookId: bookInfo.bookId,
-                    bookName: bookInfo.bookName,
-                    chapterId: chapterList?.[currentPage]?.id,
-                    chapterName: chapterList?.[currentPage]?.name,
-                  })
-                })
-              }}>
+              <button className={styles.btnDown} onClick={onDownload}>
                 {t('bookInfo.episodesDownload')}
-              </Link>
+              </button>
             </div>
           </div> : null}
         </div>
@@ -180,7 +184,7 @@ const WapEpisode: FC<IProps> = (
               <div className={styles.videoTag}>
                 {(bookInfo?.typeTwoList || []).slice(0, 5).map((val, ind) => {
                   return <Link
-                    onClick={(e) => onChannel(val.name, e)}
+                    onClick={() => onChannel(val.name)}
                     key={ind}
                     href={`/browse/${val.id}`}
                     className={styles.tagItem}>{val.name}</Link>
@@ -215,6 +219,7 @@ const WapEpisode: FC<IProps> = (
             content={bookInfo.introduction}/>
         </div>
       </div>
+      <WapShare bookInfo={bookInfo} />
       <div className={styles.epiList}>
         <div className={styles.titleList}>
           <p className={styles.titleLeft}>{t('bookInfo.episodeList')}</p>
