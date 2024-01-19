@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import { ISitemapField } from "next-sitemap/dist/@types/interface";
 import { netAllBook, netAllColumn, netBookDetail, netBrowseType, netKeywords } from "@/server/home";
 import dayjs from "dayjs";
-import { ColumnNameRoute, ELanguage, IBookItem, IChapterList } from "@/typings/home.interface";
+import { ColumnNameRoute, ELanguage } from "@/typings/home.interface";
 import { ESearchType, INetAllBookRes, INetAllColumnRes } from "@/typings/sitemap.interface";
 import { INetBrowseTypeRes } from "@/typings/browse.interface";
 import { IKeywordItem } from "@/typings/book.interface";
@@ -11,7 +11,7 @@ import { IKeywordItem } from "@/typings/book.interface";
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const sitemapBuilder = new SitemapBuilder()
   const lastmod = dayjs().day(1).format('YYYY-MM-DD');
-  const options: ISitemapField = { loc: process.env.WebDomain as string, changefreq: 'weekly', priority: 0.7, lastmod };
+  const options: ISitemapField = { loc: 'https://www.dramaboxapp.com', changefreq: 'weekly', priority: 0.7, lastmod };
   const { state = '' } = ctx.query as { state: string };
   const languageArr = Object.values(ELanguage);
   // 站内页

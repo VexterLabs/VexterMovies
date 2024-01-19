@@ -24,7 +24,7 @@ export default async function handler(
       <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/">
 <channel>
 <title>${book.bookName || "DramaBox"}</title>
-<link>${process.env.WebDomain}</link>
+<link>https://www.dramaboxapp.com</link>
 <description>${book.introduction || "DramaBox"}</description>
 `
     const bodyEnd = `</channel></rss>`
@@ -34,7 +34,7 @@ export default async function handler(
       const contentUrl = chapter?.mp4 || chapterList?.[0]?.mp4;
 
       return `<item xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/">
-    <link>${process.env.WebDomain + '/episode/' + book.bookId + '/' + chapter.id}</link>
+    <link>${'https://www.dramaboxapp.com/episode/' + book.bookId + '/' + chapter.id}</link>
     <media:content url="${contentUrl}" fileSize="11321" type="video/mp4" height="320" width="240" duration="60" medium="video" isDefault="true">
       <media:player url="${contentUrl}" />
       <media:title>${book.bookName + ' Episode ' + (index + 1)}</media:title>

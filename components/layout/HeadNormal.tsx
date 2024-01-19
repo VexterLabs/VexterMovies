@@ -65,7 +65,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   const getUrl = (lan = ELanguage.English) => {
     const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
-    return process.env.WebDomain +_locale + _asPath;
+    return 'https://www.dramaboxapp.com' +_locale + _asPath;
   }
 
   // 拓展多语言字段
@@ -89,7 +89,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   }
   // 分享
   const ShareMate = () => {
-    const locationUrl = process.env.WebDomain + router.asPath;
+    const locationUrl = "https://www.dramaboxapp.com" + router.asPath;
     if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {
 
       const { bookInfo = {} as IBookItem } = pageProps;
