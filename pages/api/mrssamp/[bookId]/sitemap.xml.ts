@@ -31,15 +31,15 @@ export default async function handler(
 
     const item = chapterList.map((chapter, index) => {
 
-      const contentUrl = chapter?.mp4 || chapterList?.[0]?.mp4 || "";
+      const contentUrl = (chapter?.mp4 || chapterList?.[0]?.mp4 || "").replaceAll('&','&amp;');
 
       return `<item xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/">
     <link>${'https://www.dramaboxapp.com/episode/' + book.bookId + '/' + chapter.id}</link>
     <media:content url="${contentUrl}" fileSize="11321" type="video/mp4" height="320" width="240" duration="60" medium="video" isDefault="true">
       <media:player url="${contentUrl}" />
       <media:title>${book.bookName + ' Episode ' + (index + 1)}</media:title>
-      <media:description>${book.introduction || "DramaBox"}</media:description>
-      <media:thumbnail url="${chapter.cover || book.cover}" height="120" width="160"/>
+      <media:description>${(book.introduction || "DramaBox").replaceAll('&','&amp;')}</media:description>
+      <media:thumbnail url="${(chapter.cover || book.cover).replaceAll('&','&amp;')}" height="120" width="160"/>
     </media:content>
   </item>`
     }).join('')

@@ -28,7 +28,7 @@ export default async function handler(
     const lastmod = dayjs().day(1).format('YYYY-MM-DD');
     const item = chapterList.map((chapter, index) => {
 
-      const contentUrl = chapter?.mp4 || chapterList?.[0]?.mp4 || "";
+      const contentUrl = (chapter?.mp4 || chapterList?.[0]?.mp4 || "").replaceAll('&','&amp;');
 
       return `
 <url>
@@ -45,8 +45,8 @@ export default async function handler(
   }).join('')}
   <video:video>
     <video:title>${book.bookName + ' Episode ' + (index + 1)}</video:title>
-    <video:thumbnail_loc>${chapter.cover || book.cover}</video:thumbnail_loc>
-    <video:description>${book.introduction || "DramaBox"}</video:description>
+    <video:thumbnail_loc>${(chapter.cover || book.cover).replaceAll('&','&amp;')}</video:thumbnail_loc>
+    <video:description>${(book.introduction || "DramaBox").replaceAll('&','&amp;')}</video:description>
     <video:content_loc>${contentUrl}</video:content_loc>
     <video:player_loc>${contentUrl}</video:player_loc>
     <video:view_count>${book.viewCount}</video:view_count>
