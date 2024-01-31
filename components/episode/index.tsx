@@ -51,7 +51,9 @@ const WapEpisode: FC<IProps> = (
   const copyText = useAppSelector(state => state.hive.copyText);
   const shopLink = useAppSelector(state => {
     if (isApple) {
-      return ClientConfig.ios.deeplink + state.hive.copyText;
+      const { bid = "", channelCode = "", cid = 0, h5uid = "" } = state.hive.clipboard;
+      const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_other` : `${h5uid}_${bid}_${channelCode}_other_${cid}`;
+      return ClientConfig.ios.universalLink + queryStr;
     }
     // const { bid, cid, channelCode } = state.hive.clipboard;
     // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
