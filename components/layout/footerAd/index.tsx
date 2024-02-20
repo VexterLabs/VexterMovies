@@ -25,7 +25,9 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
   const shopLink = useAppSelector(state => {
     // const { bid, cid, channelCode, ua } = state.hive.clipboard;
     if (isIos(clipboard.ua)) {
-      return ClientConfig.ios.deeplink + state.hive.copyText;
+      const { bid = "", channelCode = "", cid = 0, h5uid = "" } = state.hive.clipboard;
+      const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_other` : `${h5uid}_${bid}_${channelCode}_other_${cid}`;
+      return ClientConfig.ios.universalLink + queryStr;
     }
     return ClientConfig.android.link;
     // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;

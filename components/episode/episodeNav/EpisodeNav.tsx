@@ -24,7 +24,9 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
   const copyText = useAppSelector(state => state.hive.copyText);
   const shopLink = useAppSelector(state => {
     if (isApple) {
-      return ClientConfig.ios.deeplink + state.hive.copyText;
+      const { bid = "", channelCode = "", cid = 0, h5uid = "" } = state.hive.clipboard;
+      const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_other` : `${h5uid}_${bid}_${channelCode}_other_${cid}`;
+      return ClientConfig.ios.universalLink + queryStr;
     }
     return ClientConfig.android.link;
     // const { bid, cid, channelCode } = state.hive.clipboard;
