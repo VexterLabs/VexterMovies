@@ -1,0 +1,35 @@
+// dramabox app
+$theme_color: #FF375F;
+$theme_bg: #040404;
+$theme_main_bg: #000000;
+
+$pc_nav_color: rgba(255, 255, 255, 0.6);
+$pc_nav_bg: rgba(4, 4, 4, 0.8);
+$pc_nav_hover: rgba(255, 255, 255, 0.08);
+$pc_nav_border: none;
+$logo_color: #FFFFFF;
+$pc_home_swiper_bg: rgba(255, 255, 255, 0.08);
+$pc_home_swiper_bg_hover: rgba(255, 255, 255, 0.12);
+$pc_home_name_color: rgba(255, 255, 255, 0.9);
+$pc_home_intro_color: rgba(255, 255, 255, 0.4);
+$pc_footer_bg: #1C1C1E;
+$pc_footer_color1: #FFFFFF;
+$pc_footer_color2: rgba(255, 255, 255, 0.4);
+
+// 标签
+$type_tag_color: rgba(255, 255, 255, 0.08);
+// 分类
+$pc_browse_color: rgba(255, 255, 255, 0.9);
+// 分页
+$pc_page_active: rgba(50,50,57,0.16);
+
+// 剧集列表
+$pc_series_border: 1px solid rgba(255,255,255,0.1);
+$pc_series_bg: rgba(255,255,255,0.05);
+$pc_series_color: rgba(255,255,255,0.4);
+$pc_detail_bg: rgba(255, 255, 255, 0.1);
+$pc_detail_header_border: 1px solid rgba(255,255,255,0.16);
+
+$pc_crumbs_color: rgba(255,255,255,0.8);
+
+$pc_extend_bg: linear-gradient(270deg, #000000 0%, rgba(20, 20, 20, 0) 100%);

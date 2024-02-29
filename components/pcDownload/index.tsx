@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import PcStore from "@/components/pcDownload/store/PcStore";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import styles from '@/components/pcDownload/index.module.scss';
 
 interface IProps {}
@@ -18,13 +18,11 @@ const PcDownload: FC<IProps> = () => {
     </div>
 
     <div className={styles.downloadMain}>
-      <Image
+      <ImagePline
         className={styles.downloadCover}
-        width={520}
-        height={520}
-        src={'/images/download/p-cover.png'}
-        placeholder="blur"
-        blurDataURL={'/images/download/p-cover.png'}
+        width={668}
+        height={628}
+        src={'/images/pline/p-cover.png'}
         alt={''}
       />
       <PcStore />

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import styles from '@/components/pcHome/homeTitle/HomeTitle.module.scss'
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   title: string;
@@ -20,17 +21,24 @@ const PcHomeTitle: FC<IProps> = ({ title, href }) => {
 
     {href ? <Link className={styles.moreBox} href={href}>
       {t("home.more")}
-      <Image
+      <ImagePline
         className={styles.moreIcon}
-        width={16}
-        height={16}
-        src={'/images/home/pc-more.png'}
+        width={15}
+        height={15}
+        src={'/images/pline/crumbs.png'}
         alt={''}
       />
+      {/*<Image*/}
+      {/*  className={styles.moreIcon}*/}
+      {/*  width={16}*/}
+      {/*  height={16}*/}
+      {/*  src={'/images/home/pc-more.png'}*/}
+      {/*  alt={''}*/}
+      {/*/>*/}
       <Image
         className={styles.moreActiveIcon}
-        width={16}
-        height={16}
+        width={15}
+        height={15}
         src={'/images/home/pc-more-active.png'}
         alt={''}
       />

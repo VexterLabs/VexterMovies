@@ -1,5 +1,5 @@
 .episodeHeader {
-  background-color: #000000;
+  background-color: $theme_main_bg;
   display: flex;
   align-items: center;
   height: 0.80rem;
@@ -240,7 +240,7 @@
             height: 0.24rem;
             right: 0.08rem;
             top: 0.08rem;
-            background: url('/images/book/lock-video.png') no-repeat;
+            background: url('../../public/images/book/lock-video.png') no-repeat;
             background-size: cover;
           }
         }

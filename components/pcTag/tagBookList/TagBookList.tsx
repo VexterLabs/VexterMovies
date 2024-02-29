@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { ELanguage } from "@/typings/home.interface";
 import Image from "next/image";
 import ClientConfig from "@/client.config";
-import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import styles from '@/components/pcTag/tagBookList/TagBookList.module.scss';
 
 interface IProps {

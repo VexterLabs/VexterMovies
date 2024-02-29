@@ -14,7 +14,7 @@
     transition: all 0.3s;
 
     a {
-      color: rgba(255,255,255,0.8);
+      color: $pc_crumbs_color;
       max-width: 3.5rem;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -29,7 +29,7 @@
 
 
     .lastTxt {
-      color: rgba(255,255,255,0.8);
+      color: $pc_crumbs_color;
       font-weight: 400;
       max-width: 3.5rem;
       overflow: hidden;

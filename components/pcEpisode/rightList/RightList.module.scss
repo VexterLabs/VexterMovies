@@ -14,11 +14,11 @@
       font-size: 0.2rem;
       font-weight: 500;
       line-height: 0.24rem;
-      color: rgba(255,255,255,0.9);
+      color: $pc_browse_color;
     }
     .current {
       line-height: 0.2rem;
-      color: rgba(255,255,255,0.4);
+      color: $pc_series_color;
       font-size: 0.14rem;
       margin-left: 0.08rem;
     }
@@ -79,7 +79,7 @@
         font-size: 0.14rem;
         line-height: 0.2rem;
         width: 100%;
-        color: rgba(255,255,255,0.8);
+        color: $pc_crumbs_color;
         text-align: center;
         padding-top: 0.08rem;
       }

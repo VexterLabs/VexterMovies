@@ -14,6 +14,7 @@ import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import styles from "@/components/pcEpisode/index.module.scss";
 import PcShare from "@/components/pcFilm/share";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -178,12 +179,12 @@ const PcEpisode: FC<IProps> = (
             {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
           </h1>
           <div className={styles.videoStar}>
-            <Image
+            <ImagePline
               className={styles.imageStar}
-              src={'/images/book/star-d.png'}
+              src={'/images/pline/star.png'}
               width={24}
               height={24}
-              alt="star"
+              alt=""
             />
             <span className={styles.videoScore}>{bookInfo.followCount}</span>
           </div>
@@ -194,22 +195,22 @@ const PcEpisode: FC<IProps> = (
             expandText={
               <span className={styles.extend}>
                 {t('home.more')}
-                <Image
+                <ImagePline
                   className={styles.moreIcon}
                   width={16}
                   height={16}
-                  src={'/images/episode/more.png'}
+                  src={'/images/pline/episode-more.png'}
                   alt={''}
                 />
               </span>
             }
             collapseText={
               <span className={styles.retract}>
-                 <Image
+                 <ImagePline
                    className={styles.moreIcon}
                    width={16}
                    height={16}
-                   src={'/images/episode/more.png'}
+                   src={'/images/pline/episode-more.png'}
                    alt={''}
                  />
               </span>

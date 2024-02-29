@@ -13,7 +13,7 @@
   .titleText {
     font-size: 0.24rem;
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.9);
+    color: $pc_home_name_color;
     line-height: 0.29rem;
   }
 }
@@ -23,20 +23,20 @@
   min-width: 1rem;
   height: 100%;
   font-size: 0.16rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: $pc_home_name_color;
   font-weight: 400 !important;
   display: flex;
   align-items: center;
   transition: color 0.3s;
 
   .moreIcon {
-    width: 0.16rem;
-    height: 0.16rem;
+    width: 0.15rem;
+    height: 0.15rem;
   }
 
   .moreActiveIcon {
-    width: 0.16rem;
-    height: 0.16rem;
+    width: 0.15rem;
+    height: 0.15rem;
     display: none;
   }
 

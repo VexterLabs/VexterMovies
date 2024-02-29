@@ -7,6 +7,7 @@ import { IChapterList } from "@/typings/home.interface";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import styles from "@/components/pcEpisode/rightList/RightList.module.scss";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookId: string;
@@ -42,11 +43,11 @@ const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }
               />
 
               { !item.unlock ? <div className={styles.imageMark}>
-                <Image
+                <ImagePline
                   className={styles.lockIcon}
                   width={24}
                   height={24}
-                  src={'/images/book/lock-video.png'}
+                  src={'/images/pline/lock.png'}
                   alt={''}
                 />
               </div> : null }

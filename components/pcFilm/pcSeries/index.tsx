@@ -7,6 +7,7 @@ import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import classNames from "classnames";
 import styles from "@/components/pcFilm/pcSeries/index.module.scss";
+import ImagePline from "@/components/common/image/ImagePline";
 
 // 该页面是展示pc端更多剧情的，需要修改后期
 interface IProps {
@@ -44,11 +45,11 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
               alt={item.name}
             />
             { !item.unlock ? <div className={styles.imageMark}>
-              <Image
+              <ImagePline
                 className={styles.lockIcon}
                 width={24}
                 height={24}
-                src={'/images/book/lock-video.png'}
+                src={'/images/pline/lock.png'}
                 alt={''}
               />
             </div> : null }

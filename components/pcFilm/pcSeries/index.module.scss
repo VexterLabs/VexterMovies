@@ -12,11 +12,11 @@
     .episodeTitle {
       font-size: 0.28rem;
       font-weight: bold;
-      color: rgba(255, 255, 255, .9);
+      color: $pc_home_name_color;
       line-height: 0.32rem;
     }
     .allCounts {
-      color: rgba(255,255,255,0.4);
+      color: $pc_home_intro_color;
       font-size: 0.16rem;
       line-height: 0.22rem;
       margin-left: 0.18rem;
@@ -26,6 +26,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 0.1rem;
+
     .listItem {
       position: relative;
       height: 1.25rem;
@@ -34,8 +35,8 @@
       border-radius: 0.08rem;
       padding: 0.04rem;
       margin-bottom: 0.08rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: $pc_series_bg;
+      border: $pc_series_border;
 
       .imgBox {
         flex-shrink: 0;
@@ -77,10 +78,11 @@
         width: 120rem;
         justify-content: space-between;
         padding: 0.16rem 0.08rem;
+
         .title {
           font-size: 0.14rem;
           line-height: 0.2rem;
-          color: rgba(255,255,255,0.8);
+          color: $pc_crumbs_color;
           font-weight: 500;
           height: 0.4rem;
           width: 1.2rem;
@@ -92,7 +94,7 @@
           word-wrap: break-word;
         }
         .pageNum {
-          color: rgba(255,255,255,0.4);
+          color: $pc_series_color;
           line-height: 0.16rem;
           font-size: 0.14rem;
         }
@@ -107,7 +109,7 @@
       }
     }
     .viewMore {
-      color: rgba(255,255,255,0.4);
+      color: $pc_series_color;
       font-weight: 500;
       font-size: 0.16rem;
       height: 100%;
@@ -134,7 +136,7 @@
     .tabItem {
       height: 0.4rem;
       width: 0.72rem;
-      background-color: rgba(255,255,255,0.08);
+      background-color: $type_tag_color;
       border-radius: 4px;
       color: rgba(255, 255, 255, .9);
       font-weight: 500;

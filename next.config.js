@@ -23,9 +23,10 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
+const Platform = 'dramabox'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox_20240220'; // 构建ID
+const buildId = 'dramabox_20240229'; // 构建ID
 const WebDomain = WebDomainObj[environment]
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
@@ -48,7 +49,7 @@ const nextConfig = {
   transpilePackages: ['antd-mobile'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-    prependData: `@import "common.module.scss";`
+    prependData: `@import "${Platform}.module.scss";`
   },
   // 内置多语言
   i18n,
@@ -70,6 +71,7 @@ const nextConfig = {
     BaseUrl,
     WebDomain,
     IpUaUrl,
+    Platform
   },
   // 参考 https://nextjs.org/docs/messages/swc-disabled
   // experimental: {

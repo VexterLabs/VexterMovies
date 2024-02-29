@@ -1,11 +1,11 @@
 .episodeWrap {
   width: 14.4rem;
   margin: 0 auto;
-  background-color: #000000;
+  background-color: $theme_main_bg;
   min-height: calc(100vh - 2.32rem);
 
   .episodeHeader {
-    background-color: #000000;
+    background-color: $theme_main_bg;
     display: flex;
     align-items: center;
     height: 0.80rem;
@@ -96,7 +96,7 @@
           margin-top: 0.24rem;
           font-size: 0.28rem;
           line-height: 0.32rem;
-          color: rgba(255, 255, 255, 0.9);
+          color: $pc_browse_color;
           font-weight: 500;
           margin-bottom: 0.12rem;
         }
@@ -113,14 +113,14 @@
           }
 
           .videoScore {
-            font-size: 0.18rem;
-            line-height: 0.2rem;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.14rem;
+            line-height: 0.18rem;
+            color: $pc_crumbs_color;
           }
         }
 
         .videoDesc {
-          color: rgba(255, 255, 255, 0.6);
+          color: $pc_nav_color;
           width: 11rem;
           display: block;
           font-size: 0.14rem;
@@ -141,7 +141,7 @@
             height: 0.24rem;
             font-size: 0.14rem;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.8);
+            color: $pc_crumbs_color;
           }
 
           .extend, .retract {
@@ -149,8 +149,8 @@
             align-items: center;
             justify-content: flex-end;
             width: 0.9rem;
-            background: linear-gradient(270deg, #000000 0%, rgba(20, 20, 20, 0) 100%);
-            color: rgba(255, 255, 255, 0.8);
+            background: $pc_extend_bg;
+            color: $pc_crumbs_color;
             line-height: 0.3rem;
 
             .moreIcon {
@@ -172,7 +172,7 @@
         .tagBox {
           font-size: 0.12rem;
           font-weight: 400;
-          color: rgba(255, 255, 255, 0.6);
+          color: $pc_nav_color;
           grid-gap: 0.08rem;
           display: flex;
           margin-bottom: 0.1rem;
@@ -180,8 +180,8 @@
           .tagItem {
             border-radius: 0.12rem;
             padding: 0.04rem 0.1rem;
-            color: rgba(255,255,255,0.6);
-            background-color: rgba(255, 255, 255, 0.1);
+            color: $pc_nav_color;
+            background-color: $pc_detail_bg;
 
             &:hover {
               transition: color 0.3s;

@@ -10,7 +10,7 @@
   }
 
   .tabBox {
-    background: #000000;
+    background: $theme_main_bg;
     backdrop-filter: blur(0px);
     display: flex;
     align-items: center;

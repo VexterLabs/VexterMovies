@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
-import styles from '@/components/layout/pcHeader/PcHeader.module.scss'
+import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +6,7 @@ import ClientConfig from "@/client.config";
 import { useTranslation } from "next-i18next";
 import Language from "@/components/layout/pcHeader/Language";
 import useHiveLog from "@/hooks/useHiveLog";
+import styles from '@/components/layout/pcHeader/PcHeader.module.scss';
 
 interface IProps {
 
@@ -36,14 +36,21 @@ const PcHeader: FC<IProps> = () => {
           <Link href={'/'} className={styles.logoTxtBox} onClick={() => {
             HiveLog.track('Logo_click')
           }}>
+            {/*<Image*/}
+            {/*  className={styles.logoTxt}*/}
+            {/*  width={168}*/}
+            {/*  height={40}*/}
+            {/*  src={'/images/home/logo-text.png'}*/}
+            {/*  alt={ClientConfig.name}*/}
+            {/*/>*/}
             <Image
-              className={styles.logoTxt}
-              width={168}
+              className={styles.logoIcon}
+              width={40}
               height={40}
-              src={'/images/home/logo-text.png'}
+              src={'/images/logo.png'}
               alt={ClientConfig.name}
             />
-            {/*<span>DramaBox</span>*/}
+            <span>DramaBox</span>
           </Link>
           <div className={styles.navBox}>
             { MenuData.map(val => {

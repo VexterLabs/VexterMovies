@@ -28,8 +28,15 @@
       height: 0.56rem;
       top: 2.48rem;
       left: 0;
-      padding-top: 0.3rem;
-      padding-right: 0.08rem;
+      padding: 0.25rem 0.08rem 0;
+      display: flex;
+      align-items: center;
+
+      .chapterCountIcon {
+        width: 0.16rem;
+        height: 0.16rem;
+        margin-right: 0.04rem;
+      }
 
       p {
         text-align: right;
@@ -44,7 +51,7 @@
     .bookName {
       //margin-top: 0.08rem;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
+      color: $pc_home_name_color;
       font-size: 0.16rem;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -66,7 +73,7 @@
       display: block;
       opacity: 0;
       padding: 0.12rem;
-      background: rgba(255, 255, 255, 0.12);
+      background: $pc_home_swiper_bg;
       border-radius: 0 0 0.04rem 0.04rem;
 
       .bookNameHover {

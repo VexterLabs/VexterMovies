@@ -11,7 +11,7 @@
       font-size: 0.28rem;
       margin: 0.6rem 0 0.28rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.9);
+      color: $pc_home_name_color;
       line-height: 0.4rem;
     }
 
@@ -22,7 +22,7 @@
       font-weight: 400 !important;
       line-height: 0.32rem;
       white-space: pre-wrap;
-      color: rgba(255,255,255,0.4);
+      color: $pc_home_intro_color;
     }
   }
 

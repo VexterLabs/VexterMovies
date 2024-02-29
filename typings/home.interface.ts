@@ -56,6 +56,7 @@ export interface IChapterList {
 
 export enum ELanguage {
   English = 'en',
+  Spanish = 'es',
   ZhHans = 'zhHans', // 简体中文
   Zh = 'zh', // 繁體中文
   Korean = 'ko', // 韩语
@@ -63,6 +64,7 @@ export enum ELanguage {
 
 export const LanguageActions: { text: string; key: ELanguage }[] = [
   { text: 'English', key: ELanguage.English },
+  { text: 'Español', key: ELanguage.Spanish },
   { text: '简体中文', key: ELanguage.ZhHans },
   { text: '繁體中文', key: ELanguage.Zh },
   { text: '한국인', key: ELanguage.Korean },

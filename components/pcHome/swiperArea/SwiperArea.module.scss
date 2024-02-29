@@ -15,7 +15,7 @@
       align-items: center;
       justify-content: center;
       flex-direction: row;
-      background-color: rgba(255, 255, 255, 0.08);
+      background-color: $pc_home_swiper_bg;
       border-radius: 0.04rem;
       overflow: hidden;
 
@@ -44,7 +44,7 @@
             display: block;
             font-size: 0.24rem;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: $pc_home_name_color;
             line-height: 0.32rem;
             margin-bottom: 0.2rem;
             text-overflow: ellipsis;
@@ -59,7 +59,7 @@
             display: inline-block;
             font-size: 0.14rem;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
+            color: $pc_home_name_color;
             line-height: 0.2rem;
             margin-bottom: 0.2rem;
           }
@@ -68,7 +68,7 @@
             display: inline-block;
             font-size: 0.14rem;
             font-weight: 400;
-            color: rgba(255, 255, 255, 0.4);
+            color: $pc_home_intro_color;
             line-height: 0.2rem;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -82,7 +82,7 @@
 
       &:hover {
         transition: background-color 0.3s;
-        background-color: rgba(255, 255, 255, 0.12);
+        background-color: $pc_home_swiper_bg_hover;
 
         .leftCardContent {
           .leftCardContentTop {
@@ -103,7 +103,7 @@
       .rightCardItem {
         width: 5.28rem;
         height: 2.2rem;
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: $pc_home_swiper_bg;
         border-radius: 0.04rem;
         overflow: hidden;
         display: flex;
@@ -132,7 +132,7 @@
               display: block;
               font-size: 0.24rem;
               font-weight: 500;
-              color: rgba(255, 255, 255, 0.9);
+              color: $pc_home_name_color;
               line-height: 0.32rem;
               text-overflow: ellipsis;
               display: -webkit-box;
@@ -146,7 +146,7 @@
             .chapterCount {
               font-size: 0.14rem;
               font-weight: 400;
-              color: rgba(255, 255, 255, 0.9);
+              color: $pc_home_name_color;
               line-height: 0.2rem;
               margin-bottom: 0.08rem;
               display: block;
@@ -156,7 +156,7 @@
               display: block;
               font-size: 0.14rem;
               font-weight: 400;
-              color: rgba(255, 255, 255, 0.4);
+              color: $pc_home_intro_color;
               line-height: 0.2rem;
               overflow: hidden;
               text-overflow: ellipsis;
@@ -170,7 +170,7 @@
 
         &:hover {
           transition: background-color 0.3s;
-          background-color: rgba(255, 255, 255, 0.12);
+          background-color: $pc_home_swiper_bg_hover;
 
           .rightCardContent {
             .rightCardContentTop {

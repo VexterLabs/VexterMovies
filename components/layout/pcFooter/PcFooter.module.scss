@@ -1,6 +1,6 @@
 .footerWrap {
   position: relative;
-  background-color: #1C1C1E;
+  background-color: $pc_footer_bg;
   height: 2.2rem;
   width: 100%;
   display: flex;
@@ -10,10 +10,9 @@
 
   .company {
     margin-top: 0.2rem;
-    opacity: 0.4;
     font-size: 0.16rem;
     font-weight: 400;
-    color: #FFFFFF;
+    color: $pc_footer_color2;
   }
 
   .footerBox {
@@ -21,7 +20,7 @@
     .footerLabel {
       font-size: 0.22rem;
       font-weight: bold;
-      color: #FFFFFF;
+      color: $pc_footer_color1;
     }
 
     .footerLink {
@@ -32,9 +31,8 @@
         margin-top: 0.12rem;
         font-size: 0.16rem;
         font-weight: 400;
-        color: #FFFFFF;
+        color: $pc_footer_color2;
         transition: all 0.3s;
-        opacity: 0.4;
         text-decoration: underline !important;
 
         &:hover {
@@ -46,9 +44,8 @@
 
     .fmail {
       display: inline-block;
-      opacity: 0.4;
       font-weight: 400;
-      color: #FFFFFF;
+      color: $pc_footer_color2;
       transition: all 0.3s;
       font-size: 0.16rem !important;
       margin-top: 0.12rem;

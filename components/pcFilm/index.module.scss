@@ -1,16 +1,16 @@
 .detailWrap {
   width: 14.4rem;
   margin: 0 auto;
-  background-color: #000000;
+  background-color: $theme_main_bg;
   min-height: calc(100vh - 2.32rem);
 
   .detailHeader {
-    background-color: #000000;
+    background-color: $theme_main_bg;
     display: flex;
     align-items: center;
     height: 0.80rem;
     padding: 0 0.12rem;
-    border-bottom: 1px solid rgba(255,255,255,0.16);
+    border-bottom: $pc_detail_header_border
     //position: sticky;
     //top: 0.8rem;
     //z-index: 1;
@@ -33,7 +33,7 @@
   margin-top: 0.76rem;
   // border: 1px solid red;
   margin-bottom: 0.48rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: $pc_detail_bg;
   border-radius: 0.08rem;
   .detailBookCoverBox {
     margin-top: -0.5rem;
@@ -66,7 +66,7 @@
         width: 9rem;
         font-size: 0.24rem;
         font-weight: 500;
-        color: rgba(255, 255, 255, 0.9);
+        color: $pc_home_name_color;
         line-height: 0.32rem;
         overflow: hidden;
         white-space: nowrap;
@@ -89,7 +89,7 @@
         margin-bottom: 0.12rem;
         font-size: 0.14rem;
         font-weight: 400;
-        color: rgba(255, 255, 255, 0.6);
+        color: $pc_nav_color;
         line-height: 0.2rem;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -102,7 +102,7 @@
       .epiNum {
         font-size: 0.14rem;
         line-height: 0.2rem;
-        color: rgba(255, 255, 255, 0.6);
+        color: $pc_nav_color;
         margin-bottom: 0.12rem;
       }
 
@@ -115,8 +115,8 @@
         .tagItem {
           border-radius: 0.12rem;
           padding: 0.04rem 0.1rem;
-          color: rgba(255, 255, 255, 0.6);
-          background-color: rgba(255, 255, 255, 0.1);
+          color: $pc_nav_color;
+          background-color: $pc_detail_bg;
         }
       }
     }
