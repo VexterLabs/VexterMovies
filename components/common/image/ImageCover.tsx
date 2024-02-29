@@ -43,7 +43,7 @@ export const ImageCover: FC<IProps> = (props) => {
   }, [props]);
 
 
-  const { scale = false, href, className = '', alt = '', onClick, locale = ELanguage.English, replace = false, rel } = props;
+  const { scale = false, href, className = '', alt = '', locale, onClick, replace = false, rel } = props;
 
   return <Link
     rel={rel}

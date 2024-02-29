@@ -94,7 +94,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
 
       const { bookInfo = {} as IBookItem } = pageProps;
       return <>
-        <meta key="fb_app_id" property="fb:app_id" content="310390558121791"/>
+        <meta key="fb_app_id" property="fb:app_id" content={ClientConfig.fbAppId}/>
         <meta key="og_url" property="og:url" content={locationUrl}/>
         <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
         <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>

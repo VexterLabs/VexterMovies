@@ -50,7 +50,7 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
               alt={item.bookName}
             />
             <div className={styles.rightCardContent}>
-              <div  className={styles.rightCardContentTop}>
+              <div className={styles.rightCardContentTop}>
                 <Link href={`/film/${item.bookId}`} className={styles.bookName}>
                   {item.bookName}
                 </Link>
