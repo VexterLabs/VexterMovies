@@ -35,11 +35,11 @@
     padding: 0 0.32rem;
     width: 100%;
     height: 0.88rem;
-    background: #1C1C1E;
+    background: $m_browse_bg;
     backdrop-filter: blur(10px);
     font-size: 0.32rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: $pc_home_name_color;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,9 +66,9 @@
     text-align: center;
     font-size: 0.24rem;
     font-weight: 400;
-    color: rgba(255,255,255,0.9);
+    color: $m_browse_color;
     height: 0.64rem;
-    background: rgba(255,255,255,0.08);
+    background: $pc_home_swiper_bg;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

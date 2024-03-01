@@ -1,55 +1,81 @@
+.dialogContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  .dialogMark {
+    background-color: $m_mark_bg;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .dialogBox {
   height: 7.99rem;
   width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  background-color: #191919;
-  z-index: 99;
+  background-color: $m_dialog_bg;
+  z-index: 999;
   overflow-y: auto;
   border-radius: 0.24rem 0.24rem 0 0;
+
   .headerTop {
     display: flex;
     flex-direction: column;
-    background-color: #191919;
+    background-color: $m_dialog_bg;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 10;
-    padding: 0.24rem 0.32rem 0rem 0.32rem;
+    padding: 0.24rem 0.32rem 0 0.32rem;
+
     .topInfo {
       display: flex;
       justify-content: space-between;
+
       .closeIcon {
         width: 0.48rem;
         height: 0.48rem;
       }
+
       .title {
         font-size: 0.32rem;
         line-height: 0.42rem;
         font-weight: 500;
-        color: rgba(255,255,255,0.8);
+        color: $pc_crumbs_color;
         margin-bottom: 0.24rem;
       }
     }
+
     .titleTab {
       display: flex;
       margin-bottom: 0.24rem;
       white-space: nowrap;
       flex-wrap: wrap;
+
       .tabs {
         display: flex;
       }
+
       .tabTop {
         position: relative;
         display: inline-block;
-        color: rgba(255,255,255,0.6);
+        color: $pc_nav_color;
         font-size: 0.28rem;
       }
+
       .tabLine {
         margin: 0 0.16rem;
-        color: rgba(255,255,255,0.4);
+        color: $pc_series_color;
       }
+
       .tabTopActive {
         position: relative;
         display: inline-block;
@@ -59,48 +85,32 @@
       }
     }
   }
-  
+
   .episodeList {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 0.1rem;
     grid-row-gap: 0.1rem;
     padding: 0 0.32rem;
+
     .linkBox {
+
       .episodeItem {
-        display: inline-block;
-        width: 1.3rem;
-        height: 1rem;
-        line-height: 1rem;
-        text-align: center;
-        background-color: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 0.08rem;
-        span {
-          color: rgba(255,255,255,0.8);
-          font-weight: 500;
-          line-height: 0.34rem;
-          font-size: 0.28rem;
-        }
-      }
-      .episodeItemLock {
         position: relative;
         display: inline-block;
         width: 1.3rem;
         height: 1rem;
+        background-color: $pc_series_bg;
+        border: 1px solid $pc_detail_bg;
+        border-radius: 0.08rem;
+        color: $pc_crumbs_color;
+        font-weight: 500;
         line-height: 1rem;
         text-align: center;
-        background-color: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 0.08rem;
-        span {
-          color: rgba(255,255,255,0.4);
-          font-weight: 500;
-          line-height: 0.34rem;
-          font-size: 0.28rem;
-        }
-        &::after {
-          position: absolute;
+        font-size: 0.28rem;
+
+        .episodeItemIcon {
+          position: absolute !important;
           right: 0.08rem;
           top: 0.08rem;
           content: '';
@@ -108,11 +118,13 @@
           overflow: hidden;
           width: 0.24rem;
           height: 0.24rem;
-          background: url('/images/book/mlock.png') no-repeat;
-          background-size: contain;
         }
+      }
+
+      .episodeItemLock {
+        color: $pc_series_color;
       }
     }
   }
-  
+
 }

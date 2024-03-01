@@ -4,7 +4,7 @@ import { Popover } from "antd-mobile";
 import { LanguageActions } from "@/typings/home.interface";
 import { Action } from "antd-mobile/2x/es/components/popover";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import { useAppDispatch } from "@/store";
 import { setIsPopChange } from "@/store/modules/app.module";
 
@@ -42,11 +42,11 @@ const MLanguage = () => {
       }}
     >
       <div className={styles.rightBox}>
-        <Image
+        <ImagePline
           className={styles.languageIcon}
           width={32}
           height={32}
-          src={'/images/home/language.png'}
+          src={'/images/pline/language.png'}
           alt={'language'}
         />
         <span>{language}</span>

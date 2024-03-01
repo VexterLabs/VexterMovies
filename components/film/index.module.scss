@@ -34,7 +34,7 @@
     text-align: center;
     font-size: 0.4rem;
     font-weight: 500;
-    color: rgba(255,255,255,0.9);
+    color: $pc_home_name_color;
     line-height: 0.56rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -55,11 +55,10 @@
     .tagItem {
       font-size: 0.22rem;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.6);
+      color: $pc_nav_color;
       line-height: 0.3rem;
-      border-radius: 0.03rem;
       padding: 0.05rem 0.12rem;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: $pc_detail_bg;
       backdrop-filter: blur(20px);
       border-radius: 0.18rem;
     }
@@ -106,13 +105,13 @@
     font-weight: 500;
     line-height: 0.38rem;
     margin-bottom: 0.16rem;
-    color: rgba(255,255,255,0.8);
+    color: $pc_home_name_color;
   }
 
   .introText {
     font-size: 0.28rem;
     font-weight: 400;
-    color: rgba(255,255,255,0.4);
+    color: $pc_series_color;
     line-height: 0.4rem;
     position: relative;
 
@@ -125,7 +124,7 @@
       width: 0.9rem;
       font-size: 0.28rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.8);
+      color: $pc_home_name_color;
       line-height: 0.34rem;
     }
 
@@ -135,7 +134,7 @@
       justify-content: flex-end;
       width: 1.2rem;
       height: 0.4rem;
-      background: linear-gradient(270deg, #000000 0%, rgba(20,20,20,0) 100%);
+      background: linear-gradient(270deg, $theme_main_bg 0%, transparent 100%);
 
       .moreIcon {
         margin-left: 0.02rem;
@@ -150,41 +149,17 @@
       }
     }
   }
-
-  .introMore {
-    position: absolute;
-    bottom: 0;
-    right: 0.24rem;
-    font-size: 0.28rem;
-    font-weight: 400;
-    color: rgba(255,255,255,0.8);
-    line-height: 0.4rem;
-    background: linear-gradient(270deg, #141414 0%, rgba(20,20,20,0) 100%);
-    width: 1.2rem;
-    text-align: right;
-    &::after {
-      position: absolute;
-      content: '';
-      overflow: hidden;
-      width: 0.24rem;
-      height: 0.24rem;
-      top: 20%;
-      right: -22%;
-      background: url('../../public/images/layout/arrow-d.png') no-repeat;
-      background-size: cover;
-    }
-  }
 }
 
 .episodeNav {
   position: relative;
   margin-bottom: 0.24rem;
-  border-top: 0.08rem solid #141414;
-  border-bottom: 0.08rem solid #141414;
+  border-top: 0.08rem solid $m_episode_nav_border;
+  border-bottom: 0.08rem solid $m_episode_nav_border;
 
   .catalogBox {
     padding: 0 0.32rem;
-    background-color: #000000;
+    background-color: $theme_main_bg;
     height: 1rem;
     display: flex;
     align-items: center;
@@ -194,7 +169,7 @@
       display: flex;
 
       .innerPt {
-        color: rgba(255,255,255,0.7);
+        color: $pc_home_name_color;
         font-size: 0.32rem;
         line-height: 0.38rem;
         margin-right: 0.08rem;
@@ -202,7 +177,7 @@
       }
       .innerPl {
         font-size: 0.28rem;
-        color: rgba(255,255,255,0.4);
+        color: $pc_series_color;
         line-height: 0.4rem;
       }
     }

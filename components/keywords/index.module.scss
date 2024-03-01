@@ -1,6 +1,6 @@
 .keywordsWrap {
   padding: 0 0.32rem;
-  background-color: #000000;
+  background-color: $theme_main_bg;
 
   .keywordsHeader {
     display: flex;
@@ -22,7 +22,7 @@
       color: $theme_color;
       font-weight: 400;
       line-height: 0.36rem;
-      background: rgba(255,255,255,0.1);
+      background: $pc_detail_bg;
       border-radius: 0.22rem;
       overflow: hidden;
       text-overflow: ellipsis;

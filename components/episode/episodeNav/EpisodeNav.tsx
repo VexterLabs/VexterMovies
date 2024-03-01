@@ -9,6 +9,7 @@ import { IBookItem } from "@/typings/home.interface";
 import { useAppSelector } from "@/store";
 import ClientConfig from "@/client.config";
 import styles from '@/components/episode/episodeNav/EpisodeNav.module.scss';
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -44,14 +45,13 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
 
   return <div className={styles.navBox}>
     <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
-      <Image
+      <ImagePline
         className={styles.navIcon}
         width={64}
         height={64}
-        src={'/images/book/episode-d.png'}
-        alt={'more'}
+        src={'/images/pline/m-episode.png'}
+        alt={''}
       />
-      {/* <span>{t('home.privacyPolicy')}</span> */}
       <span>{t('bookInfo.episodes')}</span>
     </div>
     <Link
@@ -65,18 +65,17 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
         width={64}
         height={64}
         src={'/images/book/botplay-d.png'}
-        alt={'more'}
+        alt={''}
       />
-      {/* <span>{t('home.termsOfUse')}</span> */}
       <span className={styles.playTxt}>{t('home.play')}</span>
     </Link>
     <div className={styles.downloadIcon} onClick={onDownload}>
-      <Image
+      <ImagePline
         className={styles.navIcon}
         width={64}
         height={64}
-        src={'/images/book/download-d.png'}
-        alt={'more'}
+        src={'/images/pline/m-download.png'}
+        alt={''}
       />
       {/* <span>{t('home.termsOfUse')}</span> */}
       <span>{t('appPage.download')}</span>

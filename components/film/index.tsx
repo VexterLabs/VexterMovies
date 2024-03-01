@@ -13,6 +13,7 @@ import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 import WapShare from "@/components/film/wapShare";
 import styles from "@/components/film/index.module.scss";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   breadData: IBreadcrumb[];
@@ -97,20 +98,20 @@ const MFilm: FC<IProps> = (
           direction='end'
           expandText={<span className={styles.expand}>
             {t("home.more")}
-            <Image
+            <ImagePline
               className={styles.moreIcon}
               width={24}
               height={24}
-              src={'/images/episode/wap-more.png'}
+              src={'/images/pline/wap-more.png'}
               alt={''}
             />
           </span>}
           collapseText={<span className={styles.retract}>
-            <Image
+            <ImagePline
               className={styles.moreIcon}
               width={24}
               height={24}
-              src={'/images/episode/wap-more.png'}
+              src={'/images/pline/wap-more.png'}
               alt={''}
             />
           </span>}
@@ -124,11 +125,11 @@ const MFilm: FC<IProps> = (
           <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
           <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
         </div>
-        <Image
+        <ImagePline
           className={styles.arrowIcon}
           width={24}
           height={24}
-          src={'/images/book/arrow-r-d.png'}
+          src={'/images/pline/arrow-r-d.png'}
           alt={''}
         />
       </div>

@@ -124,11 +124,11 @@
       padding: 0.12rem 0;
       border-radius: 4px;
       width: 1.3rem;
-      background: #292929;
+      background: $pc_popover_bg;
     }
 
     .adm-popover-arrow {
-      color: #292929 !important;
+      color: $pc_popover_bg !important;
     }
 
     .adm-popover-menu-item {
@@ -143,7 +143,7 @@
       justify-content: center;
       font-size: 0.14rem;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.9);
+      color: $pc_home_name_color;
       transition: all .3s;
       padding: 0;
 

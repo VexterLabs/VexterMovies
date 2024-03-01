@@ -5,6 +5,7 @@ import { LanguageActions } from "@/typings/home.interface";
 import { Action } from "antd-mobile/2x/es/components/popover";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 
 const Language = () => {
   const router = useRouter();
@@ -28,7 +29,6 @@ const Language = () => {
   return <div className={styles.language}>
     <Popover.Menu
       visible={visible}
-      mode={'light'}
       actions={LanguageActions}
       getContainer={null}
       onVisibleChange={(visible) => setVisible(visible)}
@@ -39,11 +39,11 @@ const Language = () => {
     >
       <div className={visible ? styles.languageBoxActive : styles.languageBox}>
         <span className={styles.navItemTxt}>{language}</span>
-        <Image
+        <ImagePline
           className={styles.navItemIcon}
           width={12}
           height={12}
-          src={visible ? '/images/layout/arrow-up.png' : '/images/layout/arrow-down.png'}
+          src={visible ? '/images/layout/arrow-up.png' : '/images/pline/arrow-down.png'}
           alt={''}
         />
       </div>

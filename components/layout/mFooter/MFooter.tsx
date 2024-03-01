@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import useHiveLog from "@/hooks/useHiveLog";
 import styles from '@/components/layout/mFooter/MFooter.module.scss';
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {}
 
@@ -21,33 +22,31 @@ const MFooter: FC<IProps> = () => {
   return <div className={styles.footerBox}>
     <Link href={'/privacy'} className={styles.agreementItem}>
       <span>{t('home.privacyPolicy')}</span>
-      <Image
+      <ImagePline
         className={styles.agreementIcon}
         width={24}
         height={24}
-        src={'/images/layout/link.png'}
+        src={'/images/pline/link.png'}
         alt={'more'}
       />
     </Link>
     <Link href={'/terms'} className={styles.agreementItem}>
       <span>{t('home.termsOfUse')}</span>
-      <Image
+      <ImagePline
         className={styles.agreementIcon}
         width={24}
         height={24}
-        src={'/images/layout/link.png'}
+        src={'/images/pline/link.png'}
         alt={'more'}
       />
     </Link>
 
     <div className={styles.footerContent}>
-      <Image
+      <ImagePline
         className={styles.logoBox}
         width={181}
         height={40}
-        src={'/images/logo2.png'}
-        placeholder="blur"
-        blurDataURL={'/images/logo2.png'}
+        src={'/images/pline/m-logo.png'}
         alt={ClientConfig.name}
       />
 

@@ -1,8 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import styles from '@/components/common/paginationCom/index.module.scss';
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/components/common/paginationCom/index.module.scss';
 
 /** 参考文献https://www.jianshu.com/p/ec9aca4764cf*/
 
@@ -79,7 +78,7 @@ const PaginationCom: FC<IProps> = (
             className={styles.prevNextIcon}
             width={14}
             height={14}
-            src={'/images/pline/crumbs.png'}
+            src={'/images/pline/next_1.png'}
             alt={'prev'}
           />
         </Link>
@@ -110,7 +109,7 @@ const PaginationCom: FC<IProps> = (
             className={styles.prevNextIcon}
             width={14}
             height={14}
-            src={'/images/pline/crumbs.png'}
+            src={'/images/pline/next_1.png'}
             alt={'next'}
           />
         </Link>

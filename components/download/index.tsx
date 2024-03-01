@@ -7,6 +7,7 @@ import { netIpUa } from "@/server/clientLog";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
 import styles from '@/components/download/index.module.scss';
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   isApple: boolean;
@@ -42,13 +43,11 @@ const MDownload: FC<IProps> = ({ isApple }) => {
     <div className={styles.downloadHead}>
       {t('appPage.title')}
     </div>
-    <Image
+    <ImagePline
       className={styles.downloadCover}
       width={440}
       height={440}
-      src={'/images/download/cover.png'}
-      placeholder="blur"
-      blurDataURL={'/images/download/cover.png'}
+      src={'/images/pline/m-cover.png'}
       alt={ClientConfig.name}
     />
     <button onClick={onDownload} className={styles.downloadBtn}>

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import useHiveLog from "@/hooks/useHiveLog";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
 }
@@ -36,26 +37,24 @@ const MHeader: FC<IProps> = () => {
   return (<>
     <MNav visible={visible} cancel={() => navIconClick()}/>
     <div
-      style={router.pathname.includes('/browse') ?  { backgroundColor: "#000000" } : {}}
+      style={router.pathname.includes('/browse') ? { backgroundColor: process.env.Platform === "dramabox" ? "#FFFFFF" : "#000000" } : {}}
       className={styles.headerContent}>
-      <Image
+      <ImagePline
         onClick={() => navIconClick()}
         className={styles.navMenuIcon}
         width={48}
         height={48}
-        src={'/images/home/m-menu.png'}
+        src={'/images/pline/m-menu.png'}
         alt={''}
       />
       <Link href={'/'} className={styles.logoBox} onClick={() => {
         HiveLog.track('Logo_click')
       }}>
-        <Image
+        <ImagePline
           className={styles.logo}
           width={181}
           height={40}
-          src={'/images/logo2.png'}
-          placeholder="blur"
-          blurDataURL={'/images/logo2.png'}
+          src={'/images/pline/m-logo.png'}
           alt={ClientConfig.name}
         />
       </Link>

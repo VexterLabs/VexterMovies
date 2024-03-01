@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import Link from "next/link";
 import { Toast } from "antd-mobile";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
-import styles from '@/components/more/pagination/MorePagination.module.css';
+import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/components/more/pagination/MorePagination.module.scss';
 
 interface IProps {
   prevPath: string;
@@ -19,12 +19,12 @@ const MorePagination: FC<IProps> = ({ prevPath, totalPage, page, query = '' }) =
 
   return <div className={styles.paginationWrap} style={query ? { padding: '0.24rem 0' } : {}}>
     {prevPage && prevPage > 0 ? <Link href={prevPath + (prevPage === 1 ? '' : prevPage) + query} replace scroll className={styles.linkItem}>
-        <Image
+        <ImagePline
           className={styles.prevNextIcon}
           width={32}
           height={32}
-          src={'/images/pagination/pre_1.png'}
-          alt={'prev'}
+          src={'/images/pline/pre_1.png'}
+          alt={''}
         />
       </Link> :
       <div
@@ -33,22 +33,22 @@ const MorePagination: FC<IProps> = ({ prevPath, totalPage, page, query = '' }) =
         }}
         className={styles.pageItem}
       >
-        <Image
+        <ImagePline
           className={styles.prevNextIcon}
           width={32}
           height={32}
-          src={'/images/pagination/pre_2.png'}
-          alt={'prev'}
+          src={'/images/pline/pre_2.png'}
+          alt={''}
         />
       </div>}
     <div className={styles.linkItem}>{page}/{totalPage}</div>
     {Number(page) < totalPage ? <Link href={prevPath + nextPage + query} replace scroll className={styles.linkItem}>
-        <Image
+        <ImagePline
           className={styles.prevNextIcon}
           width={32}
           height={32}
-          src={'/images/pagination/next_1.png'}
-          alt={'next'}
+          src={'/images/pline/next_1.png'}
+          alt={''}
         />
       </Link> :
       <div
@@ -56,12 +56,12 @@ const MorePagination: FC<IProps> = ({ prevPath, totalPage, page, query = '' }) =
           Toast.show(t('bookInfo.lastChapterTip'))
         }}
         className={styles.pageItem}>
-        <Image
+        <ImagePline
           className={styles.prevNextIcon}
           width={32}
           height={32}
-          src={'/images/pagination/next_2.png'}
-          alt={'next'}
+          src={'/images/pline/next_2.png'}
+          alt={''}
         />
       </div>}
   </div>

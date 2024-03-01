@@ -20,6 +20,7 @@ import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 import WapShare from "@/components/film/wapShare";
 import styles from "@/components/episode/index.module.scss";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -171,12 +172,12 @@ const WapEpisode: FC<IProps> = (
             {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
           </h1>
           <div className={styles.videoScore}>
-            <Image
+            <ImagePline
               className={styles.epoImg}
               onError={onImgError}
               width={40}
               height={40}
-              src='/images/book/start-m.png'
+              src='/images/pline/star.png'
               alt=''
             />
             <p className={styles.epoScore}>{bookInfo.followCount}</p>
@@ -200,21 +201,21 @@ const WapEpisode: FC<IProps> = (
             expandText={
               <span className={styles.expand}>
                 {t("home.more")}
-                <Image
+                <ImagePline
                   className={styles.moreIcon}
                   width={24}
                   height={24}
-                  src={'/images/episode/wap-more.png'}
+                  src={'/images/pline/wap-more.png'}
                   alt={''}
                 />
               </span>
             }
             collapseText={<span className={styles.retract}>
-                <Image
+                <ImagePline
                   className={styles.moreIcon}
                   width={24}
                   height={24}
-                  src={'/images/episode/wap-more.png'}
+                  src={'/images/pline/wap-more.png'}
                   alt={''}
                 />
               </span>}
@@ -236,6 +237,13 @@ const WapEpisode: FC<IProps> = (
                     chooseEpisode(chapterItem)
                   }}>
                     <span>{chapterItem.index + 1}</span>
+                    {chapterItem.unlock ? null : <ImagePline
+                      className={styles.epiItemIcon}
+                      width={24}
+                      height={24}
+                      src={'/images/pline/m-lock.png'}
+                      alt={''}
+                    />}
                   </span>
                 </Link>
               </div>

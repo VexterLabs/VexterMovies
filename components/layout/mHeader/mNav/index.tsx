@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { Popup } from "antd-mobile";
 import { useRouter } from "next/router";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import useHiveLog from "@/hooks/useHiveLog";
 import classNames from "classnames";
-import styles from '@/components/layout/mHeader/mNav/index.module.scss'
+import styles from '@/components/layout/mHeader/mNav/index.module.scss';
 
 interface IProps {
   visible: boolean;
@@ -33,19 +33,19 @@ const MNav: FC<IProps> = ({ visible, cancel }) => {
       cancel()
     }}
     bodyStyle={{
-      backgroundColor: '#1C1C1E',
+      backgroundColor: process.env.Platform === 'dramabox' ? '#FFFFFF' : '#1C1C1E',
       padding: 0,
       width: '3.75rem'
     }}
   >
     <div className={styles.navHead}>
-      <Image
+      <ImagePline
         onClick={() => cancel()}
         className={styles.navClose}
         width={48}
         height={48}
-        src={'/images/layout/m-menu-close.png'}
-        alt={'close'}
+        src={'/images/pline/nav-cancel.png'}
+        alt={'x'}
       />
     </div>
 

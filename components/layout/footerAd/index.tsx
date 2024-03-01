@@ -7,6 +7,7 @@ import { isIos } from "@/utils/ownOs";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
 import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import styles from './index.module.scss';
 
 interface IProps {
@@ -44,12 +45,12 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
 
    return <div className={styles.adWrap}>
     <div className={styles.adLeft}>
-      <Image
+      <ImagePline
         onClick={() => fAdClose()}
         className={styles.adClose}
         width={48}
         height={48}
-        src={'/images/ad/close_footer_ad.png'}
+        src={'/images/pline/footer-close.png'}
         alt={ClientConfig.name}
       />
       <Image

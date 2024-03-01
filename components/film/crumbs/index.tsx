@@ -4,6 +4,7 @@ import React, { FC } from "react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { IBookItem } from "@/typings/home.interface";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -22,21 +23,21 @@ const BookCrumbs: FC<IProps> = ({ bookInfo, isPc }) => {
   return <div className={styles.crumbsWrap} >
     <Link href="/" className={styles.crumbsItem}>
       {t('home.home')}
-      <Image
+      <ImagePline
         className={styles.crumbsIcon}
         width={48}
         height={48}
-        src={'/images/layout/link.png'}
+        src={'/images/pline/link.png'}
         alt={'>'}
       />
     </Link>
     <Link className={styles.crumbsItem} href={`/browse/${typeTwoId}`}>
       {typeTwoName}
-      <Image
+      <ImagePline
         className={styles.crumbsIcon}
         width={48}
         height={48}
-        src={'/images/layout/link.png'}
+        src={'/images/pline/link.png'}
         alt={'>'}
       />
     </Link>

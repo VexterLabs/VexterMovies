@@ -3,7 +3,7 @@ import { Dropdown, DropdownRef } from "antd-mobile";
 import Link from "next/link";
 import { IBrowseTypes } from "@/typings/browse.interface";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import { useAppSelector } from "@/store";
 import styles from "@/components/browse/detail/DropMenu.module.scss";
 
@@ -46,27 +46,27 @@ const DropMenu: FC<IProps> = ({ types, typeTwoId }) => {
       forceRender
       key='sorter'
       title={
-        <Image
+        <ImagePline
           className={styles.menuTitleIcon}
           width={40}
           height={40}
-          src={'/images/browse/more.png'}
-          alt={'more'}
+          src={'/images/pline/browser-more.png'}
+          alt={''}
         />
       }>
       <div className={styles.menuBox}>
 
         <div className={styles.menuHead}>
           <span>{t('home.browse')}</span>
-          <Image
+          <ImagePline
             onClick={() => {
               dropdownRef.current?.close()
             }}
             className={styles.menuHeadIcon}
             width={40}
             height={40}
-            src={'/images/browse/more.png'}
-            alt={'close'}
+            src={'/images/pline/browser-more.png'}
+            alt={''}
           />
         </div>
 

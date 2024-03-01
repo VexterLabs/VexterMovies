@@ -33,7 +33,7 @@
   .mTermsTitle {
     font-size: 0.38rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    color: $pc_home_name_color;
     line-height: 0.53rem;
     margin-bottom: 0.24rem;
     text-align: center;
@@ -44,6 +44,6 @@
     line-height: 0.44rem;
     white-space: pre-wrap;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.4);
+    color: $pc_footer_color2;
   }
 }

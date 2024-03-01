@@ -20,7 +20,7 @@
       padding-top: 0.16rem;
       display: block;
       width: 2.18rem;
-      color: #FFFFFF;
+      color: $m_home_name_color;
       font-size: 0.28rem;
       font-weight: 400;
       overflow: hidden;
@@ -36,10 +36,10 @@
       padding: 0.05rem 0.12rem;
       backdrop-filter: blur(20px);
       font-size: 0.18rem;
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: $pc_detail_bg;
       border-radius: 0.18rem;
       margin-right: 0.08rem;
-      color: rgba(255,255,255,0.6);
+      color: $pc_nav_color;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

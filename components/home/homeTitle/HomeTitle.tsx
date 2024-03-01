@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import styles from '@/components/home/homeTitle/HomeTitle.module.scss'
+import React, { FC } from 'react';
 import Link from "next/link";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/components/home/homeTitle/HomeTitle.module.scss';
 
 interface IProps {
   title: string;
@@ -13,11 +13,11 @@ const HomeTitle: FC<IProps> = ({ title, href }) => {
     <div className={styles.title}>
       <p>{title}</p>
       {href ? <Link className={styles.moreBox} href={href}>
-        <Image
+        <ImagePline
           className={styles.moreIcon}
           width={32}
           height={32}
-          src={'/images/layout/link.png'}
+          src={'/images/pline/link.png'}
           alt={'more'}
         />
       </Link> : null}
