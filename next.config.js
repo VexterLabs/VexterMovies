@@ -33,7 +33,7 @@ const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
 const Platform = 'dramaboxapp'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 
-const buildId = `${Platform}_20240229`; // 构建ID
+const buildId = `${Platform}_20240304`; // 构建ID
 const WebDomain = Platform === "dramabox" ? NewWebDomainObj[environment] : WebDomainObj[environment];
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]

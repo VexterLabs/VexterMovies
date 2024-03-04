@@ -45,6 +45,7 @@ export interface IBook {
   typeTwoIds: number[];
   typeTwoName: string;
   labels: string[];
+  bookNameEn?: string;
 }
 
 // export interface INetBookRes extends IBookItem{
