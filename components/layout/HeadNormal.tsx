@@ -69,7 +69,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   const getUrl = (lan = ELanguage.English) => {
     const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
-    return 'https://www.dramaboxapp.com' +_locale + _asPath;
+    return (process.env.Platform === "dramabox" ? 'https://www.dramabox.com' : 'https://www.dramaboxapp.com') +_locale + _asPath;
   }
 
   // 拓展多语言字段
@@ -93,29 +93,27 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   }
   // 分享
   const ShareMate = () => {
-    const locationUrl = "https://www.dramaboxapp.com" + router.asPath;
-    if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {
-
-      const { bookInfo = {} as IBookItem } = pageProps;
-      return <>
-        <meta key="fb_app_id" property="fb:app_id" content={ClientConfig.fbAppId}/>
-        <meta key="og_url" property="og:url" content={locationUrl}/>
-        <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
-        <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>
-        <meta key="og_image" property="og:image" content={bookInfo.cover}/>
-        <meta key="og_image_alt" property="og:image:alt" content={bookInfo.bookName || ClientConfig.name}/>
-        <meta key="og_site_name" property="og:site_name" content={ClientConfig.name}/>
-        <meta key="og_type" property="og:type" content="website"/>
-        {/*twitter分享*/}
-        <meta key="twitter_url" property="twitter:url" content={locationUrl}/>
-        <meta key="twitter_title" name="twitter:title" content={pageTdk.title || ClientConfig.name}/>
-        <meta key="twitter_description" name="twitter:description" content={pageTdk.description || ""}/>
-        <meta key="twitter_site" name="twitter:site" content={locationUrl}/>
-        <meta key="twitter_card" name="twitter:card" content="summary"/>
-        <meta key="twitter_image" name="twitter:image" content={bookInfo.cover}/>
-      </>
-    }
-    return null;
+    const locationUrl = getUrl(router.locale as ELanguage);
+    if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {}
+    const { bookInfo = {} as IBookItem } = pageProps;
+    return <>
+      <meta key="fb_app_id" property="fb:app_id" content={ClientConfig.fbAppId}/>
+      <meta key="og_url" property="og:url" content={locationUrl}/>
+      <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
+      <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>
+      <meta key="og_image" property="og:image" content={bookInfo.cover || (process.env.WebDomain + "/images/logo.png")}/>
+      <meta key="og_image_alt" property="og:image:alt" content={bookInfo.bookName || ClientConfig.name}/>
+      <meta key="og_site_name" property="og:site_name" content={ClientConfig.name}/>
+      <meta key="og_type" property="og:type" content="website"/>
+      {/*twitter分享*/}
+      <meta key="twitter_url" property="twitter:url" content={locationUrl}/>
+      <meta key="twitter_title" name="twitter:title" content={pageTdk.title || ClientConfig.name}/>
+      <meta key="twitter_description" name="twitter:description" content={pageTdk.description || ""}/>
+      <meta key="twitter_site" name="twitter:site" content={locationUrl}/>
+      <meta key="twitter_card" name="twitter:card" content="summary"/>
+      <meta key="twitter_image" name="twitter:image" content={bookInfo.cover || (process.env.WebDomain + "/images/logo.png")}/>
+    </>
+    // return null;
   }
 
   return <>

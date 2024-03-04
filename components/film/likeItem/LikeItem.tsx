@@ -13,29 +13,40 @@ interface IProps {
 const LikeItem: FC<IProps> = ({ dataSource, onBookClick, onChannel }) => {
   return <div className={styles.firstItemWrap}>
     {dataSource && dataSource.length > 0 ? (dataSource as IBookItem[]).map((detailItem) => {
+
+      const {
+        bookId,
+        cover,
+        bookName,
+        typeTwoIds = [],
+        typeTwoName = '',
+        bookNameEn = '',
+      } = detailItem;
+      const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
+
       return <div key={detailItem.bookId} className={styles.itemBox}>
         <ImageCover
           onClick={() => onBookClick && onBookClick(detailItem)}
-          href={`/film/${detailItem.bookId}`}
+          href={routerToBookInfo}
           className={styles.bookImage}
           replace={true}
           width={218}
           height={294}
-          src={detailItem.cover}
-          alt={detailItem.bookName}
+          src={cover}
+          alt={bookName}
         />
 
         <Link
           onClick={() => onBookClick && onBookClick(detailItem)}
-          href={`/film/${detailItem.bookId}`} className={styles.bookName} replace>
-          {detailItem.bookName}
+          href={routerToBookInfo} className={styles.bookName} replace>
+          {bookName}
         </Link>
-        {detailItem.typeTwoIds && detailItem.typeTwoIds.length > 0 ?
+        {typeTwoIds && typeTwoIds.length > 0 ?
           <Link
-            onClick={() => onChannel(detailItem.typeTwoName)}
-            href={`/browse/${detailItem.typeTwoIds[0]}`}
+            onClick={() => onChannel(typeTwoName)}
+            href={`/browse/${typeTwoIds[0]}`}
             className={styles.bookTags}>
-            { detailItem.typeTwoName }
+            { typeTwoName }
           </Link> : null}
       </div>
     }) : null}

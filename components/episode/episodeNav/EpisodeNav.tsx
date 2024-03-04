@@ -7,9 +7,9 @@ import { netIpUa } from "@/server/clientLog";
 import useHiveLog from "@/hooks/useHiveLog";
 import { IBookItem } from "@/typings/home.interface";
 import { useAppSelector } from "@/store";
+import ImagePline from "@/components/common/image/ImagePline";
 import ClientConfig from "@/client.config";
 import styles from '@/components/episode/episodeNav/EpisodeNav.module.scss';
-import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -43,6 +43,9 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
     });
   }
 
+  const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterId}_Episode-1` :  `/episode/${bookInfo.bookId}/${chapterId || ''}`;
+
+
   return <div className={styles.navBox}>
     <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
       <ImagePline
@@ -55,7 +58,7 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
       <span>{t('bookInfo.episodes')}</span>
     </div>
     <Link
-      href={`/episode/${bookInfo.bookId}/${chapterId || ''}`}
+      href={routerToVideoInfo}
       className={styles.playIcon}
       onClick={() => {
         HiveLog.track('Play_click')

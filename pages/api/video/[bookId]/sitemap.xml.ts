@@ -32,7 +32,7 @@ export default async function handler(
 
       return `
 <url>
-  <loc>${'https://www.dramaboxapp.com/episode/' + book.bookId + '/' + chapter.id}</loc>
+  <loc>${'https://www.dramabox.com/episode/' + book.bookId + '/' + chapter.id}</loc>
   <lastmod>${chapter.new ? chapter.utime : lastmod}</lastmod>
   <changefreq>${chapter.new ? 'daily' : 'weekly'}</changefreq>
   <priority>0.7</priority>
@@ -41,7 +41,7 @@ export default async function handler(
         if (lan !== ELanguage.English) {
           _loc = '/' + lan + _loc
         }
-        return `<xhtml:link rel="alternate" hreflang="${lan}" href="${'https://www.dramaboxapp.com' + _loc}"/>`
+        return `<xhtml:link rel="alternate" hreflang="${lan}" href="${'https://www.dramabox.com' + _loc}"/>`
       }).join('')}
   <video:video>
     <video:title>${book.bookName + ' Episode ' + (index + 1)}</video:title>

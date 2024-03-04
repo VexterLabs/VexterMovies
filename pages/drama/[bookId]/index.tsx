@@ -80,7 +80,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   try {
     const clientUrl = getRequestMeta(req, '__NEXT_INIT_URL');
     if (clientUrl && clientUrl.includes('/en/') && !clientUrl.includes('/_next/data')){
-      return { redirect: { destination: `/film/${bookId}`, permanent: false } }
+      return { redirect: { destination: process.env.Platform === 'dramabox' ? `/drama/${bookId}` : `/film/${bookId}`, permanent: false } }
     }
   } catch (e) {}
 

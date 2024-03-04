@@ -52,8 +52,11 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, b
 
       <div className={styles.episodeList}>
         {chapterList.length > 0 ? chapterList.map((item,ind) => {
+
+          const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${item.id}_Episode-${ind + 1}` :  `/episode/${bookInfo.bookId}/${item.id}`;
+
           return <div className={styles.linkBox} key={ind} style={ind >= curIndex * 50 && ind < (curIndex + 1) * 50 ?{}:{display:"none"}} >
-            <Link  href={`/episode/${bookInfo.bookId}/${item.id}`} className={styles.linkBox}>
+            <Link  href={routerToVideoInfo} className={styles.linkBox}>
             <div className={ classNames(styles.episodeItem, !item.unlock && styles.episodeItemLock)} onClick={() => {closeDialog()}}>
               <span>{item.index + 1}</span>
               {item.unlock ? null : <ImagePline

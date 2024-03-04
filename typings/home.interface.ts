@@ -38,6 +38,7 @@ export interface IBookItem {
   replacedBookName: string;
   firstChapterId?: string;
   columnName: string;
+  bookNameEn?: string; // 英文名称替换字段
 }
 
 export interface IChapterList {

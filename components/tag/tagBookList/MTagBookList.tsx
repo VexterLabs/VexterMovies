@@ -16,17 +16,17 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword, onBookClick}) => {
 
   return <div className={styles.listBox}>
     {dataSource && dataSource.length > 0 ? dataSource.map((book, bookInd) => {
-      const { bookId, bookName, introduction, cover, typeTwoList = [] } = book;
+      const { bookId, bookName, introduction, cover, typeTwoList = [], bookNameEn = '' } = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/film/${bookId}`;
+      const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId + bookInd} className={styles.listItem}>
         <ImageCover
           onClick={() => onBookClick && onBookClick(book)}
           locale={simpleLanguage}
-          href={linkUrl}
+          href={routerToBookInfo}
           className={styles.bookImage}
           src={cover}
           width={165}
@@ -36,7 +36,7 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword, onBookClick}) => {
 
         <div className={styles.bookInfo}>
           <Link
-            href={linkUrl}
+            href={routerToBookInfo}
             locale={simpleLanguage}
             onClick={() => onBookClick && onBookClick(book)}
             className={styles.bookName}
@@ -63,7 +63,7 @@ const MTagBookList: FC<IProps> = ({dataSource, keyword, onBookClick}) => {
             className={styles.intro}
             dangerouslySetInnerHTML={{__html: introDom}}
             onClick={() => onBookClick && onBookClick(book)}
-            href={linkUrl}
+            href={routerToBookInfo}
             locale={simpleLanguage} />
         </div>
 

@@ -12,8 +12,8 @@ interface IProps {
 
 const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
   const { t } = useTranslation()
-  const { bookId, typeTwoList = [] } = bigList?.[0]
-  const routerToBookInfo = `/film/${bookId}`
+  const { bookId, typeTwoList = [], bookNameEn = '' } = bigList?.[0]
+  const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
   return <div className={styles.swiperWrap}>
     <div className={styles.swiperBox}>
       <div className={styles.leftCard}>
@@ -39,10 +39,12 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
 
       <div className={styles.rightCard}>
         {[bigList[1], bigList[2]].map(item => {
+
+          const _routerToBookInfo =  process.env.Platform === 'dramabox' ? `/drama/${item.bookId}/${item.bookNameEn || ''}` : `/film/${item.bookId}`;
           return <div key={item.bookId} className={styles.rightCardItem}>
             <ImageCover
               scale={true}
-              href={`/film/${item.bookId}`}
+              href={_routerToBookInfo}
               className={styles.rightCardItemImg}
               src={item.cover}
               width={165}
@@ -51,11 +53,11 @@ const SwiperArea: FC<IProps> = ({ bigList = [] }) => {
             />
             <div className={styles.rightCardContent}>
               <div className={styles.rightCardContentTop}>
-                <Link href={`/film/${item.bookId}`} className={styles.bookName}>
+                <Link href={_routerToBookInfo} className={styles.bookName}>
                   {item.bookName}
                 </Link>
-                <Link href={`/film/${item.bookId}`} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </Link>
-                <Link href={`/film/${item.bookId}`} className={styles.intro}>{item.introduction}</Link>
+                <Link href={_routerToBookInfo} className={styles.chapterCount}>{`${item.chapterCount || 0} ${t("home.episodes")}`} </Link>
+                <Link href={_routerToBookInfo} className={styles.intro}>{item.introduction}</Link>
               </div>
               {item?.typeTwoList && item.typeTwoList.length > 0 ? <TypeTwoTag typeTwoList={item.typeTwoList}/> : null}
             </div>

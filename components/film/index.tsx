@@ -77,7 +77,7 @@ const MFilm: FC<IProps> = (
       </div> : null}
 
       <div className={styles.footerBox}>
-        <Link rel={"nofollow"} className={styles.footerBtn} href={`/episode/${bookInfo.bookId}`}>
+        <Link rel={"nofollow"} className={styles.footerBtn} href={process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterList?.[0]?.id || ''}_Episode-1` : `/episode/${bookInfo.bookId}/${chapterList?.[0]?.id || ''}`}>
           <Image
             className={styles.playIcon}
             width={48}

@@ -51,7 +51,7 @@ const Episode: NextPage<IProps> = (
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        currentPage={current}
+        current={current}
         isApple={isApple}
       />}
   </>

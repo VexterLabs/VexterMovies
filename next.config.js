@@ -2,6 +2,12 @@
 const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
+const NewWebDomainObj = {
+  test: 'http://192.168.1.71:3001',
+  staging: 'https://yfbwww.dramabox.com',
+  prod: 'https://www.dramabox.com'
+}
+// 网站域名
 const WebDomainObj = {
   test: 'http://192.168.1.71:3001',
   staging: 'https://yfbwww.dramaboxapp.com',
@@ -10,7 +16,7 @@ const WebDomainObj = {
 // 网站服务api
 const BaseUrlObj = {
   // test: 'http://192.168.0.253:8080',
-  test: 'http://192.168.0.253:8080',// http://192.168.1.70:8080
+  test: 'http://192.168.0.253:8080', // http://192.168.1.70:8080
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
 }
@@ -27,7 +33,7 @@ const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
 const Platform = 'dramabox'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 const buildId = 'dramabox_20240229'; // 构建ID
-const WebDomain = WebDomainObj[environment]
+const WebDomain = Platform === "dramabox" ? NewWebDomainObj[environment] : WebDomainObj[environment];
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
 process.title = `next-${buildId}`;

@@ -23,22 +23,32 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
     <h2 className={styles.titleText}>{t('bookInfo.recLike')}</h2>
     <div className={styles.listBox}>
       {dataSource.map((book) => {
+        const {
+          bookId,
+          cover,
+          bookName,
+          chapterCount = 0,
+          typeTwoIds = [],
+          typeTwoName = '',
+          bookNameEn = '',
+        } = book;
+        const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
 
         return <div key={book.bookId} className={styles.listItem}>
           <div className={styles.coverBox}>
             <ImageCover
               scale={true}
-              href={`/film/${book.bookId}`}
+              href={routerToBookInfo}
               className={styles.bookImage}
               onClick={() => onBookClick && onBookClick(book)}
               width={272}
               height={363}
-              src={book.cover}
-              alt={book.bookName}
+              src={cover}
+              alt={bookName}
             />
             <Link
               className={styles.chapterCount}
-              href={`/film/${book.bookId}`}
+              href={routerToBookInfo}
               onClick={() => onBookClick && onBookClick(book)}
             >
               <Image
@@ -48,20 +58,20 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
                 src='/images/layout/play.png'
                 alt=''
               />
-              <span className={styles.chapterText}>{`${book.chapterCount} ${t("home.episodes")}`}</span>
+              <span className={styles.chapterText}>{`${chapterCount || 0} ${t("home.episodes")}`}</span>
             </Link>
           </div>
           <Link
-            href={`/film/${book.bookId}`}
+            href={routerToBookInfo}
             className={styles.bookName}
             onClick={() => onBookClick && onBookClick(book)}>
-            {book.bookName}
+            {bookName}
           </Link>
-          {book?.typeTwoIds && book?.typeTwoIds.length > 0 ?
+          {typeTwoIds && typeTwoIds.length > 0 ?
             <Link
-              onClick={(e) => onChannel(book.typeTwoName)}
-              href={`/browse/${book.typeTwoIds[0]}`}
-              className={styles.tagItem}>{book.typeTwoName}</Link> : null
+              onClick={(e) => onChannel(typeTwoName)}
+              href={`/browse/${typeTwoIds?.[0]}`}
+              className={styles.tagItem}>{typeTwoName}</Link> : null
           }
         </div>
       })}

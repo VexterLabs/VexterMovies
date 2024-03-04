@@ -46,7 +46,7 @@ const PcEpisode: FC<IProps> = (
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
-    { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
+    { title: bookInfo.bookName, link: process.env.Platform === 'dramabox' ? `/drama/${bookInfo.bookId}/${bookInfo.bookNameEn || ''}` : `/film/${bookInfo.bookId}` },
     { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
@@ -110,7 +110,8 @@ const PcEpisode: FC<IProps> = (
       playerInstance.current.on(Events.ENDED, () => {
         const nextChapter = chapterList[episodeIndex.current + 1];
         if (nextChapter) {
-          router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
+          const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${nextChapter.id}_Episode-${episodeIndex.current + 1}` :  `/episode/${bookInfo.bookId}/${nextChapter.id}`;
+          router.replace(routerToVideoInfo, undefined, { shallow: true });
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
           if (!nextChapter.mp4 || !nextChapter.unlock) {
@@ -232,7 +233,7 @@ const PcEpisode: FC<IProps> = (
       <RightList
         chapterList={chapterList}
         current={currentPage}
-        bookId={bookInfo.bookId}
+        bookInfo={bookInfo}
         onChooseEpisode={chooseEpisode}/>
     </div>
     {/* 相关剧集 */}

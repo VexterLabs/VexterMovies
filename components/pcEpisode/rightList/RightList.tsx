@@ -3,20 +3,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { onImgError } from "@/components/common/image/ImageCover";
-import { IChapterList } from "@/typings/home.interface";
+import { IBookItem, IChapterList } from "@/typings/home.interface";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import styles from "@/components/pcEpisode/rightList/RightList.module.scss";
 import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
-  bookId: string;
+  bookInfo:IBookItem;
   current: number;
   chapterList: IChapterList[];
   onChooseEpisode: (index: number, id: string) => void;
 }
 
-const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }) => {
+const RightList: FC<IProps> = ({ current, chapterList, bookInfo, onChooseEpisode }) => {
   const { t } = useTranslation();
   const router = useRouter()
   const language = router?.locale || ''
@@ -28,11 +28,14 @@ const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }
     <div className={styles.allEpo}>
       {
         chapterList.map((item, index) => {
+
+          const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${item.id}_Episode-${index + 1}` :  `/episode/${bookInfo.bookId}/${item.id}`;
+
           return <div
             key={item.id}
             className={styles.listItem}
             onClick={() => {onChooseEpisode(index, item.id)}}>
-            <Link href={`/episode/${bookId}/${item.id}`} className={styles.imgBox} shallow replace>
+            <Link href={routerToVideoInfo} className={styles.imgBox} shallow replace>
               <Image
                 className={styles.imgItem}
                 onError={onImgError}
@@ -53,7 +56,7 @@ const RightList: FC<IProps> = ({ current, chapterList, bookId, onChooseEpisode }
               </div> : null }
             </Link>
             <Link
-              href={`/episode/${bookId}/${item.id}`}
+              href={routerToVideoInfo}
               shallow
               replace
               className={classNames(styles.linkText, current === index && styles.active)}>

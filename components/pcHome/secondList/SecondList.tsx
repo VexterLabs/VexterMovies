@@ -23,9 +23,10 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
       const {
         bookId,
         bookName,
-        chapterCount = 0
+        chapterCount = 0,
+        bookNameEn = '',
       } = book;
-      const routerToBookInfo = `/film/${bookId}`
+      const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
 
       return <div key={bookId} className={styles.secondListBox}>
 

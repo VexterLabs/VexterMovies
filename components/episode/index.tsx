@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import Player, { Events } from 'xgplayer';
 import 'xgplayer/dist/index.min.css';
 import Link from "next/link";
@@ -19,14 +19,14 @@ import { useTranslation } from "next-i18next";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 import WapShare from "@/components/film/wapShare";
-import styles from "@/components/episode/index.module.scss";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/episode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
-  currentPage: number;
+  current: number;
   isApple: boolean;
   onBookClick: (book: IBookItem) => void;
   onChannel: (name: string) => void;
@@ -36,7 +36,7 @@ const WapEpisode: FC<IProps> = (
   {
     bookInfo,
     recommends = [],
-    currentPage = 1,
+    current = 0,
     chapterList = [],
     isApple,
     onBookClick,
@@ -78,18 +78,15 @@ const WapEpisode: FC<IProps> = (
   }
 
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集
-  const curChapterData = chapterList.find(item => item.id === chapterId) || chapterList[0]
-  currentPage = curChapterData?.index as number;
+  const [currentPage, setCurrentPage] = useState(current);
+
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
-    { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
+    { title: bookInfo.bookName, link: process.env.Platform === 'dramabox' ? `/drama/${bookInfo.bookId}/${bookInfo.bookNameEn || ''}` : `/film/${bookInfo.bookId}` },
     { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
-  let preChapterData: any //后面再改
-  if (curChapterData) {
-    preChapterData = chapterList.find(item => curChapterData.index + 1 === item.index)//&& item.unlock === true
-  }
+
   const closeEpisodeDialog = () => {
     setEpiDialog(false)
   }
@@ -104,6 +101,14 @@ const WapEpisode: FC<IProps> = (
       setErrorBg(cover as string)
     }
   }, [chapterList]) // eslint-disable-line
+
+  const episodeIndex = useMemo(() => {
+    if (process.env.Platform === 'dramabox') {
+      return chapterList.findIndex(val => val.id === (router.query.chapterId as string)?.slice('_')[0]) || 0
+    }
+    return (router.query.chapterId || 0) as string
+  }, [router, chapterList]);
+
   // 播放器设置
   useEffect(() => {
     // 查找当前视频中下一个有MP4
@@ -111,7 +116,7 @@ const WapEpisode: FC<IProps> = (
       id: "mPlay",
       autoplay: true,
       autoplayMuted: false,
-      url: curChapterData?.mp4,
+      url: chapterList[currentPage]?.mp4,
       width: '100%',
       height: '100%',
       videoFillMode: "fillHeight",
@@ -124,17 +129,20 @@ const WapEpisode: FC<IProps> = (
     })
     // EVENTS.ENDED 结束播放,播放完后
     playerInstance.current.on(Events.ENDED, () => {
-      if (preChapterData) {
-        router.replace(`/episode/${bookInfo.bookId}/${preChapterData.id}`, undefined)
+      if (chapterList[episodeIndex]) {
+
+        const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterList?.[episodeIndex]?.id || ''}_${episodeIndex + 1}` :  `/episode/${bookInfo.bookId}/${chapterList?.[episodeIndex]?.id || ''}`;
+
+        router.replace(routerToVideoInfo, undefined)
       }
       playerInstance.current.playNext({
-        url: preChapterData?.mp4,
+        url: chapterList?.[episodeIndex]?.mp4,
       })
     })
     return () => {
       playerInstance && playerInstance.current && playerInstance.current.destroy()
     }
-  }, [curChapterData]) // eslint-disable-line
+  }, []) // eslint-disable-line
 
   // 点击右侧全部剧集，选择播放剧集
   const chooseEpisode = (item: IChapterList) => {
@@ -230,9 +238,10 @@ const WapEpisode: FC<IProps> = (
         </div>
         <div className={styles.epilistBox}>
           {
-            chapterList && chapterList.slice(0, 9).map((chapterItem) => {
+            chapterList && chapterList.slice(0, 9).map((chapterItem, index) => {
+              const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterItem.id}_Episode-${index + 1}` :  `/episode/${bookInfo.bookId}/${chapterItem.id}`;
               return <div className={styles.epiOuter} key={chapterItem.id}>
-                <Link href={`/episode/${bookInfo.bookId}/${chapterItem.id}`} shallow>
+                <Link href={routerToVideoInfo} shallow>
                   <span className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask} onClick={() => {
                     chooseEpisode(chapterItem)
                   }}>
@@ -267,7 +276,7 @@ const WapEpisode: FC<IProps> = (
       <EpisodeNav
         isApple={isApple}
         bookInfo={bookInfo}
-        chapterId={curChapterData?.id}
+        chapterId={chapterList?.[currentPage]?.id}
         showEpisodeDialog={showEpisodeDialog}
       />
     </div>
