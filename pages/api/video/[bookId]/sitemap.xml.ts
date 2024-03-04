@@ -32,12 +32,12 @@ export default async function handler(
 
       return `
 <url>
-  <loc>${'https://www.dramabox.com/episode/' + book.bookId + '/' + chapter.id}</loc>
+  <loc>https://www.dramabox.com/video/${book.bookId}_${book.bookNameEn || ''}/${chapter.id}_Episode-${index + 1}</loc>
   <lastmod>${chapter.new ? chapter.utime : lastmod}</lastmod>
   <changefreq>${chapter.new ? 'daily' : 'weekly'}</changefreq>
   <priority>0.7</priority>
   ${languages.map(lan => {
-        let _loc = `/episode/${bookId}/${chapter.id}`;
+        let _loc = `/video/${bookId}_${book.bookNameEn}/${chapter.id}_Episode-${index + 1}`;
         if (lan !== ELanguage.English) {
           _loc = '/' + lan + _loc
         }
