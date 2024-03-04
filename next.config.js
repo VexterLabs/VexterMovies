@@ -30,7 +30,7 @@ const IpUaUrlObj = {
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
 const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
-const Platform = 'dramabox'; // 产品线 "dramabox" | "dramaboxapp"
+const Platform = 'dramaboxapp'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 
 const buildId = `${Platform}_20240229`; // 构建ID

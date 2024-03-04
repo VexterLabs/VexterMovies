@@ -16,6 +16,7 @@ export interface INetAllBookRes {
   typeTwoName: string;
   chapterCount: number;
   utime: string;
+  bookNameEn?: string;
   languages: ELanguage[];
 }
 
