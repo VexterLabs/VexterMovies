@@ -51,7 +51,7 @@ const EpisodePage: NextPage<IProps> = (
         bookInfo={bookInfo}
         recommends={recommends}
         chapterList={chapterList}
-        currentPage={current}
+        current={current}
         isApple={isApple}
       />}
   </>
@@ -64,7 +64,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   if (!bookId) {
     return { notFound: true };
   }
-  const response = await netBookDetail(bookId, locale as ELanguage);
+
+  const _bookId = process.env.Platform === 'dramabox' ? bookId.split('_')[0] : bookId;
+  const _chapterId = process.env.Platform === 'dramabox' ? (chapterId ? chapterId?.split('_')?.[0] : '') : chapterId;
+
+  const response = await netBookDetail(_bookId, locale as ELanguage);
 
   if (response === 'BadRequest_404') {
     return { notFound: true }
@@ -73,11 +77,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
     return { redirect: { destination: '/500', permanent: false } }
   }
   const { book = {} as IBookItem, recommends = [], chapterList = [] } = response; // chapter, languages = []
-  const current = chapterList.findIndex(val => val.id === chapterId);
+  const current = chapterList.findIndex(val => val.id === _chapterId);
 
   return {
     props: {
-      bookId,
+      bookId: _bookId,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),

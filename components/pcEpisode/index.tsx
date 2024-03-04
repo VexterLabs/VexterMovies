@@ -41,6 +41,8 @@ const PcEpisode: FC<IProps> = (
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({} as Player);
   const episodeIndex = useRef(current);
+
+  console.log('episodeIndex,', episodeIndex.current);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [errorBgsrc, setErrorBg] = useState('')
   const breadDatas: IBreadcrumb[] = [
@@ -110,7 +112,7 @@ const PcEpisode: FC<IProps> = (
       playerInstance.current.on(Events.ENDED, () => {
         const nextChapter = chapterList[episodeIndex.current + 1];
         if (nextChapter) {
-          const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${nextChapter.id}_Episode-${episodeIndex.current + 1}` :  `/episode/${bookInfo.bookId}/${nextChapter.id}`;
+          const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${nextChapter.id}_Episode-${episodeIndex.current + 2}` :  `/episode/${bookInfo.bookId}/${nextChapter.id}`;
           router.replace(routerToVideoInfo, undefined, { shallow: true });
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;

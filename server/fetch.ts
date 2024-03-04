@@ -49,7 +49,7 @@ export const geFetch = async (url: string, params?: AnyObject, data?: AnyObject)
 export const poFetch = async (url: string, data?: AnyObject, language?: ELanguage, params?: AnyObject) => {
   try {
     let queryStr = '';
-    let input = `${process.env.BaseUrl}/${url}`;
+    let input = process.env.BaseUrl + url;
     if (url.includes('/client')) {
       input = url;
     }
