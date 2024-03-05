@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import { useTranslation } from "next-i18next";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import styles from "@/components/pcEpisode/rightList/RightList.module.scss";
-import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   bookInfo:IBookItem;
@@ -35,26 +34,33 @@ const RightList: FC<IProps> = ({ current, chapterList, bookInfo, onChooseEpisode
             key={item.id}
             className={styles.listItem}
             onClick={() => {onChooseEpisode(index, item.id)}}>
-            <Link href={routerToVideoInfo} className={styles.imgBox} shallow replace>
-              <Image
-                className={styles.imgItem}
-                onError={onImgError}
-                width={88}
-                height={89}
-                src={item.cover}
-                alt={item.name}
-              />
 
-              { !item.unlock ? <div className={styles.imageMark}>
-                <ImagePline
-                  className={styles.lockIcon}
-                  width={24}
-                  height={24}
-                  src={'/images/pline/lock.png'}
-                  alt={''}
-                />
-              </div> : null }
-            </Link>
+            <ImageCover
+              scale={true}
+              href={routerToVideoInfo}
+              className={styles.imgBox}
+              shallow={true}
+              replace={true}
+              width={88}
+              height={89}
+              src={item.cover || bookInfo.cover}
+              alt={item.name}
+            />
+
+            { !item.unlock ? <Link
+              className={styles.imageMark}
+              href={routerToVideoInfo}
+              shallow
+              replace>
+              <ImagePline
+                className={styles.lockIcon}
+                width={24}
+                height={24}
+                src={'/images/pline/lock.png'}
+                alt={''}
+              />
+            </Link> : null }
+
             <Link
               href={routerToVideoInfo}
               shallow

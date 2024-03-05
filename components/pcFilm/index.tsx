@@ -9,6 +9,7 @@ import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import PcShare from "@/components/pcFilm/share";
 import styles from "@/components/pcFilm/index.module.scss";
+import classNames from "classnames";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -40,7 +41,7 @@ const PcFilm: FC<IProps> = (
         <div className={styles.detailBookCoverBox}>
           <Image
             onError={onImgError}
-            className={styles.detailBookCover}
+            className={process.env.Platform === 'dramabox' ? styles.detailBookCoverNew : styles.detailBookCover}
             width={315}
             height={420}
             src={bookInfo.cover}

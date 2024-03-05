@@ -57,7 +57,7 @@ const MFilm: FC<IProps> = (
     <div className={styles.detailBox}>
       <Image
         onError={onImgError}
-        className={styles.bookCover}
+        className={process.env.Platform === 'dramabox' ? styles.bookCoverNew : styles.bookCover}
         width={280}
         height={378}
         src={bookInfo.cover}

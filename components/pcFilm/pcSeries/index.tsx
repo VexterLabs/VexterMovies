@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import classNames from "classnames";
@@ -36,25 +36,27 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
 
         const isShow = showMore ? index < 11 : (index >= tabIndex * 30 && index < (tabIndex + 1) * 30);
         return <div key={item.id} className={styles.listItem} style={isShow? {} : { display: 'none' }}>
-          <Link href={routerToVideoInfo} className={styles.imgBox}>
-            <Image
-              className={styles.imageItem}
-              onError={onImgError}
-              width={88}
-              height={117}
-              src={item.cover || bookInfo.cover}
-              alt={item.name}
+
+          <ImageCover
+            scale={true}
+            href={routerToVideoInfo}
+            className={styles.imgBox}
+            width={88}
+            height={117}
+            src={item.cover || bookInfo.cover}
+            alt={item.name}
+          />
+
+          { !item.unlock ? <Link href={routerToVideoInfo} className={styles.imageMark}>
+            <ImagePline
+              className={styles.lockIcon}
+              width={24}
+              height={24}
+              src={'/images/pline/lock.png'}
+              alt={''}
             />
-            { !item.unlock ? <div className={styles.imageMark}>
-              <ImagePline
-                className={styles.lockIcon}
-                width={24}
-                height={24}
-                src={'/images/pline/lock.png'}
-                alt={''}
-              />
-            </div> : null }
-          </Link>
+          </Link> : null }
+
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
             <span className={styles.title}>{bookInfo.bookName}</span>
             <span className={styles.pageNum}>{language==='en' || !language ?  `EP.${item.index + 1}` :  `${item.index + 1} ${t("home.episodes")}`}</span>
