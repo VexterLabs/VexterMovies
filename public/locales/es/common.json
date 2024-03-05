@@ -1,27 +1,27 @@
 {
   "home": {
     "home": "Inicio",
-    "browse": "Navegar",
+    "browse": "Categorías",
     "app": "App",
     "more": "Más",
     "privacyPolicy": "Política de privacidad",
     "termsOfUse": "Terminos de uso",
     "allRightsReserved": "todos los derechos reservados",
-    "play": "播放",
-    "back": "返回",
-    "email": "邮箱",
-    "emptyDesc": "没找到内容",
-    "episodes": "集",
-    "about": "关于我们",
-    "contact": "联系我们",
-    "community": "社区"
+    "play": "Reproducir",
+    "back": "Volver",
+    "email": "Buzón",
+    "emptyDesc": "Está vacio",
+    "episodes": "Episodios",
+    "about": "Sobre nosotros",
+    "contact": "Contáctanos",
+    "community": "Comunidad"
   },
-  "热门好剧": "热门好剧",
-  "必看好剧": "必看好剧",
-  "当前热播": "当前热播",
-  "精彩剧集": "精彩剧集",
+  "热门好剧": "Más Populares",
+  "必看好剧": "Dramas Imprescindibles",
+  "当前热播": "Tendencia",
+  "精彩剧集": "Le Puede Gustar",
   "browse": {
-    "all": "Todo"
+    "all": "Todos"
   },
   "bookInfo": {
     "more": "más",
@@ -31,29 +31,29 @@
     "nextPage": "Siguiente página",
     "lastChapterTip": "Ya el último capítulo",
     "firstChapterTip": "Ya el primer capítulo",
-    "like": "你也许也喜欢",
-    "relatedEpisodes": "相关剧集",
-    "episodesDownload": "下载应用程序继续观看",
-    "episodes": "集",
-    "first": "第",
-    "episode": "集",
-    "recLike": "猜你喜欢",
-    "totalEpisodes": "剧集数",
-    "episodeList": "剧集列表",
+    "like": "Puede que también te guste",
+    "relatedEpisodes": "Episodios Relacionados",
+    "episodesDownload": "Descargue la aplicación para seguir viéndolo.",
+    "episodes": "Episodios",
+    "first": "Episodios",
+    "episode": "",
+    "recLike": "Recomendado para ti",
+    "totalEpisodes": "Episodios Totales",
+    "episodeList": "Lista de Episodios",
     "share": "Compartir",
     "shareCopy": "El enlace se ha pegado al portapapeles。"
   },
   "appPage": {
-    "title": "DramaBox - 追剧，电视，精彩故事",
-    "content": "在通勤、午餐时间或长时间工作学习后想放鬆吗？\n那就来试试我们的APP吧！\n热播爽剧追不停，随时随地嗨翻天！\n从独立电影到屡获殊荣的电视剧，我们为您提供多样的选择和持续更新的作品，总有精彩的内容吸引你！",
-    "download": "下载",
-    "clickCopy": "Haga clic en el enlace copiar",
+    "title": "DramaBox - películas y drama",
+    "content": "¿Busca algo que ver durante el trayecto diario al trabajo, la pausa para comer o simplemente para relajarse después de un largo día? \nDramabox es lo que necesita.\nCon nuestra aplicación, puede acceder a una gran selección de contenidos de alta calidad de algunos de los mejores creadores. \nDesde películas independientes a series de televisión galardonadas, tenemos algo para todos los gustos. A medida que añadimos nuevos contenidos con regularidad, siempre tendrá algo nuevo que ver.",
+    "download": "Descargar",
+    "clickCopy": "Haga clic para copiar el enlace",
     "copied": "Copiado, abra el enlace en el navegador móvil para descargar la aplicación",
-    "copyGuide": "Encienda la cámara del teléfono para escanear directamente, \no copie el enlace y ábralo en su navegador móvil",
-    "slogan": "进入短剧世界"
+    "copyGuide": "Escanee el código QR para descargarlo o abra el enlace en el navegador del teléfono.",
+    "slogan": "Sumérgete en el drama"
   },
   "others": {
-    "error": "Ooooops, 404 no encontrado..."
+    "error": "Ups, 404 no encontrado..."
   },
   "terms": {
     "termsTitle": "Terminos de uso",
@@ -71,7 +71,7 @@
     "relation4": "related content information."
   },
   "banner": {
-    "OpenApp": "更多精彩内容，尽在DramaBox",
-    "Open": "打开"
+    "OpenApp": "Abra la APP DramaBox para ver más dramas maravillosos",
+    "Open": "Abrir"
   }
 }
