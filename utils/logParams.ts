@@ -31,7 +31,7 @@ export const getLogParams = ({ event, clipboard, language, data = {} }: IGetLogP
   const log_id = randomString();
   return {
     bline: "db",
-    app_version: "2.0.0",
+    app_version: "3.0.0",
     imei: "",
     oaid: "",
     idfa: "",
@@ -49,6 +49,7 @@ export const getLogParams = ({ event, clipboard, language, data = {} }: IGetLogP
       action: 3, // 1 pv | 2 按钮点击下载
       clipboard: {
         ...clipboard,
+        url: location.href,
       },
       bookId: bid,
       isPc: ownOs(ua).isPc ? 1 : 0,

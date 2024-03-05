@@ -342,22 +342,22 @@ export const TDK = {
   [ELanguage.Spanish]: {
     ...commonTDK,
     index: {
-      title: 'DramaBox app-DramaBox Películas Gratis-Dramabox',
-      keywords: 'DramaBox app,DramaBox,DramaBox Películas Gratis',
-      description: 'Las populares series cortas de Dramabox APP, una búsqueda constante, sin importar cuándo ni dónde, ¡las risas no cesan! Seleccionamos cuidadosamente una variedad de series cortas para usted, con actualizaciones continuas y siempre con historias cautivadoras para satisfacer sus deseos de ver.'
+      title: 'DramaBox - Películas y dramas',
+      keywords: 'DramaBox,DramaBox app',
+      description: 'Buscando algo para ver durante tu viaje diario, la pausa para el almuerzo o simplemente para relajarte después de un largo día. ¡No busques más que nuestra Dramabox!'
     },
     browse: ({ typeTwoName = '', page = '1' }) => {
       if (page === '1') {
         return {
-          title: `${typeTwoName} Películas de drama-DramaBox`,
-          keywords: `DramaBox ${typeTwoName} Películas de drama`,
-          description: `DramaBox ${typeTwoName} short film,Welcome to watch online`
+          title: `${typeTwoName} cortometraje-DramaBox`,
+          keywords: `DramaBox ${typeTwoName} cortometraje`,
+          description: `DramaBox ${typeTwoName} cortometraje,Bienvenido a ver en línea`
         }
       }
       return {
-        title: `${typeTwoName} Películas de drama-Página ${page}-DramaBox`,
-        keywords: `${typeTwoName} Películas de drama`,
-        description: `${typeTwoName} Películas de drama`
+        title: `${typeTwoName} cortometraje-Página ${page}-DramaBox`,
+        keywords: `${typeTwoName} cortometraje`,
+        description: `${typeTwoName} cortometraje`
       }
     },
     more: ({ positionName = '', page = '1'}) => {
@@ -377,9 +377,9 @@ export const TDK = {
     book: ({ bookInfo = {} as IBookItem }: { bookInfo: IBookItem}) => {
       const { bookName = '', introduction = '' } = bookInfo
       return {
-        title: `${bookName} Drama-${bookName} Ver película completa en línea gratis-DramaBox`,
-        keywords: `${bookName}, ${bookName} Ver en línea gratis`,
-        description: `${bookName} Ver en línea gratis, ${introduction.slice(0, 200)}...`
+        title: `${bookName} cortometraje-DramaBox`,
+        keywords: `${bookName}, ${bookName} cortometraje`,
+        description: `${bookName} cortometraje, ${introduction.slice(0, 200)}...`
       }
     },
     episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
@@ -387,9 +387,9 @@ export const TDK = {
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
       const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `Episodio ${index}-${bookName} Episodio ${index} Ver en línea-DramaBox`,
+        title: `${bookName} Episodio ${index}-DramaBox`,
         keywords: `${bookName} Episodio ${index}`,
-        description: `${bookName} Episodio ${index} Ver en línea`
+        description: `${bookName} Episodio ${index} en línea`
       }
     },
     error500: {
@@ -398,8 +398,8 @@ export const TDK = {
       description: '',
     },
     download: {
-      title: 'DramaBox apk-DramaBox app Descargar-DramaBox',
-      keywords: 'DramaBox apk,DramaBox app download',
+      title: 'DramaBox app Descargar-DramaBox',
+      keywords: 'DramaBox app Descargar',
       description: 'DramaBox app Descargar'
     },
     error404: {
@@ -408,14 +408,14 @@ export const TDK = {
       description: 'El cortometraje actual no existe'
     },
     agreementPrivacy: {
-      title: 'Política de privacidad-DramaBox',
-      keywords: 'Política de privacidad,DramaBox',
-      description: 'Política de privacidad'
+      title: 'Política de Privacidad-DramaBox',
+      keywords: 'Política de Privacidad,DramaBox',
+      description: 'Política de Privacidad'
     },
     agreementUser: {
-      title: 'Términos de uso-DramaBox',
-      keywords: 'Términos de uso,DramaBox',
-      description: 'Términos de uso'
+      title: 'Términos de Uso-DramaBox',
+      keywords: 'Términos de Uso,DramaBox',
+      description: 'Términos de Uso'
     }
   },
 }

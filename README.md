@@ -43,3 +43,18 @@ https://www.dramaboxapp.com
 ├─next-i18next.config.js // 给next.config.js提供语言参数配置
 └─package.json
 ```
+
+#### sql查询
+```
+select
+	substr(dt,1,8) as `日期`
+	,count(distinct case when data['action'] = 1 then uid end) as `曝光UV`
+	,count(distinct case when data['action'] = 2 then uid end) as `点击UV`
+from dwd.dwd_h5_standard_final_log
+where substr(dt,1,8) between '20230601' and '20230616'--日期
+and chid IN ('')--渠道号
+and type IN ('')--页面类型
+and bline IN ('')--业务线
+and pline IN ('')--平台类型
+group by substr(dt,1,8)
+```
