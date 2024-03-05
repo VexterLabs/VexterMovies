@@ -14,6 +14,7 @@ interface IProps extends ImageProps {
   scroll?: boolean;
   onClick?: () => void;
   scale?: boolean; // hover效果
+  shallow?: boolean;
   locale?: ELanguage
 }
 
@@ -32,7 +33,7 @@ export const ImageCover: FC<IProps> = (props) => {
 
   const imageProps = useMemo(() => {
     const _props = {} as ImageProps;
-    const blackAttributes = ['scale', 'locale', 'onClick', 'className', 'href', 'replace', 'rel'];
+    const blackAttributes = ['scale', 'locale', 'onClick', 'className', 'href', 'replace', 'rel', 'shallow'];
     for (const item in props) {
       if (blackAttributes.indexOf(item) === -1) {
         _props[item] = props[item]
@@ -45,10 +46,11 @@ export const ImageCover: FC<IProps> = (props) => {
   }, [props]);
 
 
-  const { scale = false, href, className = '', alt = '', locale, onClick, replace = false, rel } = props;
+  const { scale = false, href, className = '', alt = '', locale, onClick, replace = false, rel, shallow = false } = props;
 
   return <Link
     rel={rel}
+    shallow={shallow}
     replace={replace}
     locale={locale}
     href={href}
