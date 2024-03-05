@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import styles from "@/components/layout/pcHeader/PcHeader.module.scss";
+import React, { useEffect, useMemo, useState } from "react";
 import { Popover } from "antd-mobile";
 import { LanguageActions } from "@/typings/home.interface";
 import { Action } from "antd-mobile/2x/es/components/popover";
 import { useRouter } from "next/router";
-import Image from "next/image";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/layout/pcHeader/PcHeader.module.scss";
 
 const Language = () => {
   const router = useRouter();
@@ -26,10 +25,19 @@ const Language = () => {
     }
   }
 
+  const _LanguageActions = useMemo(() => {
+    return LanguageActions.map(item => {
+      return {
+        key: item.key,
+        text: <span style={ router.locale === item.key ? { color: "#FF375F", fontWeight: 500 } : {}}>{item.text}</span>
+      }
+    })
+  }, [router.locale]);
+
   return <div className={styles.language}>
     <Popover.Menu
       visible={visible}
-      actions={LanguageActions}
+      actions={_LanguageActions}
       getContainer={null}
       onVisibleChange={(visible) => setVisible(visible)}
       onAction={(item) => changeLanguage(item)}
