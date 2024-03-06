@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import ClientConfig from "@/client.config";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import { useRouter } from "next/router";
 import useHiveLog from "@/hooks/useHiveLog";
 import styles from '@/components/layout/mFooter/MFooter.module.scss';
-import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {}
 

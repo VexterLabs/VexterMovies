@@ -62,7 +62,7 @@
 
           .adm-tabs-tab {
             a {
-              color: $pc_browse_color;
+              color: $pc_home_name_color;
             }
           }
 
@@ -102,7 +102,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        color: $pc_browse_color;
+        color: $pc_home_name_color;
         display: flex;
         align-items: center;
         justify-content: center;

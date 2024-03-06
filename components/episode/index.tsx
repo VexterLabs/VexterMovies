@@ -54,9 +54,6 @@ const WapEpisode: FC<IProps> = (
       const queryStr = !cid ? `${h5uid}_${bid}_${channelCode}_other` : `${h5uid}_${bid}_${channelCode}_other_${cid}`;
       return ClientConfig.ios.universalLink + queryStr;
     }
-    // const { bid, cid, channelCode } = state.hive.clipboard;
-    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
     return ClientConfig.android.link;
   });
   const { t } = useTranslation();

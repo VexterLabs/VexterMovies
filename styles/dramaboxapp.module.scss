@@ -11,6 +11,7 @@ $logo_color: #FFFFFF;
 $pc_home_swiper_bg: rgba(255, 255, 255, 0.08);
 $pc_home_swiper_bg_hover: rgba(255, 255, 255, 0.12);
 $pc_home_name_color: rgba(255, 255, 255, 0.9);
+$pc_home_name_color2: rgba(0, 0, 0, 0.9);
 $pc_home_intro_color: rgba(255, 255, 255, 0.4);
 $pc_footer_bg: #1C1C1E;
 $pc_footer_color1: #FFFFFF;
@@ -18,8 +19,6 @@ $pc_footer_color2: rgba(255, 255, 255, 0.4);
 
 // 标签
 $type_tag_color: rgba(255, 255, 255, 0.08);
-// 分类
-$pc_browse_color: rgba(255, 255, 255, 0.9);
 // 分页
 $pc_page_active: rgba(50, 50, 57, 0.16);
 
@@ -37,7 +36,6 @@ $pc_extend_bg: linear-gradient(270deg, #000000 0%, rgba(20, 20, 20, 0) 100%);
 $nav_border_color: rgba(255, 255, 255, 0.08);
 
 $m_nav_bg: rgba(0, 0, 0, 0.6);
-$m_footer_bg: #191919;
 $m_dot_color: rgba(255, 255, 255, 0.12);
 $m_home_name_color: #FFFFFF;
 $m_browse_color: rgba(255, 255, 255, 0.9);
@@ -48,3 +46,7 @@ $m_dialog_bg: #191919;
 $m_mark_bg: transparent;
 
 $m_tag_color: rgba(255, 255, 255, 0.6);
+
+@mixin m_footer_ad {
+  background-color: rgba(0,0,0,0.9);
+}

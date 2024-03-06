@@ -9,6 +9,7 @@ import { onCopyText } from "@/utils/copy";
 import Image from "next/image";
 import ImagePline from "@/components/common/image/ImagePline";
 import styles from './index.module.scss';
+import classNames from "classnames";
 
 interface IProps {
   adClose: () => void;
@@ -43,25 +44,25 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
     })
   }
 
-   return <div className={styles.adWrap}>
-    <div className={styles.adLeft}>
-      <ImagePline
-        onClick={() => fAdClose()}
-        className={styles.adClose}
-        width={48}
-        height={48}
-        src={'/images/pline/footer-close.png'}
-        alt={ClientConfig.name}
-      />
+   return <div className={classNames(styles.adWrap, process.env.Platform !== 'dramabox' && styles.adBg)}>
+     <ImagePline
+       onClick={() => fAdClose()}
+       className={styles.adClose}
+       width={48}
+       height={48}
+       src={'/images/pline/footer-close.png'}
+       alt={ClientConfig.name}
+     />
+
+    <div className={styles.adLeft} onClick={onDownload}>
       <Image
-        onClick={onDownload}
         className={styles.logo}
         width={88}
         height={88}
         src={'/images/logo.png'}
         alt={ClientConfig.name}
       />
-      <div onClick={onDownload} className={styles.intro}>{t('banner.OpenApp')}</div>
+      <div className={styles.intro}>{t('banner.OpenApp')}</div>
     </div>
 
     <button onClick={onDownload} className={styles.openBtn}>
