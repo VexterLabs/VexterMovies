@@ -179,7 +179,8 @@ const PcEpisode: FC<IProps> = (
 
         <div className={styles.videoInfo}>
           <h1 className={styles.videoTitle}>
-            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+            {bookInfo.bookName}
+            <span>{` ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`} </span>
           </h1>
           <div className={styles.videoStar}>
             <ImagePline

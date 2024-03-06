@@ -195,7 +195,8 @@ const WapEpisode: FC<IProps> = (
         </div>
         <div className={styles.videoIntro}>
           <h1 className={styles.videoTit}>
-            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+            {bookInfo.bookName}
+            <span>{` ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}</span>
           </h1>
           <div className={styles.videoScore}>
             <ImagePline

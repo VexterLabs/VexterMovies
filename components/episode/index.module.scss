@@ -87,6 +87,12 @@
         line-height: 0.42rem;
         font-weight: 500;
         margin-bottom: 0.08rem;
+
+        span {
+          &::before {
+            content: " - ";
+          }
+        }
       }
 
       .videoScore {
