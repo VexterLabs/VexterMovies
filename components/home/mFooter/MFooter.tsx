@@ -5,7 +5,7 @@ import ClientConfig from "@/client.config";
 import ImagePline from "@/components/common/image/ImagePline";
 import { useRouter } from "next/router";
 import useHiveLog from "@/hooks/useHiveLog";
-import styles from '@/components/layout/mFooter/MFooter.module.scss';
+import styles from '@/components/home/mFooter/MFooter.module.scss';
 
 interface IProps {}
 

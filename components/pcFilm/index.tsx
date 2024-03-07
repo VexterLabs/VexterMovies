@@ -9,7 +9,6 @@ import PcLike from '@/components/pcFilm/pcLike';
 import Breadcrumb, { IBreadcrumb } from "@/components/common/breadcrumb";
 import PcShare from "@/components/pcFilm/share";
 import styles from "@/components/pcFilm/index.module.scss";
-import classNames from "classnames";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -82,7 +81,7 @@ const PcFilm: FC<IProps> = (
                 src={'/images/book/play-pc.png'}
                 alt={''}
               />
-              <span>{t("home.play")}</span>
+              <span>{t("bookInfo.playNow")}</span>
             </Link> : null}
 
             <PcShare bookInfo={bookInfo} />

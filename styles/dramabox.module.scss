@@ -49,6 +49,8 @@ $m_mark_bg: rgba(0, 0, 0, 0.7);
 $m_tag_color: #222222;
 
 @mixin m_footer_ad {
-  background-color: rgba(255,255,255,0.9);
-  box-shadow: 0 .08rem .32rem 0 rgba(0,0,0,0.2);
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 .08rem .32rem 0 rgba(0, 0, 0, 0.2);
 }
+
+$m_swiper_dot_bg: rgba(0, 0, 0, 0.12);

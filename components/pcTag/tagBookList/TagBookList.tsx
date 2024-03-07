@@ -104,7 +104,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
               src={'/images/book/bookinfo_play.png'}
               alt={ClientConfig.name}
             />
-            {t('home.play')}
+            {t("bookInfo.playNow")}
           </Link> : null
         }
       </div>

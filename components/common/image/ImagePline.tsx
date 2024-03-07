@@ -1,5 +1,5 @@
-import React, { FC, useMemo } from 'react'
-import Image from 'next/image'
+import React, { FC, useMemo } from 'react';
+import Image from 'next/image';
 import { ImageProps } from "next/dist/shared/lib/get-img-props";
 
 /**

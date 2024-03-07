@@ -1,11 +1,10 @@
-import { Swiper } from 'antd-mobile'
-import React, { FC } from 'react'
-import styles from '@/components/home/swiperNormal/SwiperNormal.module.scss'
+import React, { FC } from 'react';
+import { Swiper } from 'antd-mobile';
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
-import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
+import styles from '@/components/home/swiperNormal/SwiperNormal.module.scss';
 
 interface IProps {
   bigList: IBookItem[];

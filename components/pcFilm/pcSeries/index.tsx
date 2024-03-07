@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import classNames from "classnames";

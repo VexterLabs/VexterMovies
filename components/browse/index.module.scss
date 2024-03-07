@@ -2,7 +2,7 @@
 
   :global {
     .adm-dropdown-popup {
-      top: 0.88rem !important;
+      top: 2.08rem !important;
     }
     .adm-dropdown-item-content {
       background: $m_browse_bg !important;
@@ -18,8 +18,8 @@
     flex-direction: row;
     padding: 0.12rem 0 0.12rem 0.32rem;
     height: 0.8rem;
-    position: fixed;
-    top: 0.88rem;
+    position: sticky;
+    top: 2.06rem;
     left: 0;
     z-index: 9;
     width: 100%;
@@ -80,7 +80,7 @@
   }
 
   .browseContent {
-    padding: 0.96rem 0 1.2rem;
+    padding: 0.16rem 0 1.44rem;
 
     .browseContent2 {
       padding: 0 0.32rem;

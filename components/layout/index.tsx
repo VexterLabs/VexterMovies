@@ -7,15 +7,14 @@ import useLogParams from "@/hooks/useLogParams";
 import { useAppDispatch, useAppSelector } from "@/store";
 import { setDevice, setFooterAdVisible } from "@/store/modules/app.module";
 import { EDevice } from "@/store/store.interfaces";
-import MHeader from "@/components/layout/mHeader/MHeader";
 import FooterAd from "@/components/layout/footerAd";
-import classNames from "classnames";
 import { useRouter } from "next/router";
+import MHeader from "@/components/layout/mHeader/MHeader";
 import styles from "@/components/layout/index.module.scss";
 
 interface IProps {
   children: React.ReactNode;
-  pageProps: any
+  pageProps: any;
 }
 
 const DLayout: FC<IProps> = ({ children, pageProps }) => {

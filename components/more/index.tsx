@@ -1,5 +1,4 @@
-import React, { FC } from 'react'
-import styles from '@/components/more/index.module.scss'
+import React, { FC } from 'react';
 import { useTranslation } from "next-i18next";
 import { ColumnNameRoute, IHomeResItem } from "@/typings/home.interface";
 import Link from "next/link";
@@ -8,6 +7,7 @@ import FirstItem from "@/components/home/firstItem/FirstItem";
 import MorePagination from "@/components/more/pagination/MorePagination";
 import { MEmpty } from "@/components/common/empty";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/components/more/index.module.scss';
 
 interface IProps {
   moreData: IHomeResItem;

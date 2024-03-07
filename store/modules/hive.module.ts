@@ -53,7 +53,7 @@ const getCopyText = (clipboard: IClipboard) => {
     }))
     return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&lpat=${androidClip} UA8322`
   }
-  return `[dramaBox]https://app.dramaboxdb.com/${ isIos(ua) ? 'ios' : 'android' }/open?c=${ queryStr } UA8322`
+  return `[dramaBox]https://app.dramaboxdb.com/ios/open?c=${ queryStr } UA8322`
 }
 
 export const hiveSlice = createSlice<IHiveStore, SliceCaseReducers<IHiveStore>>({

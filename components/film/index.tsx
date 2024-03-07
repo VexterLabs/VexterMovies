@@ -12,8 +12,8 @@ import LikeItem from "@/components/film/likeItem/LikeItem";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 import WapShare from "@/components/film/wapShare";
-import styles from "@/components/film/index.module.scss";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/film/index.module.scss";
 
 interface IProps {
   breadData: IBreadcrumb[];
@@ -85,7 +85,7 @@ const MFilm: FC<IProps> = (
             src={'/images/book/play-d.png'}
             alt={''}
           />
-          <span>{t("home.play")}</span>
+          <span>{t("bookInfo.playNow")}</span>
         </Link>
       </div>
 

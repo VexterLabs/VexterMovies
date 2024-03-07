@@ -48,5 +48,7 @@ $m_mark_bg: transparent;
 $m_tag_color: rgba(255, 255, 255, 0.6);
 
 @mixin m_footer_ad {
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
 }
+
+$m_swiper_dot_bg: rgba(255, 255, 255, 0.12);

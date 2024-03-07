@@ -63,12 +63,12 @@ export enum ELanguage {
   Korean = 'ko', // 韩语
 }
 
-export const LanguageActions: { text: string; key: ELanguage }[] = [
-  { text: 'English', key: ELanguage.English },
-  { text: 'Español', key: ELanguage.Spanish },
-  { text: '简体中文', key: ELanguage.ZhHans },
-  { text: '繁體中文', key: ELanguage.Zh },
-  { text: '한국인', key: ELanguage.Korean },
+export const LanguageActions: { text: string; key: ELanguage; label: string; }[] = [
+  { text: 'English', key: ELanguage.English, label: "EN" },
+  { text: 'Español', key: ELanguage.Spanish, label: "ESP" },
+  { text: '简体中文', key: ELanguage.ZhHans, label: "CN" },
+  { text: '繁體中文', key: ELanguage.Zh, label: "TC" },
+  { text: '한국인', key: ELanguage.Korean, label: "KO" },
 ]
 
 export enum EHomeName {

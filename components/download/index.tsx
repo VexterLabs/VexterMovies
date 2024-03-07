@@ -6,8 +6,8 @@ import Image from "next/image";
 import { netIpUa } from "@/server/clientLog";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
-import styles from '@/components/download/index.module.scss';
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/components/download/index.module.scss';
 
 interface IProps {
   isApple: boolean;

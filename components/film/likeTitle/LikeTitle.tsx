@@ -1,8 +1,7 @@
-import React, { FC } from 'react'
-import styles from '@/components/film/likeTitle/LikeTitle.module.scss'
+import React, { FC } from 'react';
 import Link from "next/link";
-import Image from "next/image";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/components/film/likeTitle/LikeTitle.module.scss';
 
 interface IProps {
   title: string;

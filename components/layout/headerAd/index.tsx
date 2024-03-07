@@ -7,11 +7,10 @@ import { isIos } from "@/utils/ownOs";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
 import Image from "next/image";
-import styles from './index.module.scss';
 import classNames from "classnames";
+import styles from '@/components/layout/headerAd/index.module.scss';
 
-interface IProps {
-}
+interface IProps {}
 
 const HeaderAd: FC<IProps> = () => {
   const { t } = useTranslation()
@@ -30,7 +29,7 @@ const HeaderAd: FC<IProps> = () => {
   const onDownload = () => {
     netIpUa(clipboard);
     onCopyText(copyText, () => {
-      HiveLog.trackDownload('BannerDownloadButton_Click');
+      HiveLog.trackDownload('HeaderDownloadButton_Click');
       window.location.href = shopLink;
     })
   }

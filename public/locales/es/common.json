@@ -1,6 +1,7 @@
 {
   "home": {
     "home": "Inicio",
+    "recommend": "Recomendación",
     "browse": "Categorías",
     "app": "App",
     "more": "Más",
@@ -24,6 +25,7 @@
     "all": "Todos"
   },
   "bookInfo": {
+    "playNow": "Reproducir de inmediato",
     "more": "más",
     "viewMore": "Ver más",
     "introduction": "Introducción",
@@ -33,7 +35,8 @@
     "firstChapterTip": "Ya el primer capítulo",
     "like": "Puede que también te guste",
     "relatedEpisodes": "Episodios Relacionados",
-    "episodesDownload": "Descargue la aplicación para seguir viéndolo.",
+    "downloadTip": "Es necesario descargar este episodio para verlo",
+    "episodesDownload": "Descargar la aplicación",
     "episodes": "Episodios",
     "first": "Episodios",
     "episode": "",

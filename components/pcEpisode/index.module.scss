@@ -70,8 +70,9 @@
           .downTip {
             font-size: 0.2rem;
             color: #FFFFFF;
-            white-space: nowrap;
             margin-bottom: 0.24rem;
+            max-width: 3.5rem;
+            text-align: center;
           }
 
           .btnDown {
@@ -84,6 +85,16 @@
             font-size: 0.18rem;
             font-weight: 500;
             color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 2.5rem;
+
+            .btnIcon {
+              width: 0.22rem;
+              height: 0.22rem;
+              margin-right: 0.08rem;
+            }
           }
         }
       }

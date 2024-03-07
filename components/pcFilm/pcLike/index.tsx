@@ -69,7 +69,7 @@ const PcLike: FC<IProps> = ({ dataSource = [], onBookClick, onChannel }) => {
           </Link>
           {typeTwoIds && typeTwoIds.length > 0 ?
             <Link
-              onClick={(e) => onChannel(typeTwoName)}
+              onClick={() => onChannel(typeTwoName)}
               href={`/browse/${typeTwoIds?.[0]}`}
               className={styles.tagItem}>{typeTwoName}</Link> : null
           }

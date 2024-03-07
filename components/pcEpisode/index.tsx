@@ -12,9 +12,9 @@ import { Ellipsis } from "antd-mobile";
 import useHiveLog from "@/hooks/useHiveLog";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import styles from "@/components/pcEpisode/index.module.scss";
 import PcShare from "@/components/pcFilm/share";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/pcEpisode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -173,7 +173,17 @@ const PcEpisode: FC<IProps> = (
                 chapterName: chapterList?.[currentPage]?.name,
               })
             }}>
-            <div className={styles.btnDown}>{t('bookInfo.episodesDownload')}</div>
+            <div className={styles.downTip}>{t('bookInfo.downloadTip')}</div>
+            <button className={styles.btnDown}>
+              <Image
+                className={styles.btnIcon}
+                width={40}
+                height={40}
+                src={'/images/download/download-icon.png'}
+                alt=''/>
+
+              {t('bookInfo.episodesDownload')}
+            </button>
           </Link> : null}
         </div>
 

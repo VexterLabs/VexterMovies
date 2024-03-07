@@ -12,9 +12,11 @@ interface IProps {
   closeDialog: Function;
   bookInfo: IBookItem;
   chooseEpisode?: (item: IChapterList, index: number) => void;
+  chapterId?: string;
 }
 
-const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, bookInfo, isShallow = false, chooseEpisode}) => {
+const EpisopeDialog: FC<IProps> = (
+  {chapterList = [], showDialog, closeDialog, bookInfo, isShallow = false, chooseEpisode, chapterId}) => {
   const [curIndex, setCurIndex] = useState<number>(0)
   const navRef = useRef<HTMLDivElement>(null);
   const setCurIndexInd = (i: number) => {
@@ -67,7 +69,9 @@ const EpisopeDialog: FC<IProps> = ({chapterList = [], showDialog, closeDialog, b
             onClick={() => {
               chooseEpisode && chooseEpisode(item, ind)
             }}>
-            <div className={ classNames(styles.episodeItem, !item.unlock && styles.episodeItemLock)} onClick={() => {closeDialog()}}>
+            <div
+              className={classNames(styles.episodeItem, !item.unlock && styles.episodeItemLock, chapterId === item.id && styles.episodeItemActive)}
+              onClick={() => {closeDialog()}}>
               <span>{item.index + 1}</span>
               {item.unlock ? null : <ImagePline
                 className={styles.episodeItemIcon}

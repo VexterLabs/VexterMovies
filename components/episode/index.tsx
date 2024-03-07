@@ -20,6 +20,7 @@ import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 import WapShare from "@/components/film/wapShare";
 import ImagePline from "@/components/common/image/ImagePline";
+import classNames from "classnames";
 import styles from "@/components/episode/index.module.scss";
 
 interface IProps {
@@ -177,15 +178,22 @@ const WapEpisode: FC<IProps> = (
         <div className={styles.videoArea}>
           <div id='mPlay' className={styles.videoPlace}/>
           {isUnLock ? null : <div className={styles.downloads}>
-            <Image
-              className={styles.errBg}
-              width={360}
-              height={563}
-              src={chapterList?.[currentPage]?.cover || bookInfo.cover}
-              alt=''/>
+            {/*<Image*/}
+            {/*  className={styles.errBg}*/}
+            {/*  width={360}*/}
+            {/*  height={563}*/}
+            {/*  src={chapterList?.[currentPage]?.cover || bookInfo.cover}*/}
+            {/*  alt=''/>*/}
             <div className={styles.downInfo}>
+              <div className={styles.downTip}>{t('bookInfo.downloadTip')}</div>
               <button className={styles.btnDown} onClick={onDownload}>
-                {t('bookInfo.episodesDownload')}
+                <Image
+                  className={styles.btnIcon}
+                  width={40}
+                  height={40}
+                  src={'/images/download/download-icon.png'}
+                  alt=''/>
+                <span>{t('bookInfo.episodesDownload')}</span>
               </button>
             </div>
           </div>}
@@ -258,7 +266,10 @@ const WapEpisode: FC<IProps> = (
               const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterItem.id}_Episode-${index + 1}` : `/episode/${bookInfo.bookId}/${chapterItem.id}`;
               return <div className={styles.epiOuter} key={chapterItem.id}>
                 <Link
-                  className={chapterItem.unlock ? styles.epiItem : styles.epiItemMask}
+                  className={classNames(
+                    styles.epiItem,
+                    !chapterItem.unlock && styles.epiItemMask,
+                    chapterItem.id === chapterList?.[currentPage]?.id && styles.epiItemActive)}
                   href={routerToVideoInfo}
                   shallow
                   replace
@@ -303,6 +314,7 @@ const WapEpisode: FC<IProps> = (
     <EpisopeDialog
       isShallow={true}
       bookInfo={bookInfo}
+      chapterId={chapterList?.[currentPage]?.id}
       chapterList={chapterList}
       closeDialog={closeEpisodeDialog}
       showDialog={showDialog}

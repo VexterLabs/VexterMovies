@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Popover } from "antd-mobile";
 import { LanguageActions } from "@/typings/home.interface";
 import { Action } from "antd-mobile/2x/es/components/popover";
@@ -8,21 +8,21 @@ import styles from "@/components/layout/pcHeader/PcHeader.module.scss";
 
 const Language = () => {
   const router = useRouter();
-  const _index = LanguageActions.findIndex(val => val.key === router.locale);
-  const [language, setLanguage] = useState(_index !== -1 ? LanguageActions[_index].text : LanguageActions[0].text);
-  useEffect(() => {
+
+  const language = useMemo(() => {
     const ind = LanguageActions.findIndex(val => val.key === router.locale);
-    setLanguage(ind !== -1 ? LanguageActions[_index].text : LanguageActions[0].text);
-  }, [router.locale, router]) // eslint-disable-line
+    return ind !== -1 ? LanguageActions[ind].text : LanguageActions[0].text;
+  }, [router.locale]);
+
   const [visible, setVisible] = useState(false);
   // 切换语言
   const changeLanguage = (item: Action) => {
-    setLanguage(item.text as string)
-    if (router.pathname.includes('/browse/[typeTwoId]')) {
-      router.replace('/browse', undefined, { locale: item.key as string })
-    } else {
-      router.replace(router.asPath, router.asPath, { locale: item.key as string })
-    }
+    router.replace(router.asPath, router.asPath, { locale: item.key as string })
+    // if (router.pathname.includes('/browse/[typeTwoId]')) {
+    //   router.replace('/browse', undefined, { locale: item.key as string })
+    // } else {
+    //   router.replace(router.asPath, router.asPath, { locale: item.key as string })
+    // }
   }
 
   const _LanguageActions = useMemo(() => {

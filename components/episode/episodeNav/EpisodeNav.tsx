@@ -77,7 +77,6 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
         src={'/images/pline/m-download.png'}
         alt={''}
       />
-      {/* <span>{t('home.termsOfUse')}</span> */}
       <span>{t('appPage.download')}</span>
     </div>
   </div>

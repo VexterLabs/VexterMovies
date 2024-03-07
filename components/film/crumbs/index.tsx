@@ -1,10 +1,9 @@
-import Link from "next/link";
-import styles from "@/components/film/crumbs/index.module.scss";
 import React, { FC } from "react";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import { IBookItem } from "@/typings/home.interface";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/film/crumbs/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;

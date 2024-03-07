@@ -1,10 +1,9 @@
 import Link from "next/link";
 import React, { CSSProperties, FC } from "react";
-import Image from "next/image";
-import styles from "@/components/common/breadcrumb/index.module.scss";
 import classNames from "classnames";
 import useHiveLog from "@/hooks/useHiveLog";
 import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/common/breadcrumb/index.module.scss";
 
 export interface IBreadcrumb {
   title: string | number;

@@ -124,6 +124,10 @@
       .episodeItemLock {
         color: $pc_series_color;
       }
+
+      .episodeItemActive {
+        color: $theme_color;
+      }
     }
   }
 

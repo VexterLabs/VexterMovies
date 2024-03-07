@@ -8,8 +8,8 @@ import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
 import Image from "next/image";
 import ImagePline from "@/components/common/image/ImagePline";
-import styles from './index.module.scss';
 import classNames from "classnames";
+import styles from '@/components/layout/footerAd/index.module.scss';
 
 interface IProps {
   adClose: () => void;

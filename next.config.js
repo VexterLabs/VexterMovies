@@ -33,8 +33,8 @@ const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
 const Platform = 'dramaboxapp'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 
-const buildId = `${Platform}_20240304`; // 构建ID
-const WebDomain = Platform === "dramabox" ? NewWebDomainObj[environment] : WebDomainObj[environment];
+const buildId = `${Platform}_20240307`; // 构建ID
+const WebDomain = Platform === "dramaboxapp" ? NewWebDomainObj[environment] : WebDomainObj[environment];
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
 process.title = `next-${buildId}`;
@@ -48,7 +48,6 @@ console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ �
 
 const nextConfig = {
   reactStrictMode: true,
-  // cleanDistDir: true,
   // Configuring the Build ID
   generateBuildId: async () => {
     return buildId;
