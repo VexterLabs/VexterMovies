@@ -80,7 +80,6 @@
         position: relative;
         display: inline-block;
         font-size: 0.28rem;
-        // border: 1px solid red;
         color: #FF375F;
       }
     }
@@ -93,41 +92,36 @@
     grid-row-gap: 0.1rem;
     padding: 0 0.32rem;
 
-    .linkBox {
+    .episodeItem {
+      position: relative;
+      display: inline-block;
+      width: 1.3rem;
+      height: 1rem;
+      background-color: $pc_series_bg;
+      border: 1px solid $pc_detail_bg;
+      border-radius: 0.08rem;
+      color: $pc_crumbs_color;
+      font-weight: 500;
+      line-height: 1rem;
+      text-align: center;
+      font-size: 0.28rem;
 
-      .episodeItem {
-        position: relative;
-        display: inline-block;
-        width: 1.3rem;
-        height: 1rem;
-        background-color: $pc_series_bg;
-        border: 1px solid $pc_detail_bg;
-        border-radius: 0.08rem;
-        color: $pc_crumbs_color;
-        font-weight: 500;
-        line-height: 1rem;
-        text-align: center;
-        font-size: 0.28rem;
-
-        .episodeItemIcon {
-          position: absolute !important;
-          right: 0.08rem;
-          top: 0.08rem;
-          content: '';
-          display: block;
-          overflow: hidden;
-          width: 0.24rem;
-          height: 0.24rem;
-        }
+      .episodeItemIcon {
+        position: absolute !important;
+        right: 0.08rem;
+        top: 0.08rem;
+        z-index: 1;
+        width: 0.24rem;
+        height: 0.24rem;
       }
+    }
 
-      .episodeItemLock {
-        color: $pc_series_color;
-      }
+    .episodeItemLock {
+      color: $pc_series_color;
+    }
 
-      .episodeItemActive {
-        color: $theme_color;
-      }
+    .episodeItemActive {
+      color: $theme_color;
     }
   }
 
