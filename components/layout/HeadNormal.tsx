@@ -85,9 +85,10 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
     } else {
       return <>
         <link rel="alternate" hrefLang={ELanguage.English} href={getUrl(ELanguage.English)}/>
-        <link rel="alternate" hrefLang={ELanguage.Korean} href={getUrl(ELanguage.Korean)}/>
         <link rel="alternate" hrefLang={ELanguage.ZhHans} href={getUrl(ELanguage.ZhHans)}/>
         <link rel="alternate" hrefLang={ELanguage.Zh} href={getUrl(ELanguage.Zh)}/>
+        <link rel="alternate" hrefLang={ELanguage.Korean} href={getUrl(ELanguage.Korean)}/>
+        {/*<link rel="alternate" hrefLang={ELanguage.Spanish} href={getUrl(ELanguage.Spanish)}/>*/}
       </>
     }
   }
