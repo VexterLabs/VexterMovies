@@ -1,11 +1,10 @@
 .tagWrap {
-  background-color: #040404;
-  font-family: Ubuntu-Regular, Ubuntu;
+  background-color: $theme_bg;
 
   .container {
     width: 14.4rem;
     margin: 0 auto;
-    background-color: #000000;
+    background-color: $theme_main_bg;
     height: 100%;
     min-height: calc(100vh - 2.6rem);
     padding-bottom: 0.88rem;
@@ -15,7 +14,7 @@
       align-items: center;
       height: 0.80rem;
       padding: 0 0.12rem;
-      border-bottom: 1px solid rgba(255,255,255,0.16);
+      border-bottom: $pc_detail_header_border;
     }
   }
 
@@ -27,14 +26,13 @@
       color: $theme_color;
       font-weight: bold;
       line-height: 0.32rem;
-      font-family: Ubuntu-Bold, Ubuntu;
     }
 
     .sub {
       margin: 0.1rem 0 0.3rem;
       font-size: 0.14rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.8);
+      color: $pc_crumbs_color;
       line-height: 0.16rem;
       white-space: pre-wrap;
       span {
@@ -49,9 +47,8 @@
         margin-bottom: 0.08rem;
         font-size: 0.14rem;
         font-weight: bold;
-        color: rgba(255,255,255,0.8);
+        color: $pc_crumbs_color;
         line-height: 0.16rem;
-        font-family: SFPro-Bold, SFPro;
       }
 
       .keywordConnectItem {
@@ -59,7 +56,7 @@
         font-size: 0.16rem;
         padding: 0.06rem 0.08rem;
         margin-right: 0.16rem;
-        background: rgba(255,255,255,0.1);
+        background: $pc_detail_bg;
         border-radius: 16px;
         color: $theme_color;
         margin-bottom: 0.16rem;

@@ -12,6 +12,7 @@ import LikeItem from "@/components/film/likeItem/LikeItem";
 import { Ellipsis } from "antd-mobile";
 import EpisodeNav from "@/components/episode/episodeNav/EpisodeNav";
 import WapShare from "@/components/film/wapShare";
+import ImagePline from "@/components/common/image/ImagePline";
 import styles from "@/components/film/index.module.scss";
 
 interface IProps {
@@ -56,7 +57,7 @@ const MFilm: FC<IProps> = (
     <div className={styles.detailBox}>
       <Image
         onError={onImgError}
-        className={styles.bookCover}
+        className={process.env.Platform === 'dramabox' ? styles.bookCoverNew : styles.bookCover}
         width={280}
         height={378}
         src={bookInfo.cover}
@@ -76,7 +77,7 @@ const MFilm: FC<IProps> = (
       </div> : null}
 
       <div className={styles.footerBox}>
-        <Link rel={"nofollow"} className={styles.footerBtn} href={`/episode/${bookInfo.bookId}`}>
+        <Link rel={"nofollow"} className={styles.footerBtn} href={process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterList?.[0]?.id || ''}_Episode-1` : `/episode/${bookInfo.bookId}/${chapterList?.[0]?.id || ''}`}>
           <Image
             className={styles.playIcon}
             width={48}
@@ -84,7 +85,7 @@ const MFilm: FC<IProps> = (
             src={'/images/book/play-d.png'}
             alt={''}
           />
-          <span>{t("home.play")}</span>
+          <span>{t("bookInfo.playNow")}</span>
         </Link>
       </div>
 
@@ -97,20 +98,20 @@ const MFilm: FC<IProps> = (
           direction='end'
           expandText={<span className={styles.expand}>
             {t("home.more")}
-            <Image
+            <ImagePline
               className={styles.moreIcon}
               width={24}
               height={24}
-              src={'/images/episode/wap-more.png'}
+              src={'/images/pline/wap-more.png'}
               alt={''}
             />
           </span>}
           collapseText={<span className={styles.retract}>
-            <Image
+            <ImagePline
               className={styles.moreIcon}
               width={24}
               height={24}
-              src={'/images/episode/wap-more.png'}
+              src={'/images/pline/wap-more.png'}
               alt={''}
             />
           </span>}
@@ -124,11 +125,11 @@ const MFilm: FC<IProps> = (
           <p className={styles.innerPt}>{t('bookInfo.episodeList')}</p>
           <p className={styles.innerPl}>({chapterList && chapterList.length} {t('bookInfo.episodes')})</p>
         </div>
-        <Image
+        <ImagePline
           className={styles.arrowIcon}
           width={24}
           height={24}
-          src={'/images/book/arrow-r-d.png'}
+          src={'/images/pline/arrow-r-d.png'}
           alt={''}
         />
       </div>

@@ -1,6 +1,7 @@
 {
   "home": {
     "home": "首页",
+    "recommend": "推荐",
     "browse": "分类",
     "app": "App",
     "more": "更多",
@@ -24,6 +25,7 @@
     "all": "全部"
   },
   "bookInfo": {
+    "playNow": "立即播放",
     "more": "更多",
     "viewMore": "查看更多",
     "introduction": "简介",
@@ -33,7 +35,8 @@
     "firstChapterTip": "当前已在第一页",
     "like": "你也许也喜欢",
     "relatedEpisodes": "相关剧集",
-    "episodesDownload": "下载应用程序继续观看",
+    "downloadTip": "本集需要下载App观看",
+    "episodesDownload": "下载应用",
     "episodes": "集",
     "first": "第",
     "episode": "集",

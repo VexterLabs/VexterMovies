@@ -7,7 +7,9 @@ import { isIos } from "@/utils/ownOs";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
 import Image from "next/image";
-import styles from './index.module.scss';
+import ImagePline from "@/components/common/image/ImagePline";
+import classNames from "classnames";
+import styles from '@/components/layout/footerAd/index.module.scss';
 
 interface IProps {
   adClose: () => void;
@@ -42,25 +44,25 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
     })
   }
 
-   return <div className={styles.adWrap}>
-    <div className={styles.adLeft}>
+   return <div className={classNames(styles.adWrap, process.env.Platform !== 'dramabox' && styles.adBg)}>
+     <ImagePline
+       onClick={() => fAdClose()}
+       className={styles.adClose}
+       width={48}
+       height={48}
+       src={'/images/pline/footer-close.png'}
+       alt={ClientConfig.name}
+     />
+
+    <div className={styles.adLeft} onClick={onDownload}>
       <Image
-        onClick={() => fAdClose()}
-        className={styles.adClose}
-        width={48}
-        height={48}
-        src={'/images/ad/close_footer_ad.png'}
-        alt={ClientConfig.name}
-      />
-      <Image
-        onClick={onDownload}
         className={styles.logo}
         width={88}
         height={88}
         src={'/images/logo.png'}
         alt={ClientConfig.name}
       />
-      <div onClick={onDownload} className={styles.intro}>{t('banner.OpenApp')}</div>
+      <div className={styles.intro}>{t('banner.OpenApp')}</div>
     </div>
 
     <button onClick={onDownload} className={styles.openBtn}>

@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useState } from 'react'
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import { onImgError } from "@/components/common/image/ImageCover";
+import ImagePline from "@/components/common/image/ImagePline";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import styles from "@/components/pcEpisode/relatedEpisode/index.module.scss";
@@ -37,33 +37,35 @@ const RelatedEpisode: FC<IProps> = ({ current, chapterList = [], bookInfo, onCho
     <div className={styles.relatedTitle}>{t("bookInfo.relatedEpisodes")}</div>
     <div className={styles.listInfo}>
       { relatedList.map((item, index) => {
-        const routerToVideoInfo = `/episode/${bookInfo.bookId}/${item.id}`;
+        const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${item.id}_Episode-${index + 1}` :  `/episode/${bookInfo.bookId}/${item.id}`;
         const isShow = index !== 0 && index <= (chapterList.length > 18 ? 18 : chapterList.length) || (index === 0 && chapterList.length === 1);
         return <div key={item.id} className={styles.listItem} style={isShow? {} : { display: 'none' }}>
-          <Link
+          <ImageCover
+            scale={true}
+            onClick={() => onChooseEpisode(index,item.id)}
+            href={routerToVideoInfo}
             className={styles.imgBox}
+            shallow={true}
+            replace={true}
+            width={88}
+            height={117}
+            src={item.cover || bookInfo.cover}
+            alt={item.name}
+          />
+          { !item.unlock ? <Link
+            className={styles.imageMark}
             href={routerToVideoInfo}
             onClick={() => onChooseEpisode(index,item.id)}
             shallow
             replace>
-            <Image
-              className={styles.imageItem}
-              onError={onImgError}
-              width={88}
-              height={117}
-              src={item.cover || bookInfo.cover}
-              alt={item.name}
+            <ImagePline
+              className={styles.lockIcon}
+              width={24}
+              height={24}
+              src={'/images/pline/lock.png'}
+              alt={''}
             />
-            { !item.unlock ? <div className={styles.imageMark}>
-              <Image
-                className={styles.lockIcon}
-                width={24}
-                height={24}
-                src={'/images/book/lock-video.png'}
-                alt={''}
-              />
-            </div> : null }
-          </Link>
+          </Link> : null }
           <Link
             className={styles.rightIntro}
             href={routerToVideoInfo}

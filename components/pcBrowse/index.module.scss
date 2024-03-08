@@ -1,6 +1,6 @@
 .browseWrap {
   padding: 0.4rem 0 0.6rem;
-  background-color: #000000;
+  background-color: $theme_main_bg;
   min-height: calc(100vh - 2.6rem);
 
   .container {
@@ -11,7 +11,7 @@
   .browseHeader {
     width: 100%;
     min-height: 0.4rem;
-    background-color: rgba(255,255,255,0.08);
+    background-color: $pc_home_swiper_bg;
     border-radius: 0.04rem;
     margin-bottom: 0.4rem;
 
@@ -62,7 +62,7 @@
 
           .adm-tabs-tab {
             a {
-              color: rgba(255,255,255,0.9);
+              color: $pc_home_name_color;
             }
           }
 
@@ -102,7 +102,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        color: rgba(255,255,255,0.9);
+        color: $pc_home_name_color;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -117,7 +117,7 @@
       .tabItemActive {
         color: $theme_color;
         font-weight: 500;
-        background-color: rgba(255,255,255,0.08);
+        background-color: $pc_home_swiper_bg_hover;
       }
     }
   }

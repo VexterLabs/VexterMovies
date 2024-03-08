@@ -7,6 +7,7 @@ import { netIpUa } from "@/server/clientLog";
 import useHiveLog from "@/hooks/useHiveLog";
 import { IBookItem } from "@/typings/home.interface";
 import { useAppSelector } from "@/store";
+import ImagePline from "@/components/common/image/ImagePline";
 import ClientConfig from "@/client.config";
 import styles from '@/components/episode/episodeNav/EpisodeNav.module.scss';
 
@@ -29,9 +30,6 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
       return ClientConfig.ios.universalLink + queryStr;
     }
     return ClientConfig.android.link;
-    // const { bid, cid, channelCode } = state.hive.clipboard;
-    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
   });
 
   const onDownload = () => {
@@ -42,20 +40,22 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
     });
   }
 
+  const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterId}_Episode-1` :  `/episode/${bookInfo.bookId}/${chapterId || ''}`;
+
+
   return <div className={styles.navBox}>
     <div className={styles.episodesIcon} onClick={() => {showEpisodeDialog()}}>
-      <Image
+      <ImagePline
         className={styles.navIcon}
         width={64}
         height={64}
-        src={'/images/book/episode-d.png'}
-        alt={'more'}
+        src={'/images/pline/m-episode.png'}
+        alt={''}
       />
-      {/* <span>{t('home.privacyPolicy')}</span> */}
       <span>{t('bookInfo.episodes')}</span>
     </div>
     <Link
-      href={`/episode/${bookInfo.bookId}/${chapterId || ''}`}
+      href={routerToVideoInfo}
       className={styles.playIcon}
       onClick={() => {
         HiveLog.track('Play_click')
@@ -65,20 +65,18 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
         width={64}
         height={64}
         src={'/images/book/botplay-d.png'}
-        alt={'more'}
+        alt={''}
       />
-      {/* <span>{t('home.termsOfUse')}</span> */}
       <span className={styles.playTxt}>{t('home.play')}</span>
     </Link>
     <div className={styles.downloadIcon} onClick={onDownload}>
-      <Image
+      <ImagePline
         className={styles.navIcon}
         width={64}
         height={64}
-        src={'/images/book/download-d.png'}
-        alt={'more'}
+        src={'/images/pline/m-download.png'}
+        alt={''}
       />
-      {/* <span>{t('home.termsOfUse')}</span> */}
       <span>{t('appPage.download')}</span>
     </div>
   </div>

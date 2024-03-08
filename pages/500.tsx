@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import styles from '@/styles/404.module.scss';
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,7 +6,8 @@ import { ELanguage } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import { useAppSelector } from '@/store';
 import { EDevice } from "@/store/store.interfaces";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
+import styles from '@/styles/404.module.scss';
 
 interface IProps {
 }
@@ -22,13 +22,13 @@ const Custom500: NextPage<IProps> = () => {
   return <>
 
     {device === EDevice.pc ? <div className={styles.pc404Wrap}>
-      <Image
+      <ImagePline
         className={styles.pcEmptyImg}
         width={320}
         height={240}
-        src={'/images/404/500.png'}
+        src={'/images/pline/500.png'}
         placeholder="blur"
-        blurDataURL={'/images/404/500.png'}
+        blurDataURL={'/images/pline/500.png'}
         alt={'500'}
       />
       <Link href="/" className={styles.pcIntro}>
@@ -37,13 +37,13 @@ const Custom500: NextPage<IProps> = () => {
     </div> : null}
 
     {device === EDevice.mobile && isShow ? <div className={styles.m404Wrap}>
-      <Image
+      <ImagePline
         className={styles.emptyImg}
         width={320}
         height={240}
-        src={'/images/404/500.png'}
+        src={'/images/pline/500.png'}
         placeholder="blur"
-        blurDataURL={'/images/404/500.png'}
+        blurDataURL={'/images/pline/500.png'}
         alt={'500'}
       />
 

@@ -17,16 +17,17 @@
     font-size: 0.14rem;
     cursor: pointer;
     border-radius: 0.04rem;
-    color: rgba(255,255,255,0.9);
-    background-color: rgba(255,255,255,0.08);
+    color: $pc_home_name_color;
+    background-color: $pc_home_swiper_bg;
     transition: all 0.3s;
 
     &:hover {
-      background-color: rgba(255,255,255,0.16);
+      background-color: $pc_page_active;
     }
   }
 
   .activePage {
+    color: rgba(255, 255, 255, 0.9);
     background-color: $theme_color;
   }
 
@@ -46,12 +47,12 @@
   .omission {
     border: none !important;
     margin: 0 0.04rem;
-    background-color: rgba(255,255,255,0.08) !important;
+    background-color: $pc_home_swiper_bg !important;
     cursor: default;
   }
 
   .prevNoMore, .nextNoMore {
     cursor: not-allowed;
-    background-color: rgba(255,255,255,0.08) !important;
+    background-color: $pc_home_swiper_bg !important;
   }
 }

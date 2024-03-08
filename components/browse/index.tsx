@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useRef } from "react";
-import styles from "@/components/browse/index.module.scss";
 import { IBookItem } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import { Tabs } from "antd-mobile";
@@ -10,6 +9,7 @@ import { IBrowseTypes } from "@/typings/browse.interface";
 import { useRouter } from "next/router";
 import { MEmpty } from "@/components/common/empty";
 import FirstItem from "@/components/home/firstItem/FirstItem";
+import styles from "@/components/browse/index.module.scss";
 
 interface IProps {
   bookList: IBookItem[];

@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 import { ISitemapField } from "next-sitemap/dist/@types/interface";
 import { netAllBook, netAllColumn, netBookDetail, netBrowseType, netKeywords } from "@/server/home";
 import dayjs from "dayjs";
-import { ColumnNameRoute, ELanguage } from "@/typings/home.interface";
+import { ColumnNameRoute, ELanguage, IBookItem } from "@/typings/home.interface";
 import { ESearchType, INetAllBookRes, INetAllColumnRes } from "@/typings/sitemap.interface";
 import { INetBrowseTypeRes } from "@/typings/browse.interface";
 import { IKeywordItem } from "@/typings/book.interface";
@@ -11,7 +11,7 @@ import { IKeywordItem } from "@/typings/book.interface";
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const sitemapBuilder = new SitemapBuilder()
   const lastmod = dayjs().day(1).format('YYYY-MM-DD');
-  const options: ISitemapField = { loc: 'https://www.dramaboxapp.com', changefreq: 'weekly', priority: 0.7, lastmod };
+  const options: ISitemapField = { loc: process.env.Platform === "dramabox" ? 'https://www.dramabox.com' : 'https://www.dramaboxapp.com', changefreq: 'weekly', priority: 0.7, lastmod };
   const { state = '' } = ctx.query as { state: string };
   const languageArr = Object.values(ELanguage);
   // 站内页
@@ -92,13 +92,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     allData.forEach(book => {
       const isNewBook = increaseData && increaseData.length > 0 && increaseData.findIndex(addBook => addBook.bookId === book.bookId) > 0;
+
+      const linkUrl = process.env.Platform === 'dramabox' ? `/drama/${book.bookId}/${book.bookNameEn || ''}` : `/film/${book.bookId}`
+
       fields.push({
         ...options,
         lastmod: isNewBook ? book.utime : options.lastmod,
         changefreq: isNewBook ? 'daily' : options.changefreq,
-        loc: `${options.loc}/film/${book.bookId}`,
+        loc: options.loc + linkUrl,
         alternateRefs: (book.languages || []).map(lan => {
-          let _loc = `/film/${book.bookId}`;
+          let _loc = linkUrl;
           if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
@@ -166,13 +169,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       increaseData = bookResponse
     }
     const fields = increaseData.map(book => {
+      const linkUrl = process.env.Platform === 'dramabox' ? `/drama/${book.bookId}/${book.bookNameEn || ''}` : `/film/${book.bookId}`
       return {
         ...options,
         changefreq: 'daily',
         lastmod: book.utime,
-        loc: `${options.loc}/film/${book.bookId}`,
+        loc: options.loc + linkUrl,
         alternateRefs: (book.languages || []).map(lan => {
-          let _loc = `/film/${book.bookId}`;
+          let _loc = linkUrl;
           if (lan !== ELanguage.English) {
             _loc = '/' + lan + _loc
           }
@@ -195,16 +199,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     // console.log(response);
     let fields = [] as ISitemapField[];
     if (response !== 'BadRequest_500' && response !== 'BadRequest_404'){
-      const { chapterList = [], languages = [] } = response;
+      const { chapterList = [], languages = [], book = {} as IBookItem } = response;
+
+      const { bookNameEn = '' } = book;
 
       fields = chapterList.map((val, index) => {
+        const linkUrl = process.env.Platform === 'dramabox' ? `/video/${bookId}_${bookNameEn}/${val.id}_Episode-${index + 1}` : `/episode/${bookId}/${val.id}`
         return {
           ...options,
           changefreq: val.new ? 'daily' : 'weekly',
           lastmod: val.new ? val.utime : lastmod,
-          loc: `${options.loc}/episode/${bookId}/${val.id}`,
+          loc: options.loc + linkUrl,
           alternateRefs: languages.map(lan => {
-            let _loc = `/episode/${bookId}/${val.id}`;
+            let _loc = linkUrl;
             if (lan !== ELanguage.English) {
               _loc = '/' + lan + _loc
             }

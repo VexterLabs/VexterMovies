@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { ELanguage } from "@/typings/home.interface";
 import Image from "next/image";
 import ClientConfig from "@/client.config";
-import { ImageCover, onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import styles from '@/components/pcTag/tagBookList/TagBookList.module.scss';
 
 interface IProps {
@@ -35,10 +35,13 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
         introduction,
         typeTwoList = [],
         firstChapterId,
+        bookNameEn = '',
       } = book;
       const bookNameDom = printKeyword(bookName, keyword)
       const introDom = printKeyword(introduction, keyword)
-      const linkUrl = `/film/${bookId}`;
+
+      const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
+
       const simpleLanguage = Object.values(ELanguage).includes(book.simpleLanguage) ? book.simpleLanguage : ELanguage.English;
 
       return <div key={bookId} className={styles.listItem}>
@@ -46,7 +49,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
         <ImageCover
           scale={true}
           onClick={() => onBookClick && onBookClick(book)}
-          href={linkUrl}
+          href={routerToBookInfo}
           locale={simpleLanguage}
           className={styles.bookImageBox}
           width={150}
@@ -58,7 +61,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
         <div className={styles.bookInfo}>
           <Link
             onClick={() => onBookClick && onBookClick(book)}
-            href={linkUrl}
+            href={routerToBookInfo}
             locale={simpleLanguage}
             className={styles.bookName}
             dangerouslySetInnerHTML={{ __html: bookNameDom }}
@@ -81,7 +84,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
 
           <Link
             onClick={() => onBookClick && onBookClick(book)}
-            href={linkUrl}
+            href={routerToBookInfo}
             locale={simpleLanguage}
             className={styles.intro}
             dangerouslySetInnerHTML={{ __html: introDom }}
@@ -101,7 +104,7 @@ const TagBookList: FC<IProps> = ({ dataSource, keyword, onBookClick }) => {
               src={'/images/book/bookinfo_play.png'}
               alt={ClientConfig.name}
             />
-            {t('home.play')}
+            {t("bookInfo.playNow")}
           </Link> : null
         }
       </div>

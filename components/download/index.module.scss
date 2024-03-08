@@ -1,5 +1,5 @@
 .downloadWrap {
-  padding: 0.32rem;
+  padding: 0.32rem 0.32rem 1.76rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -7,7 +7,7 @@
   .downloadHead {
     font-size: 0.38rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.9);
+    color: $pc_home_name_color;
     line-height: 0.53rem;
     text-align: center;
     height: 1.7rem;
@@ -51,7 +51,7 @@
     line-height: 0.40rem;
     margin-bottom: 0.24rem;
     white-space: pre-wrap;
-    color: rgba(255, 255, 255, 0.4);
+    color: $pc_home_intro_color;
   }
 }
 

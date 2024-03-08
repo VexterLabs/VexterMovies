@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import styles from '@/styles/404.module.scss';
 import Link from "next/link";
 import { GetStaticProps, NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -8,6 +7,7 @@ import { useTranslation } from "next-i18next";
 import { useAppSelector } from '@/store';
 import { EDevice } from "@/store/store.interfaces";
 import Image from "next/image";
+import styles from '@/styles/404.module.scss';
 
 interface IProps {
 }

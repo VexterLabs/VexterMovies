@@ -8,9 +8,9 @@
     justify-content: space-between;
     width: 100%;
     height: 2.20rem;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: $pc_series_border;
     border-radius: 8px;
-    background: rgba(255,255,255,0.1);
+    background: $pc_detail_bg;
     margin-bottom: 0.08rem;
     padding: 0.1rem 0.24rem 0.1rem 0.1rem;
 
@@ -31,7 +31,7 @@
         height: 0.32rem;
         font-size: 0.24rem;
         font-weight: 500;
-        color: rgba(255,255,255,0.9);
+        color: $pc_home_name_color;
         line-height: 0.32rem;
         overflow: hidden;
         white-space: nowrap;
@@ -48,11 +48,11 @@
 
 
         .bookLabel {
-          background-color: rgba(255,255,255,0.1);
+          background-color: $pc_detail_bg;
           border-radius: 0.12rem;
           font-size: 0.12rem;
           font-weight: 400;
-          color: rgba(255,255,255,0.6);
+          color: $pc_nav_color;
           max-width: 3rem;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -71,7 +71,7 @@
       .intro {
         margin-top: 0.12rem;
         max-height: 0.40rem;
-        color: rgba(255,255,255,0.6);
+        color: $pc_nav_color;
         font-size: 0.14rem;
         overflow: hidden;
         text-overflow: ellipsis;

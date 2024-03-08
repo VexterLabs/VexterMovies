@@ -12,8 +12,9 @@ import { Ellipsis } from "antd-mobile";
 import useHiveLog from "@/hooks/useHiveLog";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import styles from "@/components/pcEpisode/index.module.scss";
 import PcShare from "@/components/pcFilm/share";
+import ImagePline from "@/components/common/image/ImagePline";
+import styles from "@/components/pcEpisode/index.module.scss";
 
 interface IProps {
   bookInfo: IBookItem;
@@ -40,12 +41,14 @@ const PcEpisode: FC<IProps> = (
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({} as Player);
   const episodeIndex = useRef(current);
+
+  console.log('episodeIndex,', episodeIndex.current);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [errorBgsrc, setErrorBg] = useState('')
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
-    { title: bookInfo.bookName, link: `/film/${bookInfo.bookId}` },
+    { title: bookInfo.bookName, link: process.env.Platform === 'dramabox' ? `/drama/${bookInfo.bookId}/${bookInfo.bookNameEn || ''}` : `/film/${bookInfo.bookId}` },
     { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`},
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
@@ -109,7 +112,8 @@ const PcEpisode: FC<IProps> = (
       playerInstance.current.on(Events.ENDED, () => {
         const nextChapter = chapterList[episodeIndex.current + 1];
         if (nextChapter) {
-          router.replace(`/episode/${bookInfo.bookId}/${nextChapter.id}`, undefined, { shallow: true });
+          const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${nextChapter.id}_Episode-${episodeIndex.current + 2}` :  `/episode/${bookInfo.bookId}/${nextChapter.id}`;
+          router.replace(routerToVideoInfo, undefined, { shallow: true });
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
           if (!nextChapter.mp4 || !nextChapter.unlock) {
@@ -169,21 +173,32 @@ const PcEpisode: FC<IProps> = (
                 chapterName: chapterList?.[currentPage]?.name,
               })
             }}>
-            <div className={styles.btnDown}>{t('bookInfo.episodesDownload')}</div>
+            <div className={styles.downTip}>{t('bookInfo.downloadTip')}</div>
+            <button className={styles.btnDown}>
+              <Image
+                className={styles.btnIcon}
+                width={40}
+                height={40}
+                src={'/images/download/download-icon.png'}
+                alt=''/>
+
+              {t('bookInfo.episodesDownload')}
+            </button>
           </Link> : null}
         </div>
 
         <div className={styles.videoInfo}>
           <h1 className={styles.videoTitle}>
-            {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+            {bookInfo.bookName}
+            <span>{` ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`} </span>
           </h1>
           <div className={styles.videoStar}>
-            <Image
+            <ImagePline
               className={styles.imageStar}
-              src={'/images/book/star-d.png'}
+              src={'/images/pline/star.png'}
               width={24}
               height={24}
-              alt="star"
+              alt=""
             />
             <span className={styles.videoScore}>{bookInfo.followCount}</span>
           </div>
@@ -194,22 +209,22 @@ const PcEpisode: FC<IProps> = (
             expandText={
               <span className={styles.extend}>
                 {t('home.more')}
-                <Image
+                <ImagePline
                   className={styles.moreIcon}
                   width={16}
                   height={16}
-                  src={'/images/episode/more.png'}
+                  src={'/images/pline/episode-more.png'}
                   alt={''}
                 />
               </span>
             }
             collapseText={
               <span className={styles.retract}>
-                 <Image
+                 <ImagePline
                    className={styles.moreIcon}
                    width={16}
                    height={16}
-                   src={'/images/episode/more.png'}
+                   src={'/images/pline/episode-more.png'}
                    alt={''}
                  />
               </span>
@@ -231,7 +246,7 @@ const PcEpisode: FC<IProps> = (
       <RightList
         chapterList={chapterList}
         current={currentPage}
-        bookId={bookInfo.bookId}
+        bookInfo={bookInfo}
         onChooseEpisode={chooseEpisode}/>
     </div>
     {/* 相关剧集 */}

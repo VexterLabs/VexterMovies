@@ -2,15 +2,15 @@
 
   :global {
     .adm-dropdown-popup {
-      top: 0.88rem !important;
+      top: 2.08rem !important;
     }
     .adm-dropdown-item-content {
-      background: #1C1C1E !important;
+      background: $m_browse_bg !important;
     }
   }
 
   .tabBox {
-    background: #000000;
+    background: $theme_main_bg;
     backdrop-filter: blur(0px);
     display: flex;
     align-items: center;
@@ -18,8 +18,8 @@
     flex-direction: row;
     padding: 0.12rem 0 0.12rem 0.32rem;
     height: 0.8rem;
-    position: fixed;
-    top: 0.88rem;
+    position: sticky;
+    top: 2.06rem;
     left: 0;
     z-index: 9;
     width: 100%;
@@ -43,7 +43,7 @@
 
         .adm-tabs-tab {
           padding: 0.12rem 0.24rem;
-          background: rgba(255,255,255,0.12);
+          background: $pc_home_swiper_bg_hover;
           border-radius: 0.08rem;
           font-size: 0.24rem;
           font-weight: 500;
@@ -57,7 +57,7 @@
 
         .adm-tabs-tab {
           a {
-            color: rgba(255,255,255,0.9);
+            color: $m_browse_color;
           }
         }
 
@@ -69,18 +69,18 @@
 
         .adm-tabs-header-mask-right {
           //background: linear-gradient(to left, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
-          background: linear-gradient(270deg, #000000 0%, rgba(0,0,0,0) 100%);
+          background: linear-gradient(270deg, $theme_main_bg 0%, transparent 100%);
         }
         .adm-tabs-header-mask-left {
           //background: linear-gradient(to left, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
-          background: linear-gradient(90deg, #000000 0%, rgba(0,0,0,0) 100%);
+          background: linear-gradient(90deg, $theme_main_bg 0%, transparent 100%);
         }
       }
     }
   }
 
   .browseContent {
-    padding: 0.96rem 0 1.2rem;
+    padding: 0.16rem 0 1.44rem;
 
     .browseContent2 {
       padding: 0 0.32rem;

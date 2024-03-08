@@ -4,7 +4,7 @@
   .titleText {
     font-size: 0.28rem;
     font-weight: bold;
-    color: rgba(255,255,255,0.9);
+    color: $pc_home_name_color;
     line-height: 0.28rem;
     margin-bottom: 0.24rem;
   }
@@ -70,7 +70,7 @@
         word-wrap: break-word;
         font-size: 0.18rem;
         font-weight: 500;
-        color: rgba(255,255,255,0.8);
+        color: $pc_crumbs_color;
         line-height: 0.24rem;
         max-height: 0.48rem;
         margin-top: 0.12rem;
@@ -81,17 +81,17 @@
         display: inline-block;
         font-size: 0.12rem;
         font-weight: 400;
-        color: rgba(255, 255, 255, 0.4);
+        color: $pc_home_intro_color;
         border-radius: 0.12rem;
         padding: 0 0.1rem;
-        background-color: rgba(255, 255, 255, 0.08);
+        background-color: $pc_detail_bg;
         max-width: 2rem;
         height: 0.24rem;
         line-height: 0.24rem;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        margin: 0.08rem 0.09rem 0rem 0.09rem;
+        margin: 0.08rem 0.09rem 0 0.09rem;
       }
     }
   }

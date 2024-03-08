@@ -5,10 +5,6 @@
 }
 
 .mWrap {
-  background-color: #000000;
-  min-height: calc(100vh - 0.88rem);
-}
-
-.mWrapPaddingBo {
-  padding-bottom: 1.2rem;
+  background-color: $theme_main_bg;
+  min-height: calc(100vh - 2.08rem);
 }

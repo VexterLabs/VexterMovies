@@ -3,6 +3,7 @@ import ClientConfig from "@/client.config";
 import Head from "next/head";
 import { Router } from "next/router";
 import { TDK } from "@/components/layout/tdk";
+import { TDKNew } from "@/components/layout/tdkNew";
 import { ELanguage, IBookItem } from "@/typings/home.interface";
 import Script from "next/script";
 import { useTranslation } from "next-i18next";
@@ -12,8 +13,8 @@ const { googleCode } = ClientConfig;
 export const pathnameData = {
   browse: '/browse',
   more: '/more/[position]',
-  book: '/film/[bookId]',
-  episode: '/episode/[bookId]',
+  book: process.env.Platform === 'dramabox' ? '/drama/[bookId]' : '/film/[bookId]',
+  episode: process.env.Platform === 'dramabox' ? '/video/[bookId]' : '/episode/[bookId]',
   download: '/download',
   error404: '/404',
   error500: '/500',
@@ -28,33 +29,36 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   const { t } = useTranslation()
   const getTdk = (): { title: string; keywords: string; description: string; } => {
     const _locale = (router.locale && Object.values(ELanguage).includes(router.locale as ELanguage) ? router.locale : ELanguage.English) as ELanguage;
+
+    const tdkData = process.env.Platform === 'dramabox' ? TDKNew : TDK;
+
     // @ts-ignore
-    if (!TDK[_locale]) {
-      return TDK[ELanguage.English].index;
+    if (!tdkData[_locale]) {
+      return tdkData[ELanguage.English].index;
     }
     if (router.pathname === '/') {
-      return TDK[_locale].index
+      return tdkData[_locale].index
     } else if (router.pathname.includes('/more/[position]')) {
       const positionName = t(pageProps.positionName) || '';
-      return TDK[_locale].more({ ...router.query, positionName })
+      return tdkData[_locale].more({ ...router.query, positionName })
     } else if (router.pathname.includes('/browse')) {
       const  _typeTwoName = pageProps.typeTwoId === 0 ? t(`browse.all`) : pageProps.typeTwoName;
-      return TDK[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
+      return tdkData[_locale].browse({ ...router.query, typeTwoName: _typeTwoName })
     } else {
       try {
         for(const item in pathnameData) {
           // @ts-ignore
-          if (router.pathname.includes(pathnameData[item]) && TDK[_locale] && TDK[_locale][item]) {
+          if (router.pathname.includes(pathnameData[item]) && tdkData[_locale] && tdkData[_locale][item]) {
             // @ts-ignore
-            const tdkItem = TDK[_locale][item]
+            const tdkItem = tdkData[_locale][item]
             return typeof tdkItem === 'function' ? tdkItem({ ...router.query, ...pageProps }) : tdkItem
           }
         }
       } catch (e) {
-        return TDK[_locale].index;
+        return tdkData[_locale].index;
       }
     }
-    return TDK[_locale].index;
+    return tdkData[_locale].index;
   }
   const [pageTdk, setPageTdk] = useState(() => getTdk());
 
@@ -65,7 +69,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   const getUrl = (lan = ELanguage.English) => {
     const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
-    return 'https://www.dramaboxapp.com' +_locale + _asPath;
+    return (process.env.Platform === "dramabox" ? 'https://www.dramabox.com' : 'https://www.dramaboxapp.com') +_locale + _asPath;
   }
 
   // 拓展多语言字段
@@ -81,37 +85,36 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
     } else {
       return <>
         <link rel="alternate" hrefLang={ELanguage.English} href={getUrl(ELanguage.English)}/>
-        <link rel="alternate" hrefLang={ELanguage.Korean} href={getUrl(ELanguage.Korean)}/>
         <link rel="alternate" hrefLang={ELanguage.ZhHans} href={getUrl(ELanguage.ZhHans)}/>
         <link rel="alternate" hrefLang={ELanguage.Zh} href={getUrl(ELanguage.Zh)}/>
+        <link rel="alternate" hrefLang={ELanguage.Korean} href={getUrl(ELanguage.Korean)}/>
+        {/*<link rel="alternate" hrefLang={ELanguage.Spanish} href={getUrl(ELanguage.Spanish)}/>*/}
       </>
     }
   }
   // 分享
   const ShareMate = () => {
-    const locationUrl = "https://www.dramaboxapp.com" + router.asPath;
-    if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {
-
-      const { bookInfo = {} as IBookItem } = pageProps;
-      return <>
-        <meta key="fb_app_id" property="fb:app_id" content="310390558121791"/>
-        <meta key="og_url" property="og:url" content={locationUrl}/>
-        <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
-        <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>
-        <meta key="og_image" property="og:image" content={bookInfo.cover}/>
-        <meta key="og_image_alt" property="og:image:alt" content={bookInfo.bookName || ClientConfig.name}/>
-        <meta key="og_site_name" property="og:site_name" content={ClientConfig.name}/>
-        <meta key="og_type" property="og:type" content="website"/>
-        {/*twitter分享*/}
-        <meta key="twitter_url" property="twitter:url" content={locationUrl}/>
-        <meta key="twitter_title" name="twitter:title" content={pageTdk.title || ClientConfig.name}/>
-        <meta key="twitter_description" name="twitter:description" content={pageTdk.description || ""}/>
-        <meta key="twitter_site" name="twitter:site" content={locationUrl}/>
-        <meta key="twitter_card" name="twitter:card" content="summary"/>
-        <meta key="twitter_image" name="twitter:image" content={bookInfo.cover}/>
-      </>
-    }
-    return null;
+    const locationUrl = getUrl(router.locale as ELanguage);
+    if (router.pathname.includes(pathnameData.book) || router.pathname.includes(pathnameData.episode)) {}
+    const { bookInfo = {} as IBookItem } = pageProps;
+    return <>
+      <meta key="fb_app_id" property="fb:app_id" content={ClientConfig.fbAppId}/>
+      <meta key="og_url" property="og:url" content={locationUrl}/>
+      <meta key="og_title" property="og:title" content={pageTdk.title || ClientConfig.name}/>
+      <meta key="og_description" property="og:description" content={pageTdk.description || ""}/>
+      <meta key="og_image" property="og:image" content={bookInfo.cover || (process.env.WebDomain + "/images/logo.png")}/>
+      <meta key="og_image_alt" property="og:image:alt" content={bookInfo.bookName || ClientConfig.name}/>
+      <meta key="og_site_name" property="og:site_name" content={ClientConfig.name}/>
+      <meta key="og_type" property="og:type" content="website"/>
+      {/*twitter分享*/}
+      <meta key="twitter_url" property="twitter:url" content={locationUrl}/>
+      <meta key="twitter_title" name="twitter:title" content={pageTdk.title || ClientConfig.name}/>
+      <meta key="twitter_description" name="twitter:description" content={pageTdk.description || ""}/>
+      <meta key="twitter_site" name="twitter:site" content={locationUrl}/>
+      <meta key="twitter_card" name="twitter:card" content="summary"/>
+      <meta key="twitter_image" name="twitter:image" content={bookInfo.cover || (process.env.WebDomain + "/images/logo.png")}/>
+    </>
+    // return null;
   }
 
   return <>
@@ -148,26 +151,6 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
     gtag('config', '${googleCode}');`,
       }}
     />
-    {/*<Script*/}
-    {/*  id={'facebook_sdk'}*/}
-    {/*  crossOrigin={"anonymous"}*/}
-    {/*  strategy={'afterInteractive'}*/}
-    {/*  src={"https://connect.facebook.net/en_US/sdk.js"}*/}
-    {/*/>*/}
-    {/*<Script*/}
-    {/*  id={'facebook_sdk'}*/}
-    {/*  crossOrigin={"anonymous"}*/}
-    {/*  strategy={'afterInteractive'}*/}
-    {/*  dangerouslySetInnerHTML={{*/}
-    {/*    __html: `window.fbAsyncInit = function() {*/}
-    {/*  FB.init({*/}
-    {/*    appId            : '1076053070212633',*/}
-    {/*    xfbml            : true,*/}
-    {/*    version          : 'v18.0'*/}
-    {/*  });*/}
-    {/*};`*/}
-    {/*  }}*/}
-    {/*/>*/}
   </>
 }
 

@@ -1,14 +1,14 @@
 .shareBox {
   height: 1rem;
-  border-top: 0.08rem solid #141414;
-  background-color: #000000;
+  border-top: 0.08rem solid $m_episode_nav_border;
+  background-color: $theme_main_bg;
   padding: 0 0.32rem;
   display: flex;
   align-items: center;
 
   .shareLabel {
     margin-right: 0.2rem;
-    color: rgba(255,255,255,0.7);
+    color: $pc_home_name_color;
     font-size: 0.32rem;
   }
 

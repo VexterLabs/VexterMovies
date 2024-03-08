@@ -26,7 +26,7 @@
 
       .bookName {
         max-width: 5.05rem;
-        color: rgba(255,255,255,0.9);
+        color: $pc_home_name_color;
         font-size: 0.32rem;
         font-weight: 500;
         overflow: hidden;
@@ -51,11 +51,11 @@
           padding: 0.05rem 0.12rem;
           font-size: 0.22rem;
           font-weight: 400;
-          color: rgba(255,255,255,0.6);
+          color: $pc_nav_color;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          background: rgba(255,255,255,0.1);
+          background: $pc_detail_bg;
           border-radius: 0.18rem;
         }
       }
@@ -64,7 +64,7 @@
         max-width: 5.05rem;
         margin-top: 0.16rem;
         font-size: 0.24rem;
-        color: rgba(255,255,255,0.6);
+        color: $pc_nav_color;
         line-height: 0.32rem;
         overflow: hidden;
         text-overflow: ellipsis;

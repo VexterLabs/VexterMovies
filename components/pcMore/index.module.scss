@@ -9,12 +9,13 @@
     height: 0.8rem;
     top: 0.8rem;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: $m_nav_bg;
     backdrop-filter: blur(10px);
+    z-index: 999;
 
     .backBox {
       height: 0.8rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      border-bottom: $pc_detail_header_border;
 
       .backBoxLink {
         display: inline-block;
@@ -40,7 +41,7 @@
         span {
           font-size: 0.18rem;
           font-weight: 500;
-          color: rgba(255, 255, 255, 0.9);
+          color: $pc_home_name_color;
           line-height: 0.29rem;
           transition: color 0.3s;
         }

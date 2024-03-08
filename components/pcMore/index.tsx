@@ -8,6 +8,7 @@ import PaginationCom from "@/components/common/paginationCom";
 import { PcEmpty } from "@/components/common/empty";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import ImagePline from "@/components/common/image/ImagePline";
 
 interface IProps {
   moreData: IHomeResItem;
@@ -21,11 +22,11 @@ const PcMore: FC<IProps> = ({ moreData, pages, pageNo }) => {
     <div className={styles.backHead}>
       <div className={styles.backBox}>
         <Link href={'/'} className={styles.backBoxLink}>
-          <Image
+          <ImagePline
             className={styles.backIcon}
             width={16}
             height={16}
-            src={'/images/home/pc-more.png'}
+            src={'/images/pline/pc-more.png'}
             alt={''}
           />
           <Image

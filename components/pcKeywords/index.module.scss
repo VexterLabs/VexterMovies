@@ -1,7 +1,7 @@
 .keywordsWrap {
   padding-bottom: 0.5rem;
   min-height: calc(100vh - 2.6rem);
-  background-color: #000000;
+  background-color: $theme_main_bg;
   width: 14.4rem;
   margin: 0 auto;
 
@@ -10,7 +10,7 @@
     align-items: center;
     height: 0.80rem;
     padding: 0 0.12rem;
-    border-bottom: 1px solid rgba(255,255,255,0.16);
+    border-bottom: $pc_detail_header_border;
   }
 
   .keywordBox {
@@ -28,7 +28,7 @@
       text-align: center;
       border-radius: 0.16rem;
       padding: 0 0.08rem;
-      background: rgba(255,255,255,0.1);
+      background: $pc_detail_bg;
       font-size: 0.16rem;
       color: $theme_color;
       font-weight: 400;

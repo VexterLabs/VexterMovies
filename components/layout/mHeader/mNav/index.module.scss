@@ -20,16 +20,16 @@
     .navItemTxt {
       display: block;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.9);
+      color: $pc_home_name_color;
       font-size: 0.28rem;
       line-height: 1.2rem;
       text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid $nav_border_color;
     }
   }
 
   .navItemActive {
-    background: rgba(255, 255, 255, 0.08);
+    background: $pc_nav_hover;
 
     .navItemTxt {
       color: $theme_color;

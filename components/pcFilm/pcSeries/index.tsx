@@ -2,10 +2,11 @@ import React, { FC, useState } from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { onImgError } from "@/components/common/image/ImageCover";
+import { ImageCover } from "@/components/common/image/ImageCover";
 import { IBookItem, IChapterList } from "@/typings/home.interface";
 import { useTranslation } from "next-i18next";
 import classNames from "classnames";
+import ImagePline from "@/components/common/image/ImagePline";
 import styles from "@/components/pcFilm/pcSeries/index.module.scss";
 
 // 该页面是展示pc端更多剧情的，需要修改后期
@@ -31,28 +32,31 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
     </div>
     <div className={styles.listInfo}>
       { chapterList.map((item, index) => {
-        const routerToVideoInfo = `/episode/${bookInfo.bookId}/${item.id}`;
+        const routerToVideoInfo = process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${item.id}_Episode-${index + 1}` :  `/episode/${bookInfo.bookId}/${item.id}`;
+
         const isShow = showMore ? index < 11 : (index >= tabIndex * 30 && index < (tabIndex + 1) * 30);
         return <div key={item.id} className={styles.listItem} style={isShow? {} : { display: 'none' }}>
-          <Link href={routerToVideoInfo} className={styles.imgBox}>
-            <Image
-              className={styles.imageItem}
-              onError={onImgError}
-              width={88}
-              height={117}
-              src={item.cover || bookInfo.cover}
-              alt={item.name}
+
+          <ImageCover
+            scale={true}
+            href={routerToVideoInfo}
+            className={styles.imgBox}
+            width={88}
+            height={117}
+            src={item.cover || bookInfo.cover}
+            alt={item.name}
+          />
+
+          { !item.unlock ? <Link href={routerToVideoInfo} className={styles.imageMark}>
+            <ImagePline
+              className={styles.lockIcon}
+              width={24}
+              height={24}
+              src={'/images/pline/lock.png'}
+              alt={''}
             />
-            { !item.unlock ? <div className={styles.imageMark}>
-              <Image
-                className={styles.lockIcon}
-                width={24}
-                height={24}
-                src={'/images/book/lock-video.png'}
-                alt={''}
-              />
-            </div> : null }
-          </Link>
+          </Link> : null }
+
           <Link href={routerToVideoInfo} className={styles.rightIntro}>
             <span className={styles.title}>{bookInfo.bookName}</span>
             <span className={styles.pageNum}>{language==='en' || !language ?  `EP.${item.index + 1}` :  `${item.index + 1} ${t("home.episodes")}`}</span>

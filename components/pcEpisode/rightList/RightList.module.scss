@@ -14,11 +14,11 @@
       font-size: 0.2rem;
       font-weight: 500;
       line-height: 0.24rem;
-      color: rgba(255,255,255,0.9);
+      color: $pc_home_name_color;
     }
     .current {
       line-height: 0.2rem;
-      color: rgba(255,255,255,0.4);
+      color: $pc_series_color;
       font-size: 0.14rem;
       margin-left: 0.08rem;
     }
@@ -39,38 +39,35 @@
       align-items: center;
       border-radius: 0.03rem;
       margin-bottom: 0.08rem;
+      position: relative;
 
       .imgBox {
-        position: relative;
         width: 0.88rem;
         height: 1.17rem;
         border-radius: 0.03rem;
-        overflow: hidden;
+      }
+      .imageMark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        background-color: rgba(0,0,0,0.5);
+        width: 0.88rem;
+        height: 1.17rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        .imgItem {
-          width: 0.88rem;
-          height: 1.17rem;
+        .lockIcon {
+          width: 0.24rem;
+          height: 0.24rem;
           transition: all 0.3s;
-          background: url("../../../public/images/defaultFilm.png") 0 0 / 100% 100% no-repeat;
         }
 
-        .imageMark {
-          background-color: rgba(0,0,0,0.5);
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 9;
-
+        &:hover {
           .lockIcon {
-            width: 0.24rem;
-            height: 0.24rem;
+            transform: scale(1.1);
           }
-
         }
       }
 
@@ -79,7 +76,7 @@
         font-size: 0.14rem;
         line-height: 0.2rem;
         width: 100%;
-        color: rgba(255,255,255,0.8);
+        color: $pc_crumbs_color;
         text-align: center;
         padding-top: 0.08rem;
       }

@@ -28,25 +28,25 @@ export default async function handler(
     const lastmod = dayjs().day(1).format('YYYY-MM-DD');
     const item = chapterList.map((chapter, index) => {
 
-      const contentUrl = chapter?.mp4 || chapterList?.[0]?.mp4 || "";
+      const contentUrl = (chapter?.mp4 || chapterList?.[0]?.mp4 || "").replaceAll('&','&amp;');
 
       return `
 <url>
-  <loc>${'https://www.dramaboxapp.com/episode/' + book.bookId + '/' + chapter.id}</loc>
+  <loc>https://www.dramabox.com/video/${book.bookId}_${book.bookNameEn || ''}/${chapter.id}_Episode-${index + 1}</loc>
   <lastmod>${chapter.new ? chapter.utime : lastmod}</lastmod>
   <changefreq>${chapter.new ? 'daily' : 'weekly'}</changefreq>
   <priority>0.7</priority>
   ${languages.map(lan => {
-    let _loc = `/episode/${bookId}/${chapter.id}`;
-    if (lan !== ELanguage.English) {
-      _loc = '/' + lan + _loc
-    }
-    return `<xhtml:link rel="alternate" hreflang="${lan}" href="${'https://www.dramaboxapp.com' + _loc}"/>`
-  }).join('')}
+        let _loc = `/video/${bookId}_${book.bookNameEn}/${chapter.id}_Episode-${index + 1}`;
+        if (lan !== ELanguage.English) {
+          _loc = '/' + lan + _loc
+        }
+        return `<xhtml:link rel="alternate" hreflang="${lan}" href="${'https://www.dramabox.com' + _loc}"/>`
+      }).join('')}
   <video:video>
     <video:title>${book.bookName + ' Episode ' + (index + 1)}</video:title>
-    <video:thumbnail_loc>${chapter.cover || book.cover}</video:thumbnail_loc>
-    <video:description>${book.introduction || "DramaBox"}</video:description>
+    <video:thumbnail_loc>${(chapter.cover || book.cover).replaceAll('&','&amp;')}</video:thumbnail_loc>
+    <video:description>${(book.introduction || "DramaBox").replaceAll('&','&amp;')}</video:description>
     <video:content_loc>${contentUrl}</video:content_loc>
     <video:player_loc>${contentUrl}</video:player_loc>
     <video:view_count>${book.viewCount}</video:view_count>

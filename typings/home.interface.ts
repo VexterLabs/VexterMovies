@@ -38,6 +38,7 @@ export interface IBookItem {
   replacedBookName: string;
   firstChapterId?: string;
   columnName: string;
+  bookNameEn?: string; // 英文名称替换字段
 }
 
 export interface IChapterList {
@@ -56,16 +57,18 @@ export interface IChapterList {
 
 export enum ELanguage {
   English = 'en',
+  // Spanish = 'es',
   ZhHans = 'zhHans', // 简体中文
   Zh = 'zh', // 繁體中文
   Korean = 'ko', // 韩语
 }
 
-export const LanguageActions: { text: string; key: ELanguage }[] = [
-  { text: 'English', key: ELanguage.English },
-  { text: '简体中文', key: ELanguage.ZhHans },
-  { text: '繁體中文', key: ELanguage.Zh },
-  { text: '한국인', key: ELanguage.Korean },
+export const LanguageActions: { text: string; key: ELanguage; label: string; }[] = [
+  { text: 'English', key: ELanguage.English, label: "EN" },
+  { text: '简体中文', key: ELanguage.ZhHans, label: "CN" },
+  { text: '繁體中文', key: ELanguage.Zh, label: "TC" },
+  // { text: 'Español', key: ELanguage.Spanish, label: "ESP" },
+  { text: '한국인', key: ELanguage.Korean, label: "KO" },
 ]
 
 export enum EHomeName {

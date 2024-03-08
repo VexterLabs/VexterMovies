@@ -40,7 +40,7 @@ const PcFilm: FC<IProps> = (
         <div className={styles.detailBookCoverBox}>
           <Image
             onError={onImgError}
-            className={styles.detailBookCover}
+            className={process.env.Platform === 'dramabox' ? styles.detailBookCoverNew : styles.detailBookCover}
             width={315}
             height={420}
             src={bookInfo.cover}
@@ -70,8 +70,10 @@ const PcFilm: FC<IProps> = (
           </div>
 
           <div className={styles.detailBottom}>
-            {chapterList?.[0]?.id ? <Link href={`/episode/${bookInfo.bookId}/${chapterList?.[0]?.id}`}
-                                          className={styles.playBtn}>
+            {chapterList?.[0]?.id ?
+              <Link
+                href={process.env.Platform === 'dramabox' ? `/video/${bookInfo.bookId}_${bookInfo.bookNameEn || ''}/${chapterList?.[0]?.id || ''}_Episode-1` : `/episode/${bookInfo.bookId}/${chapterList?.[0]?.id || ''}`}
+                className={styles.playBtn}>
               <Image
                 className={styles.playIcon}
                 width={16}
@@ -79,7 +81,7 @@ const PcFilm: FC<IProps> = (
                 src={'/images/book/play-pc.png'}
                 alt={''}
               />
-              <span>{t("home.play")}</span>
+              <span>{t("bookInfo.playNow")}</span>
             </Link> : null}
 
             <PcShare bookInfo={bookInfo} />

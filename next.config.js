@@ -2,6 +2,12 @@
 const { i18n } = require('./next-i18next.config')
 const path = require("path");
 // 网站域名
+const NewWebDomainObj = {
+  test: 'http://192.168.1.71:3001',
+  staging: 'https://yfbwww.dramabox.com',
+  prod: 'https://www.dramabox.com'
+}
+// 网站域名
 const WebDomainObj = {
   test: 'http://192.168.1.71:3001',
   staging: 'https://yfbwww.dramaboxapp.com',
@@ -10,7 +16,7 @@ const WebDomainObj = {
 // 网站服务api
 const BaseUrlObj = {
   // test: 'http://192.168.0.253:8080',
-  test: 'http://192.168.0.253:8080',// http://192.168.1.70:8080
+  test: 'http://192.168.0.253:8080', // http://192.168.1.70:8080
   staging: 'https://yfbwww.webfic.com',
   prod: 'https://www.webfic.com'
 }
@@ -23,10 +29,12 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
+const Platform = 'dramaboxapp'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
-const buildId = 'dramabox_20240220'; // 构建ID
-const WebDomain = WebDomainObj[environment]
+
+const buildId = `${Platform}_20240308`; // 构建ID
+const WebDomain = Platform === "dramaboxapp" ? NewWebDomainObj[environment] : WebDomainObj[environment];
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
 process.title = `next-${buildId}`;
@@ -40,7 +48,6 @@ console.log('\x1B[44m%s\x1B[49m', '-------------------------- ✨ ✨ ✨ ✨ �
 
 const nextConfig = {
   reactStrictMode: true,
-  // cleanDistDir: true,
   // Configuring the Build ID
   generateBuildId: async () => {
     return buildId;
@@ -48,7 +55,7 @@ const nextConfig = {
   transpilePackages: ['antd-mobile'],
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-    prependData: `@import "common.module.scss";`
+    prependData: `@import "${Platform}.module.scss";`
   },
   // 内置多语言
   i18n,
@@ -70,6 +77,7 @@ const nextConfig = {
     BaseUrl,
     WebDomain,
     IpUaUrl,
+    Platform
   },
   // 参考 https://nextjs.org/docs/messages/swc-disabled
   // experimental: {

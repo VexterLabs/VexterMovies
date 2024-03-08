@@ -6,6 +6,7 @@ import Image from "next/image";
 import { netIpUa } from "@/server/clientLog";
 import useHiveLog from "@/hooks/useHiveLog";
 import { onCopyText } from "@/utils/copy";
+import ImagePline from "@/components/common/image/ImagePline";
 import styles from '@/components/download/index.module.scss';
 
 interface IProps {
@@ -24,9 +25,6 @@ const MDownload: FC<IProps> = ({ isApple }) => {
       return ClientConfig.ios.universalLink + queryStr;
     }
     return ClientConfig.android.link;
-    // const { bid, cid, channelCode } = state.hive.clipboard;
-    // const intentParam = `open?bid=${bid}&cid=${cid || ''}&chid=${channelCode}&media=other`;
-    // return `intent://${intentParam}#Intent;scheme=dramabox;package=${ClientConfig.android.pname};S.browser_fallback_url=${ClientConfig.android.link};end`;
   });
 
   const onDownload = () => {
@@ -42,13 +40,11 @@ const MDownload: FC<IProps> = ({ isApple }) => {
     <div className={styles.downloadHead}>
       {t('appPage.title')}
     </div>
-    <Image
+    <ImagePline
       className={styles.downloadCover}
       width={440}
       height={440}
-      src={'/images/download/cover.png'}
-      placeholder="blur"
-      blurDataURL={'/images/download/cover.png'}
+      src={'/images/pline/m-cover.png'}
       alt={ClientConfig.name}
     />
     <button onClick={onDownload} className={styles.downloadBtn}>

@@ -14,11 +14,10 @@
   .emptyIntro {
     font-size: 0.16rem;
     font-weight: 400;
-    color: #FFFFFF;
+    color: $pc_series_color;
     text-align: center;
     margin: 0.08rem auto 0.48rem;
     line-height: 0.34rem;
-    opacity: 0.4;
   }
 }
 
@@ -38,10 +37,9 @@
   .emptyIntro {
     font-size: 0.28rem;
     font-weight: 400;
-    color: #FFFFFF;
+    color: $pc_series_color;
     text-align: center;
     margin: 0.24rem auto 0.48rem;
     line-height: 0.34rem;
-    opacity: 0.4;
   }
 }

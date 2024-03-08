@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import ImagePline from "@/components/common/image/ImagePline";
 import styles from '@/components/common/paginationCom/index.module.scss';
 
 /** 参考文献https://www.jianshu.com/p/ec9aca4764cf*/
@@ -65,20 +65,20 @@ const PaginationCom: FC<IProps> = (
     <div className={styles.pageContent}>
       {currentPage === 1 ?
         <div className={styles.prevNoMore}>
-          <Image
+          <ImagePline
             className={styles.prevNextIcon}
             width={14}
             height={14}
-            src={'/images/pagination/next_2.png'}
+            src={'/images/pline/next_2.png'}
             alt={'prev'}
           />
         </div> :
         <Link scroll={isScroll} href={path + (currentPage === 2 ? '' : (currentPage - 1)) + query} className={styles.prevBtn}>
-          <Image
+          <ImagePline
             className={styles.prevNextIcon}
             width={14}
             height={14}
-            src={'/images/pagination/next_1.png'}
+            src={'/images/pline/next_1.png'}
             alt={'prev'}
           />
         </Link>
@@ -96,20 +96,20 @@ const PaginationCom: FC<IProps> = (
         <CreatePage/>
       }
       {currentPage === totalPage ? <div className={styles.nextNoMore}>
-          <Image
+          <ImagePline
             className={styles.prevNextIcon}
             width={14}
             height={14}
-            src={'/images/pagination/next_2.png'}
+            src={'/images/pline/next_2.png'}
             alt={'next'}
           />
         </div> :
         <Link scroll={isScroll} href={path + `${currentPage + 1}` + query} className={styles.nextBtn}>
-          <Image
+          <ImagePline
             className={styles.prevNextIcon}
             width={14}
             height={14}
-            src={'/images/pagination/next_1.png'}
+            src={'/images/pline/next_1.png'}
             alt={'next'}
           />
         </Link>

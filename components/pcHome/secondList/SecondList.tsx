@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { IBookItem } from "@/typings/home.interface";
 import Link from "next/link";
+import Image from "next/image";
 import { ImageCover } from "@/components/common/image/ImageCover";
 import { useTranslation } from "next-i18next";
 import TypeTwoTag from "@/components/common/typeTwoTag";
@@ -22,9 +23,10 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
       const {
         bookId,
         bookName,
-        chapterCount = 0
+        chapterCount = 0,
+        bookNameEn = '',
       } = book;
-      const routerToBookInfo = `/film/${bookId}`
+      const routerToBookInfo = process.env.Platform === 'dramabox' ? `/drama/${bookId}/${bookNameEn}` : `/film/${bookId}`;
 
       return <div key={bookId} className={styles.secondListBox}>
 
@@ -39,6 +41,13 @@ const SecondList: FC<IProps> = ({ dataSource = [] }) => {
         />
 
         <Link className={styles.chapterCount} href={routerToBookInfo}>
+          <Image
+            className={styles.chapterCountIcon}
+            width={16}
+            height={16}
+            src={'/images/home/episodes.png'}
+            alt={''}
+          />
           <p>{`${chapterCount} ${t("home.episodes")}`}</p>
         </Link>
 

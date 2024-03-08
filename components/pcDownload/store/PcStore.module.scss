@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #1C1C1E;
+  background-color: $pc_footer_bg;
   border-radius: 0.04rem;
   padding: 0.28rem;
 
@@ -12,7 +12,7 @@
     text-align: center;
     font-size: 0.4rem;
     font-weight: bold;
-    color: rgba(255,255,255,0.9);
+    color: $pc_home_name_color;
     line-height: 0.48rem;
   }
 
@@ -20,7 +20,7 @@
     text-align: center;
     font-size: 0.14rem;
     font-weight: 400;
-    color: rgba(255,255,255,0.4);
+    color: $pc_home_intro_color;
     line-height: 0.2rem;
     margin: 0.04rem 0 0.2rem;
   }
@@ -45,7 +45,7 @@
       font-size: 0.12rem;
       font-weight: 400;
       text-align: center;
-      color: rgba(255,255,255,0.4);
+      color: $pc_home_intro_color;
       line-height: 0.17rem;
       white-space: pre-wrap;
     }

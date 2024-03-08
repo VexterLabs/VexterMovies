@@ -1,13 +1,13 @@
 {
   "name": "dramabox",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_OPTIONS='-r dz-next-log' next start -p 3001",
     "lint": "next lint",
-    "stop": "pkill next-dramabox"
+    "stop": "pkill next-dramaboxapp"
   },
   "dependencies": {
     "@fingerprintjs/fingerprintjs": "^3.4.2",

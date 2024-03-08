@@ -1,5 +1,5 @@
 .tagWrap {
-  padding: 0 0.32rem 0;
+  padding: 0 0.32rem 1.44rem;
 
   .tagHeader {
     display: flex;
@@ -13,7 +13,7 @@
     padding-top: 0.16rem;
 
     .title {
-      height: 0.48rem;
+      min-height: 0.48rem;
       color: #FF375F;
       font-size: 0.36rem;
       font-weight: bold;
@@ -25,7 +25,7 @@
       font-size: 0.26rem;
       line-height: 0.32rem;
       font-weight: 400;
-      color: rgba(255,255,255,0.6);
+      color: $m_tag_color;
       white-space: pre-wrap;
 
       span {
@@ -39,7 +39,7 @@
     .keywordConnectTitle {
       margin-bottom: 0.16rem;
       font-size: 0.32rem;
-      color: rgba(255,255,255,0.8);
+      color: $pc_crumbs_color;
       line-height: 0.4rem;
     }
 
@@ -51,7 +51,7 @@
       font-size: 0.32rem;
       margin: 0 0.24rem 0.24rem 0;
       padding: 0 0.16rem;
-      background: rgba(255,255,255,0.1);
+      background: $pc_detail_bg;
       color: $theme_color;
       overflow: hidden;
       text-overflow: ellipsis;

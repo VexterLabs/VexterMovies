@@ -6,12 +6,13 @@
 .navWrap {
   width: 100%;
   height: 0.8rem;
-  background: rgba(4,4,4,0.8);
+  background: $pc_nav_bg;
   backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
+  border-bottom: $pc_nav_border;
 
   .navContent {
     width: 14.4rem;
@@ -36,10 +37,16 @@
           //margin-right: 0.1rem;
         }
 
+        .logoIcon {
+          width: 0.4rem;
+          height: 0.4rem;
+          margin-right: 0.08rem;
+        }
+
         span {
-          font-size: 0.28rem;
-          font-weight: 600;
-          color: #FFFFFF;
+          font-size: 0.24rem;
+          font-weight: 500;
+          color: $logo_color;
         }
       }
     }
@@ -59,7 +66,7 @@
     align-items: center;
     font-weight: 400;
     font-size: 0.18rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: $pc_nav_color;
 
     .navItemLabel {
       display: inline-block;
@@ -71,11 +78,11 @@
 
     &:hover {
       color: $theme_color;
-      font-weight: 500;
+      //font-weight: 500;
     }
 
     &:hover .navItemLabel {
-      background-color: rgba(255, 255, 255, 0.08);
+      background-color: $pc_nav_hover;
       border-radius: 0.03rem;
     }
   }
@@ -117,11 +124,11 @@
       padding: 0.12rem 0;
       border-radius: 4px;
       width: 1.3rem;
-      background: #292929;
+      background: $pc_popover_bg;
     }
 
     .adm-popover-arrow {
-      color: #292929 !important;
+      color: $pc_popover_bg !important;
     }
 
     .adm-popover-menu-item {
@@ -136,7 +143,7 @@
       justify-content: center;
       font-size: 0.14rem;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.9);
+      color: $pc_home_name_color;
       transition: all .3s;
       padding: 0;
 
@@ -166,13 +173,13 @@
     .navItemTxt {
       font-size: 0.18rem;
       font-weight: 400;
-      color: rgba(255, 255, 255, 0.6);
+      color: $pc_nav_color;
       user-select: none;
     }
   }
 
   .languageBoxActive {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: $pc_nav_hover;
 
     .navItemTxt {
       color: $theme_color;
