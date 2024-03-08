@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { addListen, removeListen } from "@/utils/rem";
 import { ownOs } from "@/utils/ownOs";
 import PcHeader from "@/components/layout/pcHeader/PcHeader";
@@ -19,7 +19,6 @@ interface IProps {
 
 const DLayout: FC<IProps> = ({ children, pageProps }) => {
   const router = useRouter();
-  const [footerAdShow, setFooterAdShow] = useState<boolean | false>(false);
   const device = useAppSelector(state => state.app.device);
   const footerAdVisible = useAppSelector(state => state.app.footerAdVisible);
   const dispatch = useAppDispatch();
@@ -37,9 +36,9 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
     }
   },[]) // eslint-disable-line
 
-  useEffect(() => {
-    setFooterAdShow(!(router.pathname == '/film/[bookId]' || router.pathname.includes('/drama/[bookId]') || router.pathname.includes('/episode/[bookId]') || router.pathname.includes('/video/[bookId]')))
-  }, [router])
+  const footerAdShow = useMemo(() => {
+    return !(router.pathname === '/film/[bookId]' || router.pathname.includes('/drama/[bookId]') || router.pathname.includes('/episode/[bookId]') || router.pathname.includes('/video/[bookId]'));
+  }, [router.pathname]);
 
   // 设置rem字体大小并判断设备 初始化
   const setRemScript = () => {
@@ -52,7 +51,7 @@ const DLayout: FC<IProps> = ({ children, pageProps }) => {
   }
   // 监听
   const setRemScriptListen = () => {
-    const clientWidth = window.innerWidth || document.documentElement.clientWidth
+    const clientWidth = window.innerWidth || document.documentElement.clientWidth;
     const { isPc } = ownOs(window.navigator.userAgent)
     if (!isPc) {
       document.documentElement.style.fontSize = 100 * (clientWidth / 750) + 'px';
