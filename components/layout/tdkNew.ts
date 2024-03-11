@@ -340,83 +340,83 @@ export const TDKNew = {
       description: 'DramaBox사용자 동의'
     }
   },
-  // [ELanguage.Spanish]: {
-  //   ...commonTDK,
-  //   index: {
-  //     title: 'DramaBox app-DramaBox Películas Gratis-Dramabox',
-  //     keywords: 'DramaBox app,DramaBox,DramaBox Películas Gratis',
-  //     description: 'Las populares series cortas de Dramabox APP, una búsqueda constante, sin importar cuándo ni dónde, ¡las risas no cesan! Seleccionamos cuidadosamente una variedad de series cortas para usted, con actualizaciones continuas y siempre con historias cautivadoras para satisfacer sus deseos de ver.'
-  //   },
-  //   browse: ({ typeTwoName = '', page = '1' }) => {
-  //     if (page === '1') {
-  //       return {
-  //         title: `${typeTwoName} Películas de drama-DramaBox`,
-  //         keywords: `DramaBox ${typeTwoName} Películas de drama`,
-  //         description: `DramaBox ${typeTwoName} short film,Welcome to watch online`
-  //       }
-  //     }
-  //     return {
-  //       title: `${typeTwoName} Películas de drama-Página ${page}-DramaBox`,
-  //       keywords: `${typeTwoName} Películas de drama`,
-  //       description: `${typeTwoName} Películas de drama`
-  //     }
-  //   },
-  //   more: ({ positionName = '', page = '1'}) => {
-  //     if (page === '1') {
-  //       return {
-  //         title: `${positionName} Películas de drama-DramaBox`,
-  //         keywords: `DramaBox ${positionName} Películas de drama`,
-  //         description: `DramaBox ${positionName} short film,Welcome to watch online`
-  //       }
-  //     }
-  //     return {
-  //       title: `${positionName} Películas de drama-Página ${page}-DramaBox`,
-  //       keywords: `${positionName} Películas de drama`,
-  //       description: `${positionName} Películas de drama`
-  //     }
-  //   },
-  //   book: ({ bookInfo = {} as IBookItem }: { bookInfo: IBookItem}) => {
-  //     const { bookName = '', introduction = '' } = bookInfo
-  //     return {
-  //       title: `${bookName} Drama-${bookName} Ver película completa en línea gratis-DramaBox`,
-  //       keywords: `${bookName}, ${bookName} Ver en línea gratis`,
-  //       description: `${bookName} Ver en línea gratis, ${introduction.slice(0, 200)}...`
-  //     }
-  //   },
-  //   episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
-  //     const { bookName = '' } = bookInfo;
-  //     const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
-  //     const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
-  //     return {
-  //       title: `Episodio ${index}-${bookName} Episodio ${index} Ver en línea-DramaBox`,
-  //       keywords: `${bookName} Episodio ${index}`,
-  //       description: `${bookName} Episodio ${index} Ver en línea`
-  //     }
-  //   },
-  //   error500: {
-  //     title: '500-DramaBox',
-  //     keywords: '',
-  //     description: '',
-  //   },
-  //   download: {
-  //     title: 'DramaBox apk-DramaBox app Descargar-DramaBox',
-  //     keywords: 'DramaBox apk,DramaBox app download',
-  //     description: 'DramaBox app Descargar'
-  //   },
-  //   error404: {
-  //     title: '404-DramaBox',
-  //     keywords: '',
-  //     description: 'El cortometraje actual no existe'
-  //   },
-  //   agreementPrivacy: {
-  //     title: 'Política de privacidad-DramaBox',
-  //     keywords: 'Política de privacidad,DramaBox',
-  //     description: 'Política de privacidad'
-  //   },
-  //   agreementUser: {
-  //     title: 'Términos de uso-DramaBox',
-  //     keywords: 'Términos de uso,DramaBox',
-  //     description: 'Términos de uso'
-  //   }
-  // },
+  [ELanguage.Spanish]: {
+    ...commonTDK,
+    index: {
+      title: 'DramaBox app-DramaBox Películas Gratis-Dramabox',
+      keywords: 'DramaBox app,DramaBox,DramaBox Películas Gratis',
+      description: 'Las populares series cortas de Dramabox APP, una búsqueda constante, sin importar cuándo ni dónde, ¡las risas no cesan! Seleccionamos cuidadosamente una variedad de series cortas para usted, con actualizaciones continuas y siempre con historias cautivadoras para satisfacer sus deseos de ver.'
+    },
+    browse: ({ typeTwoName = '', page = '1' }) => {
+      if (page === '1') {
+        return {
+          title: `${typeTwoName} Películas de drama-DramaBox`,
+          keywords: `DramaBox ${typeTwoName} Películas de drama`,
+          description: `DramaBox ${typeTwoName} short film,Welcome to watch online`
+        }
+      }
+      return {
+        title: `${typeTwoName} Películas de drama-Página ${page}-DramaBox`,
+        keywords: `${typeTwoName} Películas de drama`,
+        description: `${typeTwoName} Películas de drama`
+      }
+    },
+    more: ({ positionName = '', page = '1'}) => {
+      if (page === '1') {
+        return {
+          title: `${positionName} Películas de drama-DramaBox`,
+          keywords: `DramaBox ${positionName} Películas de drama`,
+          description: `DramaBox ${positionName} short film,Welcome to watch online`
+        }
+      }
+      return {
+        title: `${positionName} Películas de drama-Página ${page}-DramaBox`,
+        keywords: `${positionName} Películas de drama`,
+        description: `${positionName} Películas de drama`
+      }
+    },
+    book: ({ bookInfo = {} as IBookItem }: { bookInfo: IBookItem}) => {
+      const { bookName = '', introduction = '' } = bookInfo
+      return {
+        title: `${bookName} Drama-${bookName} Ver película completa en línea gratis-DramaBox`,
+        keywords: `${bookName}, ${bookName} Ver en línea gratis`,
+        description: `${bookName} Ver en línea gratis, ${introduction.slice(0, 200)}...`
+      }
+    },
+    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+      const { bookName = '' } = bookInfo;
+      const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+      const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
+      return {
+        title: `Episodio ${index}-${bookName} Episodio ${index} Ver en línea-DramaBox`,
+        keywords: `${bookName} Episodio ${index}`,
+        description: `${bookName} Episodio ${index} Ver en línea`
+      }
+    },
+    error500: {
+      title: '500-DramaBox',
+      keywords: '',
+      description: '',
+    },
+    download: {
+      title: 'DramaBox apk-DramaBox app Descargar-DramaBox',
+      keywords: 'DramaBox apk,DramaBox app download',
+      description: 'DramaBox app Descargar'
+    },
+    error404: {
+      title: '404-DramaBox',
+      keywords: '',
+      description: 'El cortometraje actual no existe'
+    },
+    agreementPrivacy: {
+      title: 'Política de privacidad-DramaBox',
+      keywords: 'Política de privacidad,DramaBox',
+      description: 'Política de privacidad'
+    },
+    agreementUser: {
+      title: 'Términos de uso-DramaBox',
+      keywords: 'Términos de uso,DramaBox',
+      description: 'Términos de uso'
+    }
+  },
 }

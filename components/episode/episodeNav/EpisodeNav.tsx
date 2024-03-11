@@ -35,7 +35,7 @@ const EpisodeNav: FC<IProps> = ({bookInfo, showEpisodeDialog, chapterId, isApple
   const onDownload = () => {
     netIpUa(clipboard);
     onCopyText(copyText, () => {
-      HiveLog.trackDownload('Download_click', { bookId: bookInfo.bookId, chapterId: 0 });
+      HiveLog.trackDownload('Download_click', { bookId: bookInfo.bookId, chapterId: chapterId || 0 });
       window.location.href = shopLink;
     });
   }

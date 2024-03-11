@@ -58,7 +58,7 @@ const useLogParams = (pageProps: any): void => {
     } else if (router.pathname.includes(pathData.browse)) {
       // 浏览页曝光
       HiveLog.pageView('Browse_view', { class: pageProps.typeTwoName });
-    } else if (router.pathname === pathData.film) {
+    } else if (router.pathname.includes(pathData.film)) {
       // 书籍详情页
       HiveLog.pageView('FilmPage_view', {
         bookId: pageProps?.bookInfo?.bookId,
