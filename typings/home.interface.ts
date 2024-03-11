@@ -76,7 +76,7 @@ export enum EHomeName {
   MustSees = '必看好剧',
   Trending = '当前热播',
   HiddenGems = '精彩剧集',
-  MightLike = '为你推荐',
+  // MightLike = '为你推荐',
 }
 
 export const ColumnNameRoute = {
