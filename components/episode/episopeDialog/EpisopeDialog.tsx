@@ -63,24 +63,21 @@ const EpisopeDialog: FC<IProps> = (
             style={{display: ind >= curIndex * 50 && ind < (curIndex + 1) * 50 ? "inline-block" : "none"}}
             key={ind}
             href={routerToVideoInfo}
-            className={styles.linkBox}
+            className={classNames(styles.episodeItem, !item.unlock && styles.episodeItemLock, chapterId === item.id && styles.episodeItemActive)}
             shallow={isShallow}
             replace={isShallow}
             onClick={() => {
-              chooseEpisode && chooseEpisode(item, ind)
+              chooseEpisode && chooseEpisode(item, ind);
+              closeDialog();
             }}>
-            <div
-              className={classNames(styles.episodeItem, !item.unlock && styles.episodeItemLock, chapterId === item.id && styles.episodeItemActive)}
-              onClick={() => {closeDialog()}}>
-              <span>{item.index + 1}</span>
-              {item.unlock ? null : <ImagePline
-                className={styles.episodeItemIcon}
-                width={24}
-                height={24}
-                src={'/images/pline/m-lock.png'}
-                alt={''}
-              />}
-            </div>
+            <span>{item.index + 1}</span>
+            {item.unlock ? null : <ImagePline
+              className={styles.episodeItemIcon}
+              width={24}
+              height={24}
+              src={'/images/pline/m-lock.png'}
+              alt={''}
+            />}
           </Link>
         }) : null}
       </div>

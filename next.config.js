@@ -1,12 +1,12 @@
 /** @type {import('next').NextConfig} */
 const { i18n } = require('./next-i18next.config')
 const path = require("path");
-// 网站域名
-const NewWebDomainObj = {
-  test: 'http://192.168.1.71:3001',
-  staging: 'https://yfbwww.dramabox.com',
-  prod: 'https://www.dramabox.com'
-}
+// // 网站域名
+// const NewWebDomainObj = {
+//   test: 'http://192.168.1.71:3001',
+//   staging: 'https://yfbwww.dramabox.com',
+//   prod: 'https://www.dramabox.com'
+// }
 // 网站域名
 const WebDomainObj = {
   test: 'http://192.168.1.71:3001',
@@ -29,12 +29,12 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'test'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
 const Platform = 'dramaboxapp'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 
-const buildId = `${Platform}_20240307`; // 构建ID
-const WebDomain = Platform === "dramaboxapp" ? NewWebDomainObj[environment] : WebDomainObj[environment];
+const buildId = `${Platform}_202403082`; // 构建ID
+const WebDomain = WebDomainObj[environment];
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
 process.title = `next-${buildId}`;

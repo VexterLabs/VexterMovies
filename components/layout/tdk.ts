@@ -339,83 +339,83 @@ export const TDK = {
       description: 'DramaBox사용자 동의'
     }
   },
-  [ELanguage.Spanish]: {
-    ...commonTDK,
-    index: {
-      title: 'DramaBox - Películas y dramas',
-      keywords: 'DramaBox,DramaBox app',
-      description: 'Buscando algo para ver durante tu viaje diario, la pausa para el almuerzo o simplemente para relajarte después de un largo día. ¡No busques más que nuestra Dramabox!'
-    },
-    browse: ({ typeTwoName = '', page = '1' }) => {
-      if (page === '1') {
-        return {
-          title: `${typeTwoName} cortometraje-DramaBox`,
-          keywords: `DramaBox ${typeTwoName} cortometraje`,
-          description: `DramaBox ${typeTwoName} cortometraje,Bienvenido a ver en línea`
-        }
-      }
-      return {
-        title: `${typeTwoName} cortometraje-Página ${page}-DramaBox`,
-        keywords: `${typeTwoName} cortometraje`,
-        description: `${typeTwoName} cortometraje`
-      }
-    },
-    more: ({ positionName = '', page = '1'}) => {
-      if (page === '1') {
-        return {
-          title: `${positionName} Películas de drama-DramaBox`,
-          keywords: `DramaBox ${positionName} Películas de drama`,
-          description: `DramaBox ${positionName} short film,Welcome to watch online`
-        }
-      }
-      return {
-        title: `${positionName} Películas de drama-Página ${page}-DramaBox`,
-        keywords: `${positionName} Películas de drama`,
-        description: `${positionName} Películas de drama`
-      }
-    },
-    book: ({ bookInfo = {} as IBookItem }: { bookInfo: IBookItem}) => {
-      const { bookName = '', introduction = '' } = bookInfo
-      return {
-        title: `${bookName} cortometraje-DramaBox`,
-        keywords: `${bookName}, ${bookName} cortometraje`,
-        description: `${bookName} cortometraje, ${introduction.slice(0, 200)}...`
-      }
-    },
-    episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
-      const { bookName = '' } = bookInfo;
-      const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
-      const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
-      return {
-        title: `${bookName} Episodio ${index}-DramaBox`,
-        keywords: `${bookName} Episodio ${index}`,
-        description: `${bookName} Episodio ${index} en línea`
-      }
-    },
-    error500: {
-      title: '500-DramaBox',
-      keywords: '',
-      description: '',
-    },
-    download: {
-      title: 'DramaBox app Descargar-DramaBox',
-      keywords: 'DramaBox app Descargar',
-      description: 'DramaBox app Descargar'
-    },
-    error404: {
-      title: '404-DramaBox',
-      keywords: '',
-      description: 'El cortometraje actual no existe'
-    },
-    agreementPrivacy: {
-      title: 'Política de Privacidad-DramaBox',
-      keywords: 'Política de Privacidad,DramaBox',
-      description: 'Política de Privacidad'
-    },
-    agreementUser: {
-      title: 'Términos de Uso-DramaBox',
-      keywords: 'Términos de Uso,DramaBox',
-      description: 'Términos de Uso'
-    }
-  },
+  // [ELanguage.Spanish]: {
+  //   ...commonTDK,
+  //   index: {
+  //     title: 'DramaBox - Películas y dramas',
+  //     keywords: 'DramaBox,DramaBox app',
+  //     description: 'Buscando algo para ver durante tu viaje diario, la pausa para el almuerzo o simplemente para relajarte después de un largo día. ¡No busques más que nuestra Dramabox!'
+  //   },
+  //   browse: ({ typeTwoName = '', page = '1' }) => {
+  //     if (page === '1') {
+  //       return {
+  //         title: `${typeTwoName} cortometraje-DramaBox`,
+  //         keywords: `DramaBox ${typeTwoName} cortometraje`,
+  //         description: `DramaBox ${typeTwoName} cortometraje,Bienvenido a ver en línea`
+  //       }
+  //     }
+  //     return {
+  //       title: `${typeTwoName} cortometraje-Página ${page}-DramaBox`,
+  //       keywords: `${typeTwoName} cortometraje`,
+  //       description: `${typeTwoName} cortometraje`
+  //     }
+  //   },
+  //   more: ({ positionName = '', page = '1'}) => {
+  //     if (page === '1') {
+  //       return {
+  //         title: `${positionName} Películas de drama-DramaBox`,
+  //         keywords: `DramaBox ${positionName} Películas de drama`,
+  //         description: `DramaBox ${positionName} short film,Welcome to watch online`
+  //       }
+  //     }
+  //     return {
+  //       title: `${positionName} Películas de drama-Página ${page}-DramaBox`,
+  //       keywords: `${positionName} Películas de drama`,
+  //       description: `${positionName} Películas de drama`
+  //     }
+  //   },
+  //   book: ({ bookInfo = {} as IBookItem }: { bookInfo: IBookItem}) => {
+  //     const { bookName = '', introduction = '' } = bookInfo
+  //     return {
+  //       title: `${bookName} cortometraje-DramaBox`,
+  //       keywords: `${bookName}, ${bookName} cortometraje`,
+  //       description: `${bookName} cortometraje, ${introduction.slice(0, 200)}...`
+  //     }
+  //   },
+  //   episode: ({ bookInfo = {} as IBookItem, chapterList = [] as IChapterList[], chapterId }: { bookInfo: IBookItem; chapterList: IChapterList[]; chapterId: string;}) => {
+  //     const { bookName = '' } = bookInfo;
+  //     const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
+  //     const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
+  //     return {
+  //       title: `${bookName} Episodio ${index}-DramaBox`,
+  //       keywords: `${bookName} Episodio ${index}`,
+  //       description: `${bookName} Episodio ${index} en línea`
+  //     }
+  //   },
+  //   error500: {
+  //     title: '500-DramaBox',
+  //     keywords: '',
+  //     description: '',
+  //   },
+  //   download: {
+  //     title: 'DramaBox app Descargar-DramaBox',
+  //     keywords: 'DramaBox app Descargar',
+  //     description: 'DramaBox app Descargar'
+  //   },
+  //   error404: {
+  //     title: '404-DramaBox',
+  //     keywords: '',
+  //     description: 'El cortometraje actual no existe'
+  //   },
+  //   agreementPrivacy: {
+  //     title: 'Política de Privacidad-DramaBox',
+  //     keywords: 'Política de Privacidad,DramaBox',
+  //     description: 'Política de Privacidad'
+  //   },
+  //   agreementUser: {
+  //     title: 'Términos de Uso-DramaBox',
+  //     keywords: 'Términos de Uso,DramaBox',
+  //     description: 'Términos de Uso'
+  //   }
+  // },
 }

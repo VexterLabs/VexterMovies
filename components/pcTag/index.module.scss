@@ -1,6 +1,5 @@
 .tagWrap {
   background-color: $theme_bg;
-  font-family: Ubuntu-Regular, Ubuntu;
 
   .container {
     width: 14.4rem;
@@ -27,7 +26,6 @@
       color: $theme_color;
       font-weight: bold;
       line-height: 0.32rem;
-      font-family: Ubuntu-Bold, Ubuntu;
     }
 
     .sub {
@@ -51,7 +49,6 @@
         font-weight: bold;
         color: $pc_crumbs_color;
         line-height: 0.16rem;
-        font-family: SFPro-Bold, SFPro;
       }
 
       .keywordConnectItem {
