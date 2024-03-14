@@ -37,7 +37,9 @@ const useLogParams = (pageProps: any): void => {
   }, [clipboard]); // eslint-disable-line
 
   useEffect(() => {
-    dispatch(clipboardAsync())
+    const { bid, cid } = getIds();
+    // @ts-ignore
+    dispatch(clipboardAsync({ bid, cid }));
   }, []) // eslint-disable-line
 
   useEffect(() => {
@@ -87,13 +89,17 @@ const useLogParams = (pageProps: any): void => {
 
   const getIds = (): { bid: string; cid: string | number } => {
     let clipboardBookId, clipboardChapterId;
-    const localeBookId = LanguageDefaultBookId?.[(router.locale || ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans]
-    if (router.pathname === pathData.film || router.pathname.includes(pathData.episode)) {
-      clipboardBookId = pageProps?.bookInfo?.bookId;
-      clipboardChapterId = pageProps?.bookInfo?.chapterId || 0;
+    const localeBookId = LanguageDefaultBookId?.[(router.locale || ELanguage.English) as ELanguage] || LanguageDefaultBookId[ELanguage.ZhHans];
+    if (router.pathname.includes(pathData.film)) {
+      clipboardBookId = pageProps?.bookId;
+      clipboardChapterId = pageProps?.chapterId;
+    } else if (router.pathname.includes(pathData.episode)) {
+      clipboardBookId = pageProps?.bookId;
+      const queryChapterId = router.query?.chapterId as string;
+      clipboardChapterId = queryChapterId ? (process.env.Platform === 'dramabox' ? (queryChapterId || '')?.split('_')?.[0] : queryChapterId) : pageProps?.chapterId;
     } else if (router.pathname === pathData.download) {
-      clipboardBookId = pageProps?.filmId;
-      clipboardChapterId = 0;
+      clipboardBookId = pageProps?.bookId;
+      clipboardChapterId = pageProps?.chapterId;
     } else {
       clipboardBookId = localeBookId
       clipboardChapterId = 0;

@@ -11,9 +11,9 @@ import { netIpUa } from "@/server/clientLog";
 import { ipReg } from "@/utils/other";
 import { encrypt } from "@/utils/crypto";
 
-export const clipboardAsync = createAsyncThunk<IClipboard>(
+export const clipboardAsync = createAsyncThunk<IClipboard, any>(
   'hive/getClipboard',
-  async () => {
+  async ({ bid, cid }: { bid: string; cid: string | number }) => {
     const ua = navigator.userAgent;
     const h5fingerPrint = await InitFingerprint();
     const channelCode = isIos(ua) ? ClientConfig.ios.channelCode : ClientConfig.android.channelCode;
@@ -26,10 +26,9 @@ export const clipboardAsync = createAsyncThunk<IClipboard>(
       url: window.location.href,
     };
 
-
     const ip = await netIpUa(Object.assign(clipboard, {
-      bid: LanguageDefaultBookId[ELanguage.English],
-      cid: 0,
+      bid: bid || LanguageDefaultBookId[ELanguage.English],
+      cid,
       shareCode: 0
     }))
     if (ipReg.test(ip)) {
@@ -51,9 +50,9 @@ const getCopyText = (clipboard: IClipboard) => {
       cid: cid || "",
       ext: "", // 拓展字符
     }))
-    return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${ queryStr }&lpat=${androidClip} UA8322`
+    return `[dramaBox]https://app.dramaboxdb.com/android/open?c=${queryStr}&lpat=${androidClip} UA8322`
   }
-  return `[dramaBox]https://app.dramaboxdb.com/ios/open?c=${ queryStr } UA8322`
+  return `[dramaBox]https://app.dramaboxdb.com/ios/open?c=${queryStr} UA8322`
 }
 
 export const hiveSlice = createSlice<IHiveStore, SliceCaseReducers<IHiveStore>>({
@@ -76,14 +75,17 @@ export const hiveSlice = createSlice<IHiveStore, SliceCaseReducers<IHiveStore>>(
     }
   },
   reducers: {
-    setClipboard: (state, action: PayloadAction<{ bid?: string; cid?: string | number;}>) => {
+    setClipboard: (state, action: PayloadAction<{ bid?: string; cid?: string | number; }>) => {
+      const data = Object.assign({}, state.clipboard)
       if (!!action.payload.bid) {
-        state.clipboard.bid = action.payload.bid
+        state.clipboard.bid = action.payload.bid;
+        data.bid = action.payload.bid;
       }
       if (!!action.payload.cid) {
-        state.clipboard.cid = action.payload.cid
+        state.clipboard.cid = action.payload.cid;
+        data.cid = action.payload.cid;
       }
-      state.copyText = getCopyText(state.clipboard)
+      state.copyText = getCopyText(data)
     },
     setLanguage: (state, action: PayloadAction<ELanguage>) => {
       state.language = action.payload;
@@ -95,7 +97,7 @@ export const hiveSlice = createSlice<IHiveStore, SliceCaseReducers<IHiveStore>>(
       .addCase(clipboardAsync.fulfilled, (state, action) => {
         // const clipboardObj = Object.assign(state.clipboard, action.payload);
         state.clipboard = { ...state.clipboard, ...action.payload };
-        state.copyText = getCopyText(state.clipboard)
+        state.copyText = getCopyText({ ...state.clipboard, ...action.payload })
       })
     ;
   }

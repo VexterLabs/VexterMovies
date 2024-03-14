@@ -14,6 +14,7 @@ import { getRequestMeta } from "next/dist/server/request-meta";
 interface IProps extends SSRConfig {
   isPc: boolean;
   bookId: string;
+  chapterId: string | number;
   bookInfo: IBookItem;
   isApple: boolean;
   languages: ELanguage[]; // tdk需要， 勿删
@@ -95,6 +96,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   return {
     props: {
       bookId,
+      chapterId: book.firstChapterId || 0,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),

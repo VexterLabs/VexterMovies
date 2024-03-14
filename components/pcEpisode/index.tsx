@@ -164,7 +164,7 @@ const PcEpisode: FC<IProps> = (
                 <div className={styles.downloadMark}/>
               </div>
               <Link
-                href={`/download?filmId=${bookInfo.bookId}`}
+                href={`/download?bookId=${bookInfo.bookId}&chapterId=${chapterList?.[currentPage]?.id || 0}`}
                 className={styles.downInfo}
                 onClick={() => {
                   HiveLog.trackDownload('PayChapterDownload_click', {

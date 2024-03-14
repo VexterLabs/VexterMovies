@@ -22,7 +22,7 @@ const PcShare: FC<IProps> = ({ bookInfo }) => {
       return process.env.WebDomain + router.asPath;
     }
     return `${process.env.WebDomain}/${router.locale + router.asPath}`
-  }, [router.locale]);
+  }, [router.locale, router.asPath]);
 
   const shareList = useMemo(() => getShareList(copyLink, bookInfo), [copyLink, bookInfo]);
 

@@ -11,6 +11,7 @@ import useHiveLog from "@/hooks/useHiveLog";
 interface IProps {
   isPc: boolean;
   bookId: string;
+  chapterId: string | number; // 勿删
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
@@ -77,6 +78,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
 
   return {
     props: {
+      chapterId: chapterId || chapterList?.[0]?.id || 0,
       bookId,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
