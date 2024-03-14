@@ -1,4 +1,4 @@
-## 【SEO系列】Drama Box
+## 【SEO系列】DramaBox
 SSR
 
 ## 环境
