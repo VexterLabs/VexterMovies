@@ -44,7 +44,7 @@ const PcEpisode: FC<IProps> = (
   const episodeIndex = useRef(current);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [errorBgsrc, setErrorBg] = useState('')
+  const [isLock, setIsLock] = useState(false);
   const breadDatas: IBreadcrumb[] = [
     { title: t('home.home'), link: "/" },
     { title: bookInfo.typeTwoNames[0], link: `/browse/${bookInfo.typeTwoIds[0]}` },
@@ -53,11 +53,8 @@ const PcEpisode: FC<IProps> = (
   ]
   // 根据剧集id，查询对应的第几集，如果没有剧集id，就默认去第一集s
   useEffect(() => {
-    const curId = chapterList.find((item, index) => index === currentPage) || chapterList[0]
-    const cover = curId?.cover
-    if (curId?.unlock === false) {
-      setErrorBg(cover as string || bookInfo.cover);
-    }
+    const curId = chapterList.find((item, index) => index === currentPage) || chapterList[0];
+    setIsLock(curId?.unlock === false);
     playUrl();
   }, [chapterList, currentPage]); // eslint-disable-line
 
@@ -65,7 +62,7 @@ const PcEpisode: FC<IProps> = (
     if (playerInstance.current && chapterList?.[currentPage]) {
       playerInstance.current.poster = chapterList[currentPage]?.cover || bookInfo.cover;
       playerInstance.current.currentTime = 0;
-      if (playerInstance.current?.switchURL) {
+      if (playerInstance.current?.switchURL && chapterList?.[currentPage]?.unlock) {
         await playerInstance.current?.switchURL(chapterList?.[currentPage]?.mp4 as string, { seamless: true, currentTime: 0 });
         playerInstance.current.play();
       }
@@ -73,7 +70,7 @@ const PcEpisode: FC<IProps> = (
   }
 
   useEffect(() => {
-    if (errorBgsrc) {
+    if (isLock) {
       if (isFullScreen && playerInstance.current) {
         playerInstance.current.exitFullscreen();
       }
@@ -82,7 +79,7 @@ const PcEpisode: FC<IProps> = (
         playerInstance.current.pause();
       }
     }
-  }, [isFullScreen, errorBgsrc]);
+  }, [isFullScreen, isLock]);
 
   // 播放器设置
   useEffect(() => {
@@ -98,7 +95,7 @@ const PcEpisode: FC<IProps> = (
       height: '100%',
       videoFillMode: "fillHeight",
       playsinline: true,
-      ignores: ['playbackRate', 'replay'],
+      ignores: ['playbackRate', 'replay', 'error'],
       cssFullscreen: false,
     })
 
@@ -117,7 +114,7 @@ const PcEpisode: FC<IProps> = (
           setCurrentPage(prevState => prevState + 1);
           episodeIndex.current += 1;
           if (!nextChapter.mp4 || !nextChapter.unlock) {
-            setErrorBg(nextChapter.cover)
+            setIsLock(true)
           }
         }
       })
@@ -132,7 +129,7 @@ const PcEpisode: FC<IProps> = (
     episodeIndex.current = tempCurInd;
     const item = chapterList[tempCurInd];
     !item.unlock && playerInstance && playerInstance.current.pause();//视频切换，暂停播放
-    setErrorBg(item.unlock ? '' : item.cover)
+    setIsLock(!item.unlock)
     if (!item.unlock) {
       if (playerInstance.current) {
         playerInstance.current.currentTime = 0;
@@ -155,36 +152,42 @@ const PcEpisode: FC<IProps> = (
       <div className={styles.leftVideo}>
         <div className={styles.videoContainer}>
           <div id="playVideo"/>
-          {errorBgsrc ? <div className={styles.downloads}>
-            <Image
-              className={styles.errBg}
-              width={398}
-              height={708}
-              src={errorBgsrc}
-              alt='photo'/>
-            <div className={styles.downloadMark}/>
-          </div> : null}
           {
-            errorBgsrc ? <Link href={`/download?filmId=${bookInfo.bookId}`} className={styles.downInfo} onClick={() => {
-              HiveLog.trackDownload('PayChapterDownload_click', {
-                bookId: bookInfo.bookId,
-                bookName: bookInfo.bookName,
-                chapterId: chapterList?.[currentPage]?.id,
-                chapterName: chapterList?.[currentPage]?.name,
-              })
-            }}>
-            <div className={styles.downTip}>{t('bookInfo.downloadTip')}</div>
-            <button className={styles.btnDown}>
-              <Image
-                className={styles.btnIcon}
-                width={40}
-                height={40}
-                src={'/images/download/download-icon.png'}
-                alt=''/>
+            isLock ? <>
+              <div className={styles.downloads}>
+                <Image
+                  className={styles.errBg}
+                  width={398}
+                  height={708}
+                  src={chapterList[currentPage]?.cover || bookInfo.cover}
+                  alt='photo'/>
+                <div className={styles.downloadMark}/>
+              </div>
+              <Link
+                href={`/download?filmId=${bookInfo.bookId}`}
+                className={styles.downInfo}
+                onClick={() => {
+                  HiveLog.trackDownload('PayChapterDownload_click', {
+                    bookId: bookInfo.bookId,
+                    bookName: bookInfo.bookName,
+                    chapterId: chapterList?.[currentPage]?.id,
+                    chapterName: chapterList?.[currentPage]?.name,
+                  })
+                }}
+              >
+                <div className={styles.downTip}>{t('bookInfo.downloadTip')}</div>
+                <button className={styles.btnDown}>
+                  <Image
+                    className={styles.btnIcon}
+                    width={40}
+                    height={40}
+                    src={'/images/download/download-icon.png'}
+                    alt=''/>
 
-              {t('bookInfo.episodesDownload')}
-            </button>
-          </Link> : null}
+                  {t('bookInfo.episodesDownload')}
+                </button>
+              </Link>
+            </> : null}
         </div>
 
         <div className={styles.videoInfo}>

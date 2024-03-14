@@ -30,6 +30,11 @@
         overflow: hidden;
         position: relative;
 
+        :global {
+          .xgplayer-poster {
+            background-size: contain;
+          }
+        }
         .downloads {
           position: absolute;
           height: 100%;
