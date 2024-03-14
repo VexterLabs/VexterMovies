@@ -30,7 +30,9 @@ const HeaderAd: FC<IProps> = () => {
     netIpUa(clipboard);
     onCopyText(copyText, () => {
       HiveLog.trackDownload('HeaderDownloadButton_Click');
-      window.location.href = shopLink;
+      setTimeout(() => {
+        window.location.href = shopLink;
+      }, 200)
     })
   }
 

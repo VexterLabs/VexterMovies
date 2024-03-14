@@ -31,7 +31,9 @@ const MDownload: FC<IProps> = ({ isApple }) => {
     netIpUa(clipboard);
     onCopyText(copyText, () => {
       HiveLog.trackDownload('turnPage_click', { bookId: clipboard.bid, chapterId: clipboard.cid })
-      window.location.href = shopLink;
+      setTimeout(() => {
+        window.location.href = shopLink;
+      }, 200);
     })
   }
 
