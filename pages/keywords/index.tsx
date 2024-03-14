@@ -11,12 +11,14 @@ import { ESearchType } from "typings/sitemap.interface";
 import useHiveLog from "@/hooks/useHiveLog";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import { SSRConfig } from "next-i18next";
+import { getSource } from "@/utils/getSource";
 
 interface IProps extends SSRConfig {
   keywordList: IKeywordItem[]
   isPc: boolean;
   currentPage: number;
   totalPage: number;
+  source: string;
 }
 
 const KeywordsPage: NextPage<IProps> = ({ isPc, currentPage, totalPage = 0, keywordList = [] }) => {
@@ -77,6 +79,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isPc: ownOs(ua).isPc,
       currentPage,
       totalPage: pages,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

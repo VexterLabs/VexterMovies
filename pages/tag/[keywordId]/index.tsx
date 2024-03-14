@@ -10,6 +10,7 @@ import { ELanguage } from "typings/home.interface";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import { SSRConfig } from "next-i18next";
 import useHiveLog from "@/hooks/useHiveLog";
+import { getSource } from "@/utils/getSource";
 
 interface IProps extends SSRConfig {
   bookList: ITagBookItem[];
@@ -19,6 +20,7 @@ interface IProps extends SSRConfig {
   pages: number;
   keywordId: string;
   keyword: string;
+  source: string;
 }
 
 const ConvergencePage: NextPage<IProps> = (
@@ -102,6 +104,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       pages,
       keywordId,
       keyword: keyword.trim(),
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

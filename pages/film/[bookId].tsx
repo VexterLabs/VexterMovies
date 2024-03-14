@@ -10,15 +10,18 @@ import { SSRConfig, useTranslation } from "next-i18next";
 import { IBreadcrumb } from "@/components/common/breadcrumb";
 import useHiveLog from "@/hooks/useHiveLog";
 import { getRequestMeta } from "next/dist/server/request-meta";
+import { getSource } from "@/utils/getSource";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
   bookId: string;
+  chapterId: string | number;
   bookInfo: IBookItem;
   isApple: boolean;
   languages: ELanguage[]; // tdk需要， 勿删
   recommends: IBookItem[];
   chapterList: IChapterList[];
+  source: string;
 }
 
 const Film: NextPage<IProps> = (
@@ -95,12 +98,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   return {
     props: {
       bookId,
+      chapterId: book.firstChapterId || 0,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
       recommends,
       chapterList,
       languages,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },
   }

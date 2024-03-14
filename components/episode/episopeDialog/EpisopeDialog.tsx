@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef} from 'react';
+import React, { FC, useState, useRef, useEffect } from 'react';
 import Link from "next/link";
 import ImagePline from "@/components/common/image/ImagePline";
 import classNames from "classnames";
@@ -23,6 +23,10 @@ const EpisopeDialog: FC<IProps> = (
     setCurIndex(i)
     navRef?.current && (navRef.current.scrollTop = 0)
   }
+
+  useEffect(() => {
+    setCurIndex(0);
+  }, [bookInfo])
 
   return <div className={styles.dialogContainer} style={showDialog ? {} : {display:'none'}}>
     <div className={styles.dialogMark} onClick={() => {closeDialog()}} />

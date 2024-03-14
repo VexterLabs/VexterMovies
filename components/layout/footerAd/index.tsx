@@ -40,7 +40,9 @@ const FooterAd: FC<IProps> = ({ adClose }) => {
     netIpUa(clipboard);
     onCopyText(copyText, () => {
       HiveLog.trackDownload('BannerDownloadButton_Click');
-      window.location.href = shopLink;
+      setTimeout(() => {
+        window.location.href = shopLink;
+      }, 200)
     })
   }
 

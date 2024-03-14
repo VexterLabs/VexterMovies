@@ -86,7 +86,9 @@ const WapEpisode: FC<IProps> = (
         chapterId: chapterList?.[currentPage]?.id,
         chapterName: chapterList?.[currentPage]?.name,
       });
-      window.location.href = shopLink;
+      setTimeout(() => {
+        window.location.href = shopLink;
+      }, 200)
     })
   }
 

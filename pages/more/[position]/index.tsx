@@ -7,6 +7,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcMore from "@/components/pcMore";
 import MMore from "@/components/more";
 import { getRequestMeta } from "next/dist/server/request-meta";
+import { getSource } from "@/utils/getSource";
 
 interface IProps {
   isPc: boolean;
@@ -14,6 +15,7 @@ interface IProps {
   positionName: string; // 勿删，tdk用
   pageNo: number;
   pages: number;
+  source: string;
 }
 
 const More: NextPage<IProps> = ({ isPc, moreData, pageNo, pages }) => {
@@ -68,6 +70,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       positionName: name,
       pages,
       isPc: ownOs(ua).isPc,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

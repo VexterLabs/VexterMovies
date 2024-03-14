@@ -30,6 +30,17 @@
         overflow: hidden;
         position: relative;
 
+        :global {
+
+          .xgplayer-poster {
+            background-size: auto 100%;
+          }
+
+          .xgplayer-error {
+            display: none !important;
+          }
+        }
+
         .downloads {
           position: absolute;
           height: 100%;
@@ -40,7 +51,7 @@
           text-align: center;
 
           .errBg {
-            width: 3.98rem;
+            width: auto;
             height: 100%;
           }
 

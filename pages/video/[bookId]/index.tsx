@@ -7,15 +7,18 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
 import useHiveLog from "@/hooks/useHiveLog";
+import { getSource } from "@/utils/getSource";
 
 interface IProps {
   isPc: boolean;
   bookId: string;
+  chapterId: string | number; // 勿删
   bookInfo: IBookItem;
   recommends: IBookItem[];
   chapterList: IChapterList[];
   isApple: boolean;
   current: number;
+  source: string;
 }
 
 const EpisodePage: NextPage<IProps> = (
@@ -82,12 +85,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   return {
     props: {
       bookId: _bookId,
+      chapterId: chapterId || chapterList?.[0]?.id || 0,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),
       recommends,
       chapterList,
       current: current === -1 ? 0 : current,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },
   }

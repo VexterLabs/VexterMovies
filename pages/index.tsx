@@ -9,11 +9,13 @@ import { ownOs } from "@/utils/ownOs";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsResult } from "next/types";
 import { SSRConfig } from "next-i18next";
+import { getSource } from "@/utils/getSource";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
   bigList: IBookItem[];
   smallData: IHomeResItem[];
+  source: string;
 }
 
 const Home: NextPage<IProps> = ({ isPc, bigList = [], smallData }) => {
@@ -40,6 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }): P
       bigList,
       smallData,
       isPc: ownOs(ua).isPc,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

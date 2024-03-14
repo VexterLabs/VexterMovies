@@ -39,6 +39,7 @@
         flex: 1;
 
         .leftCardContentTop {
+          max-width: 5.07rem;
 
           .leftBookName {
             display: block;
@@ -128,6 +129,8 @@
           flex: 1;
 
           .rightCardContentTop {
+            max-width: 3.25rem;
+
             .bookName {
               display: block;
               font-size: 0.24rem;

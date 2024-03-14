@@ -5,7 +5,7 @@ import { Toast } from "antd-mobile";
 import { getShareList } from "@/components/film/wapShare/functions";
 import { useTranslation } from "next-i18next";
 import useHiveLog from "@/hooks/useHiveLog";
-import { IBookItem } from "@/typings/home.interface";
+import { ELanguage, IBookItem } from "@/typings/home.interface";
 import { useRouter } from "next/router";
 import styles from "@/components/film/wapShare/index.module.scss";
 
@@ -16,7 +16,12 @@ interface IProps {
 const WapShare: FC<IProps> = ({ bookInfo }) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const copyLink = process.env.WebDomain + router.asPath;
+  const copyLink = useMemo(() => {
+    if (router.locale === ELanguage.English) {
+      return process.env.WebDomain + router.asPath;
+    }
+    return `${process.env.WebDomain}/${router.locale + router.asPath}`
+  }, [router.locale, router.asPath]);
 
   const shareList = useMemo(() => getShareList(copyLink, bookInfo), [copyLink, bookInfo]);
 
@@ -30,29 +35,32 @@ const WapShare: FC<IProps> = ({ bookInfo }) => {
 
   return <div className={styles.shareBox}>
     <div className={styles.shareLabel}>{t('bookInfo.share')}:</div>
-    {shareList.map(share => (
+
+    <div className={styles.shareIconBox}>
+      {shareList.map(share => (
+        <Image
+          onClick={() => onShare(share.id, share.link)}
+          key={share.id}
+          className={styles.shareIcon}
+          width={40}
+          height={40}
+          src={share.icon}
+          alt={share.id}
+        />
+      ))}
       <Image
-        onClick={() => onShare(share.id, share.link)}
-        key={share.id}
+        onClick={() => {
+          onCopyText(copyLink, () => {
+            Toast.show(t('bookInfo.shareCopy'))
+          })
+        }}
         className={styles.shareIcon}
-        width={40}
-        height={40}
-        src={share.icon}
-        alt={share.id}
+        width={34}
+        height={34}
+        src={'/images/common/copy-blue.svg'}
+        alt={'copy'}
       />
-    ))}
-    <Image
-      onClick={() => {
-        onCopyText(copyLink, () => {
-          Toast.show(t('bookInfo.shareCopy'))
-        })
-      }}
-      className={styles.shareIcon}
-      width={34}
-      height={34}
-      src={'/images/common/copy-blue.svg'}
-      alt={'copy'}
-    />
+    </div>
   </div>
 }
 
