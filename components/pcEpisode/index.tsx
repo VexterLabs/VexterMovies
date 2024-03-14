@@ -40,9 +40,9 @@ const PcEpisode: FC<IProps> = (
   const router = useRouter()
   const [currentPage, setCurrentPage] = useState(current);
   const playerInstance = useRef<Player>({} as Player);
+  const [isLoad, setIsLoad] = useState(false);
   const episodeIndex = useRef(current);
 
-  console.log('episodeIndex,', episodeIndex.current);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [errorBgsrc, setErrorBg] = useState('')
   const breadDatas: IBreadcrumb[] = [
@@ -87,7 +87,7 @@ const PcEpisode: FC<IProps> = (
   // 播放器设置
   useEffect(() => {
     if (!chapterList[currentPage]) return;
-
+    setIsLoad(true);
     playerInstance.current = new Player({
       id: "playVideo",
       autoplay: true,
@@ -188,10 +188,15 @@ const PcEpisode: FC<IProps> = (
         </div>
 
         <div className={styles.videoInfo}>
-          <h1 className={styles.videoTitle}>
-            {bookInfo.bookName}
-            <span>{` ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`} </span>
-          </h1>
+          { isLoad ?
+            <h1 className={styles.videoTitle}>
+              {bookInfo.bookName}
+              <span>{` ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}</span>
+            </h1> :
+            <h1 className={styles.videoTitle}>
+              {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+            </h1>
+          }
           <div className={styles.videoStar}>
             <ImagePline
               className={styles.imageStar}
