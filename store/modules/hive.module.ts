@@ -13,12 +13,12 @@ import { encrypt } from "@/utils/crypto";
 
 export const clipboardAsync = createAsyncThunk<IClipboard, any>(
   'hive/getClipboard',
-  async ({ bid, cid }: { bid: string; cid: string | number }) => {
+  async ({ bid, cid, ip }: { bid: string; cid: string | number; ip: string; }) => {
     const ua = navigator.userAgent;
     const h5fingerPrint = await InitFingerprint();
     const channelCode = isIos(ua) ? ClientConfig.ios.channelCode : ClientConfig.android.channelCode;
     const clipboard = {
-      ip: "0.0.0.0",
+      ip: ip || "0.0.0.0",
       h5uid: getUserLandId(),
       channelCode,
       h5fingerPrint,
@@ -26,13 +26,13 @@ export const clipboardAsync = createAsyncThunk<IClipboard, any>(
       url: window.location.href,
     };
 
-    const ip = await netIpUa(Object.assign(clipboard, {
+    const _ip = await netIpUa(Object.assign(clipboard, {
       bid: bid || LanguageDefaultBookId[ELanguage.English],
       cid,
       shareCode: 0
     }))
-    if (ipReg.test(ip)) {
-      clipboard.ip = ip
+    if (ipReg.test(_ip)) {
+      clipboard.ip = _ip
     }
     return clipboard as IClipboard;
   }

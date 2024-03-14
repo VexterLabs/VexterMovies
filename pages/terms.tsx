@@ -6,10 +6,12 @@ import { ELanguage } from "@/typings/home.interface";
 import Head from "next/head";
 import { useTranslation } from "next-i18next";
 import { getRequestMeta } from "next/dist/server/request-meta";
+import { getSource } from "@/utils/getSource";
 import styles from "@/styles/Terms.module.scss";
 
 interface IProps {
   isPc: boolean;
+  source: string;
 }
 
 const AgreementUser: NextPage<IProps> = ({ isPc }) => {
@@ -49,6 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   return {
     props: {
       isPc: ownOs(ua).isPc,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

@@ -5,6 +5,7 @@ import { ELanguage } from "@/typings/home.interface";
 import { clipboardAsync, setClipboard, setLanguage } from "@/store/modules/hive.module";
 import { useAppDispatch, useAppSelector } from "@/store";
 import useHiveLog from "@/hooks/useHiveLog";
+import { ipReg } from "@/utils/other";
 
 const pathData = {
   index: '/',
@@ -39,7 +40,7 @@ const useLogParams = (pageProps: any): void => {
   useEffect(() => {
     const { bid, cid } = getIds();
     // @ts-ignore
-    dispatch(clipboardAsync({ bid, cid }));
+    dispatch(clipboardAsync({ bid, cid, ip: pageProps.source && ipReg.test(pageProps.source) ? pageProps.source : '' }));
   }, []) // eslint-disable-line
 
   useEffect(() => {

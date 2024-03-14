@@ -9,6 +9,7 @@ import MBrowse from "@/components/browse";
 import PcBrowse from "@/components/pcBrowse";
 import { IBrowseTypes } from "@/typings/browse.interface";
 import { getRequestMeta } from "next/dist/server/request-meta";
+import { getSource } from "@/utils/getSource";
 
 interface IProps {
   isPc: boolean;
@@ -18,6 +19,7 @@ interface IProps {
   pages: number;
   typeTwoId: number;
   typeTwoName: string;
+  source: string;
 }
 
 const Browse: NextPage<IProps> = (
@@ -92,6 +94,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       typeTwoId: Number(typeTwoId),
       isPc: ownOs(ua).isPc,
       typeTwoName,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

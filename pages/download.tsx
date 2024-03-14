@@ -6,12 +6,14 @@ import MDownload from "@/components/download";
 import { ELanguage } from "@/typings/home.interface";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { SSRConfig } from "next-i18next";
+import { getSource } from "@/utils/getSource";
 
 interface IProps extends SSRConfig {
   isPc: boolean;
   isApple: boolean;
   bookId: string; // 勿删，剪切板使用
   chapterId: string | number;  // 勿删，剪切板使用
+  source: string;
 }
 
 const DownloadApp: NextPage<IProps> = ({ isPc, isApple }) => {
@@ -31,6 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       isApple: isIos(ua),
       bookId,
       chapterId: chapterId || 0,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common']))
     }
   }

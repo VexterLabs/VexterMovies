@@ -7,6 +7,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PcEpisode from '@/components/pcEpisode';
 import WapEpisode from '@/components/episode'
 import useHiveLog from "@/hooks/useHiveLog";
+import { getSource } from "@/utils/getSource";
 
 interface IProps {
   isPc: boolean;
@@ -17,6 +18,7 @@ interface IProps {
   chapterList: IChapterList[];
   isApple: boolean;
   current: number;
+  source: string;
 }
 
 const Episode: NextPage<IProps> = (
@@ -86,6 +88,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
       recommends,
       chapterList,
       current: current === -1 ? 0 : current,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     },
   }

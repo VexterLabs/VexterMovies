@@ -7,9 +7,11 @@ import { useTranslation } from "next-i18next"
 import Head from "next/head";
 import { getRequestMeta } from "next/dist/server/request-meta";
 import styles from 'styles/Privacy.module.scss';
+import { getSource } from "@/utils/getSource";
 
 interface IProps {
   isPc: boolean;
+  source: string;
 }
 
 const AgreementPrivacy: NextPage<IProps> = ({ isPc }) => {
@@ -49,6 +51,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, locale }) =>
   return {
     props: {
       isPc: ownOs(ua).isPc,
+      source: getSource(req),
       ...(await serverSideTranslations(locale || ELanguage.English, ['common'])),
     }
   }

@@ -160,7 +160,7 @@ const PcEpisode: FC<IProps> = (
                   width={398}
                   height={708}
                   src={chapterList[currentPage]?.cover || bookInfo.cover}
-                  alt='photo'/>
+                  alt=''/>
                 <div className={styles.downloadMark}/>
               </div>
               <Link
