@@ -72,9 +72,9 @@ export const TDKNew = {
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
       const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName}第${index}集-DramaBox`,
-        keywords: `${bookName}第${index}集`,
-        description: `在线观看${bookName}第${index}集`
+        title: `${index}集-${bookName} ${index}集在线观看-DramaBox`,
+        keywords: `${bookName} ${index}集`,
+        description: `${bookName} ${index}集在线观看`
       }
     },
     download: {
@@ -141,7 +141,7 @@ export const TDKNew = {
     book: ({ bookInfo = {} as IBookItem }: { bookInfo: IBookItem}) => {
       const { bookName = '', introduction = '' } = bookInfo
       return {
-        title: `${bookName}短劇-DramaBox`,
+        title: `${bookName}短劇-${bookName}全集在線看-DramaBox`,
         keywords: `${bookName}, ${bookName}短劇`,
         description: `${bookName}短劇 ${introduction.slice(0, 200)}...`
       }
@@ -151,9 +151,9 @@ export const TDKNew = {
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
       const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName}第${index}集-DramaBox`,
-        keywords: `${bookName}第${index}集`,
-        description: `在線觀看${bookName}第${index}集`
+        title: `${index}集-${bookName} ${index}集-DramaBox`,
+        keywords: `${bookName} ${index}集`,
+        description: `${bookName} ${index}集在線觀看`
       }
     },
     error500: {
@@ -185,9 +185,9 @@ export const TDKNew = {
   [ELanguage.English]: {
     ...commonTDK,
     index: {
-      title: 'DramaBox app-DramaBox Movies Free-Dramabox',
+      title: 'Dramabox movies-DramaBox app-DramaBox Movies Free-Dramabox',
       keywords: 'DramaBox app,DramaBox,DramaBox Movies Free',
-      description: 'Looking for something to watch during your daily commute, lunch break, or just to unwind after a long day? Look no further than our Dramabox!'
+      description: "'Dramabox APP's popular short dramas, a journey of continuous pursuit, wherever and whenever, laughter never stops! We carefully select a diverse range of short dramas for you, with continuous updates and always captivating stories to satisfy your viewing desires!'"
     },
     browse: ({ typeTwoName = '', page = '1' }) => {
       if (page === '1') {
@@ -242,7 +242,7 @@ export const TDKNew = {
     },
     download: {
       title: 'DramaBox apk-DramaBox app download-DramaBox',
-      keywords: 'DramaBox app download',
+      keywords: 'DramaBox apk,DramaBox app download',
       description: 'DramaBox app download'
     },
     error404: {
@@ -264,22 +264,22 @@ export const TDKNew = {
   [ELanguage.Korean]: {
     ...commonTDK,
     index: {
-      title: 'DramaBox-환상적인 이야기와 단편',
-      keywords: 'DramaBox,DramaBox app',
-      description: '인기 있는 시원한 드라마를 멈추지 않고 시청하세요. 언제 어디서나 즐겁게 즐기세요! 다채로운 선택과 지속적인 업데이트되는 단편 드라마 작품을 제공하여 항상 흥미로운 내용이 당신을 끌어들입니다!'
+      title: 'DramaBox단편 드라마-DramaBox app-DramaBox',
+      keywords: 'DramaBox,DramaBox app,DramaBox단편 드라마',
+      description: 'Dramabox APP의 인기 있는 단편 드라마, 계속된 추적의 여정, 언제 어디서나 웃음이 끊이지 않습니다! 우리는 다양한 선택의 단편 드라마를 정성껏 선정하고 지속적으로 업데이트하여 항상 매혹적인 이야기로 여러분의 시선을 사로잡을 것입니다!'
     },
     browse: ({ typeTwoName = '', page = '1' }) => {
       if (page === '1') {
         return {
-          title: `${typeTwoName}단편 영화-DramaBox`,
-          keywords: `DramaBox${typeTwoName}단편 영화`,
-          description: `DramaBox${typeTwoName}단편 영화,온라인으로 시청하실 것을 환영합니다.`
+          title: `${typeTwoName}드라마 영화-DramaBox`,
+          keywords: `DramaBox${typeTwoName}드라마 영화`,
+          description: `DramaBox${typeTwoName}드라마 영화`
         }
       }
       return {
-        title: `${typeTwoName}단편 영화-제 ${page} 페이지-DramaBox`,
-        keywords: `${typeTwoName}단편 영화`,
-        description: `${typeTwoName}단편 영화`
+        title: `${typeTwoName}드라마 영화-페이지 ${page}-DramaBox`,
+        keywords: `${typeTwoName}드라마 영화`,
+        description: `${typeTwoName}드라마 영화`
       }
     },
     more: ({ positionName = '', page = '1'}) => {
@@ -309,9 +309,9 @@ export const TDKNew = {
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
       const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${bookName}제${index}회-DramaBox`,
-        keywords: `${bookName}제${index}회`,
-        description: `${bookName}제${index}회을 온라인으로 시청하세요`
+        title: `${index}회-${bookName} ${index}회온라인 시청-DramaBox`,
+        keywords: `${bookName} ${index}회`,
+        description: `${bookName} ${index}회온라인 시청`
       }
     },
     error500: {
@@ -320,8 +320,8 @@ export const TDKNew = {
       description: '',
     },
     download: {
-      title: 'DramaBox app 다운로드-DramaBox',
-      keywords: 'DramaBox app 다운로드',
+      title: 'DramaBox apk-DramaBox app 다운로드-DramaBox',
+      keywords: 'DramaBox apk,DramaBox app 다운로드',
       description: 'DramaBox app 다운로드'
     },
     error404: {
