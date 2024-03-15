@@ -1,7 +1,7 @@
 .browseWrap {
   padding: 0.4rem 0 0.6rem;
   background-color: $theme_main_bg;
-  min-height: calc(100vh - 2.6rem);
+  min-height: calc(100vh - 3rem);
 
   .container {
     width: 14.4rem;
@@ -99,9 +99,10 @@
         border-radius: 0.04rem;
         font-size: 0.16rem;
         font-weight: 400;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        //overflow: hidden;
+        //white-space: nowrap;
+        //text-overflow: ellipsis;
+        white-space: break-spaces;
         color: $pc_home_name_color;
         display: flex;
         align-items: center;

@@ -194,10 +194,10 @@ const PcEpisode: FC<IProps> = (
           { isLoad ?
             <h1 className={styles.videoTitle}>
               {bookInfo.bookName}
-              <span>{` ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}</span>
+              <span>{` ${t("bookInfo.first") + (currentPage + 1) + t("bookInfo.episode")}`}</span>
             </h1> :
             <h1 className={styles.videoTitle}>
-              {`${bookInfo.bookName} ${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}`}
+              {`${bookInfo.bookName} ${t("bookInfo.first") + (currentPage + 1) + t("bookInfo.episode")}`}
             </h1>
           }
           <div className={styles.videoStar}>

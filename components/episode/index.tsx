@@ -70,7 +70,7 @@ const WapEpisode: FC<IProps> = (
       title: bookInfo.bookName,
       link: process.env.Platform === 'dramabox' ? `/drama/${bookInfo.bookId}/${bookInfo.bookNameEn || ''}` : `/film/${bookInfo.bookId}`
     },
-    { title: `${t("bookInfo.first")} ${currentPage + 1} ${t("bookInfo.episode")}` },
+    { title: t("bookInfo.first") + (currentPage + 1) + t("bookInfo.episode") },
   ]
 
   useEffect(() => {

@@ -44,7 +44,7 @@ const PcSeries: FC<IProps> = ({ chapterList = [], bookInfo}) => {
             width={88}
             height={117}
             src={item.cover || bookInfo.cover}
-            alt={item.name}
+            alt={t("bookInfo.first") + (index + 1) + t("bookInfo.episode")}
           />
 
           { !item.unlock ? <Link href={routerToVideoInfo} className={styles.imageMark}>

@@ -2,6 +2,10 @@
   width: 12rem;
   margin: 0 auto;
   padding-bottom: 1rem;
+  min-height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   .downloadHeader {
     margin-bottom: 0.15rem;

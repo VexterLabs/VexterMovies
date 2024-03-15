@@ -85,7 +85,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query, local
   return {
     props: {
       bookId: _bookId,
-      chapterId: chapterId || chapterList?.[0]?.id || 0,
+      chapterId: _chapterId || chapterList?.[0]?.id || 0,
       bookInfo: book,
       isPc: ownOs(ua).isPc,
       isApple: isIos(ua),

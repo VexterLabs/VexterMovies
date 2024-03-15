@@ -72,9 +72,9 @@ export const TDKNew = {
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
       const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${index}集-${bookName} ${index}集在线观看-DramaBox`,
-        keywords: `${bookName} ${index}集`,
-        description: `${bookName} ${index}集在线观看`
+        title: `${index}集-${bookName}${index}集在线观看-DramaBox`,
+        keywords: `${bookName}${index}集`,
+        description: `${bookName}${index}集在线观看`
       }
     },
     download: {
@@ -113,15 +113,15 @@ export const TDKNew = {
     browse: ({ typeTwoName = '', page = '1' }) => {
       if (page === '1') {
         return {
-          title: `${typeTwoName}短劇-${typeTwoName}短劇排行榜-DramaBox`,
-          keywords: `DramaBox${typeTwoName}短劇,${typeTwoName}短劇排行榜`,
-          description: `DramaBox${typeTwoName}短劇,${typeTwoName}短劇排行榜,DramaBox提供熱門${typeTwoName}短劇，歡迎在線觀看`
+          title: `${typeTwoName}短劇大全-${typeTwoName}短劇推薦-DramaBox`,
+          keywords: `DramaBox${typeTwoName}短劇大全,${typeTwoName}短劇推薦`,
+          description: `DramaBox${typeTwoName}短劇大全,${typeTwoName}短劇推薦,DramaBox提供熱門${typeTwoName}短劇，歡迎在線觀看`
         }
       }
       return {
-        title: `${typeTwoName}短劇-${typeTwoName}短劇排行榜-第${page}頁-DramaBox`,
-        keywords: `${typeTwoName}短劇`,
-        description: `${typeTwoName}短劇`
+        title: `${typeTwoName}短劇大全-${typeTwoName}短劇推薦-第${page}頁-DramaBox`,
+        keywords: `${typeTwoName}短劇大全`,
+        description: `${typeTwoName}短劇大全`
       }
     },
     more: ({ positionName = '', page = '1'}) => {
@@ -151,9 +151,9 @@ export const TDKNew = {
       const chapterIndex = chapterList.findIndex(val => val.id === chapterId) || 0;
       const index = chapterIndex <= 0 ? 1 : chapterIndex + 1;
       return {
-        title: `${index}集-${bookName} ${index}集-DramaBox`,
-        keywords: `${bookName} ${index}集`,
-        description: `${bookName} ${index}集在線觀看`
+        title: `${index}集-${bookName}${index}集-DramaBox`,
+        keywords: `${bookName}${index}集`,
+        description: `${bookName}${index}集在線觀看`
       }
     },
     error500: {

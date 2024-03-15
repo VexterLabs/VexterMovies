@@ -44,7 +44,7 @@ const RightList: FC<IProps> = ({ current, chapterList, bookInfo, onChooseEpisode
               width={88}
               height={89}
               src={item.cover || bookInfo.cover}
-              alt={item.name}
+              alt={t("bookInfo.first") + (index + 1) + t("bookInfo.episode")}
             />
 
             { !item.unlock ? <Link
