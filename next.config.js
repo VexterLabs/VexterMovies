@@ -30,11 +30,11 @@ const IpUaUrlObj = {
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
-const environment = 'staging'; // 部署环境 "test" | "staging" | "prod"
+const environment = 'prod'; // 部署环境 "test" | "staging" | "prod"
 const Platform = 'dramaboxapp'; // 产品线 "dramabox" | "dramaboxapp"
 /** ⬆⬆⬆⬆⬆⬆✨✨✨✨✨✨ ℹℹℹℹℹℹℹℹℹℹ ✨✨✨✨✨✨⬆⬆⬆⬆⬆⬆ */
 
-const buildId = `${Platform}_20240315`; // 构建ID
+const buildId = `${Platform}_20240316`; // 构建ID
 const WebDomain = WebDomainObj[Platform][environment];
 const BaseUrl = BaseUrlObj[environment]
 const IpUaUrl = IpUaUrlObj[environment]
