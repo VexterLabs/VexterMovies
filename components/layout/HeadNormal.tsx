@@ -69,7 +69,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
   const getUrl = (lan = ELanguage.English) => {
     const _locale = lan === ELanguage.English ? '' : `/${lan}`
     const _asPath = router.asPath === '/' ? '' : router.asPath
-    return (process.env.Platform === "dramabox" ? 'https://www.dramabox.com' : 'https://www.dramaboxapp.com') +_locale + _asPath;
+    return (process.env.Platform === "dramabox" ? 'https://vextermovies.vercel.app' : 'https://vextermovies.vercel.app') +_locale + _asPath;
   }
 
   // 拓展多语言字段
