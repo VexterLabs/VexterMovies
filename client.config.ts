@@ -6,7 +6,7 @@ const DramaBoxAppConfig = {
   // Facebook 分析现已停用 ?? https://www.facebook.com/business/help/966883707418907
   fbAppId: "310390558121791",
   name: "VexterMovies",
-  companyName: "STORYMATRIX PTE.LTD.",
+  companyName: "InfinityLabs Inc.",
   productName: "db",
   googleCode: "G-BXDJ8KNG7N",
   email: "ronaksenior@inbox.lv", // "dramaboxapp@gmail.com",
