@@ -5,13 +5,13 @@ const path = require("path");
 const WebDomainObj = {
   dramabox: {
     test: 'http://192.168.1.70:8099',
-    staging: 'https://yfbwww.dramabox.com',
-    prod: 'https://www.dramabox.com'
+    staging: 'https://vextermovies.vercel.app',
+    prod: 'https://vextermovies.vercel.app'
   },
   dramaboxapp: {
     test: 'http://192.168.1.71:3001',
-    staging: 'https://yfbwww.dramaboxapp.com',
-    prod: 'https://www.dramaboxapp.com'
+    staging: 'https://vextermovies.vercel.app',
+    prod: 'https://vextermovies.vercel.app'
   }
 }
 // 网站服务api
@@ -66,6 +66,7 @@ const nextConfig = {
     domains: [
       "reshot.hw.dzods.cn",
       "res.dramabox.com",
+      "sres.dramaboxdb.com",
       "nas2osstest.wpzkj.cn",
       "nchapter.dramaboxdb.com",
       "dzztstgvideo.cbread.cn",
