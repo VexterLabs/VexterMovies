@@ -20,7 +20,7 @@ const DramaBoxAppConfig = {
   android: {
     // deeplink: "dramabox://open?bid=41000101854&cid=564421029&chid=DASEO1000000&media=fb",
     pname: "com.storymatrix.drama",
-    link: "https://play.google.com/store/apps/details?id=com.storymatrix.drama",
+    link: "app",
     channelCode: "DASEO1000000",
   },
   logDataType: "dramabox",
