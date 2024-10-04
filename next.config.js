@@ -71,7 +71,8 @@ const nextConfig = {
       "nchapter.dramaboxdb.com",
       "dzztstgvideo.cbread.cn",
       "nvideo.dramaboxdb.com",
-      "nakavideo.dramaboxdb.com"
+      "nakavideo.dramaboxdb.com",
+      "nawsvideo.dramaboxdb.com"
     ],
   },
   // 环境配置
