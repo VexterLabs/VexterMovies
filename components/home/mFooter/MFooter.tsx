@@ -55,7 +55,7 @@ const MFooter: FC<IProps> = () => {
           onClick={() => onCommunity('facebook')}
           rel={'nofollow'}
           className={styles.communityItem}
-          href={'https://www.facebook.com/profile.php?id=61552540530213'}
+          href={'#pronto'}
           target={'_blank'}>
           Facebook
         </Link>
@@ -63,7 +63,7 @@ const MFooter: FC<IProps> = () => {
           onClick={() => onCommunity('youtube')}
           rel={'nofollow'}
           className={styles.communityItem}
-          href={'https://www.youtube.com/@dramaboxapp'}
+          href={'#pronto'}
           target={'_blank'}>
           Youtube
         </Link>
@@ -71,7 +71,7 @@ const MFooter: FC<IProps> = () => {
           onClick={() => onCommunity('tiktok')}
           className={styles.communityItem}
           rel={'nofollow'}
-          href={(router.locale === 'zh' || router.locale === 'zhHans') ? 'https://www.tiktok.com/@dramaboxtok' : 'https://www.tiktok.com/@dramaboxtik'}
+          href={(router.locale === 'zh' || router.locale === 'zhHans') ? '#pronto' : '#pronto'}
           target={'_blank'}>
           Tiktok
         </Link>
