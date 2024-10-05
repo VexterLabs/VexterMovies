@@ -66,6 +66,7 @@ const nextConfig = {
     domains: [
       "reshot.hw.dzods.cn",
       "res.dramabox.com",
+      "vres.dramaboxdb.com",
       "sres.dramaboxdb.com",
       "nas2osstest.wpzkj.cn",
       "nchapter.dramaboxdb.com",
