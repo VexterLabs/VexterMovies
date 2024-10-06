@@ -24,7 +24,7 @@ export default async function handler(
       <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/">
 <channel>
 <title>${book.bookName || "DramaBox"}</title>
-<link>https://www.dramabox.com/drama/${book.bookId}/${book.bookNameEn || ""}</link>
+<link>https://vextermovies.vercel.app/drama/${book.bookId}/${book.bookNameEn || ""}</link>
 <description>${book.introduction || "DramaBox"}</description>
 `;
     const bodyEnd = `</channel></rss>`;
@@ -34,7 +34,7 @@ export default async function handler(
       const contentUrl = (chapter?.mp4 || chapterList?.[0]?.mp4 || "").replaceAll('&','&amp;');
 
       return `<item xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/">
-    <link>https://www.dramabox.com/video/${book.bookId}_${book.bookNameEn || ''}/${chapter.id}_Episode-${index + 1}</link>
+    <link>https://vextermovies.vercel.app/video/${book.bookId}_${book.bookNameEn || ''}/${chapter.id}_Episode-${index + 1}</link>
     <media:content url="${contentUrl}" fileSize="11321" type="video/mp4" height="320" width="240" duration="60" medium="video" isDefault="true">
       <media:player url="${contentUrl}" />
       <media:title>${book.bookName + ' Episode ' + (index + 1)}</media:title>
