@@ -127,7 +127,7 @@ const HeadNormal: FC<any> = ({ pageProps = {}, router }: { pageProps: any; route
       {/*防止xss攻击*/}
       <meta key="httpEquiv2" httpEquiv="Content-Security-Policy"/>
       {/*Sets whether a web application runs in full-screen mode.*/}
-      <meta key={'ios_web'} name="apple-mobile-web-app-capable" content="yes">
+      <meta key={'ios_web'} name="mobile-web-app-capable" content="yes"/>
       <link rel="icon" href={'/favicon.ico'}/>
       <link rel="canonical" href={getUrl(router.locale as ELanguage)}/>
       <AlternateLink />
