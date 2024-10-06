@@ -4,12 +4,12 @@ const path = require("path");
 // 网站域名
 const WebDomainObj = {
   dramabox: {
-    test: 'http://192.168.1.70:8099',
+    //test: 'http://192.168.1.70:8099',
     staging: 'https://vextermovies.vercel.app',
     prod: 'https://vextermovies.vercel.app'
   },
   dramaboxapp: {
-    test: 'http://192.168.1.71:3001',
+    //test: 'http://192.168.1.71:3001',
     staging: 'https://vextermovies.vercel.app',
     prod: 'https://vextermovies.vercel.app'
   }
@@ -17,16 +17,16 @@ const WebDomainObj = {
 // 网站服务api
 const BaseUrlObj = {
   // test: 'http://192.168.0.253:8080',
-  test: 'http://192.168.0.253:8080', // http://192.168.1.70:8080
-  staging: 'https://yfbwww.webfic.com',
-  prod: 'https://www.webfic.com'
+  //test: 'http://192.168.0.253:8080', // http://192.168.1.70:8080
+  //staging: 'https://yfbwww.webfic.com',
+  //prod: 'https://www.webfic.com'
 }
 // ipua
 const IpUaUrlObj = {
   // test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
-  test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
-  staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
-  prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
+  //test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
+  //staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
+  //prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
