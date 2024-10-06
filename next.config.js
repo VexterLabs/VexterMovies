@@ -5,12 +5,12 @@ const path = require("path");
 const WebDomainObj = {
   dramabox: {
     //test: 'http://192.168.1.70:8099',
-    staging: 'https://vextermovies.vercel.app',
+    //staging: 'https://vextermovies.vercel.app',
     prod: 'https://vextermovies.vercel.app'
   },
   dramaboxapp: {
     //test: 'http://192.168.1.71:3001',
-    staging: 'https://vextermovies.vercel.app',
+    //staging: 'https://vextermovies.vercel.app',
     prod: 'https://vextermovies.vercel.app'
   }
 }
@@ -26,7 +26,7 @@ const IpUaUrlObj = {
   // test: "https://hotdrama.hw.dzods.cn/drama-box/ad/cache/ua",
   //test: 'https://drama.hw.dzods.cn/drama-box/ad/cache/ua',
   //staging: 'https://yfbapi.dramaboxdb.com/drama-box/ad/cache/ua',
-  //prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
+  prod: 'https://api.dramaboxdb.com/drama-box/ad/cache/ua'
 }
 
 /** ⬇⬇⬇⬇⬇⬇✨✨✨✨✨✨ 环境,手动更换 ✨✨✨✨✨✨⬇⬇⬇⬇⬇⬇*/
