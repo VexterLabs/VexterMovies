@@ -50,7 +50,7 @@ const PcHeader: FC<IProps> = () => {
               src={'/images/logo.png'}
               alt={ClientConfig.name}
             />
-            <span>DramaBox</span>
+            <span>VexterMovies</span>
           </Link>
           <div className={styles.navBox}>
             { MenuData.map(val => {
