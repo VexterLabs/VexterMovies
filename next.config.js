@@ -18,8 +18,8 @@ const WebDomainObj = {
 const BaseUrlObj = {
   // test: 'http://192.168.0.253:8080',
   //test: 'http://192.168.0.253:8080', // http://192.168.1.70:8080
-  staging: 'https://yfbwww.webfic.com',
-  prod: 'https://www.webfic.com'
+  //staging: 'https://yfbwww.webfic.com',
+  //prod: 'https://www.webfic.com'
 }
 // ipua
 const IpUaUrlObj = {
